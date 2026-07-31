@@ -144,7 +144,7 @@ const numbersData = [
   { value: "Every day", label: "Traveller community growing" },
 ];
 
-const AboutUs = () => {
+const AboutUs = ({ aboutbg = "" }) => {
   const navigate = useNavigate();
   const [activeChap, setActiveChap] = useState(0);
   const [openHostModal, setOpenHostModal] = useState(false);
@@ -233,7 +233,7 @@ const AboutUs = () => {
 
       {/* ===== 1 · HERO ===== */}
       <section id="v2-1" style={{ position: "relative", minHeight: "calc(100vh - 80px)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "#1a130d" }}>
-        <img src={HERO_IMG} alt="Travellers in the mountains" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.45 }} />
+        <img src={aboutbg || HERO_IMG} alt="Travellers in the mountains" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.45 }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(26,19,13,.78), rgba(26,19,13,.88))" }} />
         <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(54deg, rgba(244,238,228,.03) 0 22px, rgba(244,238,228,.06) 22px 44px)" }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: 960, padding: "40px 24px", textAlign: "center", margin: "auto" }}>
