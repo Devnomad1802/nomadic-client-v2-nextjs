@@ -44,13 +44,42 @@ export const NavLink = React.forwardRef<HTMLAnchorElement, any>(
 );
 NavLink.displayName = "NavLink";
 
+// ── Navigation state (react-router's location.state) ──
+// Next.js router.push carries no state, so persist it per-pathname in
+// sessionStorage. This is what makes flows like TripDetail → /payment
+// ({ paymentDetail }) and Razorpay → /paymentsuccess ({ data }) work.
+// Bonus over react-router: state survives a refresh within the session.
+const NAV_STATE_KEY = "rr-compat-state";
+
+const readNavStore = (): Record<string, any> => {
+  try {
+    return JSON.parse(sessionStorage.getItem(NAV_STATE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+};
+
+const saveNavState = (to: any, state: any) => {
+  if (typeof window === "undefined") return;
+  const path = (typeof to === "string" ? to : to?.pathname || "/").split("?")[0];
+  try {
+    const store = readNavStore();
+    if (state === undefined || state === null) delete store[path];
+    else store[path] = state;
+    sessionStorage.setItem(NAV_STATE_KEY, JSON.stringify(store));
+  } catch { /* storage full/blocked — degrade to stateless nav */ }
+};
+
 // Mock useNavigate
 export const useNavigate = () => {
   const router = useRouter();
   return (to: any, options?: { replace?: boolean; state?: any }) => {
     if (to === -1) {
       window.history.back();
-    } else if (options?.replace) {
+      return;
+    }
+    saveNavState(to, options?.state);
+    if (options?.replace) {
       router.replace(to);
     } else {
       router.push(to);
@@ -62,11 +91,17 @@ export const useNavigate = () => {
 export const useLocation = () => {
   const pathname = usePathname();
   const searchParams = useNextSearchParams();
+  // Synchronous lazy read: the client sees state on its FIRST render, so
+  // redirect guards like Paymentsuccess's `if (!data) navigate("/")` don't
+  // fire before the state arrives. SSR renders null (no sessionStorage).
+  const [state] = React.useState<any>(() =>
+    typeof window === "undefined" ? null : readNavStore()[pathname] ?? null
+  );
   return {
     pathname,
     search: searchParams ? `?${searchParams.toString()}` : "",
     hash: typeof window !== "undefined" ? window.location.hash : "",
-    state: null,
+    state,
   };
 };
 
