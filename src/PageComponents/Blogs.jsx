@@ -42,7 +42,7 @@ const slugify = (str) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-const Blogs = ({ initialBlogs, initialCategory }) => {
+const Blogs = ({ initialBlogs, initialCategory = "" }) => {
   const navigate = useNavigate();
   const { category: catParam } = useParams();
   const [searchParams] = useSearchParams();
