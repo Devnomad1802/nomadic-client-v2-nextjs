@@ -1,66 +1,65 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import type { Metadata } from "next";
+import HomeV3 from "@/PageComponents/HomeV3";
+import { getBanners, getTrips, getBlogs, getCategories } from "@/utils/serverFetch";
 
-export default function Home() {
+const OG_IMAGE =
+  "https://nomadic-townies-assets.sgp1.cdn.digitaloceanspaces.com/about-images/aboutbg1.jpg";
+
+export const metadata: Metadata = {
+  title: "Curated Travel Experiences, Community Trips & Retreats | Nomadic Townies",
+  description:
+    "Discover community trips, backpacking adventures, wellness retreats, workshops, and cultural immersions hosted by passionate local communities. Nomadic Townies is India's curated marketplace for transformative host-led travel experiences.",
+  keywords:
+    "curated travel experiences, community trips India, backpacking adventures, wellness retreats, cultural immersions, travel workshops, host-led experiences, meaningful travel, Nomadic Townies",
+  alternates: {
+    canonical: "https://nomadictownies.com/",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://nomadictownies.com/",
+    siteName: "Nomadic Townies",
+    title: "Nomadic Townies | Curated Travel Experiences & Community Trips",
+    description:
+      "Explore meaningful travel experiences hosted by passionate communities — from backpacking adventures and retreats to workshops and cultural immersions across India.",
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "Nomadic Townies — Host-led Travel Experiences" }],
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nomadic Townies | Curated Travel Experiences",
+    description:
+      "Discover host-led community trips, retreats, workshops, and cultural immersions through Nomadic Townies.",
+    images: [OG_IMAGE],
+  },
+};
+
+export default async function HomePage() {
+  // Fetch all home page data on the server so Google indexes the full content
+  const [bannersRes, tripsRes, blogsRes, catsRes] = await Promise.all([
+    getBanners().catch(() => null),
+    getTrips().catch(() => null),
+    getBlogs().catch(() => null),
+    getCategories().catch(() => null),
+  ]);
+
+  const activeBanner = (bannersRes?.data || [])[0] || {};
+  const initialTrips = tripsRes?.data || [];
+  const initialBlogs = (blogsRes?.data || []).sort(
+    (a: any, b: any) => new Date(b?.Date || 0).getTime() - new Date(a?.Date || 0).getTime()
+  );
+  const initialCategories = catsRes?.data || [];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <HomeV3
+      homebg={activeBanner.home}
+      toggle={activeBanner.toggle}
+      homeVideo={activeBanner.homeVideo}
+      categorySectionTitle={activeBanner.categorySectionTitle}
+      categorySectionSubtitle={activeBanner.categorySectionSubtitle}
+      initialTrips={initialTrips}
+      initialBlogs={initialBlogs}
+      initialCategories={initialCategories}
+    />
   );
 }

@@ -1,0 +1,64 @@
+/* Categories Swiper Styles */
+.categories-swiper {
+  padding: 0 20px;
+}
+
+.categories-swiper .swiper-slide {
+  width: auto;
+  height: auto;
+}
+
+/* Hide default Swiper navigation */
+.categories-swiper .swiper-button-next,
+.categories-swiper .swiper-button-prev {
+  display: none !important;
+}
+
+/* Custom navigation button styles */
+.categories-swiper-button-prev,
+.categories-swiper-button-next {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 3 !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #fff !important;
+  color: #333 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  border: none !important;
+}
+
+.categories-swiper-button-prev:hover,
+.categories-swiper-button-next:hover {
+  background: #f5f5f5 !important;
+  transform: translateY(-50%) scale(1.05) !important;
+}
+
+.categories-swiper-button-prev {
+  left: -15px !important;
+}
+
+.categories-swiper-button-next {
+  right: -15px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .categories-swiper {
+    padding: 0 10px;
+  }
+  
+  .categories-swiper-button-prev {
+    left: -10px !important;
+  }
+  
+  .categories-swiper-button-next {
+    right: -10px !important;
+  }
+}

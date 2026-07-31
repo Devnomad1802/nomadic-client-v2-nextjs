@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Disallow private/auth routes
+Disallow: /profile
+Disallow: /payment
+Disallow: /booking_overview
+Disallow: /paymentsuccess
+Disallow: /paymentfail
+Disallow: /complete-profile
+Disallow: /auth/google/success
+Disallow: /email-verification
+Disallow: /two-step-verification
+Disallow: /two-step-code
+Disallow: /reset-password
+Disallow: /forget-password
+
+# Sitemap
+Sitemap: https://nomadictownies.com/sitemap.xml

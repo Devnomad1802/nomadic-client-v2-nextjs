@@ -1,0 +1,62 @@
+.v2-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #F4EEE4;
+  font-family: var(--inter);
+  color: #221C17;
+  position: relative;
+}
+
+.v2-font-heading {
+  font-family: var(--playfair);
+}
+
+.v2-font-body {
+  font-family: var(--inter);
+}
+
+.v2-font-serif {
+  font-family: var(--serif);
+}
+
+.v2-cta {
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  font-family: var(--inter);
+}
+.v2-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(207, 74, 44, .36) !important;
+  background: #C0421F !important;
+}
+
+.v2-ghost {
+  transition: background .16s ease, border-color .16s ease;
+  font-family: var(--inter);
+}
+.v2-ghost:hover {
+  background: rgba(244, 238, 228, .12) !important;
+}
+
+.v2-card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.v2-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 48px -22px rgba(0, 0, 0, .4) !important;
+}
+
+.v2-raildot {
+  transition: background .3s ease, transform .3s ease;
+}
+
+.v2-split {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .v2-rail {
+    display: flex !important;
+  }
+  .v2-split {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}

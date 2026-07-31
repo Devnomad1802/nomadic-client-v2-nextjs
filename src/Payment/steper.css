@@ -1,0 +1,42 @@
+.MuiSlider-root {
+    color: #20b2aa;
+  }
+  
+  .MuiSlider-root:hover {
+    color: #2e8b57;
+  }
+  .css-1a71dpr-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: red;
+}
+  /* .css-b18hzg-MuiModal-root-MuiDialog-root .MuiDialog-paper-active{
+color: red !important
+  } */
+
+
+
+  /* .MuiStepConnector-root{
+    display: none;
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    background-color: "yellow";
+}
+
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root {
+    background:  "yellow" !important;
+border-radius: 16px;
+/* color: white; */
+
+}
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active{
+    background:  "yellow" !important;
+}
+
+/* .css-117w1su-MuiStepIcon-text {
+  
+} */
+.css-mjpk2e-MuiButtonBase-root-MuiStepButton-root{
+    height: 2%;
+    /* border:1px solid red !important; */
+    padding: 7px 16px !important; */
+}

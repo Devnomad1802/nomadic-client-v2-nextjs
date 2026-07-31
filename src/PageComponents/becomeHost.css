@@ -1,0 +1,89 @@
+/* Become a Host — scoped .bhpg. Two-panel registration form (per design). */
+.bhpg{
+  --orange:#CD482A;--orange-hover:#B53D1F;
+  --cream:#F4EEE4;--cream-soft:#FFFDF9;
+  --ink:#221C17;--muted:#726A5E;--muted-2:#8A8073;--placeholder:#A89C8A;
+  --line:#E6DDCF;--err:#C0392B;
+  font-family:var(--inter);color:var(--ink);background:var(--cream);
+  min-height:100vh;display:flex;flex-wrap:wrap;text-align:left;line-height:1.5;
+}
+.bhpg *,.bhpg *::before,.bhpg *::after{box-sizing:border-box}
+.bhpg h1,.bhpg h2,.bhpg h3,.bhpg p{margin:0}
+.bhpg img{display:block;max-width:100%}
+
+/* LEFT panel — logo top, illustration middle, text bottom (striped dark) */
+.bhpg .bh-left{position:relative;flex:1 1 380px;min-height:0;overflow:hidden;background:repeating-linear-gradient(48deg,#4a3f33,#4a3f33 16px,#433a2f 16px,#433a2f 32px)}
+.bhpg .bh-left::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,22,17,.28) 0%,rgba(28,22,17,.66) 80%)}
+.bhpg .bh-left-inner{position:relative;height:100%;display:flex;flex-direction:column;padding:clamp(30px,3.4vw,48px)}
+.bhpg .bh-logo{height:28px;width:auto;align-self:flex-start}
+.bhpg .bh-illus{flex:1 1 auto;display:flex;align-items:center;justify-content:center;min-height:0;padding:24px 0}
+.bhpg .bh-illus img{width:100%;max-width:340px;max-height:280px;object-fit:contain;border:none;border-radius:18px;filter:drop-shadow(0 18px 36px rgba(0,0,0,.4))}
+.bhpg .bh-left-text{margin-top:auto}
+.bhpg .bh-eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#F0B49C;margin-bottom:18px}
+.bhpg .bh-left h1{font-family:var(--playfair);font-weight:700;font-size:clamp(32px,3.6vw,46px);line-height:1.04;letter-spacing:-.02em;color:#F8F4ED;text-wrap:balance}
+.bhpg .bh-left .bh-lede{margin-top:18px;max-width:400px;font-size:15.5px;line-height:1.55;color:#E6DDCF}
+.bhpg .bh-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.bhpg .bh-chip{padding:7px 14px;border:1px solid rgba(244,238,228,.32);border-radius:99px;font-size:12px;font-weight:600;color:#F4EEE4}
+
+/* RIGHT form — wider so the submit stays in view */
+.bhpg .bh-right{flex:2 1 540px;display:flex;justify-content:center;padding:clamp(28px,3vw,48px)}
+.bhpg .bh-form-wrap{width:100%;max-width:660px}
+.bhpg .bh-form-wrap h2{font-family:var(--playfair);font-weight:700;font-size:clamp(26px,3vw,32px);letter-spacing:-.01em;color:var(--ink)}
+.bhpg .bh-sub{margin-top:9px;font-size:15px;line-height:1.5;color:var(--muted)}
+
+.bhpg .bh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px 20px;margin-top:22px}
+.bhpg .bh-fld{display:flex;flex-direction:column;gap:8px}
+.bhpg .bh-fld.full{grid-column:1 / -1}
+.bhpg .bh-fld label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bhpg .bh-fld label .opt{text-transform:none;letter-spacing:0;color:var(--placeholder);font-weight:500}
+.bhpg .bh-in{width:100%;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--cream-soft);border:1px solid var(--line);border-radius:11px;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.bhpg textarea.bh-in{line-height:1.5;resize:vertical;min-height:82px}
+.bhpg select.bh-in{appearance:none;-webkit-appearance:none;padding-right:40px;color:var(--ink);cursor:pointer}
+.bhpg .bh-in::placeholder{color:var(--placeholder)}
+.bhpg .bh-in:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(205,72,42,.12);background:#fff}
+.bhpg .bh-in.invalid{border-color:#D45B47;background:#FFF8F6}
+.bhpg .bh-select{position:relative}
+.bhpg .bh-select .caret{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:var(--placeholder);pointer-events:none;font-size:12px}
+.bhpg .bh-err{font-size:12px;font-weight:500;line-height:1.3;color:var(--err)}
+
+.bhpg .bh-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px 18px;margin-top:22px}
+.bhpg .bh-cta{display:inline-flex;align-items:center;gap:9px;padding:15px 26px;font-size:15px;font-weight:700;color:#fff;background:var(--orange);border:none;border-radius:12px;cursor:pointer;box-shadow:0 6px 16px rgba(205,72,42,.26);transition:transform .18s,box-shadow .18s,background .18s}
+.bhpg .bh-cta:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(205,72,42,.32);background:var(--orange-hover)}
+.bhpg .bh-cta:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.bhpg .bh-note{font-size:13px;line-height:1.4;color:var(--muted-2);max-width:240px}
+
+/* SUCCESS */
+.bhpg .bh-success{position:relative;overflow:hidden;background:#221C17;border-radius:22px;padding:clamp(36px,5vw,52px) clamp(28px,4vw,46px);text-align:center;animation:bh-rise .5s ease both}
+.bhpg .bh-success::before{content:'';position:absolute;width:340px;height:340px;left:50%;top:-170px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(233,98,47,.30),transparent 66%)}
+.bhpg .bh-success-in{position:relative}
+.bhpg .bh-check{width:66px;height:66px;margin:0 auto;border-radius:50%;background:#E9622F;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;animation:bh-pop .55s ease both}
+.bhpg .bh-success h2{margin-top:22px;font-family:var(--playfair);font-weight:700;font-size:clamp(28px,3.4vw,34px);letter-spacing:-.01em;color:#F8F4ED}
+.bhpg .bh-success p{margin:14px auto 0;max-width:440px;font-size:15px;line-height:1.6;color:#C9BFAE}
+.bhpg .bh-steps{display:flex;align-items:center;justify-content:center;gap:0;margin:30px auto 0;max-width:430px}
+.bhpg .bh-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:9px}
+.bhpg .bh-step-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.bhpg .bh-step-dot.done{background:#E9622F;color:#fff}
+.bhpg .bh-step-dot.now{border:1.5px solid #E9622F;color:#F0B49C}
+.bhpg .bh-step-dot.next{border:1.5px solid rgba(244,238,228,.3);color:#9A9080}
+.bhpg .bh-step span{font-size:12px;font-weight:600;line-height:1.2}
+.bhpg .bh-step.done span{color:#F4EEE4}.bhpg .bh-step.now span{color:#F0B49C}.bhpg .bh-step.next span{color:#9A9080}
+.bhpg .bh-step-line{flex:1;height:2px}
+.bhpg .bh-step-line.a{background:linear-gradient(90deg,#E9622F,rgba(244,238,228,.25))}
+.bhpg .bh-step-line.b{background:rgba(244,238,228,.18)}
+.bhpg .bh-success-actions{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:32px}
+.bhpg .bh-btn-light{padding:13px 22px;font-size:14px;font-weight:700;color:#221C17;background:#F4EEE4;border:none;border-radius:11px;cursor:pointer}
+.bhpg .bh-btn-ghost{padding:13px 22px;font-size:14px;font-weight:700;color:#F4EEE4;background:transparent;border:1px solid rgba(244,238,228,.35);border-radius:11px;cursor:pointer}
+@keyframes bh-pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes bh-rise{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ===== Popup: full two-panel design inside a modal ===== */
+.bhm-overlay{position:fixed;inset:0;z-index:1300;background:rgba(28,22,17,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;animation:bh-fade .2s ease both}
+@keyframes bh-fade{from{opacity:0}to{opacity:1}}
+.bhm-dialog{position:relative;width:100%;max-width:1080px;max-height:92vh;overflow:hidden;border-radius:22px;box-shadow:0 28px 70px -24px rgba(0,0,0,.6);animation:bh-rise .28s ease both}
+/* the full .bhpg two-panel fills the dialog and scrolls inside */
+.bhm-dialog .bhpg{min-height:0;height:100%;max-height:92vh;overflow-y:auto}
+.bhm-dialog .bhpg .bh-left{min-height:0}
+.bhm-dialog .bhpg .bh-left-inner{min-height:0;gap:24px}
+.bhm-close{position:absolute;top:16px;right:16px;z-index:5;width:38px;height:38px;border-radius:50%;background:rgba(20,15,10,.5);color:#F4EEE4;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:background .15s}
+.bhm-close:hover{background:rgba(20,15,10,.75)}
+@media(max-width:600px){.bhm-overlay{padding:0}.bhm-dialog{max-width:100%;max-height:100vh;height:100vh;border-radius:0}.bhm-dialog .bhpg{max-height:100vh}}
