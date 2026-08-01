@@ -47,7 +47,7 @@ const Gallary = ({ Gallary }) => {
                   <Box
                     sx={{
                       width: "100%",
-                      // border: "1px solid #F3F4F6",
+                      // border: "1px solid #F1EADD",
                       borderRadius: "16px",
                       display: "flex",
                       flexDirection: "column",

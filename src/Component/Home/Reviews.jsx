@@ -21,7 +21,7 @@ const Reviews = () => {
     <Box sx={{ color: "#fff", background: "#FFF4F1", py: { xs: 10, md: 15 } }}>
    <Typography
           sx={{
-            color: "#4B5563",
+            color: "#5A5247",
             textAlign: "center",
             // fontFamily: "Inter",
             fontFamily: "Playfair",
@@ -38,7 +38,7 @@ const Reviews = () => {
           sx={{
             maxWidth: "800px",
             margin: "0 auto",
-            color: "#4B5563",
+            color: "#5A5247",
             textAlign: "center",
             // fontFamily: "Inter",
             fontFamily: "Inter",

@@ -26,7 +26,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingLeft: theme.spacing(0),
     paddingRightt: theme.spacing(0),
     marginLeft: "57px",
-    color: "#111827",
+    color: "#221C17",
     fontWeight: "bold",
 
     "&:hover": {
@@ -90,8 +90,8 @@ export default function DetailTabs() {
     <Box sx={{ width: "100%", mx: "auto", ml: 1 }}>
       <Box
         sx={{
-          border: "1px solid #F3F4F6",
-          background: "#F9FAFB",
+          border: "1px solid #F1EADD",
+          background: "#FBF6EE",
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
@@ -134,7 +134,7 @@ export default function DetailTabs() {
           my: 2,
           py: { xs: 1, md: 1 },
           px: { xs: 1, md: 2 },
-          border: "1px solid #F3F4F6",
+          border: "1px solid #F1EADD",
           background: "#FBFBFB",
         }}
       >

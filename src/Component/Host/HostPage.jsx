@@ -550,7 +550,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
             <h2>About {firstName}</h2>
             {host?.hostOverview
               ? <p className="hd-about-p">{host.hostOverview}</p>
-              : <p className="hd-about-p" style={{ color: "#9CA3AF" }}>This host hasn&apos;t added an overview yet.</p>}
+              : <p className="hd-about-p" style={{ color: "#8A8073" }}>This host hasn&apos;t added an overview yet.</p>}
             {host?.tagline && <div className="hd-quote">&ldquo;{host.tagline}&rdquo;</div>}
           </section>
 
@@ -631,7 +631,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
                 ))}
               </div>
             ) : (
-              <p className="hd-about-p" style={{ color: "#9CA3AF" }}>No active trips right now — check back soon.</p>
+              <p className="hd-about-p" style={{ color: "#8A8073" }}>No active trips right now — check back soon.</p>
             )}
           </section>
 

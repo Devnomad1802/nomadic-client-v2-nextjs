@@ -256,8 +256,8 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prevOverflow; };
   }, [lbIndex, trip?.images]);
 
-  if (tripsRes && !raw) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#6B7280" }}>Trip not found.</div>;
-  if (!trip) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#6B7280" }}>Loading…</div>;
+  if (tripsRes && !raw) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Trip not found.</div>;
+  if (!trip) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Loading…</div>;
 
   const goTo = (id, label) => () => {
     setActive(label);
@@ -284,7 +284,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     .map((d, i) => ({ ...d, num: String(i + 1).padStart(2, "0") }));
 
   const sectionH2 = { margin: "0 0 16px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(22px,2.6vw,27px)", letterSpacing: "-.01em", color: "#221C17" };
-  const card = { background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: "16px" };
+  const card = { background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "16px" };
 
   return (
     <div className="td-page" ref={rootRef}>
@@ -303,7 +303,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
           top: 0,
           zIndex: 30,
           background: "#FFFFFF",
-          borderBottom: "1px solid #E5E7EB",
+          borderBottom: "1px solid #E6DDCF",
           width: "100%",
         }}
       >
@@ -422,7 +422,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
             {/* STICKY TABS */}
             <div style={{ position: "sticky", top: 64, zIndex: 20, background: "var(--orange-tint, #FFF4F1)", paddingTop: "16px", marginTop: "30px" }}>
-              <div style={{ display: "flex", gap: "28px", borderBottom: "1px solid #E5E7EB", overflowX: "auto" }}>
+              <div style={{ display: "flex", gap: "28px", borderBottom: "1px solid #E6DDCF", overflowX: "auto" }}>
                 {TABS.map(([id, label]) => (
                   <button key={id} type="button" className="td-tab" onClick={goTo(id, label)} style={{ padding: "14px 2px", font: `600 14px/1 ${BODY}`, color: active === label ? ACCENT : "#8A8073", borderBottom: `2px solid ${active === label ? ACCENT : "transparent"}`, whiteSpace: "nowrap" }}>{label}</button>
                 ))}
@@ -436,7 +436,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <p style={{ margin: 0, font: `400 16px/1.75 ${BODY}`, color: "#3C3228", whiteSpace: "pre-line" }}>{trip.overview || "Details coming soon."}</p>
                 {trip.highlights.length > 0 && (
                   <>
-                    <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#A89C8A", margin: "24px 0 14px", paddingTop: "20px", borderTop: "1px solid #E5E7EB" }}>Highlights</div>
+                    <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#A89C8A", margin: "24px 0 14px", paddingTop: "20px", borderTop: "1px solid #E6DDCF" }}>Highlights</div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "12px" }}>
                       {trip.highlights.map((h, i) => (
                         <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "11px", font: `400 15px/1.55 ${BODY}`, color: "#3C3228" }}>
@@ -501,7 +501,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <h2 style={{ ...sectionH2, marginBottom: "18px" }}>Day-by-day itinerary</h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                   {itinerary.map((d, i) => (
-                    <div key={i} style={{ display: "flex", gap: "16px", background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: "16px", padding: "20px 22px", boxShadow: "0 1px 2px rgba(60,42,28,.04)" }}>
+                    <div key={i} style={{ display: "flex", gap: "16px", background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "16px", padding: "20px 22px", boxShadow: "0 1px 2px rgba(60,42,28,.04)" }}>
                       <span style={{ flex: "none", width: 44, height: 44, borderRadius: "12px", background: "#FCE8E1", color: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: "16px" }}>{d.num}</span>
                       <div style={{ minWidth: 0, flex: 1 }}>
                         <div style={{ font: `700 10.5px/1 ${BODY}`, letterSpacing: ".1em", textTransform: "uppercase", color: "#A89C8A", marginBottom: "5px" }}>Day {Number(d.num)}</div>
@@ -513,7 +513,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                   ))}
                 </div>
                 {itineraryMore && (
-                  <button type="button" onClick={() => setItineraryOpen((v) => !v)} className="td-ghost" style={{ marginTop: "6px", display: "inline-flex", alignItems: "center", gap: "8px", padding: "11px 20px", border: "1px solid #E5E7EB", background: "#FFFFFF", borderRadius: "11px", font: `600 13.5px/1 ${BODY}`, color: "#5A5247", cursor: "pointer" }}>
+                  <button type="button" onClick={() => setItineraryOpen((v) => !v)} className="td-ghost" style={{ marginTop: "6px", display: "inline-flex", alignItems: "center", gap: "8px", padding: "11px 20px", border: "1px solid #E6DDCF", background: "#FFFFFF", borderRadius: "11px", font: `600 13.5px/1 ${BODY}`, color: "#5A5247", cursor: "pointer" }}>
                     {itineraryOpen ? "Show less" : `Show full ${fullItinerary.length}-day itinerary`}
                   </button>
                 )}
@@ -552,7 +552,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <span style={{ padding: "4px 11px", borderRadius: "99px", background: "var(--orange-tint, #FFF4F1)", border: "1px solid #F6DCD3", color: ACCENT, font: `600 11px/1 ${BODY}` }}>This experience only</span>
               </div>
               {!trip.hasReviews ? (
-                <div style={{ marginTop: "14px", textAlign: "center", padding: "44px 24px", background: "#FFFFFF", border: "1px dashed #E5E7EB", borderRadius: "16px" }}>
+                <div style={{ marginTop: "14px", textAlign: "center", padding: "44px 24px", background: "#FFFFFF", border: "1px dashed #E6DDCF", borderRadius: "16px" }}>
                   <p style={{ margin: "0 0 6px", font: `700 16px/1.4 ${BODY}`, color: "#221C17" }}>No reviews yet</p>
                   <p style={{ margin: "0 auto", maxWidth: 420, font: `400 14px/1.55 ${BODY}`, color: "#8A8073" }}>This is a new experience. Be one of the first to travel {trip.host ? `with ${trip.host.name}` : "with this host"} and share your story.</p>
                 </div>
@@ -573,7 +573,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "14px" }}>
                     {trip.reviews.map((rv, i) => (
-                      <div key={i} style={{ padding: "18px 20px", border: "1px solid #E5E7EB", borderRadius: "14px", background: "#FFFFFF" }}>
+                      <div key={i} style={{ padding: "18px 20px", border: "1px solid #E6DDCF", borderRadius: "14px", background: "#FFFFFF" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "11px" }}>
                           <span style={{ width: 38, height: 38, flex: "none", borderRadius: "50%", background: "#FCE8E1", color: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", font: `700 15px/1 ${BODY}` }}>{rv.initial}</span>
                           <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `600 14px/1.2 ${BODY}`, color: "#221C17" }}>{rv.name}</div>{rv.date && <div style={{ font: `400 11.5px/1 ${BODY}`, color: "#9A9080", marginTop: 2 }}>{rv.date}</div>}</div>
@@ -593,7 +593,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <h2 style={{ ...sectionH2, marginBottom: "18px" }}>Good to know</h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                   {trip.infoGroups.map((g, i) => (
-                    <details key={i} className="td-acc" open={!!g.open} style={{ border: "1px solid #E5E7EB", borderRadius: "14px", background: "#FFFFFF", overflow: "hidden" }}>
+                    <details key={i} className="td-acc" open={!!g.open} style={{ border: "1px solid #E6DDCF", borderRadius: "14px", background: "#FFFFFF", overflow: "hidden" }}>
                       <summary style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: "17px 20px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "16px", color: "#221C17" }}>{g.title}<span className="td-acc-ic" style={{ flex: "none", width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "#FCE8E1", color: ACCENT, transition: "transform .2s ease", fontSize: "16px" }}>+</span></summary>
                       <div style={{ padding: "0 20px 18px" }}>
                         {g.kind === "list" && (
@@ -617,7 +617,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
           {/* ===== BOOKING SIDEBAR ===== */}
           <aside className="td-side" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <div style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: "18px", overflow: "hidden", boxShadow: "0 12px 30px -16px rgba(0,0,0,.15)" }}>
+            <div style={{ background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "18px", overflow: "hidden", boxShadow: "0 12px 30px -16px rgba(0,0,0,.15)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "12px 20px", background: "var(--orange-tint, #FFF4F1)", borderBottom: "1px solid #F6DCD3" }}>
                 <span style={{ font: `500 12px/1.35 ${BODY}`, color: "#7C3A27" }}>Pay a little now, adventure a lot — flexible payments at checkout.</span>
               </div>
@@ -647,12 +647,12 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             </div>
 
             {trip.host && (
-              <div style={{ background: "#FFFFFF", border: "1px solid #E5E7EB", borderRadius: "18px", padding: "18px 22px" }}>
+              <div style={{ background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "18px", padding: "18px 22px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "11px" }}>
                   <span style={{ width: 42, height: 42, flex: "none", borderRadius: "11px", background: `linear-gradient(150deg,#E9622F,${ACCENT})`, color: "#FFF6EF", display: "flex", alignItems: "center", justifyContent: "center", font: `700 16px/1 ${BODY}` }}>{trip.host.initial}</span>
                   <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `400 11px/1 ${BODY}`, color: "#9A9080" }}>Your host</div><div style={{ marginTop: 3, font: `600 14px/1.2 ${BODY}`, color: "#221C17" }}>{trip.host.name}</div></div>
                 </div>
-                <button type="button" className="td-ghost" onClick={goHost} style={{ width: "100%", marginTop: "14px", padding: "12px", font: `700 13px/1 ${BODY}`, color: "#221C17", background: "#fff", border: "1px solid #E5E7EB", borderRadius: "11px", cursor: "pointer" }}>Message on Nomadic Townies</button>
+                <button type="button" className="td-ghost" onClick={goHost} style={{ width: "100%", marginTop: "14px", padding: "12px", font: `700 13px/1 ${BODY}`, color: "#221C17", background: "#fff", border: "1px solid #E6DDCF", borderRadius: "11px", cursor: "pointer" }}>Message on Nomadic Townies</button>
               </div>
             )}
           </aside>
@@ -660,7 +660,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
       </div>
 
       {/* MOBILE STICKY CTA */}
-      <div className="td-mcta" style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40, display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "#FFFFFF", borderTop: "1px solid #E5E7EB" }}>
+      <div className="td-mcta" style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40, display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "#FFFFFF", borderTop: "1px solid #E6DDCF" }}>
         <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "19px", color: "#221C17" }}>₹ {trip.price}</div><div style={{ font: `400 11px/1 ${BODY}`, color: "#9A9080" }}>per person</div></div>
         <button type="button" className="td-cta" onClick={handleBookNow} style={{ flex: "none", padding: "14px 30px", font: `700 15px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "12px", cursor: "pointer" }}>Book now →</button>
       </div>

@@ -58,16 +58,16 @@ const ForgetPassword = () => {
           align="center"
           variant="h3"
           mt={6}
-          sx={{ color: "#4B5563" }}
+          sx={{ color: "#5A5247" }}
         >
           Forget your password?
         </Typography>
-        <Typography mt={2} sx={{ color: "#4B5563" }}>
+        <Typography mt={2} sx={{ color: "#5A5247" }}>
           Reset your password with a device you`ve recently used to access
           Nomadic Townies to avoid a temporary security restriction.
         </Typography>
         <Box sx={{ maxWidth: "350px", mx: "auto", mt: 3 }}>
-          <Typography mt={2} sx={{ color: "#4B5563", textAlign: "left" }}>
+          <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
             Email
           </Typography>
           <TextField

@@ -25,7 +25,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingTop: 0,
     paddingBottom: 0,
     margin: "0px 10px",
-    color: "#111827",
+    color: "#221C17",
     fontWeight: "500 !important",
     height: "20px",
     display: "flex", // Flex display to center text
@@ -33,17 +33,17 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     justifyContent: "center", // Horizontal centering
     textAlign: "center",
     mx: "auto",
-    border: "1px solid #E5E7EB",
+    border: "1px solid #E6DDCF",
     borderRadius: "32px",
     "& .MuiTab-wrapper": {
       height: "20px",
-      border: "1px solid #E5E7EB",
+      border: "1px solid #E6DDCF",
       borderRadius: "32px",
     },
     "&:hover": {
       color: "#CF4A2C",
       opacity: 1,
-      border: "1px solid #E5E7EB",
+      border: "1px solid #E6DDCF",
       borderRadius: "32px",
     },
     "&.Mui-selected": {
@@ -60,7 +60,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     },
     "&.Mui-focusVisible": {
       backgroundColor: "#d1eaff",
-      border: "1px solid #E5E7EB",
+      border: "1px solid #E6DDCF",
       borderRadius: "32px",
     },
   })

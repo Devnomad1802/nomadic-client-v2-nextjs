@@ -75,7 +75,7 @@ const Categories = () => {
     <Container maxWidth="xl" sx={{ zIndex: 1, pt: 10, position: "relative" }}>
       <Typography
         sx={{
-          color: "#4B5563",
+          color: "#5A5247",
           textAlign: "center",
           fontFamily: "Playfair",
           fontSize: { xs: "22px", sm: "28px", md: "28px",lg:"48px" },
@@ -91,7 +91,7 @@ const Categories = () => {
         sx={{
           maxWidth: "700px",
           margin: "0 auto",
-          color: "#4B5563",
+          color: "#5A5247",
           textAlign: "center",
           fontFamily: "Inter",
           fontSize: { xs: "16px",lg:"20px" },
@@ -208,7 +208,7 @@ const Categories = () => {
                     <Typography
                       sx={{
                         fontSize: "12px",
-                        color: "#4B5563",
+                        color: "#5A5247",
                         fontWeight: "500",
                         lineHeight: 1,
                       }}
@@ -282,7 +282,7 @@ const Categories = () => {
             transform: "translateY(-50%)",
             zIndex: 3,
             backgroundColor: "#fff",
-            color: "#333",
+            color: "#3C3228",
             width: "36px",
             height: "36px",
             borderRadius: "50%",
@@ -304,7 +304,7 @@ const Categories = () => {
             transform: "translateY(-50%)",
             zIndex: 3,
             backgroundColor: "#fff",
-            color: "#333",
+            color: "#3C3228",
             width: "36px",
             height: "36px",
             borderRadius: "50%",

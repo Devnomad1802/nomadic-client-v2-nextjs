@@ -28,7 +28,7 @@ const January = ({ selectDate, setCardData, cardData }) => {
               }));
             }}
             sx={{
-              border: id === index ? "1px solid red" : "1px solid #F3F4F6",
+              border: id === index ? "1px solid red" : "1px solid #F1EADD",
               px: 2,
               minHeight: "69px",
               borderRadius: { xs: "8px", md: "16px" },
@@ -52,7 +52,7 @@ const January = ({ selectDate, setCardData, cardData }) => {
                   xs: "13px",
                   sm: "16px",
                   md: "19px",
-                  color: "#4B5563",
+                  color: "#5A5247",
                 },
               }}
             >

@@ -12,7 +12,7 @@ const UpcomingTrip = ({ searchQuery = "" }) => {
         <Box>
           <Typography
             sx={{
-              color: "#4B5563",
+              color: "#5A5247",
               // display: "flex",
               // textAlign: "center",
               fontWeight: "bold",

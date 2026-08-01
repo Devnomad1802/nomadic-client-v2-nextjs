@@ -422,7 +422,7 @@ const css = `
 .nt-rv-list{margin-top:12px;display:flex;flex-direction:column;gap:12px}
 .nt-rv-item{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:#fff}
 .nt-rv-item-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.nt-rv-text{margin:8px 0 0;font-size:14px;line-height:1.55;color:var(--text,#4B5563)}
+.nt-rv-text{margin:8px 0 0;font-size:14px;line-height:1.55;color:var(--text,#5A5247)}
 .nt-rv-photos{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .nt-rv-photos img{width:64px;height:64px;border-radius:10px;object-fit:cover}
 .nt-stars{display:inline-flex;gap:2px}

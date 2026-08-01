@@ -32,8 +32,8 @@ const HostFilter = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <FilterListIcon sx={{ color: "#666", fontSize: "20px" }} />
-          <Typography variant="body1" sx={{ color: "#666", fontWeight: 500 }}>
+          <FilterListIcon sx={{ color: "#726A5E", fontSize: "20px" }} />
+          <Typography variant="body1" sx={{ color: "#726A5E", fontWeight: 500 }}>
             Filter Trips:
           </Typography>
         </Box>
@@ -55,7 +55,7 @@ const HostFilter = () => {
                 borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
-                color: "#666",
+                color: "#726A5E",
                 fontWeight: 500,
               },
               "& .MuiPaper-root": {
@@ -71,7 +71,7 @@ const HostFilter = () => {
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
                   border: "1px solid #e0e0e0",
                   "& .MuiMenuItem-root": {
-                    color: "#666",
+                    color: "#726A5E",
                     fontWeight: 500,
                     "&:hover": {
                       backgroundColor: "#f5f5f5",
@@ -90,7 +90,7 @@ const HostFilter = () => {
             <MenuItem
               value=""
               sx={{
-                color: "#666",
+                color: "#726A5E",
                 fontWeight: 500,
                 backgroundColor: "#f0f0f0",
               }}
@@ -129,7 +129,7 @@ const HostFilter = () => {
                 borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
-                color: "#666",
+                color: "#726A5E",
                 fontWeight: 500,
               },
               "& .MuiPaper-root": {
@@ -145,7 +145,7 @@ const HostFilter = () => {
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
                   border: "1px solid #e0e0e0",
                   "& .MuiMenuItem-root": {
-                    color: "#666",
+                    color: "#726A5E",
                     fontWeight: 500,
                     "&:hover": {
                       backgroundColor: "#f5f5f5",
@@ -164,7 +164,7 @@ const HostFilter = () => {
             <MenuItem
               value=""
               sx={{
-                color: "#666",
+                color: "#726A5E",
                 fontWeight: 500,
                 backgroundColor: "#f0f0f0",
               }}

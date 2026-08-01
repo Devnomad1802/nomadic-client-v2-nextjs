@@ -2,9 +2,9 @@
 .ctpg{
   --orange:#CF4A2C; --orange-hover:#B53D1F;
   --orange-tint:#FDF3EE; --orange-tint-2:#FBEAE3;
-  --charcoal:#393938; --text-dark:#1F2937;
-  --text:#4B5563; --text-light:#6B7280; --text-lighter:#9CA3AF;
-  --line:#E5E7EB; --line-soft:#F3F4F6;
+  --charcoal:#393938; --text-dark:#3C3228;
+  --text:#5A5247; --text-light:#726A5E; --text-lighter:#8A8073;
+  --line:#E6DDCF; --line-soft:#F1EADD;
   --bg:#fff; --bg-soft:var(--orange-tint); --bg-cream:#FAF7F2;
   --green:#11875b; --green-tint:#e7f4ee; --whatsapp:#25D366;
   --sh:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);

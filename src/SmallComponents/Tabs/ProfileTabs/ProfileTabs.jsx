@@ -31,7 +31,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     // width: "100%",
     borderRadius: "0px",
     fontWeight: "400",
-    border: "2px solid #F3F4F6",
+    border: "2px solid #F1EADD",
 
     textAlign: "left",
     "& .MuiTab-wrapper": {
@@ -102,7 +102,7 @@ export default function ProfileTabs() {
     <Box
       sx={{
         flexGrow: 1,
-        bgcolor: "#F9FAFB",
+        bgcolor: "#FBF6EE",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         height: "auto",
@@ -114,7 +114,7 @@ export default function ProfileTabs() {
     >
       <Box
         sx={{
-          border: "2px solid #F3F4F6",
+          border: "2px solid #F1EADD",
           py: 2,
           px: { xs: 1.5, md: 0 },
           maxHeight: "500px",
@@ -297,8 +297,8 @@ export default function ProfileTabs() {
         <>
           <Box
             sx={{
-              border: "2px solid #F3F4F6",
-              background: "#F9FAFB",
+              border: "2px solid #F1EADD",
+              background: "#FBF6EE",
               borderRadius: "16px",
               p: { xs: 0, md: 2 },
               ml: { xs: 0, md: 2 },
@@ -332,8 +332,8 @@ export default function ProfileTabs() {
         <>
           <Box
             sx={{
-              border: "2px solid #F3F4F6",
-              background: "#F9FAFB",
+              border: "2px solid #F1EADD",
+              background: "#FBF6EE",
               borderRadius: "16px",
               p: { xs: 0, md: 2 },
               ml: { xs: 0, md: 2 },

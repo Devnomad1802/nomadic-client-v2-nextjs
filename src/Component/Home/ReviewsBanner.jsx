@@ -24,7 +24,7 @@ const ReviewsBanner = () => {
         }}
       >
         <Typography
-          sx={{ color: "#6D7280", fontSize: { xs: "16px", sm: "24px" } }}
+          sx={{ color: "#726A5E", fontSize: { xs: "16px", sm: "24px" } }}
         >
           Discover why Travellers love us
         </Typography>

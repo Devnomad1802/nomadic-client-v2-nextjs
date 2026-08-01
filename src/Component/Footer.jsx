@@ -62,13 +62,13 @@ const Footer = () => {
                 to={item.link}
                 onClick={() => window.scrollTo(0, 0)}
                 style={{
-                  color: "#9CA3AF",
+                  color: "#8A8073",
                   textDecoration: "none",
                   fontSize: "13px",
                   fontFamily: "Inter",
                 }}
                 onMouseEnter={(e) => (e.target.style.color = "#fff")}
-                onMouseLeave={(e) => (e.target.style.color = "#9CA3AF")}
+                onMouseLeave={(e) => (e.target.style.color = "#8A8073")}
               >
                 {item.name}
               </Link>
@@ -76,13 +76,13 @@ const Footer = () => {
           </Box>
 
           {/* Divider */}
-          <Box sx={{ height: "1px", background: "#333", width: "100%" }} />
+          <Box sx={{ height: "1px", background: "#3C3228", width: "100%" }} />
 
           {/* GST + Address */}
           <Box>
             <Typography
               sx={{
-                color: "#6B7280",
+                color: "#726A5E",
                 fontSize: "13px",
                 fontFamily: "Inter",
               }}
@@ -107,7 +107,7 @@ const Footer = () => {
                 display: "flex",
                 alignItems: "center",
                 gap: 0.5,
-                color: "#D1D5DB",
+                color: "#D8CFC0",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontFamily: "Inter",
@@ -124,7 +124,7 @@ const Footer = () => {
                 display: "flex",
                 alignItems: "center",
                 gap: 0.5,
-                color: "#D1D5DB",
+                color: "#D8CFC0",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontFamily: "Inter",
@@ -141,7 +141,7 @@ const Footer = () => {
                 display: "flex",
                 alignItems: "center",
                 gap: 0.5,
-                color: "#D1D5DB",
+                color: "#D8CFC0",
                 textDecoration: "none",
                 fontSize: "13px",
                 fontFamily: "Inter",
@@ -161,7 +161,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              sx={{ color: "#9CA3AF", "&:hover": { color: "#E1306C" } }}
+              sx={{ color: "#8A8073", "&:hover": { color: "#E1306C" } }}
               size="small"
             >
               <InstagramIcon fontSize="small" />
@@ -172,7 +172,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              sx={{ color: "#9CA3AF", "&:hover": { color: "#1877F2" } }}
+              sx={{ color: "#8A8073", "&:hover": { color: "#1877F2" } }}
               size="small"
             >
               <FacebookRoundedIcon fontSize="small" />
@@ -182,7 +182,7 @@ const Footer = () => {
           {/* Copyright */}
           <Typography
             sx={{
-              color: "#4B5563",
+              color: "#5A5247",
               fontSize: "12px",
               fontFamily: "Inter",
             }}

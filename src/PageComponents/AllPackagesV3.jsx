@@ -128,7 +128,7 @@ const AllPackagesV3 = ({ allpkgbg }) => {
           <h1 className="ap-hero-h1">Find your next<br />great adventure.</h1>
           <p className="ap-hero-sub">Community trips, treks, wellness retreats, cultural immersions and more — handpicked and host-verified.</p>
           <div className="ap-search">
-            <SearchIcon sx={{ ml: "18px", color: "#9CA3AF", flexShrink: 0 }} />
+            <SearchIcon sx={{ ml: "18px", color: "#8A8073", flexShrink: 0 }} />
             <input
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
@@ -312,7 +312,7 @@ const AllPackagesV3 = ({ allpkgbg }) => {
               {reviews.map((rev, i) => (
                 <SwiperSlide key={rev?._id || i} style={{ height: "auto" }}>
                   <div className="testi">
-                    <div className="testi-stars">{[1,2,3,4,5].map((s)=><StarIcon key={s} sx={{ fontSize: 16, color: s <= Math.round(avgRating(rev)) ? "#f5a623" : "#e5e7eb" }} />)}</div>
+                    <div className="testi-stars">{[1,2,3,4,5].map((s)=><StarIcon key={s} sx={{ fontSize: 16, color: s <= Math.round(avgRating(rev)) ? "#f5a623" : "#E6DDCF" }} />)}</div>
                     <p className="testi-text">&ldquo;{rev?.Review}&rdquo;</p>
                     <div className="testi-person">
                       <div className="testi-avatar">{rev?.Profile_Image ? <img src={rev.Profile_Image} alt={rev?.Name} /> : initial(rev?.Name)}</div>

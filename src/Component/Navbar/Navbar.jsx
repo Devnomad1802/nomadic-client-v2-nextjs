@@ -36,7 +36,7 @@ const menuItems = [
 ];
 
 const ORANGE = "#CF4A2C";
-const TEXT = "#4B5563";
+const TEXT = "#5A5247";
 
 const norm = (s) => (s || "").toLowerCase().trim();
 
@@ -212,7 +212,7 @@ const Navbar = () => {
     color: TEXT,
     cursor: "pointer",
     textAlign: "left",
-    "&:hover": { background: "#F9FAFB", color: ORANGE },
+    "&:hover": { background: "#FBF6EE", color: ORANGE },
   };
 
   const renderDropdownPanel = (item) => {
@@ -226,7 +226,7 @@ const Navbar = () => {
           background: "#fff",
           boxShadow: "0px 8px 24px rgba(0,0,0,0.12)",
           borderRadius: "10px",
-          border: "1px solid #E5E7EB",
+          border: "1px solid #E6DDCF",
           py: 1,
           zIndex: 1300,
           mt: 1,
@@ -245,7 +245,7 @@ const Navbar = () => {
       >
         {item.isBlog ? (
           blogCategories.length === 0 ? (
-            <Typography sx={{ px: 2, py: 1.5, color: "#9CA3AF", fontSize: "12px" }}>
+            <Typography sx={{ px: 2, py: 1.5, color: "#8A8073", fontSize: "12px" }}>
               No categories available
             </Typography>
           ) : (
@@ -259,7 +259,7 @@ const Navbar = () => {
                   {cat}
                 </Typography>
               ))}
-              <Box sx={{ borderTop: "1px solid #E5E7EB", mt: 0.5, pt: 0.5 }}>
+              <Box sx={{ borderTop: "1px solid #E6DDCF", mt: 0.5, pt: 0.5 }}>
                 <Typography
                   onClick={handleViewAllBlogs}
                   sx={{ ...dropdownItemSx, color: ORANGE, fontWeight: 600 }}
@@ -270,7 +270,7 @@ const Navbar = () => {
             </>
           )
         ) : item.comingSoon ? (
-          <Typography sx={{ px: 2, py: 1.5, color: "#9CA3AF", fontSize: "12px" }}>
+          <Typography sx={{ px: 2, py: 1.5, color: "#8A8073", fontSize: "12px" }}>
             Coming soon
           </Typography>
         ) : loadingCategory === item.category ? (
@@ -278,7 +278,7 @@ const Navbar = () => {
             <CircularProgress size={20} sx={{ color: ORANGE }} />
           </Box>
         ) : getCategoryLocations(item.category).length === 0 ? (
-          <Typography sx={{ px: 2, py: 1.5, color: "#9CA3AF", fontSize: "12px" }}>
+          <Typography sx={{ px: 2, py: 1.5, color: "#8A8073", fontSize: "12px" }}>
             No destinations available
           </Typography>
         ) : (
@@ -304,7 +304,7 @@ const Navbar = () => {
         zIndex: 1100,
         backgroundColor: "#fff",
         boxShadow: "0 5px 24px rgb(57 57 56 / 15%)",
-        borderBottom: "1px solid #F3F4F6",
+        borderBottom: "1px solid #F1EADD",
       }}
     >
       <Container maxWidth="lg">
@@ -472,7 +472,7 @@ const Navbar = () => {
                   <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                     {item.isBlog ? (
                       blogCategories.length === 0 ? (
-                        <Typography sx={{ pl: 4, py: 1, color: "#9CA3AF", fontSize: "14px", textAlign: "left" }}>
+                        <Typography sx={{ pl: 4, py: 1, color: "#8A8073", fontSize: "14px", textAlign: "left" }}>
                           No categories available
                         </Typography>
                       ) : (
@@ -495,7 +495,7 @@ const Navbar = () => {
                         </>
                       )
                     ) : item.comingSoon ? (
-                      <Typography sx={{ pl: 4, py: 1, color: "#9CA3AF", fontSize: "14px", textAlign: "left" }}>
+                      <Typography sx={{ pl: 4, py: 1, color: "#8A8073", fontSize: "14px", textAlign: "left" }}>
                         Coming soon
                       </Typography>
                     ) : loadingCategory === item.category ? (
@@ -503,7 +503,7 @@ const Navbar = () => {
                         <CircularProgress size={18} sx={{ color: ORANGE }} />
                       </Box>
                     ) : getCategoryLocations(item.category).length === 0 ? (
-                      <Typography sx={{ pl: 4, py: 1, color: "#9CA3AF", fontSize: "14px", textAlign: "left" }}>
+                      <Typography sx={{ pl: 4, py: 1, color: "#8A8073", fontSize: "14px", textAlign: "left" }}>
                         No destinations available
                       </Typography>
                     ) : (

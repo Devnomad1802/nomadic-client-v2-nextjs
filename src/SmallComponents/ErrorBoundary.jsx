@@ -51,7 +51,7 @@ class ErrorBoundary extends Component {
               sx={{
                 fontSize: { xs: "18px", md: "22px" },
                 fontWeight: 600,
-                color: "#1F2937",
+                color: "#3C3228",
                 mb: 1,
                 fontFamily: "Inter",
               }}
@@ -61,7 +61,7 @@ class ErrorBoundary extends Component {
             <Typography
               sx={{
                 fontSize: "16px",
-                color: "#6B7280",
+                color: "#726A5E",
                 mb: 4,
                 fontFamily: "Inter",
                 lineHeight: "160%",

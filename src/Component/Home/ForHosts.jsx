@@ -9,7 +9,7 @@ const ForHosts = () => {
   const toggelModele = () => setOpene(!opene);
 
   return (
-    <Box sx={{ py: { xs: 6, md: 9 }, backgroundColor: "#1F2937" }}>
+    <Box sx={{ py: { xs: 6, md: 9 }, backgroundColor: "#3C3228" }}>
       <EnquirNow opene={opene} setOpene={setOpene} toggelModele={toggelModele} />
       <Container maxWidth="md">
         <Box sx={{ textAlign: "center" }}>
@@ -64,7 +64,7 @@ const ForHosts = () => {
               px: 4,
               py: 1.25,
               borderRadius: "999px",
-              "&:hover": { backgroundColor: "#fff", color: "#1F2937" },
+              "&:hover": { backgroundColor: "#fff", color: "#3C3228" },
             }}
           >
             Become a Host

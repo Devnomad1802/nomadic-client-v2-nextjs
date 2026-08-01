@@ -108,11 +108,11 @@ const ResetPassword = () => {
           align="center"
           variant="h3"
           mt={6}
-          sx={{ color: "#4B5563" }}
+          sx={{ color: "#5A5247" }}
         >
           Reset Password
         </Typography>
-        <Typography mt={2} sx={{ color: "#4B5563", textAlign: "left" }}>
+        <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
           Choose a password
         </Typography>
 
@@ -142,7 +142,7 @@ const ResetPassword = () => {
             ),
           }}
         />
-        <Typography mt={2} sx={{ color: "#4B5563", textAlign: "left" }}>
+        <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
           Confirm password
         </Typography>
         <TextField
