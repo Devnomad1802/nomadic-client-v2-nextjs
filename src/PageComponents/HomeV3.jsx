@@ -178,7 +178,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
       <TripsV3 initialTrips={initialTrips} initialCategories={initialCategories} />
 
       {/* ── CATEGORIES (live, design cards) ── */}
-      <CategoriesV3 sectionTitle={categorySectionTitle} sectionSubtitle={categorySectionSubtitle} initialCategories={initialCategories} initialTrips={initialTrips} />
+      <CategoriesV3 carousel sectionTitle={categorySectionTitle} sectionSubtitle={categorySectionSubtitle} initialCategories={initialCategories} initialTrips={initialTrips} />
 
       {/* ── WHY NOMADIC TOWNIES ── */}
       <section className="section" style={{ background: "#fff" }}>
