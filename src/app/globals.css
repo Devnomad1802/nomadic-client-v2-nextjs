@@ -3,6 +3,61 @@
   --playfair: var(--font-playfair), "Playfair", Georgia, serif;
   --serif: var(--font-newsreader), "Newsreader", Georgia, serif;
   --zingscript: var(--font-zingscript), "ZingScriptRust-SemiBoldDemo", cursive;
+
+  /* ── Design tokens (single source of truth) — see docs/BRAND-COLOR-AUDIT.md.
+       PR1 wires the tokens + aliases; later PRs migrate hardcoded hex to them. */
+  /* brand (clay) */
+  --brand-50: #FDF3EE;
+  --brand-100: #F6E4DC;
+  --brand-500: #E9622F;  /* bright — gradients/decor only, never text */
+  --brand-600: #CF4A2C;  /* PRIMARY — CTAs, links, active */
+  --brand-700: #B83F23;  /* hover / pressed */
+
+  /* warm ink neutrals */
+  --ink-900: #221C17;
+  --ink-800: #3C3228;
+  --ink-700: #5A5247;
+  --ink-600: #726A5E;
+  --ink-500: #8A8073;
+  --ink-400: #A89C8A;
+  --ink-300: #D8CFC0;
+  --ink-200: #E6DDCF;
+  --ink-100: #F1EADD;
+  --ink-50:  #F4EEE4;
+
+  /* surfaces */
+  --surface: #FFFDF9;
+  --surface-soft: #FBF6EE;
+  --surface-dark: #221C17;
+
+  /* semantics (one each) */
+  --success: #2E7D4F;  --success-tint: #E4F4EA;
+  --warning: #C8941E;  --warning-tint: #FBF3E4;
+  --error:   #C0392B;  --error-tint:   #FDF4F1;
+  --info:    #3D6B8A;  --info-tint:    #EAF1F6;
+  --rating:  #F0A03C;  /* stars only */
+
+  /* Back-compat aliases — the 13 private token sets across the app point here.
+     Later PRs replace raw hex directly; these keep everything working meanwhile. */
+  --orange: var(--brand-600);
+  --orange-hover: var(--brand-700);
+  --orange-light: var(--brand-500);
+  --accent: var(--brand-600);
+  --accent-2: var(--brand-500);
+  --text: var(--ink-700);
+  --text-dark: var(--ink-800);
+  --text-light: var(--ink-600);
+  --text-lighter: var(--ink-500);
+  --line: var(--ink-200);
+  --line-soft: var(--ink-100);
+  --bg-soft: var(--surface-soft);
+  --green: var(--success);
+}
+
+/* Missing focus system — visible keyboard focus everywhere (a11y fix). */
+:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: 2px;
 }
 
 body {
