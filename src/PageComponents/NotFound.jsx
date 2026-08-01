@@ -36,7 +36,7 @@ const NotFound = () => {
             sx={{
               fontSize: { xs: "80px", md: "120px" },
               fontWeight: 800,
-              color: "#CD482A",
+              color: "#CF4A2C",
               lineHeight: 1,
               mb: 1,
               fontFamily: "Inter",
@@ -80,7 +80,7 @@ const NotFound = () => {
             <Button
               onClick={() => navigate("/")}
               sx={{
-                background: "#CD482A",
+                background: "#CF4A2C",
                 color: "#fff",
                 px: 4,
                 py: 1.5,
@@ -98,8 +98,8 @@ const NotFound = () => {
               onClick={() => navigate("/experiences")}
               variant="outlined"
               sx={{
-                borderColor: "#CD482A",
-                color: "#CD482A",
+                borderColor: "#CF4A2C",
+                color: "#CF4A2C",
                 px: 4,
                 py: 1.5,
                 borderRadius: "12px",
@@ -108,7 +108,7 @@ const NotFound = () => {
                 fontSize: "16px",
                 fontFamily: "Inter",
                 "&:hover": {
-                  background: "#CD482A",
+                  background: "#CF4A2C",
                   color: "#fff",
                 },
               }}

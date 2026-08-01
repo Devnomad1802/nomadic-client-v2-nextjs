@@ -218,7 +218,7 @@ const Reviews = () => {
                           "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                         cursor: "pointer",
                         "&:hover": {
-                          color: "#c4472c",
+                          color: "#CF4A2C",
                         },
                       }}
                     >

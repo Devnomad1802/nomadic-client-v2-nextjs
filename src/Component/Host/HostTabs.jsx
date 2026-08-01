@@ -27,7 +27,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
           scrollButtons="auto"
           sx={{
             "& .MuiTabs-indicator": {
-              backgroundColor: "#c4472c",
+              backgroundColor: "#CF4A2C",
               height: "2px",
             },
           }}
@@ -38,7 +38,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
                 badgeContent={hostData?.tripsHosted || 0}
                 sx={{
                   "& .MuiBadge-badge": {
-                    backgroundColor: "#c4472c",
+                    backgroundColor: "#CF4A2C",
                     color: "white",
                     fontSize: "10px",
                     fontWeight: 500,
@@ -59,7 +59,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               fontSize: "14px",
               color: "#666",
               "&.Mui-selected": {
-                color: "#c4472c",
+                color: "#CF4A2C",
               },
             }}
           />
@@ -71,7 +71,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               fontSize: "14px",
               color: "#666",
               "&.Mui-selected": {
-                color: "#c4472c",
+                color: "#CF4A2C",
               },
             }}
           />
@@ -104,7 +104,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               fontSize: "14px",
               color: "#666",
               "&.Mui-selected": {
-                color: "#c4472c",
+                color: "#CF4A2C",
               },
             }}
           />
@@ -116,7 +116,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               fontSize: "14px",
               color: "#666",
               "&.Mui-selected": {
-                color: "#c4472c",
+                color: "#CF4A2C",
               },
             }}
           />

@@ -67,8 +67,8 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             onClick={onEnquire}
             variant="outlined"
             sx={{
-              borderColor: "#CD482A",
-              color: "#CD482A",
+              borderColor: "#CF4A2C",
+              color: "#CF4A2C",
               borderRadius: "10px",
               textTransform: "none",
               fontWeight: 600,
@@ -89,7 +89,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         <Button
           onClick={onBookNow}
           sx={{
-            background: "#CD482A",
+            background: "#CF4A2C",
             color: "#fff",
             borderRadius: "10px",
             textTransform: "none",

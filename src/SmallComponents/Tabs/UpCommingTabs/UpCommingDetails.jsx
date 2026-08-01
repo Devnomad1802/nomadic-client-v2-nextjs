@@ -230,7 +230,7 @@ const UpcommingDetails = () => {
         <Button
           onClick={handleBookNowClick}
           sx={{
-            background: "#d24b2a",
+            background: "#CF4A2C",
             color: "#fff",
             borderRadius: "12px",
             textTransform: "none",

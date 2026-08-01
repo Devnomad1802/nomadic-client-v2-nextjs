@@ -30,11 +30,11 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     fontWeight: "bold",
 
     "&:hover": {
-      color: "#CD482A",
+      color: "#CF4A2C",
       opacity: 1,
     },
     "&.Mui-selected": {
-      color: "#CD482A",
+      color: "#CF4A2C",
       //   background: "linear-gradient(90.1deg, #4F98D0 0.11%, #34D9B1 95.94%)",
       borderRadius: "5px",
 
@@ -111,7 +111,7 @@ export default function DetailTabs() {
             "& .MuiTabs-indicator": {
               //   display: "none",
               mb: 1,
-              backgroundColor: "#CD482A",
+              backgroundColor: "#CF4A2C",
             },
           }}
         >

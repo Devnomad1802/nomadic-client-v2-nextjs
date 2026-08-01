@@ -30,23 +30,23 @@ const AboutUs = ({ hostData }) => {
   })) || [];
 
   const achievements = hostData?.achievements?.map(achievement => ({
-    icon: <EmojiEventsIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+    icon: <EmojiEventsIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
     text: achievement,
   })) || [
     {
-      icon: <PersonIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <PersonIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       text: "Experienced Host",
     },
     {
-      icon: <EmojiEventsIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <EmojiEventsIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       text: `${hostData?.tripsHosted || 0}+ Trips Hosted`,
     },
     {
-      icon: <SecurityIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <SecurityIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       text: `${hostData?.successRate || 0}% Success Rate`,
     },
     {
-      icon: <NatureIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <NatureIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       text: "Verified Host",
     },
   ];
@@ -161,7 +161,7 @@ const AboutUs = ({ hostData }) => {
                       label={specialty.label}
                       sx={{
                         background: "#F9ECE9",
-                        color: "#C4472C",
+                        color: "#CF4A2C",
                         fontWeight: 500,
                         fontSize: { xs: "12px", sm: "14px" },
                         height: { xs: "32px", sm: "36px" },
@@ -209,7 +209,7 @@ const AboutUs = ({ hostData }) => {
                   onChange={handleGalleryTabChange}
                   sx={{
                     "& .MuiTabs-indicator": {
-                      backgroundColor: "#c4472c",
+                      backgroundColor: "#CF4A2C",
                       height: "3px",
                     },
                   }}
@@ -222,7 +222,7 @@ const AboutUs = ({ hostData }) => {
                       fontSize: { xs: "14px", sm: "16px" },
                       color: "#666",
                       "&.Mui-selected": {
-                        color: "#c4472c",
+                        color: "#CF4A2C",
                       },
                     }}
                   />
@@ -234,7 +234,7 @@ const AboutUs = ({ hostData }) => {
                       fontSize: { xs: "14px", sm: "16px" },
                       color: "#666",
                       "&.Mui-selected": {
-                        color: "#c4472c",
+                        color: "#CF4A2C",
                       },
                     }}
                   />

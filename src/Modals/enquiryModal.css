@@ -28,13 +28,13 @@
 .enq-root .l-illus-wrap svg{width:100%;max-width:240px;height:auto}
 .enq-root .l-caption{padding:0 32px 32px;text-align:left}
 .enq-root .l-caption h3{font-family:"Playfair",Georgia,serif;font-size:22px;font-weight:600;color:#1a1208;letter-spacing:-.015em;line-height:1.2;margin:0 0 6px}
-.enq-root .l-caption h3 em{font-style:italic;color:#CD482A}
+.enq-root .l-caption h3 em{font-style:italic;color:#CF4A2C}
 .enq-root .l-caption p{font-size:13px;color:#7a6a58;line-height:1.55;margin:0}
 
 .enq-root .r-form{flex:1;padding:44px 48px 36px;display:flex;flex-direction:column;gap:20px;background:#fff;overflow-y:auto}
 .enq-root .r-head{margin-bottom:6px}
-.enq-root .r-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#CD482A;margin-bottom:14px}
-.enq-root .r-eyebrow::before{content:'';width:16px;height:1.5px;background:#CD482A;display:block}
+.enq-root .r-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#CF4A2C;margin-bottom:14px}
+.enq-root .r-eyebrow::before{content:'';width:16px;height:1.5px;background:#CF4A2C;display:block}
 .enq-root .r-head h2{font-family:"Playfair",Georgia,serif;font-size:30px;font-weight:600;color:#1a1208;letter-spacing:-.02em;margin:0 0 6px;line-height:1.15}
 .enq-root .r-head p{font-size:14px;color:#9a8878;line-height:1.55;margin:0}
 
@@ -42,7 +42,7 @@
 .enq-root .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .enq-root .field label{font-size:13.5px;font-weight:700;color:#3a2e22;margin-bottom:7px}
 .enq-root .inp{width:100%;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;padding:0 14px;height:50px;background:#fff;font-family:inherit;font-size:15px;color:#1a1208;outline:none;transition:border-color .15s,box-shadow .15s}
-.enq-root .inp:focus{border-color:#CD482A;box-shadow:0 0 0 4px rgba(205,72,42,.12)}
+.enq-root .inp:focus{border-color:#CF4A2C;box-shadow:0 0 0 4px rgba(205,72,42,.12)}
 .enq-root .inp::placeholder{color:#c0b4a8}
 .enq-root textarea.inp{height:auto;min-height:88px;padding:12px 14px;resize:none;line-height:1.5;font-family:inherit}
 .enq-root .ph-row{display:flex;gap:10px}

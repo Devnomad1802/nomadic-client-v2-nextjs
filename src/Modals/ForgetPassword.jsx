@@ -98,9 +98,9 @@ const ForgetPassword = () => {
 
             "&:hover": {
               background: "#FBFBFB",
-              color: "#CD482A",
+              color: "#CF4A2C",
               //   height: "45px",
-              border: "1.5px solid #CD482A",
+              border: "1.5px solid #CF4A2C",
             },
           }}
           onClick={handleForgotPassword}

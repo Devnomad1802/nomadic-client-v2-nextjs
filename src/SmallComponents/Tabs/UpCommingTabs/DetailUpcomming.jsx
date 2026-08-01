@@ -111,7 +111,7 @@ const DetailUpcomming = ({ tripDetail }) => {
               fontWeight: activeTab === tab ? 700 : 500,
               fontFamily: "Inter",
               color: activeTab === tab ? "#1F2937" : "#6B7280",
-              borderBottom: activeTab === tab ? "3px solid #CD482A" : "3px solid transparent",
+              borderBottom: activeTab === tab ? "3px solid #CF4A2C" : "3px solid transparent",
               transition: "all 0.15s",
               "&:hover": { color: "#1F2937" },
               flexShrink: 0,

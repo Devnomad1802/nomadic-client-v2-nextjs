@@ -35,7 +35,7 @@ const menuItems = [
   // { name: "Workshops", category: "WORKSHOPS", comingSoon: true },
 ];
 
-const ORANGE = "#CD482A";
+const ORANGE = "#CF4A2C";
 const TEXT = "#4B5563";
 
 const norm = (s) => (s || "").toLowerCase().trim();

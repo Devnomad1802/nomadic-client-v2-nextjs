@@ -223,7 +223,7 @@ const TravelHistory = () => {
           {
             value: finalTotal.toFixed(0),
             title: "Remain amount to pay",
-            color: "#FF0E07",
+            color: "#CF4A2C",
           },
         ];
         const array2 = [
@@ -320,7 +320,7 @@ const TravelHistory = () => {
                 <Box>
                   <Button
                     variant="simplebtn"
-                    sx={{ background: "#CD482A", color: "#fff" }}
+                    sx={{ background: "#CF4A2C", color: "#fff" }}
                   >
                     {paymentStatusLabel}
                   </Button>
@@ -580,7 +580,7 @@ const TravelHistory = () => {
                         onClick={() => handleOrder(finalTotal, item)}
                         sx={{
                           color: "#fff",
-                          background: "#EC3F18",
+                          background: "#E9622F",
                           borderRadius: "25px",
                           px: 4,
                           py: 1.5,

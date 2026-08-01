@@ -7,8 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../Component/Footer";
 
 // Brand tokens — consistent with the rest of the website
-// (terracotta #CD482A, Inter body + Playfair display headings).
-const ACCENT = "#CD482A";
+// (terracotta #CF4A2C, Inter body + Playfair display headings).
+const ACCENT = "#CF4A2C";
 const DISPLAY_FONT = "'Playfair Display','Playfair',serif";
 const BODY_FONT = "'Inter',sans-serif";
 
@@ -27,7 +27,7 @@ const PAGE_CSS = `
   .bs-step:active:not(:disabled) { transform: scale(.92); }
   .bs-step:disabled { opacity: .4; cursor: not-allowed; }
   .bs-cta { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
-  .bs-cta:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83E21; }
+  .bs-cta:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83F23; }
   .bs-nav { transition: background .15s ease; }
   .bs-nav:hover { background: #F1EADD; }
   .bs-main { display: grid; grid-template-columns: 1fr; gap: clamp(20px,2.5vw,28px); align-items: start; }

@@ -64,9 +64,9 @@ export default function EnquirNow({ opene, setOpene }) {
               <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
                 <defs>
                   <linearGradient id="enqPathGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#CD482A" stopOpacity=".2" />
-                    <stop offset="50%" stopColor="#CD482A" stopOpacity=".8" />
-                    <stop offset="100%" stopColor="#CD482A" />
+                    <stop offset="0%" stopColor="#CF4A2C" stopOpacity=".2" />
+                    <stop offset="50%" stopColor="#CF4A2C" stopOpacity=".8" />
+                    <stop offset="100%" stopColor="#CF4A2C" />
                   </linearGradient>
                 </defs>
                 <line x1="20" y1="180" x2="260" y2="180" stroke="#e8dfd2" strokeWidth="1" strokeDasharray="2 4" />
@@ -83,18 +83,18 @@ export default function EnquirNow({ opene, setOpene }) {
                   <path d="M0 0 L12 8 L0 16" stroke="#1a1208" strokeWidth="1.2" fill="none" />
                   <path d="M12 8 L42 8" stroke="#1a1208" strokeWidth="1" opacity=".35" />
                 </g>
-                <g stroke="#CD482A" strokeWidth="1.4" strokeLinecap="round" opacity=".7">
+                <g stroke="#CF4A2C" strokeWidth="1.4" strokeLinecap="round" opacity=".7">
                   <line x1="42" y1="120" x2="32" y2="118" />
                   <line x1="46" y1="128" x2="36" y2="128" />
                   <line x1="50" y1="136" x2="40" y2="138" />
                 </g>
                 <g transform="translate(215,165)">
-                  <circle r="14" stroke="#CD482A" strokeWidth="1" opacity=".25" />
-                  <circle r="9" stroke="#CD482A" strokeWidth="1" opacity=".4" />
-                  <path d="M0 -10 C5 -10 8 -6 8 -2 C8 4 0 12 0 12 C0 12 -8 4 -8 -2 C-8 -6 -5 -10 0 -10 Z" fill="#CD482A" stroke="#1a1208" strokeWidth="1.4" strokeLinejoin="round" />
+                  <circle r="14" stroke="#CF4A2C" strokeWidth="1" opacity=".25" />
+                  <circle r="9" stroke="#CF4A2C" strokeWidth="1" opacity=".4" />
+                  <path d="M0 -10 C5 -10 8 -6 8 -2 C8 4 0 12 0 12 C0 12 -8 4 -8 -2 C-8 -6 -5 -10 0 -10 Z" fill="#CF4A2C" stroke="#1a1208" strokeWidth="1.4" strokeLinejoin="round" />
                   <circle r="2.5" fill="#fff" cy="-3" />
                 </g>
-                <g fill="#CD482A" opacity=".5">
+                <g fill="#CF4A2C" opacity=".5">
                   <circle cx="100" cy="35" r="1.2" />
                   <circle cx="165" cy="22" r="1" />
                   <circle cx="145" cy="50" r="1.4" />
@@ -102,7 +102,7 @@ export default function EnquirNow({ opene, setOpene }) {
                 <g transform="translate(20,156)" stroke="#1a1208" strokeWidth="1.4" strokeLinejoin="round" fill="#fff">
                   <rect width="32" height="20" rx="1.5" />
                   <path d="M0 0 L16 12 L32 0" fill="none" />
-                  <rect x="24" y="3" width="5" height="5" fill="#CD482A" stroke="none" />
+                  <rect x="24" y="3" width="5" height="5" fill="#CF4A2C" stroke="none" />
                 </g>
               </svg>
             </div>

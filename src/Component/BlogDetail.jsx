@@ -44,7 +44,7 @@ import RelatedBlogs from "./Blog/RelatedBlogs";
 import Footer from "./Footer";
 
 // ─── Brand tokens ─────────────────────────────────────────────
-const ORANGE = "#CD482A";
+const ORANGE = "#CF4A2C";
 const ORANGE_HOVER = "#B53D1F";
 const ORANGE_TINT = "#FDF3EE";
 const ORANGE_TINT2 = "#FBEAE3";

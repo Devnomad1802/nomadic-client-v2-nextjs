@@ -80,9 +80,9 @@ let theme1 = createTheme({
             borderRadius: "32px",
             fontFamily: "Inter",
             px: 2,
-            color: "#CD482A",
+            color: "#CF4A2C",
             height: "45px",
-            border: "1.5px solid #CD482A",
+            border: "1.5px solid #CF4A2C",
             background: "#FBFBFB",
             "&:hover": {
               background: "#393938",

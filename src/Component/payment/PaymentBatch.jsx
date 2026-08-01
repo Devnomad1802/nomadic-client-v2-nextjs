@@ -26,12 +26,12 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     height: "30px",
 
     "&:hover": {
-      color: "#CD482A",
+      color: "#CF4A2C",
       opacity: 1,
     },
     "&.Mui-selected": {
       color: "#fff",
-      background: "#CD482A",
+      background: "#CF4A2C",
       borderRadius: "16px",
 
       opacity: 1,
@@ -118,7 +118,7 @@ export default function PaymentBatch({
             "& .MuiTabs-indicator": {
               display: "none",
               //   mb: 1,
-              //   backgroundColor: "#CD482A",
+              //   backgroundColor: "#CF4A2C",
             },
           }}
         >

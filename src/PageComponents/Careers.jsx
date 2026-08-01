@@ -76,7 +76,7 @@ const Careers = () => {
         {/* Hero */}
         <Box
           sx={{
-            background: "#CD482A",
+            background: "#CF4A2C",
             py: { xs: 8, md: 12 },
             px: { xs: 3, md: 6 },
             textAlign: "center",
@@ -157,7 +157,7 @@ const Careers = () => {
                       <Typography
                         sx={{
                           fontSize: "13px",
-                          color: "#CD482A",
+                          color: "#CF4A2C",
                           fontWeight: 600,
                           background: "#FEF2EC",
                           px: 1.5,
@@ -197,13 +197,13 @@ const Careers = () => {
                     href="mailto:careers@nomadictownies.com"
                     variant="outlined"
                     sx={{
-                      borderColor: "#CD482A",
-                      color: "#CD482A",
+                      borderColor: "#CF4A2C",
+                      color: "#CF4A2C",
                       borderRadius: "10px",
                       textTransform: "none",
                       fontWeight: 600,
                       "&:hover": {
-                        background: "#CD482A",
+                        background: "#CF4A2C",
                         color: "#fff",
                       },
                     }}
@@ -253,7 +253,7 @@ const Careers = () => {
             component="a"
             href="mailto:careers@nomadictownies.com"
             sx={{
-              background: "#CD482A",
+              background: "#CF4A2C",
               color: "#fff",
               px: 4,
               py: 1.5,

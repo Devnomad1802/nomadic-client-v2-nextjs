@@ -127,7 +127,7 @@ const Upcimming = () => {
                             size="small"
                             sx={{ background: "#F1F7F9" }}
                           >
-                            <FavoriteRoundedIcon sx={{ color: "#FF0E07" }} />
+                            <FavoriteRoundedIcon sx={{ color: "#CF4A2C" }} />
                           </IconButton>
                         </Box>
                         <img

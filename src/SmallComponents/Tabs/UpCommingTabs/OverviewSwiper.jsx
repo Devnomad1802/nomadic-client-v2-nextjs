@@ -56,7 +56,7 @@ const OverviewSwiper = () => {
                     width: 40,
                     height: 40,
                     borderRadius: "50%",
-                    background: "#CD482A",
+                    background: "#CF4A2C",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

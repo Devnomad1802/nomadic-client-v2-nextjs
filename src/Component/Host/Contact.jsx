@@ -12,22 +12,22 @@ import { Box, Card, Chip, Grid, Typography } from "@mui/material";
 const Contact = ({ hostData }) => {
   const contactInfo = [
     {
-      icon: <EmailIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <EmailIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       label: "Email",
       value: hostData?.emailAddress || "No email provided",
-      color: "#c4472c",
+      color: "#CF4A2C",
     },
     {
-      icon: <PhoneIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <PhoneIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       label: "Phone",
       value: hostData?.phoneNumber || "No phone provided",
-      color: "#c4472c",
+      color: "#CF4A2C",
     },
     {
-      icon: <LocationOnIcon sx={{ color: "#c4472c", fontSize: "20px" }} />,
+      icon: <LocationOnIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
       label: "Location",
       value: hostData?.location || "Location not specified",
-      color: "#c4472c",
+      color: "#CF4A2C",
     },
   ];
 
@@ -195,7 +195,7 @@ const Contact = ({ hostData }) => {
                         color: "#333",
                         cursor: social.url ? "pointer" : "default",
                         "&:hover": {
-                          background: social.url ? "#c4472c" : "#f5f5f5",
+                          background: social.url ? "#CF4A2C" : "#f5f5f5",
                           color: social.url ? "white" : "#333",
                         },
                         "& .MuiChip-icon": {

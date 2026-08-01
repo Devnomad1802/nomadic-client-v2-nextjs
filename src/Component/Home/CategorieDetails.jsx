@@ -324,17 +324,17 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
           <>
             <div className="empty">
               <svg className="empty-illus" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="#CD482A" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <g fill="none" stroke="#CF4A2C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="80" cy="58" r="34" />
-                  <circle cx="80" cy="58" r="4" fill="#CD482A" stroke="none" />
-                  <polygon points="80,32 72,58 80,58" fill="#CD482A" stroke="none" />
+                  <circle cx="80" cy="58" r="4" fill="#CF4A2C" stroke="none" />
+                  <polygon points="80,32 72,58 80,58" fill="#CF4A2C" stroke="none" />
                   <polygon points="80,84 88,58 80,58" fill="#E8C4B8" stroke="none" />
                 </g>
-                <text x="80" y="24" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="11" fontWeight="800" fill="#CD482A">N</text>
+                <text x="80" y="24" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="11" fontWeight="800" fill="#CF4A2C">N</text>
                 <path d="M28 118 q30 -16 52 -4 q24 13 52 -6" fill="none" stroke="#9CA3AF" strokeWidth="2.5" strokeDasharray="3,7" strokeLinecap="round" />
                 <circle cx="28" cy="118" r="4" fill="#9CA3AF" />
-                <path d="M132 108 q9 0 9 9 q0 8 -9 16 q-9 -8 -9 -16 q0 -9 9 -9Z" fill="none" stroke="#CD482A" strokeWidth="2.6" />
-                <circle cx="132" cy="117" r="3" fill="#CD482A" />
+                <path d="M132 108 q9 0 9 9 q0 8 -9 16 q-9 -8 -9 -16 q0 -9 9 -9Z" fill="none" stroke="#CF4A2C" strokeWidth="2.6" />
+                <circle cx="132" cy="117" r="3" fill="#CF4A2C" />
               </svg>
               <h2>New {displayName} trips are on the way</h2>
               <p>We&apos;re a young platform and our hosts are busy planning the next batch of <b>{displayName}</b> adventures. Be the first to know when they go live.</p>

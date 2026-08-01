@@ -472,11 +472,11 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 {favorites[index] ? (
                                   <FavoriteRoundedIcon
-                                    sx={{ color: "#FF0E07", fontSize: "18px" }}
+                                    sx={{ color: "#CF4A2C", fontSize: "18px" }}
                                   />
                                 ) : (
                                   <FavoriteBorderIcon
-                                    sx={{ color: "#FF0E07", fontSize: "18px" }}
+                                    sx={{ color: "#CF4A2C", fontSize: "18px" }}
                                   />
                                 )}
                               </IconButton>
@@ -537,7 +537,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                     }}
                                     sx={{
                                       textDecoration: "none",
-                                      color: "#c4472c",
+                                      color: "#CF4A2C",
                                       fontSize: "12px",
                                       fontWeight: 500,
                                       cursor: "pointer",
@@ -743,7 +743,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             >
                               <Typography
                                 sx={{
-                                  color: "#c4472c",
+                                  color: "#CF4A2C",
                                   fontSize: { xs: "20px", sm: "22px" },
                                   fontWeight: 700,
                                 }}
@@ -803,7 +803,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
               <ArrowBackIosIcon
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
-                  color: "#CD482A",
+                  color: "#CF4A2C",
                 }}
               />
             </IconButton>
@@ -834,7 +834,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
               <ArrowForwardIosIcon
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
-                  color: "#CD482A",
+                  color: "#CF4A2C",
                 }}
               />
             </IconButton>
@@ -1148,11 +1148,11 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             {favorites[index] ? (
                               <FavoriteRoundedIcon
-                                sx={{ color: "#FF0E07", fontSize: "18px" }}
+                                sx={{ color: "#CF4A2C", fontSize: "18px" }}
                               />
                             ) : (
                               <FavoriteBorderIcon
-                                sx={{ color: "#FF0E07", fontSize: "18px" }}
+                                sx={{ color: "#CF4A2C", fontSize: "18px" }}
                               />
                             )}
                           </IconButton>
@@ -1213,7 +1213,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 }}
                                 sx={{
                                   textDecoration: "none",
-                                  color: "#c4472c",
+                                  color: "#CF4A2C",
                                   fontSize: "14px",
                                   fontWeight: 600,
                                   cursor: "pointer",
@@ -1398,7 +1398,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                         >
                           <Typography
                             sx={{
-                              color: "#c4472c",
+                              color: "#CF4A2C",
                               fontSize: { xs: "20px", sm: "22px" },
                               fontWeight: 700,
                             }}

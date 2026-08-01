@@ -109,7 +109,7 @@ const HostCards = ({ hostData }) => {
                         position: "absolute",
                         top: "12px",
                         right: "12px",
-                        background: "#c4472c",
+                        background: "#CF4A2C",
                         color: "white",
                         fontSize: "10px",
                         fontWeight: 600,
@@ -136,7 +136,7 @@ const HostCards = ({ hostData }) => {
                     }}
                   >
                     <FavoriteBorderIcon
-                      sx={{ color: "#FF0E07", fontSize: "18px" }}
+                      sx={{ color: "#CF4A2C", fontSize: "18px" }}
                     />
                   </IconButton>
 
@@ -260,7 +260,7 @@ const HostCards = ({ hostData }) => {
                   >
                     <Typography
                       sx={{
-                        color: "#c4472c",
+                        color: "#CF4A2C",
                         fontSize: "20px",
                         fontWeight: 700,
                       }}
@@ -295,7 +295,7 @@ const HostCards = ({ hostData }) => {
                     variant="contained"
                     fullWidth
                     sx={{
-                      background: "#c4472c",
+                      background: "#CF4A2C",
                       color: "white",
                       borderRadius: "12px",
                       padding: "12px",

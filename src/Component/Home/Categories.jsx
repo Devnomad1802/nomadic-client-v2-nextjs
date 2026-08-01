@@ -218,7 +218,7 @@ const Categories = () => {
                     <Typography
                       sx={{
                         fontSize: "16px",
-                        color: "#CD482A",
+                        color: "#CF4A2C",
                         fontWeight: "700",
                         lineHeight: 1.2,
                         mt: 0.5,

@@ -154,7 +154,7 @@ const Blog = () => {
                               backgroundColor: "#f8f9fa",
                             },
                             "& .read-more": {
-                              color: "#CD482A",
+                              color: "#CF4A2C",
                               transform: "translateX(4px)",
                             },
                           },

@@ -45,14 +45,14 @@ const HostFilter = () => {
             displayEmpty
             sx={{
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#c4472c",
+                borderColor: "#CF4A2C",
                 borderWidth: "1px",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#c4472c",
+                borderColor: "#CF4A2C",
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#c4472c",
+                borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
                 color: "#666",
@@ -123,10 +123,10 @@ const HostFilter = () => {
                 borderWidth: "1px",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#c4472c",
+                borderColor: "#CF4A2C",
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#c4472c",
+                borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
                 color: "#666",
