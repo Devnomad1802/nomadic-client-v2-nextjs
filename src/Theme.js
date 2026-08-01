@@ -11,7 +11,9 @@ let theme1 = createTheme({
       secondary: "rgba(255, 255, 255, 0.60)",
     },
     primary: {
-      main: "#58C5DA",
+      // Brand clay — was #58C5DA (teal, off-brand). Any MUI component using
+      // theme `primary` now renders the correct Nomadic Townies orange.
+      main: "#CF4A2C",
     },
   },
   typography: {
