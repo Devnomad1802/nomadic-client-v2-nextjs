@@ -1364,3 +1364,21 @@
 @media (prefers-reduced-motion: reduce) {
   .ntv3 .cats-marquee { scroll-snap-type: x mandatory; }
 }
+
+/* Homepage carousel edge fade — soften both sides so cards aren't harshly
+   cropped. Horizontal-only gradient mask keeps the card hover shadow intact. */
+.ntv3 .cats-marquee-wrap {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+.ntv3 .cats-marquee-wrap .cats-marquee {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+@media (max-width: 580px) {
+  .ntv3 .cats-marquee-wrap {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+  }
+}

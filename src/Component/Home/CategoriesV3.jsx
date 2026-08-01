@@ -32,7 +32,7 @@ const ChevSvg = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
 );
 
-const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, initialCategories = [], initialTrips = [] }) => {
+const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carousel = false, initialCategories = [], initialTrips = [] }) => {
   const navigate = useNavigate();
   const { data, isLoading: catLoading } = useGetAllCategoriesQuery();
   const { data: tripData } = useGetTripsQuery();
@@ -86,6 +86,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, initi
   const rafRef = useRef(0);
 
   useEffect(() => {
+    if (!carousel) return undefined; // grid mode (non-home) — no marquee
     const el = trackRef.current;
     if (!el) return undefined;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
@@ -110,7 +111,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, initi
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [cats.length]);
+  }, [cats.length, carousel]);
 
   // Pointer-drag (desktop): translate drag into scrollLeft; touch uses native scroll.
   const dragState = useRef({ x: 0, left: 0, moved: false });
@@ -204,22 +205,31 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, initi
 
         {isLoading ? (
           <CategoryCardSkeleton count={6} />
+        ) : carousel ? (
+          // Homepage only: infinite marquee. Fade-mask wrapper softens both
+          // edges so cards don't look harshly cropped.
+          <div className="cats-marquee-wrap">
+            <div
+              className="cats-marquee"
+              ref={trackRef}
+              onMouseEnter={() => { pausedRef.current = true; }}
+              onMouseLeave={() => { pausedRef.current = false; }}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={endDrag}
+              onPointerCancel={endDrag}
+              role="list"
+              aria-label="Browse experiences by category"
+            >
+              {/* two identical copies → seamless loop; the 2nd is aria-hidden */}
+              {cats.map((item, i) => renderCard(item, i, 0))}
+              {cats.map((item, i) => renderCard(item, i, 1))}
+            </div>
+          </div>
         ) : (
-          <div
-            className="cats-marquee"
-            ref={trackRef}
-            onMouseEnter={() => { pausedRef.current = true; }}
-            onMouseLeave={() => { pausedRef.current = false; }}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            onPointerCancel={endDrag}
-            role="list"
-            aria-label="Browse experiences by category"
-          >
-            {/* two identical copies → seamless loop; the 2nd is aria-hidden */}
+          // Every other page (Experiences etc.): the original static grid.
+          <div className="cats-grid">
             {cats.map((item, i) => renderCard(item, i, 0))}
-            {cats.map((item, i) => renderCard(item, i, 1))}
           </div>
         )}
       </div>
