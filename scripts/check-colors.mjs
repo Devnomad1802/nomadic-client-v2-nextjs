@@ -10,6 +10,7 @@ const RETIRED = [
   "#D1D5DB","#E5E7EB","#F3F4F6","#F9FAFB","#FBFBFB","#F5F5F5","#F0F0F0",
   "#E0E0E0","#D6D6D6","#1E1E1E","#393938",
   "#16A34A","#5BBF7A","#1F7A45","#FBC800","#58C5DA",
+  "#FFF4F1","#F6DCD3","#FBE3D7",
 ].map((h) => h.toLowerCase());
 
 const walk = (dir, out = []) => {

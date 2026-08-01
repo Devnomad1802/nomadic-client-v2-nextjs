@@ -7,7 +7,7 @@
 export const CATEGORY_TEMPLATES = {
   india: {
     name: "India",
-    gradient: "linear-gradient(160deg,#FFF4F1,#FBE3D7)",
+    gradient: "linear-gradient(160deg,#FBF6EE,#F6E4DC)",
     desc: "From the Taj to the backwaters — handpicked journeys across the subcontinent.",
     tags: ["Heritage", "Himalayas"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
