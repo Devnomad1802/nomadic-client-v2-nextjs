@@ -23,7 +23,7 @@
   --divider: #E4E4E7;
   --primary: #CF4A2C;      /* ember — CTA/active/selected/links only */
   --secondary: #18181B;    /* charcoal — secondary buttons/dark UI */
-  --ember-wash: #FDECE8;   /* rare: selected-chip / active-tab bg */
+  --accent-wash: #F4F4F5;  /* neutral wash for selected-chip / active-tab bg */
   --shadow-sm: 0 1px 2px rgba(24,24,27,.06);
   --shadow-md: 0 4px 12px -2px rgba(24,24,27,.08);
   --shadow-lg: 0 12px 32px -8px rgba(24,24,27,.12);
