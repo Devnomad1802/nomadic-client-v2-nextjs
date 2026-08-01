@@ -62,7 +62,7 @@ const Savedtrips = () => {
                   my: 3,
                   borderRadius: "16px",
                   textDecoration: "none",
-                  background: "#FBF6EE",
+                  background: "#EFEAE1",
                   // mx: 1,
                 }}
               >
@@ -113,7 +113,7 @@ const Savedtrips = () => {
                     <Box
                       sx={{
                         display: "flex",
-                        border: "1px solid #5A5247",
+                        border: "1px solid #4E483D",
                         borderRadius: "15px",
                         background: "#5D5F71",
                         gap: "0px 3px",
@@ -123,11 +123,11 @@ const Savedtrips = () => {
                       }}
                     >
                       <StarRoundedIcon
-                        style={{ color: "#F0A03C", fontSize: "25px" }}
+                        style={{ color: "#C08A2D", fontSize: "25px" }}
                       />
                       <Typography
                         sx={{
-                          color: "#F0A03C",
+                          color: "#C08A2D",
                           fontSize: "18px",
                           fontWeight: 500,
                         }}
@@ -149,7 +149,7 @@ const Savedtrips = () => {
                 >
                   <Typography
                     sx={{
-                      color: "#221C17",
+                      color: "#1E1C18",
                       fontWeight: 500,
                       fontSize: { xs: "18px", sm: "20px", lg: "23px" },
                       textAlign: "left",
@@ -172,12 +172,12 @@ const Savedtrips = () => {
                     {" "}
                     <FmdGoodOutlinedIcon
                       sx={{
-                        color: "#5A5247",
+                        color: "#4E483D",
                       }}
                     />
                     <Typography
                       sx={{
-                        color: "#5A5247",
+                        color: "#4E483D",
                         fontSize: { xs: "14px", sm: "16px" },
                       }}
                     >
@@ -200,10 +200,10 @@ const Savedtrips = () => {
                       }}
                     >
                       {" "}
-                      <CalendarMonthRoundedIcon sx={{ color: "#5A5247" }} />
+                      <CalendarMonthRoundedIcon sx={{ color: "#4E483D" }} />
                       <Typography
                         sx={{
-                          color: "#5A5247",
+                          color: "#4E483D",
                           fontSize: { xs: "14px", sm: "16px" },
                         }}
                       >
@@ -236,18 +236,18 @@ const Savedtrips = () => {
                     <Box
                       sx={{
                         display: "flex",
-                        border: "1px solid #F1EADD",
+                        border: "1px solid #EFEAE1",
                         borderRadius: "15px",
-                        background: "#FBF6EE",
+                        background: "#EFEAE1",
                         alignItems: "center",
                         px: 0.5,
                         py: 0.2,
                       }}
                     >
-                      <AccessTimeRoundedIcon style={{ color: "#5A5247" }} />
+                      <AccessTimeRoundedIcon style={{ color: "#4E483D" }} />
                       <Typography
                         sx={{
-                          color: "#5A5247",
+                          color: "#4E483D",
                           fontSize: { xs: "14px", sm: "16px" },
                         }}
                       >

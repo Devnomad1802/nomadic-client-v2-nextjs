@@ -7,24 +7,24 @@
 export const CATEGORY_TEMPLATES = {
   india: {
     name: "India",
-    gradient: "linear-gradient(160deg,#FBF6EE,#F6E4DC)",
+    gradient: "linear-gradient(160deg,#EFEAE1,#F4D8CE)",
     desc: "From the Taj to the backwaters — handpicked journeys across the subcontinent.",
     tags: ["Heritage", "Himalayas"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="#CF4A2C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#C8462A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M150 60 q-22 14 -22 40 q0 14 22 14 q22 0 22 -14 q0 -26 -22 -40Z"></path>
         <line x1="150" y1="44" x2="150" y2="60"></line>
-        <circle cx="150" cy="40" r="4" fill="#CF4A2C" stroke="none"></circle>
+        <circle cx="150" cy="40" r="4" fill="#C8462A" stroke="none"></circle>
         <path d="M128 114 l44 0 l0 8 l8 0 l0 56 l-60 0 l0 -56 l8 0Z"></path>
         <path d="M140 178 l0 -34 q10 -14 20 0 l0 34" stroke-width="3"></path>
         <path d="M124 178 l0 -16 q5 -8 10 0 l0 16" stroke-width="2.4"></path>
         <path d="M166 178 l0 -16 q5 -8 10 0 l0 16" stroke-width="2.4"></path>
         <line x1="96" y1="104" x2="96" y2="178" stroke-width="3"></line>
         <path d="M91 104 l10 0" stroke-width="3"></path>
-        <circle cx="96" cy="98" r="5" fill="#CF4A2C" stroke="none"></circle>
+        <circle cx="96" cy="98" r="5" fill="#C8462A" stroke="none"></circle>
         <line x1="204" y1="104" x2="204" y2="178" stroke-width="3"></line>
         <path d="M199 104 l10 0" stroke-width="3"></path>
-        <circle cx="204" cy="98" r="5" fill="#CF4A2C" stroke="none"></circle>
+        <circle cx="204" cy="98" r="5" fill="#C8462A" stroke="none"></circle>
         <path d="M120 114 q-7 -10 -14 0" stroke-width="2.6"></path>
         <path d="M180 114 q7 -10 14 0" stroke-width="2.6"></path>
         <line x1="78" y1="178" x2="222" y2="178" stroke-width="3.5"></line>
@@ -32,7 +32,7 @@ export const CATEGORY_TEMPLATES = {
       <line x1="110" y1="196" x2="190" y2="196" stroke="#EC9B7A" stroke-width="2.5" stroke-linecap="round"></line>
       <line x1="124" y1="206" x2="176" y2="206" stroke="#EC9B7A" stroke-width="2" stroke-linecap="round"></line>
       <circle cx="232" cy="58" r="12" fill="none" stroke="#EC9B5A" stroke-width="3"></circle>
-      <path d="M58 64 q5 -5 10 0 q5 -5 10 0" fill="none" stroke="#CF4A2C" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M58 64 q5 -5 10 0 q5 -5 10 0" fill="none" stroke="#C8462A" stroke-width="2" stroke-linecap="round"></path>
     </svg>`,
   },
   international: {
@@ -48,14 +48,14 @@ export const CATEGORY_TEMPLATES = {
         <ellipse cx="150" cy="120" rx="24" ry="56"></ellipse>
         <line x1="150" y1="64" x2="150" y2="176"></line>
       </g>
-      <g fill="#CF4A2C">
+      <g fill="#C8462A">
         <path d="M128 96 q16 -8 26 2 q-4 12 -18 12 q-12 -4 -8 -14Z"></path>
         <path d="M150 138 q18 -2 22 12 q-10 12 -24 6 q-6 -12 2 -18Z"></path>
       </g>
       <ellipse cx="150" cy="120" rx="86" ry="40" fill="none" stroke="#2d4b9f" stroke-width="2" stroke-dasharray="5,6" opacity=".5" transform="rotate(-18 150 120)"></ellipse>
       <g transform="rotate(-18 150 120)">
-        <path d="M232 104 l10 -3 l-3 8 l-7 -5Z" fill="#CF4A2C"></path>
-        <path d="M236 105 l-12 4" stroke="#CF4A2C" stroke-width="2.5" stroke-linecap="round"></path>
+        <path d="M232 104 l10 -3 l-3 8 l-7 -5Z" fill="#C8462A"></path>
+        <path d="M236 105 l-12 4" stroke="#C8462A" stroke-width="2.5" stroke-linecap="round"></path>
       </g>
     </svg>`,
   },
@@ -65,14 +65,14 @@ export const CATEGORY_TEMPLATES = {
     desc: "Travel alongside creators you follow. Content, community, and real connection.",
     tags: ["Creators", "Content"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="#CF4A2C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#C8462A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="96" y="96" width="108" height="74" rx="12"></rect>
         <path d="M126 96 l6 -14 l36 0 l6 14"></path>
         <circle cx="150" cy="134" r="24"></circle>
         <circle cx="150" cy="134" r="11"></circle>
-        <circle cx="186" cy="112" r="3.5" fill="#CF4A2C" stroke="none"></circle>
+        <circle cx="186" cy="112" r="3.5" fill="#C8462A" stroke="none"></circle>
       </g>
-      <g fill="#E9622F">
+      <g fill="#D9714F">
         <path d="M210 84 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3Z"></path>
         <path d="M84 150 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 l6 -2Z"></path>
       </g>
@@ -89,15 +89,15 @@ export const CATEGORY_TEMPLATES = {
         <path d="M104 96 q-30 2 -30 36 q0 30 34 32 q10 0 10 -10 q0 -8 8 -8 q14 0 14 -16 q0 -36 -36 -34Z"></path>
       </g>
       <ellipse cx="108" cy="150" rx="9" ry="7" fill="none" stroke="#C4883A" stroke-width="2.5"></ellipse>
-      <circle cx="94" cy="116" r="5" fill="#CF4A2C"></circle>
+      <circle cx="94" cy="116" r="5" fill="#C8462A"></circle>
       <circle cx="116" cy="112" r="5" fill="#2d4b9f"></circle>
-      <circle cx="86" cy="138" r="5" fill="#2E7D4F"></circle>
+      <circle cx="86" cy="138" r="5" fill="#2E6E4E"></circle>
       <g stroke-linecap="round">
-        <line x1="150" y1="170" x2="200" y2="108" stroke="#3C3228" stroke-width="4"></line>
-        <path d="M196 104 l12 -10 l6 8 l-10 12Z" fill="#CF4A2C" stroke="#CF4A2C"></path>
+        <line x1="150" y1="170" x2="200" y2="108" stroke="#33302A" stroke-width="4"></line>
+        <path d="M196 104 l12 -10 l6 8 l-10 12Z" fill="#C8462A" stroke="#C8462A"></path>
         <line x1="150" y1="170" x2="160" y2="160" stroke="#C4883A" stroke-width="6"></line>
       </g>
-      <g fill="#E9622F"><circle cx="214" cy="150" r="3"></circle><circle cx="226" cy="134" r="2.5"></circle><circle cx="206" cy="132" r="2"></circle></g>
+      <g fill="#D9714F"><circle cx="214" cy="150" r="3"></circle><circle cx="226" cy="134" r="2.5"></circle><circle cx="206" cy="132" r="2"></circle></g>
     </svg>`,
   },
   retreats: {
@@ -106,21 +106,21 @@ export const CATEGORY_TEMPLATES = {
     desc: "Yoga, wellness and silent escapes. Slow down, breathe, and come back lighter.",
     tags: ["Yoga", "Wellness"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="#2E7D4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#2E6E4E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="150" cy="92" r="15"></circle>
         <path d="M150 107 q-22 8 -22 38 q0 14 22 14 q22 0 22 -14 q0 -30 -22 -38Z"></path>
         <path d="M110 158 q40 22 80 0"></path>
         <path d="M132 138 q-14 6 -18 18"></path>
         <path d="M168 138 q14 6 18 18"></path>
       </g>
-      <g fill="none" stroke="#CF4A2C" stroke-width="2.5" stroke-linecap="round">
+      <g fill="none" stroke="#C8462A" stroke-width="2.5" stroke-linecap="round">
         <path d="M150 176 q-30 -4 -42 8 q18 12 42 6"></path>
         <path d="M150 176 q30 -4 42 8 q-18 12 -42 6"></path>
         <path d="M150 178 q-14 -2 -18 10 q10 6 18 2"></path>
         <path d="M150 178 q14 -2 18 10 q-10 6 -18 2"></path>
       </g>
-      <circle cx="150" cy="120" r="74" fill="none" stroke="#2E7D4F" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
-      <g fill="#2E7D4F" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
+      <circle cx="150" cy="120" r="74" fill="none" stroke="#2E6E4E" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
+      <g fill="#2E6E4E" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
     </svg>`,
   },
   trekking: {
@@ -134,11 +134,11 @@ export const CATEGORY_TEMPLATES = {
         <path d="M120 104 l18 -26 l18 26 l-12 -6 l-6 8 l-8 -6 l-10 4Z" fill="#fff" stroke="#2c5364" stroke-width="2"></path>
         <path d="M150 178 L208 110 L250 178"></path>
       </g>
-      <g stroke="#CF4A2C" stroke-width="3" stroke-linecap="round">
+      <g stroke="#C8462A" stroke-width="3" stroke-linecap="round">
         <line x1="138" y1="78" x2="138" y2="56"></line>
-        <path d="M138 58 l20 6 l-20 8Z" fill="#CF4A2C"></path>
+        <path d="M138 58 l20 6 l-20 8Z" fill="#C8462A"></path>
       </g>
-      <path d="M96 178 q20 -20 38 -10 q18 10 36 -6" fill="none" stroke="#CF4A2C" stroke-width="2.5" stroke-dasharray="4,7" stroke-linecap="round"></path>
+      <path d="M96 178 q20 -20 38 -10 q18 10 36 -6" fill="none" stroke="#C8462A" stroke-width="2.5" stroke-dasharray="4,7" stroke-linecap="round"></path>
       <line x1="60" y1="178" x2="252" y2="178" stroke="#2c5364" stroke-width="3.5" stroke-linecap="round"></line>
       <circle cx="218" cy="74" r="13" fill="none" stroke="#EC9B5A" stroke-width="3"></circle>
     </svg>`,
@@ -158,12 +158,12 @@ export const CATEGORY_TEMPLATES = {
         <path d="M179 170 q0 -30 19 -30 q19 0 19 30"></path>
         <line x1="66" y1="178" x2="234" y2="178" stroke-width="3.5"></line>
       </g>
-      <g fill="#CF4A2C" stroke="none">
+      <g fill="#C8462A" stroke="none">
         <circle cx="126" cy="58" r="3.5"></circle>
         <circle cx="150" cy="48" r="3.5"></circle>
         <circle cx="174" cy="58" r="3.5"></circle>
       </g>
-      <path d="M126 58 q24 -22 48 0" fill="none" stroke="#CF4A2C" stroke-width="2" stroke-dasharray="3,6" stroke-linecap="round"></path>
+      <path d="M126 58 q24 -22 48 0" fill="none" stroke="#C8462A" stroke-width="2" stroke-dasharray="3,6" stroke-linecap="round"></path>
       <path d="M232 62 q8 0 8 8 q0 7 -8 14 q-8 -7 -8 -14 q0 -8 8 -8Z" fill="none" stroke="#6D4B9F" stroke-width="2.6"></path>
       <circle cx="232" cy="70" r="2.6" fill="#6D4B9F" stroke="none"></circle>
     </svg>`,
@@ -176,7 +176,7 @@ export const FALLBACK_TEMPLATE = {
   desc: "Handpicked experiences curated by our team and independent hosts.",
   tags: [],
   scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-    <g fill="none" stroke="#CF4A2C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <g fill="none" stroke="#C8462A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M70 178 L138 88 L206 178"></path>
       <path d="M150 178 L208 120 L250 178"></path>
       <line x1="60" y1="178" x2="252" y2="178"></line>

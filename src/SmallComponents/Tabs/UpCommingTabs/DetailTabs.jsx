@@ -26,15 +26,15 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingLeft: theme.spacing(0),
     paddingRightt: theme.spacing(0),
     marginLeft: "57px",
-    color: "#221C17",
+    color: "#1E1C18",
     fontWeight: "bold",
 
     "&:hover": {
-      color: "#CF4A2C",
+      color: "#C8462A",
       opacity: 1,
     },
     "&.Mui-selected": {
-      color: "#CF4A2C",
+      color: "#C8462A",
       //   background: "linear-gradient(90.1deg, #4F98D0 0.11%, #34D9B1 95.94%)",
       borderRadius: "5px",
 
@@ -90,8 +90,8 @@ export default function DetailTabs() {
     <Box sx={{ width: "100%", mx: "auto", ml: 1 }}>
       <Box
         sx={{
-          border: "1px solid #F1EADD",
-          background: "#FBF6EE",
+          border: "1px solid #EFEAE1",
+          background: "#EFEAE1",
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
@@ -111,7 +111,7 @@ export default function DetailTabs() {
             "& .MuiTabs-indicator": {
               //   display: "none",
               mb: 1,
-              backgroundColor: "#CF4A2C",
+              backgroundColor: "#C8462A",
             },
           }}
         >
@@ -134,8 +134,8 @@ export default function DetailTabs() {
           my: 2,
           py: { xs: 1, md: 1 },
           px: { xs: 1, md: 2 },
-          border: "1px solid #F1EADD",
-          background: "#FBF6EE",
+          border: "1px solid #EFEAE1",
+          background: "#EFEAE1",
         }}
       >
         <TabPanel value={value} index={0}>

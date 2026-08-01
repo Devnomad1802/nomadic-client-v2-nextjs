@@ -76,7 +76,7 @@ const Careers = () => {
         {/* Hero */}
         <Box
           sx={{
-            background: "#CF4A2C",
+            background: "#C8462A",
             py: { xs: 8, md: 12 },
             px: { xs: 3, md: 6 },
             textAlign: "center",
@@ -116,7 +116,7 @@ const Careers = () => {
               fontFamily: "Inter",
               fontSize: { xs: "22px", md: "32px" },
               fontWeight: 700,
-              color: "#3C3228",
+              color: "#33302A",
               mb: 5,
               textAlign: "center",
             }}
@@ -129,7 +129,7 @@ const Careers = () => {
               <Grid item xs={12} md={4} key={index}>
                 <Box
                   sx={{
-                    border: "1px solid #E6DDCF",
+                    border: "1px solid #E1DACE",
                     borderRadius: "16px",
                     p: { xs: 3, md: 4 },
                     height: "100%",
@@ -147,7 +147,7 @@ const Careers = () => {
                         fontFamily: "Inter",
                         fontSize: { xs: "18px", md: "20px" },
                         fontWeight: 700,
-                        color: "#3C3228",
+                        color: "#33302A",
                         mb: 0.5,
                       }}
                     >
@@ -157,7 +157,7 @@ const Careers = () => {
                       <Typography
                         sx={{
                           fontSize: "13px",
-                          color: "#CF4A2C",
+                          color: "#C8462A",
                           fontWeight: 600,
                           background: "#FEF2EC",
                           px: 1.5,
@@ -170,8 +170,8 @@ const Careers = () => {
                       <Typography
                         sx={{
                           fontSize: "13px",
-                          color: "#726A5E",
-                          background: "#F1EADD",
+                          color: "#6B6355",
+                          background: "#EFEAE1",
                           px: 1.5,
                           py: 0.3,
                           borderRadius: "20px",
@@ -185,7 +185,7 @@ const Careers = () => {
                     sx={{
                       fontFamily: "Inter",
                       fontSize: "15px",
-                      color: "#5A5247",
+                      color: "#4E483D",
                       lineHeight: "160%",
                       flex: 1,
                     }}
@@ -197,13 +197,13 @@ const Careers = () => {
                     href="mailto:careers@nomadictownies.com"
                     variant="outlined"
                     sx={{
-                      borderColor: "#CF4A2C",
-                      color: "#CF4A2C",
+                      borderColor: "#C8462A",
+                      color: "#C8462A",
                       borderRadius: "10px",
                       textTransform: "none",
                       fontWeight: 600,
                       "&:hover": {
-                        background: "#CF4A2C",
+                        background: "#C8462A",
                         color: "#fff",
                       },
                     }}
@@ -219,7 +219,7 @@ const Careers = () => {
         {/* General CTA */}
         <Box
           sx={{
-            background: "#221C17",
+            background: "#1E1C18",
             py: { xs: 6, md: 8 },
             textAlign: "center",
             px: 3,
@@ -253,7 +253,7 @@ const Careers = () => {
             component="a"
             href="mailto:careers@nomadictownies.com"
             sx={{
-              background: "#CF4A2C",
+              background: "#C8462A",
               color: "#fff",
               px: 4,
               py: 1.5,

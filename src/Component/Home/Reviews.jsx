@@ -18,10 +18,10 @@ const Reviews = () => {
     }
   }, [data]);
   return (
-    <Box sx={{ color: "#fff", background: "#FBF6EE", py: { xs: 10, md: 15 } }}>
+    <Box sx={{ color: "#fff", background: "#EFEAE1", py: { xs: 10, md: 15 } }}>
    <Typography
           sx={{
-            color: "#5A5247",
+            color: "#4E483D",
             textAlign: "center",
             // fontFamily: "Inter",
             fontFamily: "Playfair",
@@ -38,7 +38,7 @@ const Reviews = () => {
           sx={{
             maxWidth: "800px",
             margin: "0 auto",
-            color: "#5A5247",
+            color: "#4E483D",
             textAlign: "center",
             // fontFamily: "Inter",
             fontFamily: "Inter",
@@ -60,7 +60,7 @@ const Reviews = () => {
 
 
       <ReviewSwiper reviesData={reviesData} />
-      {/* <Googlebanner bg="#FBF6EE" /> */}
+      {/* <Googlebanner bg="#EFEAE1" /> */}
     </Box>
   );
 };

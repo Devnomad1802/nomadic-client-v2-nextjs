@@ -17,7 +17,7 @@ import Toastify from "../SmallComponents/Tostify";
 
 /* ─── brand tokens ─── */
 const T = {
-  rust: "#CF4A2C", rustDeep: "#b53c20", charcoal: "#2c2a28",
+  rust: "#C8462A", rustDeep: "#b53c20", charcoal: "#2c2a28",
   ink: "#1a1208", muted: "#7a5a48", line: "rgba(0,0,0,.12)",
 };
 
@@ -43,7 +43,7 @@ const S = {
   subLabel: { padding: "0 28px 12px", fontSize: 11, fontWeight: 700, letterSpacing: ".16em", textTransform: "uppercase", color: "rgba(80,50,30,.4)" },
   form: { flex: 1, padding: "42px 42px 36px 32px", display: "flex", flexDirection: "column", justifyContent: "center", background: "#fff", overflowY: "auto" },
   h2: { fontSize: 30, fontWeight: 800, color: T.ink, letterSpacing: "-.025em", margin: "0 0 24px", fontFamily: "Inter, sans-serif" },
-  toggle: { display: "flex", background: "#F1EADD", border: "1px solid #F1EADD", borderRadius: 999, padding: 4, marginBottom: 22 },
+  toggle: { display: "flex", background: "#EFEAE1", border: "1px solid #EFEAE1", borderRadius: 999, padding: 4, marginBottom: 22 },
   togBtn: (a) => ({ flex: 1, border: "none", background: a ? "rgba(30,20,10,.88)" : "transparent", color: a ? "#fff" : "#7a4030", cursor: "pointer", fontFamily: "Inter, sans-serif", fontSize: 15, fontWeight: 600, padding: "10px 12px", borderRadius: 999, boxShadow: a ? "0 4px 12px rgba(0,0,0,.18)" : "none", transition: "all .2s" }),
   label: { display: "block", fontSize: 13.5, fontWeight: 700, color: "#3a2e22", marginBottom: 7, fontFamily: "Inter, sans-serif" },
   phoneRow: { display: "flex", gap: 10 },

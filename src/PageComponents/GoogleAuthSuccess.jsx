@@ -41,8 +41,8 @@ const GoogleAuthSuccess = () => {
       display: "flex", flexDirection: "column", alignItems: "center",
       justifyContent: "center", minHeight: "100vh", gap: 2,
     }}>
-      <CircularProgress sx={{ color: "#CF4A2C" }} />
-      <Typography sx={{ color: "#5A5247", fontSize: "18px" }}>
+      <CircularProgress sx={{ color: "#C8462A" }} />
+      <Typography sx={{ color: "#4E483D", fontSize: "18px" }}>
         Logging you in...
       </Typography>
     </Box>

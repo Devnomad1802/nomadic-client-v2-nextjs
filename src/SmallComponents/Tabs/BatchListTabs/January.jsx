@@ -24,7 +24,7 @@ const January = ({ selectDate }) => {
           <Box
             key={index}
             sx={{
-              border: id === index ? "1px solid red" : "1px solid #F1EADD",
+              border: id === index ? "1px solid red" : "1px solid #EFEAE1",
               px: 2,
               minHeight: "69px",
               borderRadius: { xs: "8px", md: "16px" },
@@ -48,7 +48,7 @@ const January = ({ selectDate }) => {
                   xs: "13px",
                   sm: "16px",
                   md: "19px",
-                  color: "#5A5247",
+                  color: "#4E483D",
                 },
               }}
             >
@@ -73,7 +73,7 @@ const January = ({ selectDate }) => {
             >
               <Typography
                 sx={{
-                  color: "#F0A03C",
+                  color: "#C08A2D",
                   fontSize: "12.5px",
                   display: {
                     xs: id === index ? "none" : "block",
@@ -88,7 +88,7 @@ const January = ({ selectDate }) => {
                 <Button
                   variant="simplebtn"
                   sx={{
-                    background: "#CF4A2C",
+                    background: "#C8462A",
                     color: "#fff",
                     fontSize: { xs: "14px", sm: "16px" },
                   }}

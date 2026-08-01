@@ -121,7 +121,7 @@ const Banner = () => {
                       </Box>
                       <Typography
                         sx={{
-                          color: "#3C3228",
+                          color: "#33302A",
                           fontSize: { xs: "11px", sm: "14px", md: "14px" },
                           fontWeight: "700",
                           letterSpacing: "0.5px",
@@ -172,7 +172,7 @@ const Banner = () => {
 
                         <Typography
                           sx={{
-                            color: "#3C3228",
+                            color: "#33302A",
                             fontSize: { xs: "11px", sm: "14px", md: "14px" },
                             fontWeight: "500",
                             display: "flex", gap: "5px", alignItems: "center"
@@ -182,7 +182,7 @@ const Banner = () => {
                         </Typography>
                         <Typography
                           sx={{
-                            color: "#3C3228",
+                            color: "#33302A",
                             fontSize: { xs: "11px", sm: "14px", md: "14px" },
                             fontWeight: "600",
                           }}
@@ -209,7 +209,7 @@ const Banner = () => {
                       <StarIcon sx={{ fontSize: "20px", color: "#F4C95D" }} />
                       <Typography
                         sx={{
-                          color: "#3C3228",
+                          color: "#33302A",
                           fontSize: { xs: "11px", sm: "14px", md: "14px" },
                           fontWeight: "600",
                         }}
@@ -320,7 +320,7 @@ const Banner = () => {
                             <Box component="span" sx={{
                               fontSize: { xs: "11px", sm: "12px", md: "14px" },
                               opacity: 0.8,
-                              color: "#FBF6EE",
+                              color: "#EFEAE1",
                               fontWeight: "500"
                             }}>/Person</Box>
                           </Typography>
@@ -420,7 +420,7 @@ const Banner = () => {
             height: "30px",
             borderRadius: "50%",
             "&:hover": {
-              backgroundColor: "#F1EADD",
+              backgroundColor: "#EFEAE1",
             },
             padding: 0,
           }}
@@ -451,7 +451,7 @@ const Banner = () => {
             height: "30px",
             borderRadius: "50%",
             "&:hover": {
-              backgroundColor: "#F1EADD",
+              backgroundColor: "#EFEAE1",
             },
             padding: 0,
           }}

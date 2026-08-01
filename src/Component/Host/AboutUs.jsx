@@ -30,23 +30,23 @@ const AboutUs = ({ hostData }) => {
   })) || [];
 
   const achievements = hostData?.achievements?.map(achievement => ({
-    icon: <EmojiEventsIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+    icon: <EmojiEventsIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
     text: achievement,
   })) || [
     {
-      icon: <PersonIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <PersonIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       text: "Experienced Host",
     },
     {
-      icon: <EmojiEventsIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <EmojiEventsIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       text: `${hostData?.tripsHosted || 0}+ Trips Hosted`,
     },
     {
-      icon: <SecurityIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <SecurityIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       text: `${hostData?.successRate || 0}% Success Rate`,
     },
     {
-      icon: <NatureIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <NatureIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       text: "Verified Host",
     },
   ];
@@ -107,7 +107,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#33302A",
                   mb: 3,
                   fontSize: { xs: "24px", sm: "28px", md: "32px" },
                   textAlign: "left",
@@ -120,7 +120,7 @@ const AboutUs = ({ hostData }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  color: "#726A5E",
+                  color: "#6B6355",
                   lineHeight: 1.8,
                   mb: 3,
                   fontSize: { xs: "14px", sm: "16px" },
@@ -138,7 +138,7 @@ const AboutUs = ({ hostData }) => {
                   variant="h6"
                   sx={{
                     fontWeight: 500,
-                    color: "#3C3228",
+                    color: "#33302A",
                     mb: 2,
                     fontSize: { xs: "18px", sm: "20px" },
                     textAlign: "left",
@@ -161,7 +161,7 @@ const AboutUs = ({ hostData }) => {
                       label={specialty.label}
                       sx={{
                         background: "#F9ECE9",
-                        color: "#CF4A2C",
+                        color: "#C8462A",
                         fontWeight: 500,
                         fontSize: { xs: "12px", sm: "14px" },
                         height: { xs: "32px", sm: "36px" },
@@ -191,7 +191,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 400,
-                  color: "#3C3228",
+                  color: "#33302A",
                   mb: 3,
                   fontSize: { xs: "24px", sm: "28px", md: "32px" },
                   textAlign: "left",
@@ -209,7 +209,7 @@ const AboutUs = ({ hostData }) => {
                   onChange={handleGalleryTabChange}
                   sx={{
                     "& .MuiTabs-indicator": {
-                      backgroundColor: "#CF4A2C",
+                      backgroundColor: "#C8462A",
                       height: "3px",
                     },
                   }}
@@ -220,9 +220,9 @@ const AboutUs = ({ hostData }) => {
                       textTransform: "none",
                       fontWeight: 600,
                       fontSize: { xs: "14px", sm: "16px" },
-                      color: "#726A5E",
+                      color: "#6B6355",
                       "&.Mui-selected": {
-                        color: "#CF4A2C",
+                        color: "#C8462A",
                       },
                     }}
                   />
@@ -232,9 +232,9 @@ const AboutUs = ({ hostData }) => {
                       textTransform: "none",
                       fontWeight: 600,
                       fontSize: { xs: "14px", sm: "16px" },
-                      color: "#726A5E",
+                      color: "#6B6355",
                       "&.Mui-selected": {
-                        color: "#CF4A2C",
+                        color: "#C8462A",
                       },
                     }}
                   />
@@ -331,7 +331,7 @@ const AboutUs = ({ hostData }) => {
                               variant="body2"
                               sx={{
                                 fontWeight: 500,
-                                color: "#3C3228",
+                                color: "#33302A",
                                 fontSize: "14px",
                                 fontFamily:
                                   "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -363,7 +363,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h5"
                 sx={{
                   fontWeight: 400,
-                  color: "#3C3228",
+                  color: "#33302A",
                   mb: 3,
                   fontSize: { xs: "20px", sm: "22px" },
                   textAlign: "left",
@@ -399,7 +399,7 @@ const AboutUs = ({ hostData }) => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#3C3228",
+                        color: "#33302A",
                         fontWeight: 400,
                         fontSize: { xs: "13px", sm: "14px" },
                         flex: 1,

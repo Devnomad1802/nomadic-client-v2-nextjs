@@ -29,7 +29,7 @@ const HowItWorks = () => {
       <Container maxWidth="lg">
         <Typography
           sx={{
-            color: "#5A5247",
+            color: "#4E483D",
             textAlign: "center",
             fontFamily: "Playfair",
             fontSize: { xs: "22px", sm: "28px", lg: "40px" },
@@ -45,7 +45,7 @@ const HowItWorks = () => {
             margin: "0 auto",
             mt: 1.5,
             mb: { xs: 4, md: 6 },
-            color: "#726A5E",
+            color: "#6B6355",
             textAlign: "center",
             fontFamily: "Inter",
             fontSize: { xs: "16px", lg: "18px" },
@@ -80,7 +80,7 @@ const HowItWorks = () => {
                     height: 64,
                     borderRadius: "50%",
                     backgroundColor: "rgba(236,63,24,0.08)",
-                    color: "#E9622F",
+                    color: "#D9714F",
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -94,7 +94,7 @@ const HowItWorks = () => {
                     fontFamily: "Inter",
                     fontWeight: 700,
                     fontSize: { xs: "18px", lg: "20px" },
-                    color: "#3C3228",
+                    color: "#33302A",
                     mb: 1,
                   }}
                 >
@@ -104,7 +104,7 @@ const HowItWorks = () => {
                   sx={{
                     fontFamily: "Inter",
                     fontSize: { xs: "14px", lg: "15px" },
-                    color: "#726A5E",
+                    color: "#6B6355",
                     lineHeight: "150%",
                   }}
                 >

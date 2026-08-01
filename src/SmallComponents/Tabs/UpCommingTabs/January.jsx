@@ -402,7 +402,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 // Color palette for chips
                                 const chipColors = [
                                   { bg: "#fff", color: "#000" },
-                                  { bg: "#F1EADD", color: "#424242" },
+                                  { bg: "#EFEAE1", color: "#424242" },
                                   { bg: "#FFF3E0", color: "#F57C00" },
                                 ];
 
@@ -472,11 +472,11 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 {favorites[index] ? (
                                   <FavoriteRoundedIcon
-                                    sx={{ color: "#CF4A2C", fontSize: "18px" }}
+                                    sx={{ color: "#C8462A", fontSize: "18px" }}
                                   />
                                 ) : (
                                   <FavoriteBorderIcon
-                                    sx={{ color: "#CF4A2C", fontSize: "18px" }}
+                                    sx={{ color: "#C8462A", fontSize: "18px" }}
                                   />
                                 )}
                               </IconButton>
@@ -522,7 +522,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 >
                                   <Typography
                                     sx={{
-                                      color: "#726A5E",
+                                      color: "#6B6355",
                                       fontSize: "12px",
                                       fontWeight: 500,
                                     }}
@@ -537,7 +537,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                     }}
                                     sx={{
                                       textDecoration: "none",
-                                      color: "#CF4A2C",
+                                      color: "#C8462A",
                                       fontSize: "12px",
                                       fontWeight: 500,
                                       cursor: "pointer",
@@ -573,7 +573,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#221C17",
+                                    color: "#1E1C18",
                                     fontSize: "12px",
                                     fontWeight: 500,
                                   }}
@@ -618,8 +618,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                     label={specialty}
                                     size="small"
                                     sx={{
-                                      backgroundColor: "#F1EADD",
-                                      color: "#726A5E",
+                                      backgroundColor: "#EFEAE1",
+                                      color: "#6B6355",
                                       fontSize: "11px",
                                       height: "24px",
                                       fontWeight: 400,
@@ -633,8 +633,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                   label={`+${trip.host.specialties.length - 2}`}
                                   size="small"
                                   sx={{
-                                    backgroundColor: "#E6DDCF",
-                                    color: "#726A5E",
+                                    backgroundColor: "#E1DACE",
+                                    color: "#6B6355",
                                     fontSize: "11px",
                                     height: "24px",
                                     fontWeight: 400,
@@ -662,13 +662,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 <CalendarMonthRoundedIcon
                                   sx={{
-                                    color: "#726A5E",
+                                    color: "#6B6355",
                                     fontSize: "16px",
                                   }}
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#726A5E",
+                                    color: "#6B6355",
                                     fontSize: "14px",
                                     fontWeight: 500,
                                   }}
@@ -716,13 +716,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 <AccessTimeRoundedIcon
                                   sx={{
-                                    color: "#726A5E",
+                                    color: "#6B6355",
                                     fontSize: "16px",
                                   }}
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#726A5E",
+                                    color: "#6B6355",
                                     fontSize: "14px",
                                     fontWeight: 500,
                                   }}
@@ -743,7 +743,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             >
                               <Typography
                                 sx={{
-                                  color: "#CF4A2C",
+                                  color: "#C8462A",
                                   fontSize: { xs: "20px", sm: "22px" },
                                   fontWeight: 700,
                                 }}
@@ -752,7 +752,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               </Typography>
                               <Typography
                                 sx={{
-                                  color: "#8A8073",
+                                  color: "#857C6C",
                                   fontSize: "14px",
                                   textDecoration: "line-through",
                                 }}
@@ -761,7 +761,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               </Typography>
                               <Typography
                                 sx={{
-                                  color: "#8A8073",
+                                  color: "#857C6C",
                                   fontSize: "12px",
                                 }}
                               >
@@ -790,7 +790,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: { xs: "36px", md: "40px" },
                 height: { xs: "36px", md: "40px" },
                 "&:hover": {
-                  backgroundColor: "#F1EADD",
+                  backgroundColor: "#EFEAE1",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
                 },
                 "&:disabled": {
@@ -803,7 +803,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
               <ArrowBackIosIcon
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
-                  color: "#CF4A2C",
+                  color: "#C8462A",
                 }}
               />
             </IconButton>
@@ -821,7 +821,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: { xs: "36px", md: "40px" },
                 height: { xs: "36px", md: "40px" },
                 "&:hover": {
-                  backgroundColor: "#F1EADD",
+                  backgroundColor: "#EFEAE1",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
                 },
                 "&:disabled": {
@@ -834,7 +834,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
               <ArrowForwardIosIcon
                 sx={{
                   fontSize: { xs: "16px", md: "18px" },
-                  color: "#CF4A2C",
+                  color: "#C8462A",
                 }}
               />
             </IconButton>
@@ -861,14 +861,14 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: "8px",
               },
               "&::-webkit-scrollbar-track": {
-                background: "#F1EADD",
+                background: "#EFEAE1",
                 borderRadius: "10px",
               },
               "&::-webkit-scrollbar-thumb": {
-                background: "#D8CFC0",
+                background: "#CBC2B3",
                 borderRadius: "10px",
                 "&:hover": {
-                  background: "#8A8073",
+                  background: "#857C6C",
                 },
               },
             }}
@@ -1076,7 +1076,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             // Color palette for chips
                             const chipColors = [
                               { bg: "#E3F2FD", color: "#1976D2" },
-                              { bg: "#F1EADD", color: "#424242" },
+                              { bg: "#EFEAE1", color: "#424242" },
                               { bg: "#FFF3E0", color: "#F57C00" },
                             ];
 
@@ -1148,11 +1148,11 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             {favorites[index] ? (
                               <FavoriteRoundedIcon
-                                sx={{ color: "#CF4A2C", fontSize: "18px" }}
+                                sx={{ color: "#C8462A", fontSize: "18px" }}
                               />
                             ) : (
                               <FavoriteBorderIcon
-                                sx={{ color: "#CF4A2C", fontSize: "18px" }}
+                                sx={{ color: "#C8462A", fontSize: "18px" }}
                               />
                             )}
                           </IconButton>
@@ -1198,7 +1198,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             >
                               <Typography
                                 sx={{
-                                  color: "#726A5E",
+                                  color: "#6B6355",
                                   fontSize: "13px",
                                   fontWeight: 500,
                                 }}
@@ -1213,7 +1213,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 }}
                                 sx={{
                                   textDecoration: "none",
-                                  color: "#CF4A2C",
+                                  color: "#C8462A",
                                   fontSize: "14px",
                                   fontWeight: 600,
                                   cursor: "pointer",
@@ -1249,7 +1249,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             />
                             <Typography
                               sx={{
-                                color: "#221C17",
+                                color: "#1E1C18",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1276,13 +1276,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             <CalendarMonthRoundedIcon
                               sx={{
-                                color: "#726A5E",
+                                color: "#6B6355",
                                 fontSize: "16px",
                               }}
                             />
                             <Typography
                               sx={{
-                                color: "#726A5E",
+                                color: "#6B6355",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1328,13 +1328,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             <AccessTimeRoundedIcon
                               sx={{
-                                color: "#726A5E",
+                                color: "#6B6355",
                                 fontSize: "16px",
                               }}
                             />
                             <Typography
                               sx={{
-                                color: "#726A5E",
+                                color: "#6B6355",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1356,8 +1356,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Adventure Activities"
                             size="small"
                             sx={{
-                              backgroundColor: "#F1EADD",
-                              color: "#726A5E",
+                              backgroundColor: "#EFEAE1",
+                              color: "#6B6355",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1367,8 +1367,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Local Guide"
                             size="small"
                             sx={{
-                              backgroundColor: "#F1EADD",
-                              color: "#726A5E",
+                              backgroundColor: "#EFEAE1",
+                              color: "#6B6355",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1378,8 +1378,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Accommodation"
                             size="small"
                             sx={{
-                              backgroundColor: "#F1EADD",
-                              color: "#726A5E",
+                              backgroundColor: "#EFEAE1",
+                              color: "#6B6355",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1398,7 +1398,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                         >
                           <Typography
                             sx={{
-                              color: "#CF4A2C",
+                              color: "#C8462A",
                               fontSize: { xs: "20px", sm: "22px" },
                               fontWeight: 700,
                             }}
@@ -1407,7 +1407,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#8A8073",
+                              color: "#857C6C",
                               fontSize: "14px",
                               textDecoration: "line-through",
                             }}
@@ -1416,7 +1416,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#8A8073",
+                              color: "#857C6C",
                               fontSize: "12px",
                             }}
                           >

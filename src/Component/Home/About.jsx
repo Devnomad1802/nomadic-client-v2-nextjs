@@ -103,7 +103,7 @@ to make travel more meaningful, mindful, and accessible for everyone.
                   <Button
                     onClick={() => navigate("/about-us")}
                     sx={{
-                      background: "#E9622F",
+                      background: "#D9714F",
                       mt: 5,
                       px: 2.5,
                       py: 1.3,
@@ -111,7 +111,7 @@ to make travel more meaningful, mindful, and accessible for everyone.
                       minWidth: "170px",
                       color: "#fff",
                       "&:hover": {
-                        background: "#3C3228",
+                        background: "#33302A",
                       },
                     }}
                   >

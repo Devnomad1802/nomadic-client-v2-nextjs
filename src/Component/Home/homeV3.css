@@ -1,17 +1,17 @@
 .ntv3 {
-  --orange: #CF4A2C;
-  --orange-hover: #B83F23;
-  --orange-light: #E9622F;
-  --orange-tint: #FDF3EE;
-  --charcoal: #3C3228;
-  --text: #5A5247;
-  --text-dark: #3C3228;
-  --text-light: #726A5E;
-  --text-lighter: #8A8073;
-  --line: #E6DDCF;
-  --line-soft: #F1EADD;
+  --orange: #C8462A;
+  --orange-hover: #A63A22;
+  --orange-light: #D9714F;
+  --orange-tint: #FBF0EC;
+  --charcoal: #33302A;
+  --text: #4E483D;
+  --text-dark: #33302A;
+  --text-light: #6B6355;
+  --text-lighter: #857C6C;
+  --line: #E1DACE;
+  --line-soft: #EFEAE1;
   --bg-soft: var(--orange-tint);
-  --green: #2E7D4F;
+  --green: #2E6E4E;
   --pad: clamp(16px, 4vw, 60px);
   --r-lg: 20px;
   --sh: 0 1px 3px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
@@ -86,7 +86,7 @@
 }
 
 .ntv3 .btn-outline {
-  background: #FBF6EE;
+  background: #EFEAE1;
   color: var(--orange);
   border: 1.5px solid var(--orange)
 }

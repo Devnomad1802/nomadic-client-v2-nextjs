@@ -17,13 +17,13 @@ import Toastify from "../SmallComponents/Tostify";
 
 /* ─── brand tokens ─────────────────────────────── */
 const T = {
-  rust:     '#CF4A2C',
+  rust:     '#C8462A',
   rustDeep: '#b53c20',
   charcoal: '#2c2a28',
   ink:      '#1a1208',
   muted:    '#7a5a48',
   line:     'rgba(0,0,0,.12)',
-  cream:    '#fdf3ee',
+  cream:    '#FBF0EC',
 };
 
 /* ─── travel quotes ─────────────────────────────── */
@@ -108,8 +108,8 @@ const S = {
   },
   h2: { fontSize: 30, fontWeight: 800, color: T.ink, letterSpacing: '-.025em', margin: '0 0 24px', fontFamily: 'Inter, sans-serif' },
   toggle: {
-    display: 'flex', background: '#F1EADD',
-    border: '1px solid #F1EADD',
+    display: 'flex', background: '#EFEAE1',
+    border: '1px solid #EFEAE1',
     borderRadius: 999, padding: 4, marginBottom: 22,
   },
   togBtn: (active) => ({

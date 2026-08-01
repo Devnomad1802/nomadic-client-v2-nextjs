@@ -36,7 +36,7 @@ const NotFound = () => {
             sx={{
               fontSize: { xs: "80px", md: "120px" },
               fontWeight: 800,
-              color: "#CF4A2C",
+              color: "#C8462A",
               lineHeight: 1,
               mb: 1,
               fontFamily: "Inter",
@@ -48,7 +48,7 @@ const NotFound = () => {
             sx={{
               fontSize: { xs: "22px", md: "28px" },
               fontWeight: 700,
-              color: "#3C3228",
+              color: "#33302A",
               mb: 1,
               fontFamily: "Inter",
             }}
@@ -58,7 +58,7 @@ const NotFound = () => {
           <Typography
             sx={{
               fontSize: "16px",
-              color: "#726A5E",
+              color: "#6B6355",
               mb: 4,
               fontFamily: "Inter",
               lineHeight: "160%",
@@ -80,7 +80,7 @@ const NotFound = () => {
             <Button
               onClick={() => navigate("/")}
               sx={{
-                background: "#CF4A2C",
+                background: "#C8462A",
                 color: "#fff",
                 px: 4,
                 py: 1.5,
@@ -98,8 +98,8 @@ const NotFound = () => {
               onClick={() => navigate("/experiences")}
               variant="outlined"
               sx={{
-                borderColor: "#CF4A2C",
-                color: "#CF4A2C",
+                borderColor: "#C8462A",
+                color: "#C8462A",
                 px: 4,
                 py: 1.5,
                 borderRadius: "12px",
@@ -108,7 +108,7 @@ const NotFound = () => {
                 fontSize: "16px",
                 fontFamily: "Inter",
                 "&:hover": {
-                  background: "#CF4A2C",
+                  background: "#C8462A",
                   color: "#fff",
                 },
               }}

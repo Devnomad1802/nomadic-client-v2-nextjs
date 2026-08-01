@@ -107,10 +107,10 @@ const IcTrophy = ({ c = "#F0B49C", s = 15 }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9V2h12v7a6 6 0 0 1-12 0Z" /><path d="M6 5H3v2a3 3 0 0 0 3 3M18 5h3v2a3 3 0 0 1-3 3M9 18h6M10 22h4M12 15v3" /></svg>
 );
 const IcGlobe = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CF4A2C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z" /></svg>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8462A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z" /></svg>
 );
 const IcPinSm = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#CF4A2C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8462A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
 );
 const IcChat = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 0 1-.9-3.8A8.38 8.38 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5Z" /></svg>
@@ -118,7 +118,7 @@ const IcChat = () => (
 const IcBox = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4Z" /><path d="M3 7v10l9 4 9-4V7" /></svg>
 );
-const IcLock = ({ c = "#CF4A2C", s = 16 }) => (
+const IcLock = ({ c = "#C8462A", s = 16 }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none", marginTop: 1 }}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
 );
 
@@ -138,9 +138,9 @@ const BADGE_PATHS = {
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
 };
 const BADGE_TONES = {
-  green: { bg: "#E0EFE4", color: "#2E7D4F" },
-  terracotta: { bg: "#F6E4DC", color: "#CF4A2C" },
-  gold: { bg: "#FBEFD6", color: "#C8941E" },
+  green: { bg: "#E0EFE4", color: "#2E6E4E" },
+  terracotta: { bg: "#F4D8CE", color: "#C8462A" },
+  gold: { bg: "#FBEFD6", color: "#B8801C" },
 };
 const toneForBadge = (icon) =>
   icon === "verified" || icon === "shield" || icon === "leaf"
@@ -550,7 +550,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
             <h2>About {firstName}</h2>
             {host?.hostOverview
               ? <p className="hd-about-p">{host.hostOverview}</p>
-              : <p className="hd-about-p" style={{ color: "#8A8073" }}>This host hasn&apos;t added an overview yet.</p>}
+              : <p className="hd-about-p" style={{ color: "#857C6C" }}>This host hasn&apos;t added an overview yet.</p>}
             {host?.tagline && <div className="hd-quote">&ldquo;{host.tagline}&rdquo;</div>}
           </section>
 
@@ -631,7 +631,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
                 ))}
               </div>
             ) : (
-              <p className="hd-about-p" style={{ color: "#8A8073" }}>No active trips right now — check back soon.</p>
+              <p className="hd-about-p" style={{ color: "#857C6C" }}>No active trips right now — check back soon.</p>
             )}
           </section>
 
@@ -697,7 +697,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
           {gallery.length > 0 && (
             <section className="hd-card">
               <h2>From {firstName}&apos;s trips</h2>
-              <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#8A8073" }}>Real moments from past experiences.</p>
+              <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#857C6C" }}>Real moments from past experiences.</p>
               <div className="hd-gallery">
                 {galleryView.map((src, i) => (
                   <button
@@ -810,7 +810,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
         </div>
 
         <div className="hd-drawer-safety">
-          <IcLock c="#CF4A2C" s={15} />
+          <IcLock c="#C8462A" s={15} />
           <span>Keep it on-platform. For your safety we never share personal contact details.</span>
         </div>
 

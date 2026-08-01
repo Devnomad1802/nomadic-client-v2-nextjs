@@ -108,11 +108,11 @@ const ResetPassword = () => {
           align="center"
           variant="h3"
           mt={6}
-          sx={{ color: "#5A5247" }}
+          sx={{ color: "#4E483D" }}
         >
           Reset Password
         </Typography>
-        <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
+        <Typography mt={2} sx={{ color: "#4E483D", textAlign: "left" }}>
           Choose a password
         </Typography>
 
@@ -128,21 +128,21 @@ const ResetPassword = () => {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                  sx={{ color: "#3C3228" }}
+                  sx={{ color: "#33302A" }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                 >
                   {showPassword ? (
-                    <Visibility sx={{ color: "#3C3228" }} />
+                    <Visibility sx={{ color: "#33302A" }} />
                   ) : (
-                    <VisibilityOff sx={{ color: "#3C3228" }} />
+                    <VisibilityOff sx={{ color: "#33302A" }} />
                   )}
                 </IconButton>
               </InputAdornment>
             ),
           }}
         />
-        <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
+        <Typography mt={2} sx={{ color: "#4E483D", textAlign: "left" }}>
           Confirm password
         </Typography>
         <TextField
@@ -157,14 +157,14 @@ const ResetPassword = () => {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                  sx={{ color: "#3C3228" }}
+                  sx={{ color: "#33302A" }}
                   aria-label="toggle password visibility"
                   onClick={handleClickShowConfirmPassword}
                 >
                   {showPassword ? (
-                    <Visibility sx={{ color: "#3C3228" }} />
+                    <Visibility sx={{ color: "#33302A" }} />
                   ) : (
-                    <VisibilityOff sx={{ color: "#3C3228" }} />
+                    <VisibilityOff sx={{ color: "#33302A" }} />
                   )}
                 </IconButton>
               </InputAdornment>
@@ -201,15 +201,15 @@ const ResetPassword = () => {
             fontFamily: "Inter",
             px: 2,
             width: "100%",
-            background: "#3C3228",
+            background: "#33302A",
             color: "#fff",
-            border: "1.5px solid #3C3228",
+            border: "1.5px solid #33302A",
 
             "&:hover": {
-              background: "#FBF6EE",
-              color: "#CF4A2C",
+              background: "#EFEAE1",
+              color: "#C8462A",
               //   height: "45px",
-              border: "1.5px solid #CF4A2C",
+              border: "1.5px solid #C8462A",
             },
           }}
         >

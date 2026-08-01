@@ -12,43 +12,43 @@ import { Box, Card, Chip, Grid, Typography } from "@mui/material";
 const Contact = ({ hostData }) => {
   const contactInfo = [
     {
-      icon: <EmailIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <EmailIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       label: "Email",
       value: hostData?.emailAddress || "No email provided",
-      color: "#CF4A2C",
+      color: "#C8462A",
     },
     {
-      icon: <PhoneIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <PhoneIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       label: "Phone",
       value: hostData?.phoneNumber || "No phone provided",
-      color: "#CF4A2C",
+      color: "#C8462A",
     },
     {
-      icon: <LocationOnIcon sx={{ color: "#CF4A2C", fontSize: "20px" }} />,
+      icon: <LocationOnIcon sx={{ color: "#C8462A", fontSize: "20px" }} />,
       label: "Location",
       value: hostData?.location || "Location not specified",
-      color: "#CF4A2C",
+      color: "#C8462A",
     },
   ];
 
   const socialLinks = [
     {
-      icon: <LanguageIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <LanguageIcon sx={{ color: "#33302A", fontSize: "20px" }} />,
       label: "Website",
       url: hostData?.socialMedia?.website,
     },
     {
-      icon: <FacebookIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <FacebookIcon sx={{ color: "#33302A", fontSize: "20px" }} />,
       label: "Facebook",
       url: hostData?.socialMedia?.facebook,
     },
     {
-      icon: <InstagramIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <InstagramIcon sx={{ color: "#33302A", fontSize: "20px" }} />,
       label: "Instagram",
       url: hostData?.socialMedia?.instagram,
     },
     {
-      icon: <TwitterIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <TwitterIcon sx={{ color: "#33302A", fontSize: "20px" }} />,
       label: "Twitter",
       url: hostData?.socialMedia?.twitter,
     },
@@ -79,7 +79,7 @@ const Contact = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#33302A",
                   mb: 4,
                   fontSize: { xs: "24px", sm: "28px" },
                   fontFamily:
@@ -119,7 +119,7 @@ const Contact = ({ hostData }) => {
                         variant="body2"
                         sx={{
                           fontWeight: 500,
-                          color: "#3C3228",
+                          color: "#33302A",
                           fontSize: "14px",
                           fontFamily:
                             "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -163,7 +163,7 @@ const Contact = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#33302A",
                   mb: 4,
                   fontSize: { xs: "24px", sm: "28px" },
                   fontFamily:
@@ -184,25 +184,25 @@ const Contact = ({ hostData }) => {
                       sx={{
                         width: "100%",
                         height: "48px",
-                        background: "#F1EADD",
-                        border: "1px solid #D8CFC0",
+                        background: "#EFEAE1",
+                        border: "1px solid #CBC2B3",
                         borderRadius: "12px",
                         textAlign: "left",
                         fontFamily:
                           "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: "#3C3228",
+                        color: "#33302A",
                         cursor: social.url ? "pointer" : "default",
                         "&:hover": {
-                          background: social.url ? "#CF4A2C" : "#F1EADD",
-                          color: social.url ? "white" : "#3C3228",
+                          background: social.url ? "#C8462A" : "#EFEAE1",
+                          color: social.url ? "white" : "#33302A",
                         },
                         "& .MuiChip-icon": {
-                          color: "#3C3228",
+                          color: "#33302A",
                         },
                         "&:hover .MuiChip-icon": {
-                          color: social.url ? "white" : "#3C3228",
+                          color: social.url ? "white" : "#33302A",
                         },
                       }}
                     />

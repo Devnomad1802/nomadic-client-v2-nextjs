@@ -108,15 +108,15 @@ const UpcommingDetails = () => {
       <Container maxWidth="xl" sx={{ px: { xs: 0, md: 0 } }}>
         <Box sx={{ width: "100%", height: { xs: "240px", md: "360px" }, borderRadius: "20px", mb: 4, mt: { xs: 2, lg: 0 }, position: "relative", overflow: "hidden" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "absolute", top: "20px", width: "100%", px: { xs: 1, md: 2 }, zIndex: 2 }}>
-            <IconButton onClick={() => navigate(-1)} sx={{ background: "#FBF6EE", "&:hover": { background: "#e1e2e3" } }}>
-              <KeyboardBackspaceIcon sx={{ color: "#5A5247" }} />
+            <IconButton onClick={() => navigate(-1)} sx={{ background: "#EFEAE1", "&:hover": { background: "#e1e2e3" } }}>
+              <KeyboardBackspaceIcon sx={{ color: "#4E483D" }} />
             </IconButton>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <IconButton sx={{ background: "#FBF6EE", "&:hover": { background: "#e1e2e3" } }}>
-                <ShareIcon sx={{ color: "#5A5247" }} />
+              <IconButton sx={{ background: "#EFEAE1", "&:hover": { background: "#e1e2e3" } }}>
+                <ShareIcon sx={{ color: "#4E483D" }} />
               </IconButton>
-              <IconButton sx={{ background: "#FBF6EE", "&:hover": { background: "#e1e2e3" } }}>
-                <FavoriteBorderIcon sx={{ color: "#5A5247" }} />
+              <IconButton sx={{ background: "#EFEAE1", "&:hover": { background: "#e1e2e3" } }}>
+                <FavoriteBorderIcon sx={{ color: "#4E483D" }} />
               </IconButton>
             </Box>
           </Box>
@@ -138,11 +138,11 @@ const UpcommingDetails = () => {
           {/* LEFT COLUMN */}
           <Grid item xs={12} md={7.5}>
             {/* Title + subtitle + rating */}
-            <Typography sx={{ color: "#3C3228", fontWeight: 600, fontSize: { xs: "22px", sm: "28px", lg: "33px" }, textAlign: "left", fontFamily: "Inter" }}>
+            <Typography sx={{ color: "#33302A", fontWeight: 600, fontSize: { xs: "22px", sm: "28px", lg: "33px" }, textAlign: "left", fontFamily: "Inter" }}>
               {item.title}
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1, flexWrap: "wrap" }}>
-              <Typography sx={{ color: "#726A5E", fontSize: { xs: "13px", sm: "15px" }, textAlign: "left", fontFamily: "Inter" }}>
+              <Typography sx={{ color: "#6B6355", fontSize: { xs: "13px", sm: "15px" }, textAlign: "left", fontFamily: "Inter" }}>
                 {item.subTitle}
               </Typography>
               <Box sx={{ background: "#F4C95D", borderRadius: "32px", display: "flex", alignItems: "center", px: 1.5, height: "28px" }}>
@@ -154,25 +154,25 @@ const UpcommingDetails = () => {
             {/* Info pills */}
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2 }}>
               {infoPills.map((pill, i) => (
-                <Box key={i} sx={{ background: "#FBF6EE", border: "1px solid #F1EADD", borderRadius: "32px", display: "flex", alignItems: "center", gap: 1, pr: 1.5 }}>
+                <Box key={i} sx={{ background: "#EFEAE1", border: "1px solid #EFEAE1", borderRadius: "32px", display: "flex", alignItems: "center", gap: 1, pr: 1.5 }}>
                   <IconButton size="small" sx={{ background: "#7DCD85", color: "#fff", "&:hover": { color: "#7DCD85" } }}>
                     {pill.icon}
                   </IconButton>
-                  <Typography sx={{ color: "#221C17", fontSize: { xs: "13px", sm: "15px" }, fontFamily: "Inter" }}>{pill.text}</Typography>
+                  <Typography sx={{ color: "#1E1C18", fontSize: { xs: "13px", sm: "15px" }, fontFamily: "Inter" }}>{pill.text}</Typography>
                 </Box>
               ))}
             </Box>
 
             {/* Pickup / Drop-off — full width, centered */}
             <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-              <Box sx={{ background: "#FBF6EE", border: "1px solid #F1EADD", borderRadius: "40px", display: "flex", alignItems: "center", gap: { xs: 1.5, md: 2.5 }, py: 1.5, px: { xs: 3, md: 5 }, width: { xs: "100%", sm: "auto" }, justifyContent: "center" }}>
-                <Typography sx={{ color: "#726A5E", fontSize: { xs: "14px", md: "16px" }, fontFamily: "Inter" }}>Pick Up:</Typography>
-                <Typography sx={{ color: "#221C17", fontSize: { xs: "14px", md: "16px" }, fontWeight: 600, fontFamily: "Inter" }}>{item.pickUp}</Typography>
+              <Box sx={{ background: "#EFEAE1", border: "1px solid #EFEAE1", borderRadius: "40px", display: "flex", alignItems: "center", gap: { xs: 1.5, md: 2.5 }, py: 1.5, px: { xs: 3, md: 5 }, width: { xs: "100%", sm: "auto" }, justifyContent: "center" }}>
+                <Typography sx={{ color: "#6B6355", fontSize: { xs: "14px", md: "16px" }, fontFamily: "Inter" }}>Pick Up:</Typography>
+                <Typography sx={{ color: "#1E1C18", fontSize: { xs: "14px", md: "16px" }, fontWeight: 600, fontFamily: "Inter" }}>{item.pickUp}</Typography>
                 <Box sx={{ width: { xs: "40px", md: "60px" }, display: "flex", alignItems: "center" }}>
                   <img src={line} alt="" style={{ width: "100%" }} />
                 </Box>
-                <Typography sx={{ color: "#726A5E", fontSize: { xs: "14px", md: "16px" }, fontFamily: "Inter" }}>Drop Off:</Typography>
-                <Typography sx={{ color: "#221C17", fontSize: { xs: "14px", md: "16px" }, fontWeight: 600, fontFamily: "Inter" }}>{item.dropOff}</Typography>
+                <Typography sx={{ color: "#6B6355", fontSize: { xs: "14px", md: "16px" }, fontFamily: "Inter" }}>Drop Off:</Typography>
+                <Typography sx={{ color: "#1E1C18", fontSize: { xs: "14px", md: "16px" }, fontWeight: 600, fontFamily: "Inter" }}>{item.dropOff}</Typography>
               </Box>
             </Box>
 
@@ -206,7 +206,7 @@ const UpcommingDetails = () => {
           right: 0,
           zIndex: 999,
           background: "#fff",
-          borderTop: "1px solid #E6DDCF",
+          borderTop: "1px solid #E1DACE",
           boxShadow: "0 -2px 12px rgba(0,0,0,0.08)",
           px: 2,
           py: 1.5,
@@ -216,21 +216,21 @@ const UpcommingDetails = () => {
       >
         <Box>
           <Box sx={{ display: "flex", alignItems: "baseline", gap: 0.5 }}>
-            <Typography sx={{ fontSize: "20px", fontWeight: 700, color: "#3C3228", fontFamily: "Inter" }}>
+            <Typography sx={{ fontSize: "20px", fontWeight: 700, color: "#33302A", fontFamily: "Inter" }}>
               &#8377;{item?.price}
             </Typography>
             {item?.strikePrice && Number(item.strikePrice) > Number(item.price) && (
-              <Typography sx={{ fontSize: "13px", color: "#8A8073", textDecoration: "line-through" }}>
+              <Typography sx={{ fontSize: "13px", color: "#857C6C", textDecoration: "line-through" }}>
                 &#8377;{item.strikePrice}
               </Typography>
             )}
           </Box>
-          <Typography sx={{ fontSize: "11px", color: "#726A5E", fontFamily: "Inter" }}>per person</Typography>
+          <Typography sx={{ fontSize: "11px", color: "#6B6355", fontFamily: "Inter" }}>per person</Typography>
         </Box>
         <Button
           onClick={handleBookNowClick}
           sx={{
-            background: "#CF4A2C",
+            background: "#C8462A",
             color: "#fff",
             borderRadius: "12px",
             textTransform: "none",

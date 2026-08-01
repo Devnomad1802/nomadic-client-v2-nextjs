@@ -33,7 +33,7 @@ const zingScript = localFont({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#E9622F",
+  themeColor: "#D9714F",
   width: "device-width",
   initialScale: 1,
 };

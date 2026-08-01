@@ -44,16 +44,16 @@ import RelatedBlogs from "./Blog/RelatedBlogs";
 import Footer from "./Footer";
 
 // ─── Brand tokens ─────────────────────────────────────────────
-const ORANGE = "#CF4A2C";
+const ORANGE = "#C8462A";
 const ORANGE_HOVER = "#B53D1F";
-const ORANGE_TINT = "#FDF3EE";
+const ORANGE_TINT = "#FBF0EC";
 const ORANGE_TINT2 = "#FBEAE3";
-const TEXT_DARK = "#3C3228";
-const TEXT = "#5A5247";
-const TEXT_LIGHT = "#726A5E";
-const TEXT_LIGHTER = "#8A8073";
-const LINE = "#E6DDCF";
-const LINE_SOFT = "#F1EADD";
+const TEXT_DARK = "#33302A";
+const TEXT = "#4E483D";
+const TEXT_LIGHT = "#6B6355";
+const TEXT_LIGHTER = "#857C6C";
+const LINE = "#E1DACE";
+const LINE_SOFT = "#EFEAE1";
 const BG_CREAM = "#FAF7F2";
 const PLAYFAIR = `"Playfair Display", Georgia, serif`;
 const SERIF = `"Newsreader", Georgia, serif`;

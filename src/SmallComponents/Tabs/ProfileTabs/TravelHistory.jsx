@@ -219,11 +219,11 @@ const TravelHistory = () => {
           Number(finalTotal) <= 0 ? "Booked" : "Partial Booked";
 
         const array = [
-          { value: total, title: "Amount Paid", color: "#5A5247" },
+          { value: total, title: "Amount Paid", color: "#4E483D" },
           {
             value: finalTotal.toFixed(0),
             title: "Remain amount to pay",
-            color: "#CF4A2C",
+            color: "#C8462A",
           },
         ];
         const array2 = [
@@ -255,7 +255,7 @@ const TravelHistory = () => {
               mt: 3,
               borderRadius: "10px !important",
               boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
-              border: "1px solid #E6DDCF",
+              border: "1px solid #E1DACE",
               "&:before": {
                 display: "none",
               },
@@ -265,9 +265,9 @@ const TravelHistory = () => {
             }}
           >
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "#5A5247" }} />}
+              expandIcon={<ExpandMoreIcon sx={{ color: "#4E483D" }} />}
               sx={{
-                background: "#FBF6EE",
+                background: "#EFEAE1",
                 borderRadius: "10px 10px 0 0",
                 padding: { xs: "12px 16px", sm: "14px 18px", md: "16px 20px" },
                 "&.Mui-expanded": {
@@ -294,7 +294,7 @@ const TravelHistory = () => {
                 <Box>
                   <Typography
                     sx={{
-                      color: "#5A5247",
+                      color: "#4E483D",
                       fontSize: { xs: "18px", md: "20px" },
                       fontWeight: 500,
                       textAlign: "left",
@@ -304,7 +304,7 @@ const TravelHistory = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      color: "#8A8073",
+                      color: "#857C6C",
                       fontSize: "13px",
                       textAlign: "left",
                       mt: 0.5,
@@ -320,7 +320,7 @@ const TravelHistory = () => {
                 <Box>
                   <Button
                     variant="simplebtn"
-                    sx={{ background: "#CF4A2C", color: "#fff" }}
+                    sx={{ background: "#C8462A", color: "#fff" }}
                   >
                     {paymentStatusLabel}
                   </Button>
@@ -359,13 +359,13 @@ const TravelHistory = () => {
                         >
                           {icon}
                           <Typography
-                            sx={{ color: "#8A8073", fontSize: "13px" }}
+                            sx={{ color: "#857C6C", fontSize: "13px" }}
                           >
                             {typo1}
                           </Typography>
                         </Box>
                         <Typography
-                          sx={{ color: "#5A5247", mt: 1, textAlign: "left" }}
+                          sx={{ color: "#4E483D", mt: 1, textAlign: "left" }}
                         >
                           {typo2}
                         </Typography>
@@ -376,7 +376,7 @@ const TravelHistory = () => {
               </Grid>
               <Box
                 sx={{
-                  background: "#E6DDCF",
+                  background: "#E1DACE",
                   height: "1px",
                   width: "100%",
                   my: 4,
@@ -393,21 +393,21 @@ const TravelHistory = () => {
                     }}
                   >
                     <Box>
-                      <Typography sx={{ color: "#8A8073", fontSize: "13px" }}>
+                      <Typography sx={{ color: "#857C6C", fontSize: "13px" }}>
                         Amount Paid
                       </Typography>
                       <Typography
-                        sx={{ color: "#5A5247", mt: 1, textAlign: "left" }}
+                        sx={{ color: "#4E483D", mt: 1, textAlign: "left" }}
                       >
                         &#8377; {Number(total).toFixed(0)}
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography sx={{ color: "#8A8073", fontSize: "13px" }}>
+                      <Typography sx={{ color: "#857C6C", fontSize: "13px" }}>
                         Payment Status
                       </Typography>
                       <Typography
-                        sx={{ color: Number(finalTotal) <= 0 ? "#2E7D4F" : "#C8941E", mt: 1, textAlign: "left" }}
+                        sx={{ color: Number(finalTotal) <= 0 ? "#2E6E4E" : "#B8801C", mt: 1, textAlign: "left" }}
                       >
                         {paymentStatusLabel}
                       </Typography>
@@ -420,9 +420,9 @@ const TravelHistory = () => {
                       flexDirection: "column",
                       gap: "12px 0px",
                       p: 3,
-                      background: "#FBF6EE",
+                      background: "#EFEAE1",
                       borderRadius: "10px",
-                      border: "1px solid #F1EADD",
+                      border: "1px solid #EFEAE1",
                       my: 3,
                     }}
                   >
@@ -440,7 +440,7 @@ const TravelHistory = () => {
                         >
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "start",
                             }}
@@ -449,7 +449,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
                               fontSize: { xs: "13px", sm: "14px" },
                               // textAlign: "cent",
                             }}
@@ -459,7 +459,7 @@ const TravelHistory = () => {
 
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "right",
                             }}
@@ -483,7 +483,7 @@ const TravelHistory = () => {
                         >
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
 
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "start",
@@ -493,7 +493,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
 
                               fontSize: { xs: "13px", sm: "14px" },
                             }}
@@ -502,7 +502,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#726A5E",
+                              color: "#6B6355",
 
                               fontSize: { xs: "13px", sm: "14px" },
                             }}
@@ -528,7 +528,7 @@ const TravelHistory = () => {
                         }}>
                           <Typography
                             sx={{ 
-                              color: "#8A8073", 
+                              color: "#857C6C", 
                               fontSize: "14px",
                               fontWeight: 500,
                               mb: 1
@@ -559,7 +559,7 @@ const TravelHistory = () => {
                         mt: 2,
                       }}
                     >
-                      <Typography sx={{ color: "#726A5E", textAlign: "start" }}>
+                      <Typography sx={{ color: "#6B6355", textAlign: "start" }}>
                         Note: Balance amount of &#8377; {Number(finalTotal).toFixed(0)}/- can be paid up to{" "}
                         {cardData?.cardDate?.batchDate
                           ? new Date(
@@ -573,14 +573,14 @@ const TravelHistory = () => {
                             })
                           : ""}
                       </Typography>
-                      <Typography sx={{ color: "#8A8073", textAlign: "start" }}>
+                      <Typography sx={{ color: "#857C6C", textAlign: "start" }}>
                         Payment Processing fee of 3% will be charged in next step.
                       </Typography>
                       <Button
                         onClick={() => handleOrder(finalTotal, item)}
                         sx={{
                           color: "#fff",
-                          background: "#E9622F",
+                          background: "#D9714F",
                           borderRadius: "25px",
                           px: 4,
                           py: 1.5,
@@ -602,7 +602,7 @@ const TravelHistory = () => {
               </Box>
               <Box
                 sx={{
-                  background: "#E6DDCF",
+                  background: "#E1DACE",
                   height: "1px",
                   width: "100%",
                   my: 5,

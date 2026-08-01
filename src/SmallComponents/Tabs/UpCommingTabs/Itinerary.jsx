@@ -79,7 +79,7 @@ const Itinerary = ({ ItineraryFile, addDays }) => {
               key={index}
               sx={{
                 background: "transparent",
-                borderBottom: "1px solid #F1EADD",
+                borderBottom: "1px solid #EFEAE1",
                 boxShadow: "none",
                 borderTop: "transparent",
                 boxSizing: "border-box",
@@ -103,7 +103,7 @@ const Itinerary = ({ ItineraryFile, addDays }) => {
                 >
                   <Box
                     sx={{
-                      border: "2px solid #F1EADD",
+                      border: "2px solid #EFEAE1",
                       borderRadius: "30px",
                       py: { xs: 0.5, sm: 1 },
                       px: { xs: 1.5, sm: 2 },
@@ -129,7 +129,7 @@ const Itinerary = ({ ItineraryFile, addDays }) => {
                     <Typography
                       sx={{
                         fontWeight: "500",
-                        color: "#5A5247",
+                        color: "#4E483D",
                         whiteSpace: "nowrap",
                         fontSize: { xs: "13px", sm: "16px" },
                         textAlign: "left",
@@ -141,7 +141,7 @@ const Itinerary = ({ ItineraryFile, addDays }) => {
                   </Box>
                 </Box>
               </AccordionSummary>
-              <AccordionDetails sx={{ color: "#726A5E", textAlign: "left" }}>
+              <AccordionDetails sx={{ color: "#6B6355", textAlign: "left" }}>
                 {description}
               </AccordionDetails>
             </Accordion>

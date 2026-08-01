@@ -3,7 +3,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 let theme1 = createTheme({
   palette: {
     background: {
-      default: "#221C17",
+      default: "#1E1C18",
       color: "#fff",
     },
     text: {
@@ -13,7 +13,7 @@ let theme1 = createTheme({
     primary: {
       // Brand clay — was a teal (off-brand). Any MUI component using theme
       // `primary` now renders the correct Nomadic Townies orange.
-      main: "#CF4A2C",
+      main: "#C8462A",
     },
   },
   typography: {
@@ -55,7 +55,7 @@ let theme1 = createTheme({
       fontFamily: "Inter, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
-      color: "#D8CFC0",
+      color: "#CBC2B3",
     },
     heading1: {
       fontFamily: "Inter",
@@ -80,14 +80,14 @@ let theme1 = createTheme({
             borderRadius: "32px",
             fontFamily: "Inter",
             px: 2,
-            color: "#CF4A2C",
+            color: "#C8462A",
             height: "45px",
-            border: "1.5px solid #CF4A2C",
-            background: "#FBF6EE",
+            border: "1.5px solid #C8462A",
+            background: "#EFEAE1",
             "&:hover": {
-              background: "#3C3228",
+              background: "#33302A",
               color: "#fff",
-              border: "1.5px solid #3C3228",
+              border: "1.5px solid #33302A",
             },
           },
         },
@@ -138,7 +138,7 @@ let theme1 = createTheme({
     MuiPickersCalendarWeek: {
       root: {
         "&:hover": {
-          backgroundColor: "#D8CFC0",
+          backgroundColor: "#CBC2B3",
         },
       },
     },

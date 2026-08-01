@@ -75,7 +75,7 @@ const Categories = () => {
     <Container maxWidth="xl" sx={{ zIndex: 1, pt: 10, position: "relative" }}>
       <Typography
         sx={{
-          color: "#5A5247",
+          color: "#4E483D",
           textAlign: "center",
           fontFamily: "Playfair",
           fontSize: { xs: "22px", sm: "28px", md: "28px",lg:"48px" },
@@ -91,7 +91,7 @@ const Categories = () => {
         sx={{
           maxWidth: "700px",
           margin: "0 auto",
-          color: "#5A5247",
+          color: "#4E483D",
           textAlign: "center",
           fontFamily: "Inter",
           fontSize: { xs: "16px",lg:"20px" },
@@ -208,7 +208,7 @@ const Categories = () => {
                     <Typography
                       sx={{
                         fontSize: "12px",
-                        color: "#5A5247",
+                        color: "#4E483D",
                         fontWeight: "500",
                         lineHeight: 1,
                       }}
@@ -218,7 +218,7 @@ const Categories = () => {
                     <Typography
                       sx={{
                         fontSize: "16px",
-                        color: "#CF4A2C",
+                        color: "#C8462A",
                         fontWeight: "700",
                         lineHeight: 1.2,
                         mt: 0.5,
@@ -282,13 +282,13 @@ const Categories = () => {
             transform: "translateY(-50%)",
             zIndex: 3,
             backgroundColor: "#fff",
-            color: "#3C3228",
+            color: "#33302A",
             width: "36px",
             height: "36px",
             borderRadius: "50%",
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             "&:hover": {
-              backgroundColor: "#F1EADD",
+              backgroundColor: "#EFEAE1",
             },
           }}
         >
@@ -304,13 +304,13 @@ const Categories = () => {
             transform: "translateY(-50%)",
             zIndex: 3,
             backgroundColor: "#fff",
-            color: "#3C3228",
+            color: "#33302A",
             width: "36px",
             height: "36px",
             borderRadius: "50%",
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             "&:hover": {
-              backgroundColor: "#F1EADD",
+              backgroundColor: "#EFEAE1",
             },
           }}
         >

@@ -17,7 +17,7 @@ const Overview = ({ overview }) => {
       </Typography>
       <Typography
         sx={{
-          color: "#5A5247",
+          color: "#4E483D",
           textAlign: { xs: "left", md: "left" },
           mt: 2,
           lineHeight: "170%",

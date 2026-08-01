@@ -17,7 +17,7 @@ export const inputStyle = {
   },
 
   "& .MuiOutlinedInput-root": {
-    background: "#F1EADD",
+    background: "#EFEAE1",
 
     "& fieldset": {
       border: "1px solid #fff",

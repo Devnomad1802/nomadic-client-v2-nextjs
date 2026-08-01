@@ -6,15 +6,15 @@
 
 .tc-page * { box-sizing: border-box; }
 .tc-page {
-  --bg: #f4eee4;
-  --card: #fffdf9;
-  --line: #e6ddcf;
-  --ink: #221c17;
-  --sub: #5a5247;
-  --body-c: #3c3228;
-  --muted: #9a9080;
-  --muted2: #a89c8a;
-  --accent: #cf4a2c;
+  --bg: #F7F4EF;
+  --card: #FFFFFF;
+  --line: #E1DACE;
+  --ink: #1E1C18;
+  --sub: #4E483D;
+  --body-c: #33302A;
+  --muted: #857C6C;
+  --muted2: #A79D8C;
+  --accent: #C8462A;
   --head: "Bricolage Grotesque", sans-serif;
   --body: "Hanken Grotesk", sans-serif;
   background: var(--bg);
@@ -52,7 +52,7 @@
   color: var(--ink);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.tc-back:hover { background: #fbf6ee; border-color: var(--accent); }
+.tc-back:hover { background: #EFEAE1; border-color: var(--accent); }
 .tc-header-title {
   font-family: var(--head);
   font-weight: 700;
@@ -85,9 +85,9 @@
   font-size: clamp(30px, 5vw, 48px);
   line-height: 1.04;
   letter-spacing: -0.02em;
-  color: #f8f4ed;
+  color: #F7F4EF;
 }
-.tc-hero-lead { margin: 14px 0 0; max-width: 560px; font: 400 16px/1.6 var(--body); color: #e6ddcf; }
+.tc-hero-lead { margin: 14px 0 0; max-width: 560px; font: 400 16px/1.6 var(--body); color: #E1DACE; }
 .tc-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .tc-pill {
   display: inline-flex;
@@ -97,7 +97,7 @@
   border: 1px solid rgba(244, 238, 228, 0.3);
   border-radius: 99px;
   font: 600 12px/1 var(--body);
-  color: #f4eee4;
+  color: #F7F4EF;
 }
 
 /* grid */
@@ -189,7 +189,7 @@
   margin-top: 18px;
   padding: 16px 20px;
   border-left: 3px solid var(--accent);
-  background: #fbf6ee;
+  background: #EFEAE1;
   border-radius: 0 12px 12px 0;
 }
 .tc-quote p { margin: 0; font: 500 15px/1.6 var(--body); color: var(--body-c); }
@@ -204,7 +204,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 11px;
-  background: #f6e4dc;
+  background: #F4D8CE;
   color: var(--accent);
   font-family: var(--head);
   font-weight: 700;

@@ -112,7 +112,7 @@ export default function Stepper1() {
                     <StepLabel {...labelProps} style={{ color: "#000" }}>
                       <Typography
                         sx={{
-                          color: "#8A8073",
+                          color: "#857C6C",
                           textAlign: "left",
                         }}
                       >
@@ -166,7 +166,7 @@ export default function Stepper1() {
                     <Typography
                       sx={{
                         fontSize: "19px",
-                        color: "#5A5247",
+                        color: "#4E483D",
                         fontWeight: 500,
                         textAlign: "left",
                         mb: 3,

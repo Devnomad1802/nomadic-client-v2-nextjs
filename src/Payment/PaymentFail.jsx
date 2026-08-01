@@ -37,11 +37,11 @@ const Paymentfail = () => {
             <img src={pf1} alt="" srcSet="" style={{ width: "50px" }} />
           </Box>
           <Typography
-            sx={{ color: "#221C17", fontSize: "28px", fontWeight: "600" }}
+            sx={{ color: "#1E1C18", fontSize: "28px", fontWeight: "600" }}
           >
             Oops!
           </Typography>
-          <Typography sx={{ color: "#726A5E", mt: 1 }}>
+          <Typography sx={{ color: "#6B6355", mt: 1 }}>
             There was an error while booking the trip.
           </Typography>
         </Box>
@@ -57,8 +57,8 @@ const Paymentfail = () => {
       >
         <Button
           sx={{
-            color: "#E9622F",
-            border: "1px solid #E9622F",
+            color: "#D9714F",
+            border: "1px solid #D9714F",
             borderRadius: "20px",
             width: "100px",
           }}
@@ -68,7 +68,7 @@ const Paymentfail = () => {
         <Button
           sx={{
             color: "#fff",
-            background: "#E9622F",
+            background: "#D9714F",
             borderRadius: "20px",
             width: "100px",
           }}

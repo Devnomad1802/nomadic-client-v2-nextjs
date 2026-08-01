@@ -450,7 +450,7 @@ const HostHeader = ({ hostData }) => {
         <Button
           variant="contained"
           sx={{
-            background: "#CF4A2C",
+            background: "#C8462A",
             borderRadius: "16px",
             px: { xs: 2, sm: 3 },
             py: { xs: 1, sm: 1.5 },

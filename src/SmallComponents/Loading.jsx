@@ -12,7 +12,7 @@ const Loading = ({ isLoading }) => {
       }}
       open={isLoading}
     >
-      <BeatLoader color="#CF4A2C" />
+      <BeatLoader color="#C8462A" />
     </Backdrop>
   );
 };

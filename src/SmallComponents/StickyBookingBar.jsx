@@ -13,7 +13,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         right: 0,
         zIndex: 999,
         background: "#fff",
-        borderTop: "1px solid #E6DDCF",
+        borderTop: "1px solid #E1DACE",
         boxShadow: "0 -4px 16px rgba(0,0,0,0.08)",
         px: 2,
         py: 1.5,
@@ -29,7 +29,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             sx={{
               fontSize: "20px",
               fontWeight: 700,
-              color: "#3C3228",
+              color: "#33302A",
               fontFamily: "Inter",
               lineHeight: 1.2,
             }}
@@ -40,7 +40,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             <Typography
               sx={{
                 fontSize: "13px",
-                color: "#8A8073",
+                color: "#857C6C",
                 textDecoration: "line-through",
                 fontFamily: "Inter",
               }}
@@ -52,7 +52,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         <Typography
           sx={{
             fontSize: "11px",
-            color: "#726A5E",
+            color: "#6B6355",
             fontFamily: "Inter",
           }}
         >
@@ -67,8 +67,8 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             onClick={onEnquire}
             variant="outlined"
             sx={{
-              borderColor: "#CF4A2C",
-              color: "#CF4A2C",
+              borderColor: "#C8462A",
+              color: "#C8462A",
               borderRadius: "10px",
               textTransform: "none",
               fontWeight: 600,
@@ -89,7 +89,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         <Button
           onClick={onBookNow}
           sx={{
-            background: "#CF4A2C",
+            background: "#C8462A",
             color: "#fff",
             borderRadius: "10px",
             textTransform: "none",

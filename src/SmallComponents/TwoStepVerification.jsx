@@ -59,7 +59,7 @@ export const TwoStepVerification = () => {
         <Loading isLoading={loading} />
         <Box textAlign="center">
           {/* <img src={logo} alt="logo" /> */}
-          <Typography variant="h2" sx={{ mt: "20px", color: "#5A5247" }}>
+          <Typography variant="h2" sx={{ mt: "20px", color: "#4E483D" }}>
             Set up two-step verification
           </Typography>
         </Box>
@@ -67,7 +67,7 @@ export const TwoStepVerification = () => {
         <form onSubmit={handleSendCode}>
           <Container maxWidth="xs">
             <Box py="20px">
-              <Typography align="left" mt={2} sx={{ color: "#5A5247" }}>
+              <Typography align="left" mt={2} sx={{ color: "#4E483D" }}>
                 Phone Number
               </Typography>
               <PhoneInput
@@ -80,7 +80,7 @@ export const TwoStepVerification = () => {
               />
 
               <Box sx={{ mt: "40px" }}>
-                <Typography sx={{ color: "#5A5247" }}>
+                <Typography sx={{ color: "#4E483D" }}>
                   Security is critical at Coinbase. To help keep your account
                   safe, we&#39;ll text you a verification code when you sign in
                   on a new device.

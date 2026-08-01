@@ -63,12 +63,12 @@ export default function Logout() {
           <Button
             onClick={() => navigate("/")}
             sx={{
-              border: "2px solid #E9622F",
+              border: "2px solid #D9714F",
               borderRadius: "20px",
-              color: "#E9622F",
+              color: "#D9714F",
               px: { xs: 3, sm: 3, md: 6 },
               "&:hover": {
-                background: "#E9622F",
+                background: "#D9714F",
                 color: "#fff",
               },
             }}
@@ -78,14 +78,14 @@ export default function Logout() {
           <Button
             onClick={LogOut}
             sx={{
-              border: "2px solid #E9622F",
+              border: "2px solid #D9714F",
               borderRadius: "20px",
               color: "#fff",
               px: { xs: 3, sm: 3, md: 6 },
-              background: "#E9622F",
+              background: "#D9714F",
               "&:hover": {
                 background: "#fff",
-                color: "#E9622F",
+                color: "#D9714F",
               },
             }}
           >

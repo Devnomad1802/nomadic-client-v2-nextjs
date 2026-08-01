@@ -21,8 +21,8 @@ const fieldSx = {
     background: "#fff",
     color: "#1f2733",
     "& fieldset": { borderColor: "#e7e2dd" },
-    "&:hover fieldset": { borderColor: "#CF4A2C" },
-    "&.Mui-focused fieldset": { borderColor: "#CF4A2C", boxShadow: "0 0 0 3px rgba(210,75,42,.1)" },
+    "&:hover fieldset": { borderColor: "#C8462A" },
+    "&.Mui-focused fieldset": { borderColor: "#C8462A", boxShadow: "0 0 0 3px rgba(210,75,42,.1)" },
   },
   "& .MuiInputBase-input": {
     padding: "10px 10px 10px 0",
@@ -86,8 +86,8 @@ const BookingSidebar = ({ item, onBookNow }) => {
       {/* ===== PRICE CARD ===== */}
       <Box sx={{ background: "#fff", borderRadius: "14px", border: "1px solid #efeae5", boxShadow: "0 10px 28px -14px rgba(31,39,51,.2), 0 1px 4px -1px rgba(31,39,51,.04)", overflow: "hidden" }}>
         {/* Notice strip */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, px: 1.8, py: 0.9, background: "#fdf3ee", borderBottom: "1px solid #efeae5" }}>
-          <Box sx={{ width: 22, height: 22, borderRadius: "6px", display: "grid", placeItems: "center", background: "#fff", color: "#CF4A2C", border: "1px solid #fbeae3", flexShrink: 0 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, px: 1.8, py: 0.9, background: "#FBF0EC", borderBottom: "1px solid #efeae5" }}>
+          <Box sx={{ width: 22, height: 22, borderRadius: "6px", display: "grid", placeItems: "center", background: "#fff", color: "#C8462A", border: "1px solid #fbeae3", flexShrink: 0 }}>
             <AccountBalanceWalletOutlinedIcon sx={{ fontSize: 13 }} />
           </Box>
           <Typography sx={{ fontSize: "10px", fontWeight: 500, color: "#383838", fontFamily: "Inter", lineHeight: 1.3 }}>
@@ -122,7 +122,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
             onClick={onBookNow} fullWidth
             onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
             sx={{
-              background: "#CF4A2C", color: "#fff", fontFamily: "Inter", fontSize: "13px", fontWeight: 700,
+              background: "#C8462A", color: "#fff", fontFamily: "Inter", fontSize: "13px", fontWeight: 700,
               py: 1.2, borderRadius: "10px", textTransform: "none", display: "flex", alignItems: "center", gap: 0.6,
               boxShadow: "0 10px 18px -8px rgba(210,75,42,.55)",
               transition: "background .2s, transform .12s, box-shadow .2s",
@@ -137,12 +137,12 @@ const BookingSidebar = ({ item, onBookNow }) => {
 
       {/* ===== CALLBACK FORM ===== */}
       <Box sx={{ background: "#fff", borderRadius: "14px", border: "1px solid #efeae5", boxShadow: "0 10px 28px -14px rgba(31,39,51,.2), 0 1px 4px -1px rgba(31,39,51,.04)", overflow: "hidden" }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, px: 2.5, py: 2, background: "linear-gradient(180deg, #fbeae3 0%, #fdf3ee 100%)", borderBottom: "1px solid #efeae5" }}>
-          <Box sx={{ width: 40, height: 40, borderRadius: "11px", display: "grid", placeItems: "center", background: "#CF4A2C", color: "#fff", boxShadow: "0 8px 14px -6px rgba(210,75,42,.6)", flexShrink: 0 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, px: 2.5, py: 2, background: "linear-gradient(180deg, #fbeae3 0%, #FBF0EC 100%)", borderBottom: "1px solid #efeae5" }}>
+          <Box sx={{ width: 40, height: 40, borderRadius: "11px", display: "grid", placeItems: "center", background: "#C8462A", color: "#fff", boxShadow: "0 8px 14px -6px rgba(210,75,42,.6)", flexShrink: 0 }}>
             <PhoneOutlinedIcon sx={{ fontSize: 20 }} />
           </Box>
           <Box>
-            <Typography sx={{ fontSize: "15px", fontWeight: 700, color: "#CF4A2C", fontFamily: "Inter" }}>Born to Roam?</Typography>
+            <Typography sx={{ fontSize: "15px", fontWeight: 700, color: "#C8462A", fontFamily: "Inter" }}>Born to Roam?</Typography>
             <Typography sx={{ fontSize: "18px", fontWeight: 800, color: "#1f2733", fontFamily: "Inter", letterSpacing: "-0.01em" }}>Let&apos;s Talk</Typography>
           </Box>
         </Box>
@@ -164,7 +164,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
             <Button
               onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "" }); }}
               variant="outlined"
-              sx={{ fontSize: "11px", fontWeight: 700, fontFamily: "Inter", borderColor: "#e7e2dd", color: "#383838", borderRadius: "8px", textTransform: "none", px: 2, py: 0.6, "&:hover": { borderColor: "#CF4A2C", color: "#CF4A2C" } }}
+              sx={{ fontSize: "11px", fontWeight: 700, fontFamily: "Inter", borderColor: "#e7e2dd", color: "#383838", borderRadius: "8px", textTransform: "none", px: 2, py: 0.6, "&:hover": { borderColor: "#C8462A", color: "#C8462A" } }}
             >
               Submit another request
             </Button>
@@ -172,7 +172,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
         ) : (
           <Box sx={{ px: 2, pt: 1.5, pb: 2 }}>
             <Typography sx={{ fontSize: "10.5px", fontWeight: 700, color: "#383838", fontFamily: "Inter", mb: 0.4 }}>
-              Full Name <span style={{ color: "#CF4A2C" }}>*</span>
+              Full Name <span style={{ color: "#C8462A" }}>*</span>
             </Typography>
             <TextField fullWidth size="small" placeholder="e.g. John Smith"
               value={form.name} onChange={handleChange("name")} error={!!errors.name} helperText={errors.name || ""}
@@ -180,7 +180,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
               InputProps={{ startAdornment: <PersonOutlineIcon sx={{ fontSize: 16, color: "#b6ada4", mr: 0.8 }} /> }}
             />
             <Typography sx={{ fontSize: "10.5px", fontWeight: 700, color: "#383838", fontFamily: "Inter", mb: 0.4 }}>
-              Phone No. <span style={{ color: "#CF4A2C" }}>*</span>
+              Phone No. <span style={{ color: "#C8462A" }}>*</span>
             </Typography>
             <TextField fullWidth size="small" placeholder="Enter your 10 digit number"
               value={form.phone} onChange={handleChange("phone")} inputMode="numeric"
@@ -189,7 +189,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
               InputProps={{ startAdornment: <PhoneOutlinedIcon sx={{ fontSize: 16, color: "#b6ada4", mr: 0.8 }} /> }}
             />
             <Typography sx={{ fontSize: "10.5px", fontWeight: 700, color: "#383838", fontFamily: "Inter", mb: 0.4 }}>
-              Email ID <span style={{ color: "#CF4A2C" }}>*</span>
+              Email ID <span style={{ color: "#C8462A" }}>*</span>
             </Typography>
             <TextField fullWidth size="small" placeholder="john@example.com" type="email"
               value={form.email} onChange={handleChange("email")} error={!!errors.email} helperText={errors.email || ""}

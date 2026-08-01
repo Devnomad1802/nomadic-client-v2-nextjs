@@ -21,17 +21,17 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingTop: "0px",
     paddingBottom: "0px",
     marginLeft: "20px",
-    color: "#221C17",
+    color: "#1E1C18",
     fontWeight: "bold",
     height: "30px",
 
     "&:hover": {
-      color: "#CF4A2C",
+      color: "#C8462A",
       opacity: 1,
     },
     "&.Mui-selected": {
       color: "#fff",
-      background: "#CF4A2C",
+      background: "#C8462A",
       borderRadius: "16px",
 
       opacity: 1,
@@ -97,8 +97,8 @@ export default function PaymentBatch({
     >
       <Box
         sx={{
-          //   border: "1px solid #F1EADD",
-          //   background: "#FBF6EE",
+          //   border: "1px solid #EFEAE1",
+          //   background: "#EFEAE1",
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
@@ -118,7 +118,7 @@ export default function PaymentBatch({
             "& .MuiTabs-indicator": {
               display: "none",
               //   mb: 1,
-              //   backgroundColor: "#CF4A2C",
+              //   backgroundColor: "#C8462A",
             },
           }}
         >
@@ -136,8 +136,8 @@ export default function PaymentBatch({
           my: 2,
           py: { xs: 1, md: 1 },
           // px: { xs: 1, md: 2 },
-          border: { xs: "none", sm: "1px solid #F1EADD" },
-          background: "#FBF6EE",
+          border: { xs: "none", sm: "1px solid #EFEAE1" },
+          background: "#EFEAE1",
         }}
       >
         {sortedMonthKeys?.map((monthName, index) => (

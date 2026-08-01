@@ -29,9 +29,9 @@ const SelectNTravel = () => {
   return (
     <Box
       sx={{
-        background: "#FBF6EE",
+        background: "#EFEAE1",
         borderRadius: "32px",
-        border: "1px solid #F1EADD",
+        border: "1px solid #EFEAE1",
         p: { xs: 1, md: 3 },
         ml: 1,
       }}
@@ -50,7 +50,7 @@ const SelectNTravel = () => {
         <Typography
           sx={{
             fontSize: "19px",
-            color: "#5A5247",
+            color: "#4E483D",
             fontWeight: 500,
             textAlign: "left",
             ml: 1,
@@ -68,9 +68,9 @@ const SelectNTravel = () => {
       </Box>
       <Box
         sx={{
-          background: "#FBF6EE",
+          background: "#EFEAE1",
           borderRadius: "15px",
-          border: "1px solid #F1EADD",
+          border: "1px solid #EFEAE1",
           p: { xs: 1, md: 3 },
         }}
       >
@@ -95,7 +95,7 @@ const SelectNTravel = () => {
             >
               <Box
                 sx={{
-                  border: "1px solid #F1EADD",
+                  border: "1px solid #EFEAE1",
                   p: { xs: 1, md: 2 },
                   borderRadius: "32px",
                   display: "flex",
@@ -108,7 +108,7 @@ const SelectNTravel = () => {
                 <IconButton sx={{ color: "#000" }}>
                   <RemoveIcon />
                 </IconButton>
-                <Typography sx={{ color: "#5A5247" }}>1</Typography>
+                <Typography sx={{ color: "#4E483D" }}>1</Typography>
                 <IconButton sx={{ color: "#000" }}>
                   <AddIcon />
                 </IconButton>
@@ -126,7 +126,7 @@ const SelectNTravel = () => {
                 <IconButton>
                   <CloseIcon sx={{ color: "#D2D5DA" }} />
                 </IconButton>
-                <Typography sx={{ color: "#8A8073", fontWeight: "600" }}>
+                <Typography sx={{ color: "#857C6C", fontWeight: "600" }}>
                   $400
                 </Typography>
               </Box>
@@ -144,7 +144,7 @@ const SelectNTravel = () => {
           >
             <Typography
               sx={{
-                color: "#5A5247",
+                color: "#4E483D",
                 fontSize: "19px",
                 fontWeight: 500,
                 textAlign: "right",
@@ -162,8 +162,8 @@ const SelectNTravel = () => {
       </Typography>
       <Box
         sx={{
-          background: "#FBF6EE",
-          border: "1px solid #F1EADD",
+          background: "#EFEAE1",
+          border: "1px solid #EFEAE1",
           p: { xs: 1, md: 3 },
           display: "flex",
           justifyContent: "flex-end",
@@ -184,7 +184,7 @@ const SelectNTravel = () => {
                 }}
               >
                 <Typography sx={{ color: "#878787" }}>{text}</Typography>
-                <Typography sx={{ color: "#5A5247", fontWeight: 500 }}>
+                <Typography sx={{ color: "#4E483D", fontWeight: 500 }}>
                   {value}
                 </Typography>
               </Box>
@@ -193,7 +193,7 @@ const SelectNTravel = () => {
           <Box sx={{ height: "1px ", background: "#A58787", width: "100%" }} />
           <Typography
             sx={{
-              color: "#CF4A2C",
+              color: "#C8462A",
               fontSize: "23px",
               fontWeight: "500",
               textAlign: "right",

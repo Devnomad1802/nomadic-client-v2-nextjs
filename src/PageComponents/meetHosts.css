@@ -1,9 +1,9 @@
 /* Meet Our Hosts — scoped under .mhpg (Nomadic Townies brand) */
 .mhpg{
-  --orange:#CF4A2C; --orange-hover:#B53D1F; --orange-tint:#FDF3EE;
-  --charcoal:#3C3228; --text-dark:#3C3228; --text:#5A5247;
-  --text-light:#726A5E; --text-lighter:#8A8073;
-  --line:#E6DDCF; --line-soft:#F1EADD; --bg-soft:var(--orange-tint);
+  --orange:#C8462A; --orange-hover:#B53D1F; --orange-tint:#FBF0EC;
+  --charcoal:#33302A; --text-dark:#33302A; --text:#4E483D;
+  --text-light:#6B6355; --text-lighter:#857C6C;
+  --line:#E1DACE; --line-soft:#EFEAE1; --bg-soft:var(--orange-tint);
   --green:#11875b; --amber:#f59e0b;
   --sh-md:0 10px 28px -14px rgba(31,39,51,.2),0 1px 4px -1px rgba(31,39,51,.04);
   font-family:var(--inter);color:var(--text);background:#fff;text-align:left;line-height:1.5;
@@ -102,7 +102,7 @@
 /* ── Marketplace trust strip ── */
 .mhpg .trust-strip{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:center;padding:16px 20px;margin:22px 0 4px;background:#fff;border:1px solid var(--line-soft);border-radius:14px}
 .mhpg .trust-strip span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--text-dark)}
-.mhpg .trust-strip svg{color:#2E7D4F;flex:none}
+.mhpg .trust-strip svg{color:#2E6E4E;flex:none}
 @media(max-width:640px){.mhpg .trust-strip{gap:10px 16px;font-size:12.5px}}
 
 /* ── Host card: categories, regions, reviews, dual CTA ── */

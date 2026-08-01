@@ -104,7 +104,7 @@ const ReviewSwiper = ({ reviesData }) => {
                       </Typography>
                       <Typography
                         sx={{
-                          color: "#726A5E",
+                          color: "#6B6355",
                           fontSize: "13px",
                           fontFamily: "Inter",
                           lineHeight: "1.5",
@@ -117,7 +117,7 @@ const ReviewSwiper = ({ reviesData }) => {
                   </Box>
                   <Typography
                     sx={{
-                      color: "#5A5247",
+                      color: "#4E483D",
                       fontSize: "14px",
                       fontFamily: "Inter",
                       lineHeight: "1.75",

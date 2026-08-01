@@ -53,7 +53,7 @@ const Blog = () => {
           <Box>
             <Typography
               sx={{
-                color: "#5A5247",
+                color: "#4E483D",
                 textAlign: "left",
                 // fontFamily: "Inter",
                 fontFamily: "Playfair",
@@ -70,7 +70,7 @@ const Blog = () => {
               sx={{
                 maxWidth: "800px",
                 margin: "0 auto",
-                color: "#5A5247",
+                color: "#4E483D",
                 textAlign: "left",
                 // fontFamily: "Inter",
                 fontFamily: "Inter",
@@ -154,7 +154,7 @@ const Blog = () => {
                               backgroundColor: "#f8f9fa",
                             },
                             "& .read-more": {
-                              color: "#CF4A2C",
+                              color: "#C8462A",
                               transform: "translateX(4px)",
                             },
                           },
@@ -216,7 +216,7 @@ const Blog = () => {
                         >
                           <Typography
                             sx={{
-                              color: "#221C17",
+                              color: "#1E1C18",
                               fontWeight: 500,
                               fontSize: { xs: "19px", sm: "20px", lg: "23px" },
                               textAlign: "left",
@@ -234,7 +234,7 @@ const Blog = () => {
                           </Typography>
                           <Typography
                             sx={{ 
-                              color: "#5A5247", 
+                              color: "#4E483D", 
                               textAlign: "left",
                               overflow: "hidden",
                               display: "-webkit-box",
@@ -265,14 +265,14 @@ const Blog = () => {
                           >
                             <Typography
                               sx={{
-                                color: "#5A5247",
+                                color: "#4E483D",
                                 display: "flex",
                                 alignItems: "center",
                                 mt: 2,
                               }}
                             >
                               <CalendarMonthRoundedIcon
-                                sx={{ color: "#5A5247" }}
+                                sx={{ color: "#4E483D" }}
                               />
                               {(() => {
                                 const dateObj = new Date(item?.Date);

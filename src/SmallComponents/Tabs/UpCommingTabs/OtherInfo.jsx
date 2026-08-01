@@ -70,7 +70,7 @@ const OtherInfo = ({ ThingsToCarry, Cancellation }) => {
               <Box>
                 <Typography
                   sx={{
-                    color: "#221C17",
+                    color: "#1E1C18",
                     fontFamily: "Inter",
                     fontSize: "16px",
                     fontStyle: "normal",
@@ -96,9 +96,9 @@ const OtherInfo = ({ ThingsToCarry, Cancellation }) => {
                       }}
                     >
                       <CircleRoundedIcon
-                        sx={{ color: "#726A5E", fontSize: "7px", mt: 1 }}
+                        sx={{ color: "#6B6355", fontSize: "7px", mt: 1 }}
                       />
-                      <Typography sx={{ color: "#726A5E", textAlign: "left" }}>
+                      <Typography sx={{ color: "#6B6355", textAlign: "left" }}>
                         {item}
                       </Typography>
                     </Box>
@@ -116,7 +116,7 @@ const OtherInfo = ({ ThingsToCarry, Cancellation }) => {
               <Box>
                 <Typography
                   sx={{
-                    color: "#221C17",
+                    color: "#1E1C18",
                     fontFamily: "Inter",
                     fontSize: "16px",
                     fontStyle: "normal",
@@ -142,9 +142,9 @@ const OtherInfo = ({ ThingsToCarry, Cancellation }) => {
                       }}
                     >
                       <CircleRoundedIcon
-                        sx={{ color: "#726A5E", fontSize: "7px", mt: 1 }}
+                        sx={{ color: "#6B6355", fontSize: "7px", mt: 1 }}
                       />
-                      <Typography sx={{ color: "#726A5E", textAlign: "left" }}>
+                      <Typography sx={{ color: "#6B6355", textAlign: "left" }}>
                         {item}
                       </Typography>
                     </Box>
