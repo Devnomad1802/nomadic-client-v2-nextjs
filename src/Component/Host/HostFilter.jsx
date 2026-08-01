@@ -61,7 +61,7 @@ const HostFilter = () => {
               "& .MuiPaper-root": {
                 borderRadius: "12px",
                 boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                border: "1px solid #e0e0e0",
+                border: "1px solid #D8CFC0",
               },
             }}
             MenuProps={{
@@ -69,17 +69,17 @@ const HostFilter = () => {
                 sx: {
                   borderRadius: "12px",
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                  border: "1px solid #e0e0e0",
+                  border: "1px solid #D8CFC0",
                   "& .MuiMenuItem-root": {
                     color: "#726A5E",
                     fontWeight: 500,
                     "&:hover": {
-                      backgroundColor: "#f5f5f5",
+                      backgroundColor: "#F1EADD",
                     },
                     "&.Mui-selected": {
-                      backgroundColor: "#f0f0f0",
+                      backgroundColor: "#F1EADD",
                       "&:hover": {
-                        backgroundColor: "#f0f0f0",
+                        backgroundColor: "#F1EADD",
                       },
                     },
                   },
@@ -92,7 +92,7 @@ const HostFilter = () => {
               sx={{
                 color: "#726A5E",
                 fontWeight: 500,
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#F1EADD",
               }}
             >
               All Months
@@ -119,7 +119,7 @@ const HostFilter = () => {
             displayEmpty
             sx={{
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#e0e0e0",
+                borderColor: "#D8CFC0",
                 borderWidth: "1px",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -135,7 +135,7 @@ const HostFilter = () => {
               "& .MuiPaper-root": {
                 borderRadius: "12px",
                 boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                border: "1px solid #e0e0e0",
+                border: "1px solid #D8CFC0",
               },
             }}
             MenuProps={{
@@ -143,17 +143,17 @@ const HostFilter = () => {
                 sx: {
                   borderRadius: "12px",
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                  border: "1px solid #e0e0e0",
+                  border: "1px solid #D8CFC0",
                   "& .MuiMenuItem-root": {
                     color: "#726A5E",
                     fontWeight: 500,
                     "&:hover": {
-                      backgroundColor: "#f5f5f5",
+                      backgroundColor: "#F1EADD",
                     },
                     "&.Mui-selected": {
-                      backgroundColor: "#f0f0f0",
+                      backgroundColor: "#F1EADD",
                       "&:hover": {
-                        backgroundColor: "#f0f0f0",
+                        backgroundColor: "#F1EADD",
                       },
                     },
                   },
@@ -166,7 +166,7 @@ const HostFilter = () => {
               sx={{
                 color: "#726A5E",
                 fontWeight: 500,
-                backgroundColor: "#f0f0f0",
+                backgroundColor: "#F1EADD",
               }}
             >
               All Locations

@@ -50,7 +50,7 @@ const AllPakgaeshome = ({ allpkgbg, onSearch, initialSearch = "" }) => {
                 display: "flex",
                 flexDirection: "column",
                 gap: { xs: "20px 0px", sm: "30px 0px" },
-                // background: "#F0F0F0",
+                // background: "#F1EADD",
               }}
             >
               <Typography

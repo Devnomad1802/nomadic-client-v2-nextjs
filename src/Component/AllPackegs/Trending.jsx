@@ -109,7 +109,7 @@ const Trending = () => {
                         my: 3,
                         borderRadius: "16px",
                         textDecoration: "none",
-                        background: "#FBFBFB",
+                        background: "#FBF6EE",
                         // mx: 1,
                       }}
                     >

@@ -29,7 +29,7 @@ const SelectNTravel = () => {
   return (
     <Box
       sx={{
-        background: "#FBFBFB",
+        background: "#FBF6EE",
         borderRadius: "32px",
         border: "1px solid #F1EADD",
         p: { xs: 1, md: 3 },
@@ -68,7 +68,7 @@ const SelectNTravel = () => {
       </Box>
       <Box
         sx={{
-          background: "#FBFBFB",
+          background: "#FBF6EE",
           borderRadius: "15px",
           border: "1px solid #F1EADD",
           p: { xs: 1, md: 3 },
@@ -162,7 +162,7 @@ const SelectNTravel = () => {
       </Typography>
       <Box
         sx={{
-          background: "#FBFBFB",
+          background: "#FBF6EE",
           border: "1px solid #F1EADD",
           p: { xs: 1, md: 3 },
           display: "flex",

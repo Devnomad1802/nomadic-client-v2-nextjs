@@ -402,7 +402,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 // Color palette for chips
                                 const chipColors = [
                                   { bg: "#fff", color: "#000" },
-                                  { bg: "#F5F5F5", color: "#424242" },
+                                  { bg: "#F1EADD", color: "#424242" },
                                   { bg: "#FFF3E0", color: "#F57C00" },
                                 ];
 
@@ -790,7 +790,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: { xs: "36px", md: "40px" },
                 height: { xs: "36px", md: "40px" },
                 "&:hover": {
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "#F1EADD",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
                 },
                 "&:disabled": {
@@ -821,7 +821,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: { xs: "36px", md: "40px" },
                 height: { xs: "36px", md: "40px" },
                 "&:hover": {
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "#F1EADD",
                   boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
                 },
                 "&:disabled": {
@@ -1076,7 +1076,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             // Color palette for chips
                             const chipColors = [
                               { bg: "#E3F2FD", color: "#1976D2" },
-                              { bg: "#F5F5F5", color: "#424242" },
+                              { bg: "#F1EADD", color: "#424242" },
                               { bg: "#FFF3E0", color: "#F57C00" },
                             ];
 

@@ -265,7 +265,7 @@ export default function UpcomingTab({ searchQuery = "" }) {
           color: "#E9622F",
           "&:hover": {
             border: "1.5px solid #fff",
-            background: "#393938",
+            background: "#3C3228",
           },
         }}
       >

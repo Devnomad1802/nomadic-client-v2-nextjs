@@ -81,7 +81,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
                 badgeContent={hostData?.successRate ? `${hostData.successRate}+` : "0+"}
                 sx={{
                   "& .MuiBadge-badge": {
-                    backgroundColor: "#f5f5f5",
+                    backgroundColor: "#F1EADD",
                     color: "#726A5E",
                     fontSize: "10px",
                     fontWeight: 500,
