@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Read the Nomadic Townies terms and conditions governing use of our platform, booking of travel experiences, host relationships, and community trip policies.",
   alternates: {
-    canonical: "https://nomadictownies.com/terms-and-conditions",
+    canonical: "https://www.nomadictownies.com/terms-and-conditions",
   },
   robots: "index, follow",
 };

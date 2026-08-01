@@ -143,7 +143,7 @@ const PrivacyPolicy = () => {
       <Helmet>
         <title>Privacy Policy | Nomadic Townies</title>
         <meta name="description" content="How Nomadic Townies collects, uses, stores, shares, and protects your personal information." />
-        <link rel="canonical" href="https://nomadictownies.com/privacy-policy" />
+        <link rel="canonical" href="https://www.nomadictownies.com/privacy-policy" />
       </Helmet>
 
       {/* header (logo intentionally omitted per brand request) */}

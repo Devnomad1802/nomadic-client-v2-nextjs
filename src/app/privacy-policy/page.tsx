@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Read the Nomadic Townies privacy policy to understand how we collect, use, and protect your personal data when you use our platform to book travel experiences.",
   alternates: {
-    canonical: "https://nomadictownies.com/privacy-policy",
+    canonical: "https://www.nomadictownies.com/privacy-policy",
   },
   robots: "index, follow",
 };

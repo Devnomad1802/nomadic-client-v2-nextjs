@@ -42,7 +42,7 @@ const Careers = () => {
           name="description"
           content="Love travel? Join the Nomadic Townies team. We're hiring passionate people to help us craft unforgettable adventures across India and beyond. View open roles."
         />
-        <link rel="canonical" href="https://nomadictownies.com/careers" />
+        <link rel="canonical" href="https://www.nomadictownies.com/careers" />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
@@ -52,7 +52,7 @@ const Careers = () => {
           property="og:description"
           content="Love travel? Join the Nomadic Townies team. We're hiring passionate people to help craft unforgettable adventures across India and beyond."
         />
-        <meta property="og:url" content="https://nomadictownies.com/careers" />
+        <meta property="og:url" content="https://www.nomadictownies.com/careers" />
         <meta
           property="og:image"
           content="https://nomadic-townies-assets.sgp1.cdn.digitaloceanspaces.com/about-images/aboutbg1.jpg"

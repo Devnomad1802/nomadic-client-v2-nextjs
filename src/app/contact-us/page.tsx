@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   description:
     "Have a question about our trips, hosts, or experiences? Reach out to the Nomadic Townies team. We're happy to help you plan your next transformative adventure.",
   alternates: {
-    canonical: "https://nomadictownies.com/contact-us",
+    canonical: "https://www.nomadictownies.com/contact-us",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/contact-us",
+    url: "https://www.nomadictownies.com/contact-us",
     siteName: "Nomadic Townies",
     title: "Contact Us | Nomadic Townies",
     description:

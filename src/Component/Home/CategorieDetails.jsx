@@ -191,7 +191,7 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDesc} />
-        <link rel="canonical" href={`https://nomadictownies.com/category/${slug}`} />
+        <link rel="canonical" href={`https://www.nomadictownies.com/category/${slug}`} />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDesc} />
         {heroImg && <meta property="og:image" content={heroImg} />}

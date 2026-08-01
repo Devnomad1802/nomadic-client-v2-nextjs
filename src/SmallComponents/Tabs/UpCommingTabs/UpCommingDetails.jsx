@@ -74,11 +74,11 @@ const UpcommingDetails = () => {
       <Helmet>
         <title>{item?.title ? `${item.title} | Book Now | Nomadic Townies` : "Trip Details | Nomadic Townies"}</title>
         <meta name="description" content={item?.subTitle ? `${item.subTitle} — ${item?.nights}N/${item?.days}D trip from ${item?.pickUp}. Starting ₹${item?.price}/person. Book with Nomadic Townies.` : "Book this amazing trip with Nomadic Townies."} />
-        <link rel="canonical" href={`https://nomadictownies.com/trips/${item?.seoSlug || slug}`} />
+        <link rel="canonical" href={`https://www.nomadictownies.com/trips/${item?.seoSlug || slug}`} />
         <meta property="og:title" content={item?.title ? `${item.title} | Nomadic Townies` : "Trip Details | Nomadic Townies"} />
         <meta property="og:description" content={item?.subTitle || "Book this amazing trip with Nomadic Townies."} />
-        <meta property="og:image" content={item?.bannerImage || "https://nomadictownies.com/nt.png"} />
-        <meta property="og:url" content={`https://nomadictownies.com/trips/${item?.seoSlug || slug}`} />
+        <meta property="og:image" content={item?.bannerImage || "https://www.nomadictownies.com/nt.png"} />
+        <meta property="og:url" content={`https://www.nomadictownies.com/trips/${item?.seoSlug || slug}`} />
         <meta property="og:type" content="product" />
         {item && <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -88,7 +88,7 @@ const UpcommingDetails = () => {
           "image": item.bannerImage,
           "touristType": "Adventure",
           "offers": { "@type": "Offer", "price": item.price, "priceCurrency": "INR", "availability": "https://schema.org/InStock" },
-          "provider": { "@type": "Organization", "name": "Nomadic Townies", "url": "https://nomadictownies.com" },
+          "provider": { "@type": "Organization", "name": "Nomadic Townies", "url": "https://www.nomadictownies.com" },
           "itinerary": { "@type": "ItemList", "name": `${item.nights}N / ${item.days}D`, "numberOfItems": item.days }
         })}</script>}
       </Helmet>

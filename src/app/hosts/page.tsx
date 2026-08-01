@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description:
     "Browse verified local hosts, community hosts and experience hosts on Nomadic Townies — a curated marketplace of host-led experiences. Every trip is hosted by a real, verified person or community.",
   alternates: {
-    canonical: "https://nomadictownies.com/hosts",
+    canonical: "https://www.nomadictownies.com/hosts",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/hosts",
+    url: "https://www.nomadictownies.com/hosts",
     siteName: "Nomadic Townies",
     title: "Meet Our Hosts | Verified Local Experience Hosts | Nomadic Townies",
     description:

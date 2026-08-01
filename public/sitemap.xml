@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nomadictownies.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://nomadictownies.com/experiences</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nomadictownies.com/hosts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nomadictownies.com/blogs</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://nomadictownies.com/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://nomadictownies.com/contact-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://nomadictownies.com/careers</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://nomadictownies.com/terms-and-conditions</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://nomadictownies.com/cancellation-and-refund</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://nomadictownies.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nomadictownies.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.nomadictownies.com/experiences</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.nomadictownies.com/hosts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nomadictownies.com/blogs</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nomadictownies.com/about-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nomadictownies.com/contact-us</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nomadictownies.com/careers</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.nomadictownies.com/terms-and-conditions</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nomadictownies.com/cancellation-and-refund</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nomadictownies.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

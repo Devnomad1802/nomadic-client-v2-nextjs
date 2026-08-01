@@ -156,8 +156,8 @@ const Blogs = ({ initialBlogs, initialCategory = "" }) => {
   );
 
   const canonicalUrl = loc !== "all"
-    ? `https://nomadictownies.com/blog/category/${slugify(loc)}`
-    : "https://nomadictownies.com/blog";
+    ? `https://www.nomadictownies.com/blog/category/${slugify(loc)}`
+    : "https://www.nomadictownies.com/blog";
 
   return (
     <div className="blogpg">
