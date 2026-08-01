@@ -150,7 +150,7 @@ const mapTrip = (raw, allReviews) => {
 };
 
 const TD_CSS = `
-  .td-page { font-family: ${BODY}; background: var(--orange-tint, #FFF4F1); min-height: 100vh; text-align: left; }
+  .td-page { font-family: ${BODY}; background: var(--surface-soft, #FBF6EE); min-height: 100vh; text-align: left; }
   .td-tab { transition: color .15s ease, border-color .15s ease; cursor: pointer; border: none; background: transparent; }
   .td-cta { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
   .td-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83F23; }
@@ -403,7 +403,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
             {trip.categories.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "18px" }}>
-                {trip.categories.map((c, i) => <span key={i} style={{ padding: "7px 14px", borderRadius: "99px", background: "var(--orange-tint, #FFF4F1)", border: "1px solid #F6DCD3", color: ACCENT, font: `600 13px/1 ${BODY}` }}>{c.label}</span>)}
+                {trip.categories.map((c, i) => <span key={i} style={{ padding: "7px 14px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", color: ACCENT, font: `600 13px/1 ${BODY}` }}>{c.label}</span>)}
               </div>
             )}
 
@@ -421,7 +421,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             )}
 
             {/* STICKY TABS */}
-            <div style={{ position: "sticky", top: 64, zIndex: 20, background: "var(--orange-tint, #FFF4F1)", paddingTop: "16px", marginTop: "30px" }}>
+            <div style={{ position: "sticky", top: 64, zIndex: 20, background: "var(--surface-soft, #FBF6EE)", paddingTop: "16px", marginTop: "30px" }}>
               <div style={{ display: "flex", gap: "28px", borderBottom: "1px solid #E6DDCF", overflowX: "auto" }}>
                 {TABS.map(([id, label]) => (
                   <button key={id} type="button" className="td-tab" onClick={goTo(id, label)} style={{ padding: "14px 2px", font: `600 14px/1 ${BODY}`, color: active === label ? ACCENT : "#8A8073", borderBottom: `2px solid ${active === label ? ACCENT : "transparent"}`, whiteSpace: "nowrap" }}>{label}</button>
@@ -507,7 +507,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                         <div style={{ font: `700 10.5px/1 ${BODY}`, letterSpacing: ".1em", textTransform: "uppercase", color: "#A89C8A", marginBottom: "5px" }}>Day {Number(d.num)}</div>
                         <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "18px", lineHeight: 1.25, color: "#221C17" }}>{d.title}</div>
                         {d.desc && <p style={{ margin: "8px 0 0", font: `400 14.5px/1.7 ${BODY}`, color: "#5A5247", whiteSpace: "pre-line" }}>{d.desc}</p>}
-                        {d.tags.length > 0 && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "12px" }}>{d.tags.map((t, j) => <span key={j} style={{ padding: "4px 10px", borderRadius: "99px", background: "var(--orange-tint, #FFF4F1)", border: "1px solid #F6DCD3", font: `600 11px/1 ${BODY}`, color: ACCENT }}>{typeof t === "string" ? t : t.label}</span>)}</div>}
+                        {d.tags.length > 0 && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "12px" }}>{d.tags.map((t, j) => <span key={j} style={{ padding: "4px 10px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", font: `600 11px/1 ${BODY}`, color: ACCENT }}>{typeof t === "string" ? t : t.label}</span>)}</div>}
                       </div>
                     </div>
                   ))}
@@ -549,7 +549,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             <section id="td-reviews" className="td-sec" style={{ marginTop: "40px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
                 <h2 style={{ ...sectionH2, margin: 0 }}>Trip reviews</h2>
-                <span style={{ padding: "4px 11px", borderRadius: "99px", background: "var(--orange-tint, #FFF4F1)", border: "1px solid #F6DCD3", color: ACCENT, font: `600 11px/1 ${BODY}` }}>This experience only</span>
+                <span style={{ padding: "4px 11px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", color: ACCENT, font: `600 11px/1 ${BODY}` }}>This experience only</span>
               </div>
               {!trip.hasReviews ? (
                 <div style={{ marginTop: "14px", textAlign: "center", padding: "44px 24px", background: "#FFFFFF", border: "1px dashed #E6DDCF", borderRadius: "16px" }}>
@@ -559,7 +559,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
               ) : (
                 <>
                   <p style={{ margin: "0 0 18px", font: `400 13.5px/1.4 ${BODY}`, color: "#9A9080" }}>From travellers who booked this trip — separate from host and brand reviews.</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "26px", alignItems: "center", padding: "22px 26px", background: "var(--orange-tint, #FFF4F1)", border: "1px solid #F6DCD3", borderRadius: "16px", marginBottom: "20px" }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "26px", alignItems: "center", padding: "22px 26px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", borderRadius: "16px", marginBottom: "20px" }}>
                     <div style={{ textAlign: "center" }}>
                       <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "46px", lineHeight: 1, color: "#221C17" }}>{trip.rating}</div>
                       <div style={{ marginTop: "5px", color: "#E0922F", fontSize: "14px", letterSpacing: "2px" }}>★★★★★</div>
@@ -618,7 +618,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
           {/* ===== BOOKING SIDEBAR ===== */}
           <aside className="td-side" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "18px", overflow: "hidden", boxShadow: "0 12px 30px -16px rgba(0,0,0,.15)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "12px 20px", background: "var(--orange-tint, #FFF4F1)", borderBottom: "1px solid #F6DCD3" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "12px 20px", background: "var(--brand-100, #F6E4DC)", borderBottom: "1px solid #E6DDCF" }}>
                 <span style={{ font: `500 12px/1.35 ${BODY}`, color: "#7C3A27" }}>Pay a little now, adventure a lot — flexible payments at checkout.</span>
               </div>
               <div style={{ padding: "18px 22px 20px" }}>
@@ -639,7 +639,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 )}
                 <p style={{ margin: "10px 0 0", textAlign: "center", font: `400 11.5px/1.4 ${BODY}`, color: "#9A9080" }}>Select a batch date on the next step</p>
               </div>
-              <div style={{ padding: "14px 22px", borderTop: "1px solid #F6DCD3", background: "var(--orange-tint, #FFF4F1)", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div style={{ padding: "14px 22px", borderTop: "1px solid #E6DDCF", background: "var(--brand-100, #F6E4DC)", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {["Secure payments · verified host", "Hand-picked, community-first trip", "On-platform host support"].map((t, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", font: `400 12.5px/1.3 ${BODY}`, color: "#5A5247" }}><span style={{ color: "#2E7D4F", flex: "none", display: "flex" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>{t}</div>
                 ))}

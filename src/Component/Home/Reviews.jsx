@@ -18,7 +18,7 @@ const Reviews = () => {
     }
   }, [data]);
   return (
-    <Box sx={{ color: "#fff", background: "#FFF4F1", py: { xs: 10, md: 15 } }}>
+    <Box sx={{ color: "#fff", background: "#FBF6EE", py: { xs: 10, md: 15 } }}>
    <Typography
           sx={{
             color: "#5A5247",

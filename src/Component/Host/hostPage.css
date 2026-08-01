@@ -8,7 +8,7 @@
 
 .hd-page * { box-sizing: border-box; }
 .hd-page {
-  --bg: var(--orange-tint, #FFF4F1);
+  --bg: var(--surface-soft, #FBF6EE);
   --card: #fffdf9;
   --line: #e6ddcf;
   --line-soft: #efe7da;
