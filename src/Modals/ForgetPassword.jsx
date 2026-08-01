@@ -92,12 +92,12 @@ const ForgetPassword = () => {
             maxWidth: "350px",
             px: 2,
             width: "100%",
-            background: "#393938",
+            background: "#3C3228",
             color: "#fff",
-            border: "1.5px solid #393938",
+            border: "1.5px solid #3C3228",
 
             "&:hover": {
-              background: "#FBFBFB",
+              background: "#FBF6EE",
               color: "#CF4A2C",
               //   height: "45px",
               border: "1.5px solid #CF4A2C",

@@ -1,7 +1,7 @@
 /* Meet Our Hosts — scoped under .mhpg (Nomadic Townies brand) */
 .mhpg{
   --orange:#CF4A2C; --orange-hover:#B53D1F; --orange-tint:#FDF3EE;
-  --charcoal:#393938; --text-dark:#3C3228; --text:#5A5247;
+  --charcoal:#3C3228; --text-dark:#3C3228; --text:#5A5247;
   --text-light:#726A5E; --text-lighter:#8A8073;
   --line:#E6DDCF; --line-soft:#F1EADD; --bg-soft:var(--orange-tint);
   --green:#11875b; --amber:#f59e0b;

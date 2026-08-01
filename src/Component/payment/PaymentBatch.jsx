@@ -137,7 +137,7 @@ export default function PaymentBatch({
           py: { xs: 1, md: 1 },
           // px: { xs: 1, md: 2 },
           border: { xs: "none", sm: "1px solid #F1EADD" },
-          background: "#FBFBFB",
+          background: "#FBF6EE",
         }}
       >
         {sortedMonthKeys?.map((monthName, index) => (

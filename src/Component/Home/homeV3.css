@@ -3,7 +3,7 @@
   --orange-hover: #B83F23;
   --orange-light: #E9622F;
   --orange-tint: #FFF4F1;
-  --charcoal: #393938;
+  --charcoal: #3C3228;
   --text: #5A5247;
   --text-dark: #3C3228;
   --text-light: #726A5E;
@@ -86,7 +86,7 @@
 }
 
 .ntv3 .btn-outline {
-  background: #FBFBFB;
+  background: #FBF6EE;
   color: var(--orange);
   border: 1.5px solid var(--orange)
 }

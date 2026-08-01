@@ -41,15 +41,15 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     // fontFamily: "Inter",
     "&:hover": {
       color: "#fff",
-      background: "#393938",
+      background: "#3C3228",
     },
     "&.Mui-selected": {
       color: "#fff",
-      background: "#393938",
+      background: "#3C3228",
       opacity: 1,
     },
     "&.Mui-focusVisible": {
-      background: "#393938",
+      background: "#3C3228",
     },
   })
 );

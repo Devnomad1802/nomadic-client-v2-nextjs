@@ -93,7 +93,7 @@ export const CATEGORY_TEMPLATES = {
       <circle cx="116" cy="112" r="5" fill="#2d4b9f"></circle>
       <circle cx="86" cy="138" r="5" fill="#2E7D4F"></circle>
       <g stroke-linecap="round">
-        <line x1="150" y1="170" x2="200" y2="108" stroke="#393938" stroke-width="4"></line>
+        <line x1="150" y1="170" x2="200" y2="108" stroke="#3C3228" stroke-width="4"></line>
         <path d="M196 104 l12 -10 l6 8 l-10 12Z" fill="#CF4A2C" stroke="#CF4A2C"></path>
         <line x1="150" y1="170" x2="160" y2="160" stroke="#C4883A" stroke-width="6"></line>
       </g>

@@ -288,7 +288,7 @@ const Categories = () => {
             borderRadius: "50%",
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#F1EADD",
             },
           }}
         >
@@ -310,7 +310,7 @@ const Categories = () => {
             borderRadius: "50%",
             boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#F1EADD",
             },
           }}
         >

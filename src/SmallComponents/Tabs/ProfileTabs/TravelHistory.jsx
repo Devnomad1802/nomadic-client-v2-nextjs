@@ -267,7 +267,7 @@ const TravelHistory = () => {
             <AccordionSummary
               expandIcon={<ExpandMoreIcon sx={{ color: "#5A5247" }} />}
               sx={{
-                background: "#FBFBFB",
+                background: "#FBF6EE",
                 borderRadius: "10px 10px 0 0",
                 padding: { xs: "12px 16px", sm: "14px 18px", md: "16px 20px" },
                 "&.Mui-expanded": {

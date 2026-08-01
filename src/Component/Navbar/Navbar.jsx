@@ -412,9 +412,9 @@ const Navbar = () => {
                 variant="simplebtn"
                 sx={{
                   display: { xs: "none", sm: "inline-flex" },
-                  background: "#393938",
+                  background: "#3C3228",
                   color: "#fff",
-                  border: "1px solid #393938",
+                  border: "1px solid #3C3228",
                   whiteSpace: "nowrap",
                   "&:hover": {
                     background: "transparent",
@@ -539,7 +539,7 @@ const Navbar = () => {
               <Button
                 variant="simplebtn"
                 onClick={() => { setMobileOpen(false); setOpens(true); }}
-                sx={{ background: "#393938", color: "#fff" }}
+                sx={{ background: "#3C3228", color: "#fff" }}
               >
                 Login
               </Button>

@@ -60,7 +60,7 @@ const Reviews = () => {
 
 
       <ReviewSwiper reviesData={reviesData} />
-      {/* <Googlebanner bg="#FBFBFB" /> */}
+      {/* <Googlebanner bg="#FBF6EE" /> */}
     </Box>
   );
 };

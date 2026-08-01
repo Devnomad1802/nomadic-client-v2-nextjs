@@ -157,7 +157,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                             sx={{
                               backgroundColor: "#E9622F",
                               color: "#fff",
-                              "&:hover": { backgroundColor: "#393938" },
+                              "&:hover": { backgroundColor: "#3C3228" },
                             }}
                           >
                             <SearchIcon />
@@ -188,7 +188,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                         maxWidth: "320px",
                         "&:hover": {
                           border: "1.5px solid #fff",
-                          background: "#393938",
+                          background: "#3C3228",
                         },
                       }}
                     >
@@ -366,7 +366,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                               width: "300px",
                               "&:hover": {
                                 border: "1.5px solid #fff",
-                                background: "#393938",
+                                background: "#3C3228",
                               },
                             }}
                           >

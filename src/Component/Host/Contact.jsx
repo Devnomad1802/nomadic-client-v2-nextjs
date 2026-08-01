@@ -184,8 +184,8 @@ const Contact = ({ hostData }) => {
                       sx={{
                         width: "100%",
                         height: "48px",
-                        background: "#f5f5f5",
-                        border: "1px solid #e0e0e0",
+                        background: "#F1EADD",
+                        border: "1px solid #D8CFC0",
                         borderRadius: "12px",
                         textAlign: "left",
                         fontFamily:
@@ -195,7 +195,7 @@ const Contact = ({ hostData }) => {
                         color: "#3C3228",
                         cursor: social.url ? "pointer" : "default",
                         "&:hover": {
-                          background: social.url ? "#CF4A2C" : "#f5f5f5",
+                          background: social.url ? "#CF4A2C" : "#F1EADD",
                           color: social.url ? "white" : "#3C3228",
                         },
                         "& .MuiChip-icon": {

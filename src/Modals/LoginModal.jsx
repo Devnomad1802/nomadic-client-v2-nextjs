@@ -108,8 +108,8 @@ const S = {
   },
   h2: { fontSize: 30, fontWeight: 800, color: T.ink, letterSpacing: '-.025em', margin: '0 0 24px', fontFamily: 'Inter, sans-serif' },
   toggle: {
-    display: 'flex', background: '#F0F0F0',
-    border: '1px solid #F0F0F0',
+    display: 'flex', background: '#F1EADD',
+    border: '1px solid #F1EADD',
     borderRadius: 999, padding: 4, marginBottom: 22,
   },
   togBtn: (active) => ({

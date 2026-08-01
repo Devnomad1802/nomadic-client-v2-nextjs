@@ -111,7 +111,7 @@ to make travel more meaningful, mindful, and accessible for everyone.
                       minWidth: "170px",
                       color: "#fff",
                       "&:hover": {
-                        background: "#393938",
+                        background: "#3C3228",
                       },
                     }}
                   >

@@ -81,8 +81,8 @@ const BookNowModal = ({ opens, setOpens, toggelModel }) => {
             width: "100%",
             p: { xs: 2, md: 4 },
             borderRadius: { xs: "16px 16px 0px 0px", sm: "24px" },
-            border: "2px solid #FBFBFB",
-            background: "#FBFBFB",
+            border: "2px solid #FBF6EE",
+            background: "#FBF6EE",
             overflowY: "auto",
             height: { xs: "auto", md: "auto" }, // Set an initial height
             position: "absolute", // Position absolutely
@@ -162,7 +162,7 @@ const BookNowModal = ({ opens, setOpens, toggelModel }) => {
               </Box>
             </Box>
             <IconButton onClick={toggelModel} sx={{ ml: 2 }}>
-              <CloseIcon sx={{ color: "#393938" }} />
+              <CloseIcon sx={{ color: "#3C3228" }} />
             </IconButton>
           </Box>
           <Stepper1 />

@@ -320,7 +320,7 @@ const Banner = () => {
                             <Box component="span" sx={{
                               fontSize: { xs: "11px", sm: "12px", md: "14px" },
                               opacity: 0.8,
-                              color: "#FBFBFB",
+                              color: "#FBF6EE",
                               fontWeight: "500"
                             }}>/Person</Box>
                           </Typography>
@@ -420,7 +420,7 @@ const Banner = () => {
             height: "30px",
             borderRadius: "50%",
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#F1EADD",
             },
             padding: 0,
           }}
@@ -451,7 +451,7 @@ const Banner = () => {
             height: "30px",
             borderRadius: "50%",
             "&:hover": {
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#F1EADD",
             },
             padding: 0,
           }}

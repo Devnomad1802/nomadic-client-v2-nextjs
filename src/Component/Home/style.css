@@ -55,7 +55,7 @@
   .swiper-button-prev {
     font-size: 14px;
     left: 0px; /* Adjust right position for large screen */
-    background-color: #FBFBFB;
+    background-color: #FBF6EE;
     color: #000;
     font-weight: bold;
     border-radius: 50%;
@@ -113,7 +113,7 @@
  
     font-size: 14px;
     right: 0px; /* Adjust right position for large screen */
-    background-color: #FBFBFB;
+    background-color: #FBF6EE;
     border-radius: 50%;
     width: 35px;
     height: 35px;

@@ -135,7 +135,7 @@ export default function DetailTabs() {
           py: { xs: 1, md: 1 },
           px: { xs: 1, md: 2 },
           border: "1px solid #F1EADD",
-          background: "#FBFBFB",
+          background: "#FBF6EE",
         }}
       >
         <TabPanel value={value} index={0}>
