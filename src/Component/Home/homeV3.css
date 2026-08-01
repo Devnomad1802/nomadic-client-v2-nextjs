@@ -1324,3 +1324,43 @@
     align-items: center
   }
 }
+/* ── Choose Your Adventure — single-row infinite marquee ──
+   Native horizontal scroll (free drag/swipe/touch) + rAF auto-drift in JS.
+   Equal card sizes, hidden scrollbar, GPU-friendly, no wrap, no CLS. */
+.ntv3 .cats-marquee {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  touch-action: pan-x;
+  will-change: scroll-position;
+  cursor: grab;
+  user-select: none;
+  padding: 6px 2px;
+  margin: -6px -2px;
+  align-items: stretch;
+}
+.ntv3 .cats-marquee::-webkit-scrollbar { display: none; }
+.ntv3 .cats-marquee:active { cursor: grabbing; }
+.ntv3 .cats-marquee .cat-card {
+  flex: 0 0 340px;
+  width: 340px;
+  scroll-snap-align: start;
+}
+.ntv3 .cats-marquee .cat-card img,
+.ntv3 .cats-marquee .cat-card a { -webkit-user-drag: none; user-drag: none; }
+@media (max-width: 900px) {
+  .ntv3 .cats-marquee .cat-card { flex-basis: 300px; width: 300px; }
+}
+@media (max-width: 580px) {
+  .ntv3 .cats-marquee { gap: 14px; }
+  .ntv3 .cats-marquee .cat-card { flex-basis: 80vw; width: 80vw; max-width: 320px; }
+}
+/* honour reduced-motion: no auto-drift (JS already skips it), still swipeable */
+@media (prefers-reduced-motion: reduce) {
+  .ntv3 .cats-marquee { scroll-snap-type: x mandatory; }
+}
