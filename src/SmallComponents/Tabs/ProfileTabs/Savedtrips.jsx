@@ -123,11 +123,11 @@ const Savedtrips = () => {
                       }}
                     >
                       <StarRoundedIcon
-                        style={{ color: "#FBC800", fontSize: "25px" }}
+                        style={{ color: "#F0A03C", fontSize: "25px" }}
                       />
                       <Typography
                         sx={{
-                          color: "#FBC800",
+                          color: "#F0A03C",
                           fontSize: "18px",
                           fontWeight: 500,
                         }}

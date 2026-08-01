@@ -471,7 +471,7 @@ const BookingOverview = () => {
                       color: "#F4EEE4",
                     }}
                   >
-                    <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#5BBF7A" }} />
+                    <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#2E7D4F" }} />
                     Ready to book
                   </span>
                 </div>

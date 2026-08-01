@@ -91,7 +91,7 @@ export const CATEGORY_TEMPLATES = {
       <ellipse cx="108" cy="150" rx="9" ry="7" fill="none" stroke="#C4883A" stroke-width="2.5"></ellipse>
       <circle cx="94" cy="116" r="5" fill="#CF4A2C"></circle>
       <circle cx="116" cy="112" r="5" fill="#2d4b9f"></circle>
-      <circle cx="86" cy="138" r="5" fill="#16A34A"></circle>
+      <circle cx="86" cy="138" r="5" fill="#2E7D4F"></circle>
       <g stroke-linecap="round">
         <line x1="150" y1="170" x2="200" y2="108" stroke="#393938" stroke-width="4"></line>
         <path d="M196 104 l12 -10 l6 8 l-10 12Z" fill="#CF4A2C" stroke="#CF4A2C"></path>
@@ -106,7 +106,7 @@ export const CATEGORY_TEMPLATES = {
     desc: "Yoga, wellness and silent escapes. Slow down, breathe, and come back lighter.",
     tags: ["Yoga", "Wellness"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#2E7D4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="150" cy="92" r="15"></circle>
         <path d="M150 107 q-22 8 -22 38 q0 14 22 14 q22 0 22 -14 q0 -30 -22 -38Z"></path>
         <path d="M110 158 q40 22 80 0"></path>
@@ -119,8 +119,8 @@ export const CATEGORY_TEMPLATES = {
         <path d="M150 178 q-14 -2 -18 10 q10 6 18 2"></path>
         <path d="M150 178 q14 -2 18 10 q-10 6 -18 2"></path>
       </g>
-      <circle cx="150" cy="120" r="74" fill="none" stroke="#16A34A" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
-      <g fill="#16A34A" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
+      <circle cx="150" cy="120" r="74" fill="none" stroke="#2E7D4F" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
+      <g fill="#2E7D4F" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
     </svg>`,
   },
   trekking: {

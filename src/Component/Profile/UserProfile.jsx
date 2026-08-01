@@ -276,7 +276,7 @@ const UserProfile = () => {
 };
 
 const css = `
-.nt-profile{--bg:#FFFDF9;--line:#E6DDCF;--line-soft:#EFE7DA;--accent:#CF4A2C;--accent2:#E9622F;--ink:#221C17;--muted:#726A5E;--muted2:#8A8073;--green:#5BBF7A;--badge:#F6E4DC;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:clamp(20px,4vw,52px) clamp(16px,4vw,52px);box-sizing:border-box}
+.nt-profile{--bg:#FFFDF9;--line:#E6DDCF;--line-soft:#EFE7DA;--accent:#CF4A2C;--accent2:#E9622F;--ink:#221C17;--muted:#726A5E;--muted2:#8A8073;--green:#2E7D4F;--badge:#F6E4DC;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);padding:clamp(20px,4vw,52px) clamp(16px,4vw,52px);box-sizing:border-box}
 .nt-profile *{box-sizing:border-box}
 .nt-toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:1300;background:var(--ink);color:#FFF6EF;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
 .nt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:clamp(20px,3vw,34px);max-width:1180px;margin-left:auto;margin-right:auto}
@@ -322,7 +322,7 @@ const css = `
 .nt-coupon-card{margin-top:26px;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:20px}
 .nt-coupon-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .nt-coupon-name{font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
-.nt-pill-green{font-size:11px;font-weight:700;color:#1f7a45;background:#E4F4EA;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em}
+.nt-pill-green{font-size:11px;font-weight:700;color:#2E7D4F;background:#E4F4EA;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em}
 .nt-coupon-desc p{margin:6px 0 0;font-size:14px;line-height:1.55;color:var(--muted)}
 .nt-empty{margin-top:26px;padding:22px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:14.5px}
 .nt-embed{margin-top:18px}
@@ -359,7 +359,7 @@ const css = `
 .nt-bk-sub{font-size:12.5px;color:var(--muted)}
 .nt-bk-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .nt-stat{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:99px;text-transform:uppercase;letter-spacing:.03em}
-.nt-stat.ok{background:#E4F4EA;color:#1f7a45}
+.nt-stat.ok{background:#E4F4EA;color:#2E7D4F}
 .nt-stat.warn{background:#FBEBD9;color:#9C5A12}
 .nt-stat.muted{background:#EFE7DA;color:var(--muted)}
 .nt-caret{color:var(--muted);font-size:13px;transition:transform .2s}
@@ -376,7 +376,7 @@ const css = `
 .nt-li-row span:last-child{text-align:right;font-weight:600}
 .nt-li-due{background:var(--bg);font-weight:700}
 .nt-li-due span:last-child{font-weight:800}
-.nt-green{color:#1f7a45;font-weight:600}
+.nt-green{color:#2E7D4F;font-weight:600}
 .nt-policy{margin-top:14px;background:none;border:none;padding:0;font-size:13px;font-weight:600;color:var(--muted);text-decoration:underline;cursor:pointer}
 .nt-policy:hover{color:var(--accent)}
 .nt-pay-rem{color:var(--accent)}
