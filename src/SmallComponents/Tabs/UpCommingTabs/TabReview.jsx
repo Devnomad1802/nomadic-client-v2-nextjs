@@ -13,13 +13,13 @@ const TabReview = () => {
           <Box
             key={index}
             sx={{
-              border: "1px solid #F9FAFB",
+              border: "1px solid #FBF6EE",
               p: { xs: 1, sm: 2, md: 3 },
               borderRadius: "16px",
-              boxShadow: " 0px 0px 5px 2px #F3F4F6",
+              boxShadow: " 0px 0px 5px 2px #F1EADD",
               my: 2,
               "&:hover": {
-                background: "#F9FAFB",
+                background: "#FBF6EE",
               },
             }}
           >
@@ -47,7 +47,7 @@ const TabReview = () => {
                   style={{ width: "48px", borderRadius: "50%" }}
                 />
                 <Box>
-                  <Typography sx={{ color: "#9CA3AF", fontWeight: "500" }}>
+                  <Typography sx={{ color: "#8A8073", fontWeight: "500" }}>
                     John Doe
                   </Typography>
                   <Typography sx={{ color: "#D2D5DA" }}>Designer</Typography>
@@ -56,7 +56,7 @@ const TabReview = () => {
 
               <BasicRating />
             </Box>
-            <Typography sx={{ color: "#4B5563", textAlign: "left" }}>
+            <Typography sx={{ color: "#5A5247", textAlign: "left" }}>
               I had a Kasol Tosh Solo with Justwravel. everything was well
               arranged. our tour guide Abhishek Bisht and Sajal Gupta are
               perfect tour guides.

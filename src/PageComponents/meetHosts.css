@@ -1,9 +1,9 @@
 /* Meet Our Hosts — scoped under .mhpg (Nomadic Townies brand) */
 .mhpg{
   --orange:#CF4A2C; --orange-hover:#B53D1F; --orange-tint:#FDF3EE;
-  --charcoal:#393938; --text-dark:#1F2937; --text:#4B5563;
-  --text-light:#6B7280; --text-lighter:#9CA3AF;
-  --line:#E5E7EB; --line-soft:#F3F4F6; --bg-soft:var(--orange-tint);
+  --charcoal:#393938; --text-dark:#3C3228; --text:#5A5247;
+  --text-light:#726A5E; --text-lighter:#8A8073;
+  --line:#E6DDCF; --line-soft:#F1EADD; --bg-soft:var(--orange-tint);
   --green:#11875b; --amber:#f59e0b;
   --sh-md:0 10px 28px -14px rgba(31,39,51,.2),0 1px 4px -1px rgba(31,39,51,.04);
   font-family:var(--inter);color:var(--text);background:#fff;text-align:left;line-height:1.5;

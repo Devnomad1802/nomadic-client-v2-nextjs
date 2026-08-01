@@ -21,7 +21,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingTop: "0px",
     paddingBottom: "0px",
     marginLeft: "20px",
-    color: "#111827",
+    color: "#221C17",
     fontWeight: "bold",
     height: "30px",
 
@@ -97,8 +97,8 @@ export default function PaymentBatch({
     >
       <Box
         sx={{
-          //   border: "1px solid #F3F4F6",
-          //   background: "#F9FAFB",
+          //   border: "1px solid #F1EADD",
+          //   background: "#FBF6EE",
           display: "flex",
           justifyContent: "space-between",
           width: "100%",
@@ -136,7 +136,7 @@ export default function PaymentBatch({
           my: 2,
           py: { xs: 1, md: 1 },
           // px: { xs: 1, md: 2 },
-          border: { xs: "none", sm: "1px solid #F3F4F6" },
+          border: { xs: "none", sm: "1px solid #F1EADD" },
           background: "#FBFBFB",
         }}
       >

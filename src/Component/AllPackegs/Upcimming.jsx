@@ -41,7 +41,7 @@ const Upcimming = () => {
     >
       <Typography
         sx={{
-          color: "#4B5563",
+          color: "#5A5247",
           // display: "flex",
           textAlign: { xs: "center", md: "left" },
           fontFamily: "Playfair",
@@ -168,7 +168,7 @@ const Upcimming = () => {
                           <Box
                             sx={{
                               display: "flex",
-                              border: "1px solid #4B5563",
+                              border: "1px solid #5A5247",
                               borderRadius: "15px",
                               background: "#5D5F71",
                               gap: "0px 3px",
@@ -204,7 +204,7 @@ const Upcimming = () => {
                       >
                         <Typography
                           sx={{
-                            color: "#111827",
+                            color: "#221C17",
                             fontWeight: 500,
                             fontSize: { xs: "18px", sm: "20px", lg: "23px" },
                             textAlign: "left",
@@ -223,12 +223,12 @@ const Upcimming = () => {
                           {" "}
                           <FmdGoodOutlinedIcon
                             sx={{
-                              color: "#4B5563",
+                              color: "#5A5247",
                             }}
                           />
                           <Typography
                             sx={{
-                              color: "#4B5563",
+                              color: "#5A5247",
                               fontSize: { xs: "14px", sm: "16px" },
                             }}
                           >
@@ -252,11 +252,11 @@ const Upcimming = () => {
                           >
                             {" "}
                             <CalendarMonthRoundedIcon
-                              sx={{ color: "#4B5563" }}
+                              sx={{ color: "#5A5247" }}
                             />
                             <Typography
                               sx={{
-                                color: "#4B5563",
+                                color: "#5A5247",
                                 fontSize: { xs: "14px", sm: "16px" },
                               }}
                             >
@@ -266,20 +266,20 @@ const Upcimming = () => {
                           <Box
                             sx={{
                               display: "flex",
-                              border: "1px solid #F3F4F6",
+                              border: "1px solid #F1EADD",
                               borderRadius: "15px",
-                              background: "#F9FAFB",
+                              background: "#FBF6EE",
                               alignItems: "center",
                               px: 0.5,
                               py: 0.2,
                             }}
                           >
                             <AccessTimeRoundedIcon
-                              style={{ color: "#4B5563" }}
+                              style={{ color: "#5A5247" }}
                             />
                             <Typography
                               sx={{
-                                color: "#4B5563",
+                                color: "#5A5247",
                                 fontSize: { xs: "14px", sm: "16px" },
                               }}
                             >

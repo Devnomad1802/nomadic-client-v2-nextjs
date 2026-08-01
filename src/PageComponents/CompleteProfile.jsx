@@ -78,16 +78,16 @@ const CompleteProfile = () => {
       <Toastify setAlertState={setAlertState} alertState={alertState} />
       <Container maxWidth="sm">
         <Box sx={{ background: "#fff", borderRadius: "24px", p: { xs: 3, md: 5 }, boxShadow: "0 4px 20px rgba(0,0,0,0.08)" }}>
-          <Typography sx={{ fontSize: "28px", fontWeight: 700, color: "#1F2937", mb: 1 }}>
+          <Typography sx={{ fontSize: "28px", fontWeight: 700, color: "#3C3228", mb: 1 }}>
             Complete Your Profile
           </Typography>
-          <Typography sx={{ fontSize: "15px", color: "#6B7280", mb: 4 }}>
+          <Typography sx={{ fontSize: "15px", color: "#726A5E", mb: 4 }}>
             Please fill in your name and mobile number to complete your account setup.
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "20px 0px" }}>
               <Box>
-                <Typography sx={{ color: "#374151", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
+                <Typography sx={{ color: "#3C3228", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
                   Full Name <span style={{ color: "#EF4444" }}>*</span>
                 </Typography>
                 <TextField
@@ -102,7 +102,7 @@ const CompleteProfile = () => {
 
               {needsPhone ? (
                 <Box>
-                  <Typography sx={{ color: "#374151", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
+                  <Typography sx={{ color: "#3C3228", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
                     Phone Number <span style={{ color: "#EF4444" }}>*</span>
                   </Typography>
                   <TextField
@@ -132,7 +132,7 @@ const CompleteProfile = () => {
 
               {needsEmail && (
                 <Box>
-                  <Typography sx={{ color: "#374151", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
+                  <Typography sx={{ color: "#3C3228", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
                     Email Address <span style={{ color: "#EF4444" }}>*</span>
                   </Typography>
                   <TextField

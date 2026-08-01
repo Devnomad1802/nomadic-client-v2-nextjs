@@ -219,7 +219,7 @@ const TravelHistory = () => {
           Number(finalTotal) <= 0 ? "Booked" : "Partial Booked";
 
         const array = [
-          { value: total, title: "Amount Paid", color: "#4B5563" },
+          { value: total, title: "Amount Paid", color: "#5A5247" },
           {
             value: finalTotal.toFixed(0),
             title: "Remain amount to pay",
@@ -255,7 +255,7 @@ const TravelHistory = () => {
               mt: 3,
               borderRadius: "10px !important",
               boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
-              border: "1px solid #E5E7EB",
+              border: "1px solid #E6DDCF",
               "&:before": {
                 display: "none",
               },
@@ -265,7 +265,7 @@ const TravelHistory = () => {
             }}
           >
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon sx={{ color: "#4B5563" }} />}
+              expandIcon={<ExpandMoreIcon sx={{ color: "#5A5247" }} />}
               sx={{
                 background: "#FBFBFB",
                 borderRadius: "10px 10px 0 0",
@@ -294,7 +294,7 @@ const TravelHistory = () => {
                 <Box>
                   <Typography
                     sx={{
-                      color: "#4B5563",
+                      color: "#5A5247",
                       fontSize: { xs: "18px", md: "20px" },
                       fontWeight: 500,
                       textAlign: "left",
@@ -304,7 +304,7 @@ const TravelHistory = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      color: "#9CA3AF",
+                      color: "#8A8073",
                       fontSize: "13px",
                       textAlign: "left",
                       mt: 0.5,
@@ -359,13 +359,13 @@ const TravelHistory = () => {
                         >
                           {icon}
                           <Typography
-                            sx={{ color: "#9CA3AF", fontSize: "13px" }}
+                            sx={{ color: "#8A8073", fontSize: "13px" }}
                           >
                             {typo1}
                           </Typography>
                         </Box>
                         <Typography
-                          sx={{ color: "#4B5563", mt: 1, textAlign: "left" }}
+                          sx={{ color: "#5A5247", mt: 1, textAlign: "left" }}
                         >
                           {typo2}
                         </Typography>
@@ -376,7 +376,7 @@ const TravelHistory = () => {
               </Grid>
               <Box
                 sx={{
-                  background: "#E5E7EB",
+                  background: "#E6DDCF",
                   height: "1px",
                   width: "100%",
                   my: 4,
@@ -393,17 +393,17 @@ const TravelHistory = () => {
                     }}
                   >
                     <Box>
-                      <Typography sx={{ color: "#9CA3AF", fontSize: "13px" }}>
+                      <Typography sx={{ color: "#8A8073", fontSize: "13px" }}>
                         Amount Paid
                       </Typography>
                       <Typography
-                        sx={{ color: "#4B5563", mt: 1, textAlign: "left" }}
+                        sx={{ color: "#5A5247", mt: 1, textAlign: "left" }}
                       >
                         &#8377; {Number(total).toFixed(0)}
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography sx={{ color: "#9CA3AF", fontSize: "13px" }}>
+                      <Typography sx={{ color: "#8A8073", fontSize: "13px" }}>
                         Payment Status
                       </Typography>
                       <Typography
@@ -420,9 +420,9 @@ const TravelHistory = () => {
                       flexDirection: "column",
                       gap: "12px 0px",
                       p: 3,
-                      background: "#F9FAFB",
+                      background: "#FBF6EE",
                       borderRadius: "10px",
-                      border: "1px solid #F3F4F6",
+                      border: "1px solid #F1EADD",
                       my: 3,
                     }}
                   >
@@ -440,7 +440,7 @@ const TravelHistory = () => {
                         >
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "start",
                             }}
@@ -449,7 +449,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
                               fontSize: { xs: "13px", sm: "14px" },
                               // textAlign: "cent",
                             }}
@@ -459,7 +459,7 @@ const TravelHistory = () => {
 
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "right",
                             }}
@@ -483,7 +483,7 @@ const TravelHistory = () => {
                         >
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
 
                               fontSize: { xs: "13px", sm: "14px" },
                               textAlign: "start",
@@ -493,7 +493,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
 
                               fontSize: { xs: "13px", sm: "14px" },
                             }}
@@ -502,7 +502,7 @@ const TravelHistory = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#6D7280",
+                              color: "#726A5E",
 
                               fontSize: { xs: "13px", sm: "14px" },
                             }}
@@ -528,7 +528,7 @@ const TravelHistory = () => {
                         }}>
                           <Typography
                             sx={{ 
-                              color: "#9CA3AF", 
+                              color: "#8A8073", 
                               fontSize: "14px",
                               fontWeight: 500,
                               mb: 1
@@ -559,7 +559,7 @@ const TravelHistory = () => {
                         mt: 2,
                       }}
                     >
-                      <Typography sx={{ color: "#6D7280", textAlign: "start" }}>
+                      <Typography sx={{ color: "#726A5E", textAlign: "start" }}>
                         Note: Balance amount of &#8377; {Number(finalTotal).toFixed(0)}/- can be paid up to{" "}
                         {cardData?.cardDate?.batchDate
                           ? new Date(
@@ -573,7 +573,7 @@ const TravelHistory = () => {
                             })
                           : ""}
                       </Typography>
-                      <Typography sx={{ color: "#9CA3AF", textAlign: "start" }}>
+                      <Typography sx={{ color: "#8A8073", textAlign: "start" }}>
                         Payment Processing fee of 3% will be charged in next step.
                       </Typography>
                       <Button
@@ -602,7 +602,7 @@ const TravelHistory = () => {
               </Box>
               <Box
                 sx={{
-                  background: "#E5E7EB",
+                  background: "#E6DDCF",
                   height: "1px",
                   width: "100%",
                   my: 5,

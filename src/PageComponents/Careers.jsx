@@ -116,7 +116,7 @@ const Careers = () => {
               fontFamily: "Inter",
               fontSize: { xs: "22px", md: "32px" },
               fontWeight: 700,
-              color: "#1F2937",
+              color: "#3C3228",
               mb: 5,
               textAlign: "center",
             }}
@@ -129,7 +129,7 @@ const Careers = () => {
               <Grid item xs={12} md={4} key={index}>
                 <Box
                   sx={{
-                    border: "1px solid #E5E7EB",
+                    border: "1px solid #E6DDCF",
                     borderRadius: "16px",
                     p: { xs: 3, md: 4 },
                     height: "100%",
@@ -147,7 +147,7 @@ const Careers = () => {
                         fontFamily: "Inter",
                         fontSize: { xs: "18px", md: "20px" },
                         fontWeight: 700,
-                        color: "#1F2937",
+                        color: "#3C3228",
                         mb: 0.5,
                       }}
                     >
@@ -170,8 +170,8 @@ const Careers = () => {
                       <Typography
                         sx={{
                           fontSize: "13px",
-                          color: "#6B7280",
-                          background: "#F3F4F6",
+                          color: "#726A5E",
+                          background: "#F1EADD",
                           px: 1.5,
                           py: 0.3,
                           borderRadius: "20px",
@@ -185,7 +185,7 @@ const Careers = () => {
                     sx={{
                       fontFamily: "Inter",
                       fontSize: "15px",
-                      color: "#4B5563",
+                      color: "#5A5247",
                       lineHeight: "160%",
                       flex: 1,
                     }}
@@ -219,7 +219,7 @@ const Careers = () => {
         {/* General CTA */}
         <Box
           sx={{
-            background: "#111827",
+            background: "#221C17",
             py: { xs: 6, md: 8 },
             textAlign: "center",
             px: 3,

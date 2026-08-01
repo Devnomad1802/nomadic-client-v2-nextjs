@@ -57,7 +57,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               textTransform: "none",
               fontWeight: 500,
               fontSize: "14px",
-              color: "#666",
+              color: "#726A5E",
               "&.Mui-selected": {
                 color: "#CF4A2C",
               },
@@ -69,7 +69,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               textTransform: "none",
               fontWeight: 500,
               fontSize: "14px",
-              color: "#666",
+              color: "#726A5E",
               "&.Mui-selected": {
                 color: "#CF4A2C",
               },
@@ -82,7 +82,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
                 sx={{
                   "& .MuiBadge-badge": {
                     backgroundColor: "#f5f5f5",
-                    color: "#666",
+                    color: "#726A5E",
                     fontSize: "10px",
                     fontWeight: 500,
                     minWidth: "24px",
@@ -102,7 +102,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               textTransform: "none",
               fontWeight: 500,
               fontSize: "14px",
-              color: "#666",
+              color: "#726A5E",
               "&.Mui-selected": {
                 color: "#CF4A2C",
               },
@@ -114,7 +114,7 @@ const HostTabs = ({ activeTab, onTabChange, hostData }) => {
               textTransform: "none",
               fontWeight: 500,
               fontSize: "14px",
-              color: "#666",
+              color: "#726A5E",
               "&.Mui-selected": {
                 color: "#CF4A2C",
               },

@@ -13,7 +13,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         right: 0,
         zIndex: 999,
         background: "#fff",
-        borderTop: "1px solid #E5E7EB",
+        borderTop: "1px solid #E6DDCF",
         boxShadow: "0 -4px 16px rgba(0,0,0,0.08)",
         px: 2,
         py: 1.5,
@@ -29,7 +29,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             sx={{
               fontSize: "20px",
               fontWeight: 700,
-              color: "#1F2937",
+              color: "#3C3228",
               fontFamily: "Inter",
               lineHeight: 1.2,
             }}
@@ -40,7 +40,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
             <Typography
               sx={{
                 fontSize: "13px",
-                color: "#9CA3AF",
+                color: "#8A8073",
                 textDecoration: "line-through",
                 fontFamily: "Inter",
               }}
@@ -52,7 +52,7 @@ const StickyBookingBar = ({ price, strikePrice, onBookNow, onEnquire }) => {
         <Typography
           sx={{
             fontSize: "11px",
-            color: "#6B7280",
+            color: "#726A5E",
             fontFamily: "Inter",
           }}
         >

@@ -37,7 +37,7 @@ const MarketingCoupon = () => {
       </Typography>
       <Box
         sx={{
-          border: "1px solid #E5E7EB",
+          border: "1px solid #E6DDCF",
           borderRadius: "10px",
           p: { xs: 1, sm: 2, md: 3 },
           display: "flex",
@@ -62,7 +62,7 @@ const MarketingCoupon = () => {
               }}
             >
               <Typography
-                sx={{ fontSize: { xs: "16px", md: "19px" }, color: "#4B5563" }}
+                sx={{ fontSize: { xs: "16px", md: "19px" }, color: "#5A5247" }}
               >
                 John Deo
               </Typography>
@@ -77,13 +77,13 @@ const MarketingCoupon = () => {
                 Active
               </Button>
             </Box>
-            <Typography sx={{ color: "#9CA3AF", mt: 1 }}>
+            <Typography sx={{ color: "#8A8073", mt: 1 }}>
               CouponCreated on 22 September 2023, 1:00 PM
             </Typography>
           </Box>
           <Box
             sx={{
-              border: "1px solid #E5E7EB",
+              border: "1px solid #E6DDCF",
               px: { xs: 1, md: 2 },
               color: "#F4C95D",
               display: "flex",
@@ -92,12 +92,12 @@ const MarketingCoupon = () => {
               gap: "0px 30px",
             }}
           >
-            MKNT10 <ContentCopyIcon sx={{ color: "#9CA3AF" }} />
+            MKNT10 <ContentCopyIcon sx={{ color: "#8A8073" }} />
           </Box>
         </Box>
         <Box
           sx={{
-            border: "1px dashed #E5E7EB",
+            border: "1px dashed #E6DDCF",
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
@@ -126,10 +126,10 @@ const MarketingCoupon = () => {
                   {item.value}
                 </Typography>
                 <Box sx={{ display: "flex", gap: "0px 10px", mt: 2 }}>
-                  <Typography sx={{ color: "#6D7280" }}>
+                  <Typography sx={{ color: "#726A5E" }}>
                     {item.title}
                   </Typography>
-                  <InfoIcon sx={{ color: "#6D7280" }} />
+                  <InfoIcon sx={{ color: "#726A5E" }} />
                 </Box>
               </Box>
             );
@@ -138,14 +138,14 @@ const MarketingCoupon = () => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: "10px 0px" }}>
           <Typography
             sx={{
-              color: "#6D7280",
+              color: "#726A5E",
               fontSize: { sx: "18px", sm: "20px", md: "22px" },
               textAlign: "start",
             }}
           >
             Coupon Description
           </Typography>
-          <Typography sx={{ color: "#9CA3AF", textAlign: "start" }}>
+          <Typography sx={{ color: "#8A8073", textAlign: "start" }}>
             Lorem ipsum dolor sit amet consectetur. Pulvinar vestibulum erat mi
             massa massa ultrices tincidunt blandit pulvinar. Id pellentesque
             tincidunt vitae elementum. In tempor dignissim nulla id pulvinar.

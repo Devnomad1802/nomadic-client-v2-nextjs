@@ -48,7 +48,7 @@ const NotFound = () => {
             sx={{
               fontSize: { xs: "22px", md: "28px" },
               fontWeight: 700,
-              color: "#1F2937",
+              color: "#3C3228",
               mb: 1,
               fontFamily: "Inter",
             }}
@@ -58,7 +58,7 @@ const NotFound = () => {
           <Typography
             sx={{
               fontSize: "16px",
-              color: "#6B7280",
+              color: "#726A5E",
               mb: 4,
               fontFamily: "Inter",
               lineHeight: "160%",

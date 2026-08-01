@@ -69,13 +69,13 @@ const TwoStepCode = () => {
       <Loading isLoading={loading} />
       <Toastify setAlertState={setAlertState} alertState={alertState} />
       <Box textAlign="center">
-        <Typography variant="h2" sx={{ mt: "20px", color: "#4B5563" }}>
+        <Typography variant="h2" sx={{ mt: "20px", color: "#5A5247" }}>
           Set up two-step verification
         </Typography>
       </Box>
       <Container maxWidth="xs">
         <Box py="20px">
-          <Typography align="left" mt={2} sx={{ color: "#4B5563" }}>
+          <Typography align="left" mt={2} sx={{ color: "#5A5247" }}>
             Enter Code
           </Typography>
           <AuthCode
@@ -86,7 +86,7 @@ const TwoStepCode = () => {
             length={6}
           />
 
-          <Box sx={{ mt: "40px", color: "#4B5563" }}>
+          <Box sx={{ mt: "40px", color: "#5A5247" }}>
             <Typography variant="gery">
               Security is critical at Nomadic Townies. To help keep your account
               safe, we&#39;ll text you a verification code when you sign in on a

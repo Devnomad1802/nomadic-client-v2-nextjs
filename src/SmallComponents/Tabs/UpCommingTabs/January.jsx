@@ -522,7 +522,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 >
                                   <Typography
                                     sx={{
-                                      color: "#6B7280",
+                                      color: "#726A5E",
                                       fontSize: "12px",
                                       fontWeight: 500,
                                     }}
@@ -573,7 +573,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#111827",
+                                    color: "#221C17",
                                     fontSize: "12px",
                                     fontWeight: 500,
                                   }}
@@ -618,8 +618,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                     label={specialty}
                                     size="small"
                                     sx={{
-                                      backgroundColor: "#F3F4F6",
-                                      color: "#6B7280",
+                                      backgroundColor: "#F1EADD",
+                                      color: "#726A5E",
                                       fontSize: "11px",
                                       height: "24px",
                                       fontWeight: 400,
@@ -633,8 +633,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                                   label={`+${trip.host.specialties.length - 2}`}
                                   size="small"
                                   sx={{
-                                    backgroundColor: "#E5E7EB",
-                                    color: "#6B7280",
+                                    backgroundColor: "#E6DDCF",
+                                    color: "#726A5E",
                                     fontSize: "11px",
                                     height: "24px",
                                     fontWeight: 400,
@@ -662,13 +662,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 <CalendarMonthRoundedIcon
                                   sx={{
-                                    color: "#6B7280",
+                                    color: "#726A5E",
                                     fontSize: "16px",
                                   }}
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#6B7280",
+                                    color: "#726A5E",
                                     fontSize: "14px",
                                     fontWeight: 500,
                                   }}
@@ -716,13 +716,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               >
                                 <AccessTimeRoundedIcon
                                   sx={{
-                                    color: "#6B7280",
+                                    color: "#726A5E",
                                     fontSize: "16px",
                                   }}
                                 />
                                 <Typography
                                   sx={{
-                                    color: "#6B7280",
+                                    color: "#726A5E",
                                     fontSize: "14px",
                                     fontWeight: 500,
                                   }}
@@ -752,7 +752,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               </Typography>
                               <Typography
                                 sx={{
-                                  color: "#9CA3AF",
+                                  color: "#8A8073",
                                   fontSize: "14px",
                                   textDecoration: "line-through",
                                 }}
@@ -761,7 +761,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                               </Typography>
                               <Typography
                                 sx={{
-                                  color: "#9CA3AF",
+                                  color: "#8A8073",
                                   fontSize: "12px",
                                 }}
                               >
@@ -861,14 +861,14 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                 width: "8px",
               },
               "&::-webkit-scrollbar-track": {
-                background: "#F3F4F6",
+                background: "#F1EADD",
                 borderRadius: "10px",
               },
               "&::-webkit-scrollbar-thumb": {
-                background: "#D1D5DB",
+                background: "#D8CFC0",
                 borderRadius: "10px",
                 "&:hover": {
-                  background: "#9CA3AF",
+                  background: "#8A8073",
                 },
               },
             }}
@@ -1198,7 +1198,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             >
                               <Typography
                                 sx={{
-                                  color: "#6B7280",
+                                  color: "#726A5E",
                                   fontSize: "13px",
                                   fontWeight: 500,
                                 }}
@@ -1249,7 +1249,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             />
                             <Typography
                               sx={{
-                                color: "#111827",
+                                color: "#221C17",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1276,13 +1276,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             <CalendarMonthRoundedIcon
                               sx={{
-                                color: "#6B7280",
+                                color: "#726A5E",
                                 fontSize: "16px",
                               }}
                             />
                             <Typography
                               sx={{
-                                color: "#6B7280",
+                                color: "#726A5E",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1328,13 +1328,13 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           >
                             <AccessTimeRoundedIcon
                               sx={{
-                                color: "#6B7280",
+                                color: "#726A5E",
                                 fontSize: "16px",
                               }}
                             />
                             <Typography
                               sx={{
-                                color: "#6B7280",
+                                color: "#726A5E",
                                 fontSize: "14px",
                                 fontWeight: 500,
                               }}
@@ -1356,8 +1356,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Adventure Activities"
                             size="small"
                             sx={{
-                              backgroundColor: "#F3F4F6",
-                              color: "#6B7280",
+                              backgroundColor: "#F1EADD",
+                              color: "#726A5E",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1367,8 +1367,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Local Guide"
                             size="small"
                             sx={{
-                              backgroundColor: "#F3F4F6",
-                              color: "#6B7280",
+                              backgroundColor: "#F1EADD",
+                              color: "#726A5E",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1378,8 +1378,8 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                             label="Accommodation"
                             size="small"
                             sx={{
-                              backgroundColor: "#F3F4F6",
-                              color: "#6B7280",
+                              backgroundColor: "#F1EADD",
+                              color: "#726A5E",
                               fontSize: "11px",
                               height: "24px",
                               fontWeight: 400,
@@ -1407,7 +1407,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#9CA3AF",
+                              color: "#8A8073",
                               fontSize: "14px",
                               textDecoration: "line-through",
                             }}
@@ -1416,7 +1416,7 @@ const January = ({ activeMonth, viewAll, searchQuery = "" }) => {
                           </Typography>
                           <Typography
                             sx={{
-                              color: "#9CA3AF",
+                              color: "#8A8073",
                               fontSize: "12px",
                             }}
                           >

@@ -121,7 +121,7 @@ const Banner = () => {
                       </Box>
                       <Typography
                         sx={{
-                          color: "#333",
+                          color: "#3C3228",
                           fontSize: { xs: "11px", sm: "14px", md: "14px" },
                           fontWeight: "700",
                           letterSpacing: "0.5px",
@@ -172,7 +172,7 @@ const Banner = () => {
 
                         <Typography
                           sx={{
-                            color: "#333",
+                            color: "#3C3228",
                             fontSize: { xs: "11px", sm: "14px", md: "14px" },
                             fontWeight: "500",
                             display: "flex", gap: "5px", alignItems: "center"
@@ -182,7 +182,7 @@ const Banner = () => {
                         </Typography>
                         <Typography
                           sx={{
-                            color: "#333",
+                            color: "#3C3228",
                             fontSize: { xs: "11px", sm: "14px", md: "14px" },
                             fontWeight: "600",
                           }}
@@ -209,7 +209,7 @@ const Banner = () => {
                       <StarIcon sx={{ fontSize: "20px", color: "#F4C95D" }} />
                       <Typography
                         sx={{
-                          color: "#333",
+                          color: "#3C3228",
                           fontSize: { xs: "11px", sm: "14px", md: "14px" },
                           fontWeight: "600",
                         }}

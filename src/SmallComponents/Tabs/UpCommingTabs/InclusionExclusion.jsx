@@ -98,15 +98,15 @@ const InclusionExclusion = ({ Inclusion, Exclusion }) => {
               xs={12}
               md={12}
               sx={{
-                background: "#F9FAFB",
-                border: "2px solid #F3F4F6",
+                background: "#FBF6EE",
+                border: "2px solid #F1EADD",
                 p: { xs: 1, sm: 2, md: 3 },
               }}
             >
               <Box>
                 <Typography
                   sx={{
-                    color: "#111827",
+                    color: "#221C17",
                     fontFamily: "Inter",
                     fontSize: "16px",
                     fontStyle: "normal",
@@ -132,9 +132,9 @@ const InclusionExclusion = ({ Inclusion, Exclusion }) => {
                       }}
                     >
                       <CircleRoundedIcon
-                        sx={{ color: "#6D7280", fontSize: "7px", mt: 1 }}
+                        sx={{ color: "#726A5E", fontSize: "7px", mt: 1 }}
                       />
-                      <Typography sx={{ color: "#6D7280", textAlign: "left" }}>
+                      <Typography sx={{ color: "#726A5E", textAlign: "left" }}>
                         {item}
                       </Typography>
                     </Box>
@@ -153,15 +153,15 @@ const InclusionExclusion = ({ Inclusion, Exclusion }) => {
               xs={12}
               md={12}
               sx={{
-                background: "#F9FAFB",
-                border: "2px solid #F3F4F6",
+                background: "#FBF6EE",
+                border: "2px solid #F1EADD",
                 mt: 4,
               }}
             >
               <Box sx={{ p: { xs: 1, sm: 2, md: 3 } }}>
                 <Typography
                   sx={{
-                    color: "#111827",
+                    color: "#221C17",
                     fontFamily: "Inter",
                     fontSize: "16px",
                     fontStyle: "normal",
@@ -187,9 +187,9 @@ const InclusionExclusion = ({ Inclusion, Exclusion }) => {
                       }}
                     >
                       <CircleRoundedIcon
-                        sx={{ color: "#6D7280", fontSize: "7px", mt: 1 }}
+                        sx={{ color: "#726A5E", fontSize: "7px", mt: 1 }}
                       />
-                      <Typography sx={{ color: "#6D7280", textAlign: "left" }}>
+                      <Typography sx={{ color: "#726A5E", textAlign: "left" }}>
                         {item}
                       </Typography>
                     </Box>

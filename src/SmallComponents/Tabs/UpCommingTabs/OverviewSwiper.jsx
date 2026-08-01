@@ -35,7 +35,7 @@ const OverviewSwiper = () => {
             <Box
               sx={{
                 width: "100%",
-                border: "1px solid #F3F4F6",
+                border: "1px solid #F1EADD",
                 borderRadius: "16px",
                 display: "flex",
                 flexDirection: "column",
@@ -72,7 +72,7 @@ const OverviewSwiper = () => {
                 <Box>
                   <Typography
                     sx={{
-                      color: "#1F2937",
+                      color: "#3C3228",
                       fontWeight: 600,
                       fontSize: "14px",
                       fontFamily: "Inter",
@@ -83,7 +83,7 @@ const OverviewSwiper = () => {
                   {review.Designation && (
                     <Typography
                       sx={{
-                        color: "#9CA3AF",
+                        color: "#8A8073",
                         fontSize: "12px",
                         fontFamily: "Inter",
                       }}
@@ -95,7 +95,7 @@ const OverviewSwiper = () => {
               </Box>
               <Typography
                 sx={{
-                  color: "#4B5563",
+                  color: "#5A5247",
                   fontSize: "14px",
                   fontFamily: "Inter",
                   lineHeight: "160%",
