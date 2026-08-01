@@ -152,7 +152,7 @@ const CompleteProfile = () => {
               variant="simplebtn"
               sx={{
                 width: "100%",
-                background: "#EC3F18",
+                background: "#E9622F",
                 color: "#fff",
                 mt: 3.5,
                 py: 1.5,

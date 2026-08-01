@@ -17,7 +17,7 @@ import Toastify from "../SmallComponents/Tostify";
 
 /* ─── brand tokens ─── */
 const T = {
-  rust: "#d24b2a", rustDeep: "#b53c20", charcoal: "#2c2a28",
+  rust: "#CF4A2C", rustDeep: "#b53c20", charcoal: "#2c2a28",
   ink: "#1a1208", muted: "#7a5a48", line: "rgba(0,0,0,.12)",
 };
 

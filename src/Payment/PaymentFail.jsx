@@ -57,8 +57,8 @@ const Paymentfail = () => {
       >
         <Button
           sx={{
-            color: "#EC3F18",
-            border: "1px solid #EC3F18",
+            color: "#E9622F",
+            border: "1px solid #E9622F",
             borderRadius: "20px",
             width: "100px",
           }}
@@ -68,7 +68,7 @@ const Paymentfail = () => {
         <Button
           sx={{
             color: "#fff",
-            background: "#EC3F18",
+            background: "#E9622F",
             borderRadius: "20px",
             width: "100px",
           }}

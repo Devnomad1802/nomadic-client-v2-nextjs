@@ -80,7 +80,7 @@ const HowItWorks = () => {
                     height: 64,
                     borderRadius: "50%",
                     backgroundColor: "rgba(236,63,24,0.08)",
-                    color: "#EC3F18",
+                    color: "#E9622F",
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",

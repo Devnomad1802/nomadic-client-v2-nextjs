@@ -187,7 +187,7 @@ const ContactUs = ({ contactbg }) => {
                     {isLoading ? "Sending…" : "Send message"}
                     {!isLoading && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></svg>}
                   </button>
-                  {error && <p className="form-note" style={{ color: "#CD482A" }}>{error}</p>}
+                  {error && <p className="form-note" style={{ color: "#CF4A2C" }}>{error}</p>}
                   <p className="form-note">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M20 6 9 17l-5-5" /></svg>
                     We never share your details. No spam, ever.

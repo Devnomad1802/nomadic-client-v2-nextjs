@@ -103,7 +103,7 @@ to make travel more meaningful, mindful, and accessible for everyone.
                   <Button
                     onClick={() => navigate("/about-us")}
                     sx={{
-                      background: "#EC3F18",
+                      background: "#E9622F",
                       mt: 5,
                       px: 2.5,
                       py: 1.3,

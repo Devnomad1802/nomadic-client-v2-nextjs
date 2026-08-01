@@ -18,7 +18,7 @@ import LoginModal from "../Modals/LoginModal";
 import Footer from "../Component/Footer";
 
 // Brand tokens — consistent with the rest of the site.
-const ACCENT = "#CD482A";
+const ACCENT = "#CF4A2C";
 const DISPLAY = "'Playfair Display','Playfair',serif";
 const BODY = "'Inter',sans-serif";
 
@@ -153,7 +153,7 @@ const TD_CSS = `
   .td-page { font-family: ${BODY}; background: var(--orange-tint, #FFF4F1); min-height: 100vh; text-align: left; }
   .td-tab { transition: color .15s ease, border-color .15s ease; cursor: pointer; border: none; background: transparent; }
   .td-cta { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
-  .td-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83E21; }
+  .td-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83F23; }
   .td-ghost { transition: background .16s ease, border-color .16s ease; }
   .td-ghost:hover { background: #FBF6EE; border-color: ${ACCENT}; }
   .td-thumb { transition: transform .4s ease; }

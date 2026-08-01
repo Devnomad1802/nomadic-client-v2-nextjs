@@ -17,8 +17,8 @@ import { fmtDueDate } from "../utils/balanceDue";
 import Footer from "../Component/Footer";
 
 // Brand tokens — kept consistent with the rest of the website
-// (terracotta #CD482A, Inter body + Playfair display headings).
-const ACCENT = "#CD482A";
+// (terracotta #CF4A2C, Inter body + Playfair display headings).
+const ACCENT = "#CF4A2C";
 const DISPLAY_FONT = "'Playfair Display','Playfair',serif";
 const BODY_FONT = "'Inter',sans-serif";
 
@@ -32,7 +32,7 @@ const inr = (n) =>
 // companion. Class names are namespaced (nt-/sm-) to avoid global collisions.
 const TICKET_CSS = `
   .nt-cta { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
-  .nt-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(205,72,42,.36); background: #B83E21; }
+  .nt-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(205,72,42,.36); background: #B83F23; }
   .nt-amt { transition: border-color .16s ease, background .16s ease, box-shadow .16s ease; }
   .nt-amt:hover { border-color: ${ACCENT}; }
   .nt-back { transition: background .16s ease; }

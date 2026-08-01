@@ -41,14 +41,14 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
       borderRadius: "32px",
     },
     "&:hover": {
-      color: "#CD482A",
+      color: "#CF4A2C",
       opacity: 1,
       border: "1px solid #E5E7EB",
       borderRadius: "32px",
     },
     "&.Mui-selected": {
       color: "#fff",
-      background: "#CD482A",
+      background: "#CF4A2C",
 
       opacity: 1,
       textAlign: "center",
@@ -260,9 +260,9 @@ export default function UpcomingTab({ searchQuery = "" }) {
         sx={{
           mt: { xs: -3, sm: 0 },
           width: "199px",
-          border: "1.5px solid #EC3F18",
+          border: "1.5px solid #E9622F",
           background: "transparent",
-          color: "#EC3F18",
+          color: "#E9622F",
           "&:hover": {
             border: "1.5px solid #fff",
             background: "#393938",

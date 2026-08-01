@@ -40,7 +40,7 @@ class ErrorBoundary extends Component {
               sx={{
                 fontSize: { xs: "48px", md: "64px" },
                 fontWeight: 700,
-                color: "#CD482A",
+                color: "#CF4A2C",
                 mb: 2,
                 fontFamily: "Inter",
               }}
@@ -73,7 +73,7 @@ class ErrorBoundary extends Component {
             <Button
               onClick={this.handleReset}
               sx={{
-                background: "#CD482A",
+                background: "#CF4A2C",
                 color: "#fff",
                 px: 4,
                 py: 1.5,

@@ -24,7 +24,7 @@ const Setting = () => {
         sx={{
           display: "flex",
           textAlign: "left",
-          color: "#FF0E07",
+          color: "#CF4A2C",
           fontFamily: "Inter",
           fontSize: "15px",
 

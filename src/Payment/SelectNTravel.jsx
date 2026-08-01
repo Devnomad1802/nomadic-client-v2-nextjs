@@ -193,7 +193,7 @@ const SelectNTravel = () => {
           <Box sx={{ height: "1px ", background: "#A58787", width: "100%" }} />
           <Typography
             sx={{
-              color: "#CD482A",
+              color: "#CF4A2C",
               fontSize: "23px",
               fontWeight: "500",
               textAlign: "right",

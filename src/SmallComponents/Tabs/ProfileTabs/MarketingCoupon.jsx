@@ -20,7 +20,7 @@ const array = [
     color: "#FBC800",
     bl: "2px solid #D2D5DA",
   },
-  { value: "10", title: "Cancelled", info: "hlw", color: "#FF0E07" },
+  { value: "10", title: "Cancelled", info: "hlw", color: "#CF4A2C" },
 ];
 
 const MarketingCoupon = () => {

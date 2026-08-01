@@ -155,7 +155,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                             onClick={goSearch}
                             aria-label="search experiences"
                             sx={{
-                              backgroundColor: "#EC3F18",
+                              backgroundColor: "#E9622F",
                               color: "#fff",
                               "&:hover": { backgroundColor: "#393938" },
                             }}
@@ -182,7 +182,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                       sx={{
                         textTransform: "capitalize",
                         fontSize: "14px",
-                        backgroundColor: "#EC3F18",
+                        backgroundColor: "#E9622F",
                         color: "#fff",
                         width: { xs: "100%", sm: "220px" },
                         maxWidth: "320px",
@@ -256,7 +256,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
             },
             "& .swiper-pagination-bullet-active": {
               opacity: 1,
-              backgroundColor: "#EC3F18",
+              backgroundColor: "#E9622F",
             },
           }}
         >
@@ -360,7 +360,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                             sx={{
                               textTransform: "capitalize",
                               fontSize: "14px",
-                              backgroundColor: "#EC3F18",
+                              backgroundColor: "#E9622F",
                               color: "#fff",
                               alignItems: "left",
                               width: "300px",

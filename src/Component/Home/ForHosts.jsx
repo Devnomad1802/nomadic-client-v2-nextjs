@@ -59,7 +59,7 @@ const ForHosts = () => {
               textTransform: "capitalize",
               fontSize: "15px",
               fontWeight: 600,
-              backgroundColor: "#EC3F18",
+              backgroundColor: "#E9622F",
               color: "#fff",
               px: 4,
               py: 1.25,

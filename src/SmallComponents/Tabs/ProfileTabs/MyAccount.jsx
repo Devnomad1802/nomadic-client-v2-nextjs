@@ -154,7 +154,7 @@ const MyAccount = () => {
         >
           <Button
             // sx={{
-            //   background: "#EC3F18",
+            //   background: "#E9622F",
             //   borderRadius: "30px",
             //   color: "#fff",
             //   px: 5,
@@ -162,7 +162,7 @@ const MyAccount = () => {
             //   mt: 5,
             // }}
             variant="simplebtn"
-            sx={{ background: "#CD482A", color: "#fff" }}
+            sx={{ background: "#CF4A2C", color: "#fff" }}
           >
             Update
           </Button>
