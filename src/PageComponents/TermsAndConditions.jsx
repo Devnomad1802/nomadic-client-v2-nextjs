@@ -152,7 +152,7 @@ const TermsAndConditions = () => {
       <Helmet>
         <title>Terms and Conditions | Nomadic Townies</title>
         <meta name="description" content="Read the terms and conditions for booking travel experiences with Nomadic Townies." />
-        <link rel="canonical" href="https://nomadictownies.com/terms-and-conditions" />
+        <link rel="canonical" href="https://www.nomadictownies.com/terms-and-conditions" />
       </Helmet>
 
       {/* header (logo intentionally omitted per brand request) */}

@@ -50,11 +50,11 @@ export const metadata: Metadata = {
     icon: "/nt.png",
   },
   alternates: {
-    canonical: "https://nomadictownies.com/",
+    canonical: "https://www.nomadictownies.com/",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/",
+    url: "https://www.nomadictownies.com/",
     siteName: "Nomadic Townies",
     title: "Nomadic Townies | Curated Travel Experiences & Community Trips",
     description:
@@ -109,8 +109,8 @@ export default function RootLayout({
                 {
                   "@type": "Organization",
                   "name": "Nomadic Townies",
-                  "url": "https://nomadictownies.com/",
-                  "logo": "https://nomadictownies.com/nt.png",
+                  "url": "https://www.nomadictownies.com/",
+                  "logo": "https://www.nomadictownies.com/nt.png",
                   "description": "A curated marketplace for host-led travel experiences — community trips, retreats, workshops and cultural immersions.",
                   "sameAs": [
                     "https://www.instagram.com/nomadictownies",
@@ -120,10 +120,10 @@ export default function RootLayout({
                 {
                   "@type": "WebSite",
                   "name": "Nomadic Townies",
-                  "url": "https://nomadictownies.com/",
+                  "url": "https://www.nomadictownies.com/",
                   "potentialAction": {
                     "@type": "SearchAction",
-                    "target": "https://nomadictownies.com/experiences?search={search_term_string}",
+                    "target": "https://www.nomadictownies.com/experiences?search={search_term_string}",
                     "query-input": "required name=search_term_string"
                   }
                 }

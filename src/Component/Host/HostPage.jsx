@@ -462,7 +462,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDesc} />
-        <link rel="canonical" href={`https://nomadictownies.com/hosts/${activeSlug}`} />
+        <link rel="canonical" href={`https://www.nomadictownies.com/hosts/${activeSlug}`} />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDesc} />

@@ -143,7 +143,7 @@ const CancellationAndRefund = () => {
       <Helmet>
         <title>Cancellation &amp; Refund Policy | Nomadic Townies</title>
         <meta name="description" content="Cancellation and refund rules for bookings made through Nomadic Townies." />
-        <link rel="canonical" href="https://nomadictownies.com/cancellation-and-refund" />
+        <link rel="canonical" href="https://www.nomadictownies.com/cancellation-and-refund" />
       </Helmet>
 
       {/* header (logo intentionally omitted per brand request) */}

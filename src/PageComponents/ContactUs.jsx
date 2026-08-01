@@ -79,7 +79,7 @@ const ContactUs = ({ contactbg }) => {
       <Helmet>
         <title>Contact Us | Nomadic Townies</title>
         <meta name="description" content="Contact Nomadic Townies for custom trip planning, host or experience enquiries, or travel support. Reach us via phone, email or the enquiry form." />
-        <link rel="canonical" href="https://nomadictownies.com/contact-us" />
+        <link rel="canonical" href="https://www.nomadictownies.com/contact-us" />
       </Helmet>
 
       {/* HERO */}

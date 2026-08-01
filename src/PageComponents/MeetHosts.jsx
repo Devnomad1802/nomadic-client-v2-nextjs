@@ -140,7 +140,7 @@ const MeetHosts = ({ initialHosts }) => {
       <Helmet>
         <title>Meet Our Hosts | Verified Experience Hosts | Nomadic Townies</title>
         <meta name="description" content="Browse verified local hosts, community hosts and experience hosts on Nomadic Townies — a curated marketplace of host-led experiences. Every trip is hosted by a real, verified person or community." />
-        <link rel="canonical" href="https://nomadictownies.com/hosts" />
+        <link rel="canonical" href="https://www.nomadictownies.com/hosts" />
         <meta property="og:title" content="Meet Our Hosts | Verified Experience Hosts | Nomadic Townies" />
         <meta property="og:description" content="Discover real, verified hosts — adventure, wellness, backpacking and cultural experience hosts leading host-led experiences." />
       </Helmet>

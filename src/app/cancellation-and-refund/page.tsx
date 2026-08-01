@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Read the Nomadic Townies cancellation and refund policy. Understand how cancellations are processed, refund timelines, and trip rescheduling options for community trips and experiences.",
   alternates: {
-    canonical: "https://nomadictownies.com/cancellation-and-refund",
+    canonical: "https://www.nomadictownies.com/cancellation-and-refund",
   },
   robots: "index, follow",
 };

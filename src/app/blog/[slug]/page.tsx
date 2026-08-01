@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const activeSlug = item.seoSlug || item._id;
-  const pageUrl = `https://nomadictownies.com/blog/${activeSlug}`;
+  const pageUrl = `https://www.nomadictownies.com/blog/${activeSlug}`;
   const ogImage = item.Banner_Image || FALLBACK_IMAGE;
   const description =
     item.metaDescription ||

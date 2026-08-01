@@ -93,7 +93,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (isSingleTrip) {
       const activeSlug = isSingleTrip.seoSlug || isSingleTrip._id;
       const destSlug = slugify(isSingleTrip.location || isSingleTrip.destination || "trip");
-      const pageUrl = `https://nomadictownies.com/trips/${destSlug}/${activeSlug}`;
+      const pageUrl = `https://www.nomadictownies.com/trips/${destSlug}/${activeSlug}`;
       const ogImage = isSingleTrip.tripImages?.[0] || isSingleTrip.coverImage || isSingleTrip.Banner_Image || FALLBACK_IMAGE;
       const description =
         isSingleTrip.description ||
@@ -128,7 +128,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const catDoc = cats.find((c: any) => norm(c?.Category) === norm(singleParam));
     const tpl = matchTemplate(catDoc?.Category || singleParam) as any;
     const displayName = tpl.name || catDoc?.Category || singleParam.charAt(0).toUpperCase() + singleParam.slice(1);
-    const pageUrl = `https://nomadictownies.com/trips/${slugArray[0]}`;
+    const pageUrl = `https://www.nomadictownies.com/trips/${slugArray[0]}`;
     const description = `Explore the best curated ${displayName} travel experiences, community trips, and retreats with Nomadic Townies.`;
 
     return {
@@ -170,7 +170,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const activeSlug = trip.seoSlug || trip._id || targetSlug;
   const destSlug = slugify(trip.location || trip.destination || "trip");
-  const pageUrl = `https://nomadictownies.com/trips/${destSlug}/${activeSlug}`;
+  const pageUrl = `https://www.nomadictownies.com/trips/${destSlug}/${activeSlug}`;
   const ogImage = trip.tripImages?.[0] || trip.coverImage || trip.Banner_Image || FALLBACK_IMAGE;
   const description =
     trip.description ||

@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description:
     "Nomadic Townies is a curated marketplace for transformative, host-led travel experiences. We connect passionate communities and local hosts with mindful travellers seeking real, meaningful adventures across India.",
   alternates: {
-    canonical: "https://nomadictownies.com/about-us",
+    canonical: "https://www.nomadictownies.com/about-us",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/about-us",
+    url: "https://www.nomadictownies.com/about-us",
     siteName: "Nomadic Townies",
     title: "About Nomadic Townies — Our Story & Mission",
     description:

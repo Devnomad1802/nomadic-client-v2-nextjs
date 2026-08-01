@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description:
     "Browse all curated travel experiences on Nomadic Townies — community trips, backpacking adventures, trekking, wellness retreats, cultural immersions and more. Filter by category, destination or price.",
   alternates: {
-    canonical: "https://nomadictownies.com/experiences",
+    canonical: "https://www.nomadictownies.com/experiences",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/experiences",
+    url: "https://www.nomadictownies.com/experiences",
     siteName: "Nomadic Townies",
     title: "All Travel Experiences & Curated Trips | Nomadic Townies",
     description:

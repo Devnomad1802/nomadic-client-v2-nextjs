@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = formatCatName(category);
   const title = `Category: ${name} | Nomadic Townies Blog`;
   const description = `Browse all travel stories, destination guides, and articles under ${name} on Nomadic Townies.`;
-  const canonical = `https://nomadictownies.com/blog/category/${category}`;
+  const canonical = `https://www.nomadictownies.com/blog/category/${category}`;
 
   return {
     title,

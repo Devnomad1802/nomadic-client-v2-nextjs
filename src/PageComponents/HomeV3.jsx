@@ -72,10 +72,10 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
       <Helmet>
         <title>Curated Travel Experiences, Community Trips &amp; Retreats | Nomadic Townies</title>
         <meta name="description" content="Discover community trips, backpacking adventures, wellness retreats, workshops, and cultural immersions hosted by passionate communities. Nomadic Townies is a curated marketplace for transformative travel experiences." />
-        <link rel="canonical" href="https://nomadictownies.com/" />
+        <link rel="canonical" href="https://www.nomadictownies.com/" />
         <meta property="og:title" content="Nomadic Townies | Curated Travel Experiences &amp; Community Trips" />
         <meta property="og:description" content="Explore meaningful travel experiences hosted by passionate communities — from backpacking adventures and retreats to workshops and cultural immersions." />
-        <meta property="og:url" content="https://nomadictownies.com/" />
+        <meta property="og:url" content="https://www.nomadictownies.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Nomadic Townies | Curated Travel Experiences" />

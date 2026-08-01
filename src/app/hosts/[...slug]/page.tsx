@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const host = hostRes?.data || hostRes || {};
   const name = host?.hostTitle || host?.hostName || "Verified Host";
   const activeSlug = normSlug(host?.seoSlug || host?._id || rawSlug);
-  const pageUrl = `https://nomadictownies.com/hosts/${activeSlug}`;
+  const pageUrl = `https://www.nomadictownies.com/hosts/${activeSlug}`;
   const ogImage = host?.coverImage || host?.brandingLogo || FALLBACK_IMAGE;
   const description =
     host?.aboutMe ||

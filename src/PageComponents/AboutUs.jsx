@@ -189,10 +189,10 @@ const AboutUs = ({ aboutbg = "" }) => {
       <Helmet>
         <title>About Us | More Than Travel — Meaningful Experiences | Nomadic Townies</title>
         <meta name="description" content="Discover Nomadic Townies — a curated marketplace connecting travellers with verified hosts who create community trips, backpacking adventures, wellness retreats, and cultural experiences." />
-        <link rel="canonical" href="https://nomadictownies.com/about-us" />
+        <link rel="canonical" href="https://www.nomadictownies.com/about-us" />
         <meta property="og:title" content="About Us | Nomadic Townies" />
         <meta property="og:description" content="A story about meaningful experiences. Discover host-led community trips, backpacking, wellness retreats, and cultural immersions." />
-        <meta property="og:url" content="https://nomadictownies.com/about-us" />
+        <meta property="og:url" content="https://www.nomadictownies.com/about-us" />
       </Helmet>
 
       <BecomeHostModal openS={openHostModal} setOpens={setOpenHostModal} />

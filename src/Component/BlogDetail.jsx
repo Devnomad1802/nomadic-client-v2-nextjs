@@ -523,7 +523,7 @@ const BlogDetail = ({ initialBlog, initialAllBlogs }) => {
   const safeMeta = (item.metaDescription || item.title || "Travel story from Nomadic Townies").substring(0, 155);
   const title = item.seoTitle || item.title;
   const activeSlug = item.seoSlug || item._id || slugOrId;
-  const pageUrl = typeof window !== "undefined" ? window.location.href : `https://nomadictownies.com/blog/${activeSlug}`;
+  const pageUrl = typeof window !== "undefined" ? window.location.href : `https://www.nomadictownies.com/blog/${activeSlug}`;
 
   return (
     <Box sx={{ fontFamily: INTER, color: TEXT, bgcolor: "#fff", minHeight: "100vh",
@@ -549,7 +549,7 @@ const BlogDetail = ({ initialBlog, initialAllBlogs }) => {
             "@context": "https://schema.org", "@type": "BlogPosting",
             "headline": title, "image": item.Banner_Image ? [item.Banner_Image] : [],
             "datePublished": item.Date, "author": { "@type": "Person", "name": item.author || "Nomadic Townies" },
-            "publisher": { "@type": "Organization", "name": "Nomadic Townies", "logo": { "@type": "ImageObject", "url": "https://nomadictownies.com/nt.png" } },
+            "publisher": { "@type": "Organization", "name": "Nomadic Townies", "logo": { "@type": "ImageObject", "url": "https://www.nomadictownies.com/nt.png" } },
             "description": safeMeta,
           })}</script>
         </Helmet>

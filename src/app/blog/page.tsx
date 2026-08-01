@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   description:
     "Read travel stories, destination guides, and community adventure blogs from real hosts and travellers on Nomadic Townies. Get inspired for your next trip.",
   alternates: {
-    canonical: "https://nomadictownies.com/blog",
+    canonical: "https://www.nomadictownies.com/blog",
   },
   openGraph: {
     type: "website",
-    url: "https://nomadictownies.com/blog",
+    url: "https://www.nomadictownies.com/blog",
     siteName: "Nomadic Townies",
     title: "Stories & Travel Blogs | Nomadic Townies",
     description:
