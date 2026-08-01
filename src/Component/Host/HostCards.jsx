@@ -203,11 +203,11 @@ const HostCards = ({ hostData }) => {
                       sx={{ display: "flex", alignItems: "center", gap: "8px" }}
                     >
                       <CalendarTodayIcon
-                        sx={{ color: "#726A5E", fontSize: "16px" }}
+                        sx={{ color: "#52525B", fontSize: "16px" }}
                       />
                       <Typography
                         variant="body2"
-                        sx={{ color: "#726A5E", fontSize: "13px" }}
+                        sx={{ color: "#52525B", fontSize: "13px" }}
                       >
                         {extractDate(trip.selectDate)}
                       </Typography>
@@ -216,11 +216,11 @@ const HostCards = ({ hostData }) => {
                       sx={{ display: "flex", alignItems: "center", gap: "8px" }}
                     >
                       <AccessTimeIcon
-                        sx={{ color: "#726A5E", fontSize: "16px" }}
+                        sx={{ color: "#52525B", fontSize: "16px" }}
                       />
                       <Typography
                         variant="body2"
-                        sx={{ color: "#726A5E", fontSize: "13px" }}
+                        sx={{ color: "#52525B", fontSize: "13px" }}
                       >
                         {trip.days}D/{trip.nights}N
                       </Typography>
@@ -228,10 +228,10 @@ const HostCards = ({ hostData }) => {
                     <Box
                       sx={{ display: "flex", alignItems: "center", gap: "8px" }}
                     >
-                      <GroupIcon sx={{ color: "#726A5E", fontSize: "16px" }} />
+                      <GroupIcon sx={{ color: "#52525B", fontSize: "16px" }} />
                       <Typography
                         variant="body2"
-                        sx={{ color: "#726A5E", fontSize: "13px" }}
+                        sx={{ color: "#52525B", fontSize: "13px" }}
                       >
                         {extractSeats(trip.numberOfSeats)} seats
                       </Typography>
@@ -242,7 +242,7 @@ const HostCards = ({ hostData }) => {
                       <StarIcon sx={{ color: "#FFD700", fontSize: "16px" }} />
                       <Typography
                         variant="body2"
-                        sx={{ color: "#726A5E", fontSize: "13px" }}
+                        sx={{ color: "#52525B", fontSize: "13px" }}
                       >
                         {getCleanRating(trip.ratings)} ({trip?.reviews?.length || 0})
                       </Typography>
@@ -270,7 +270,7 @@ const HostCards = ({ hostData }) => {
                     {trip.strikePrice && (
                       <Typography
                         sx={{
-                          color: "#8A8073",
+                          color: "#71717A",
                           fontSize: "14px",
                           textDecoration: "line-through",
                         }}
@@ -280,7 +280,7 @@ const HostCards = ({ hostData }) => {
                     )}
                     <Typography
                       sx={{
-                        color: "#8A8073",
+                        color: "#71717A",
                         fontSize: "12px",
                       }}
                     >

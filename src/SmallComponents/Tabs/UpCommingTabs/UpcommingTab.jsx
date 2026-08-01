@@ -25,7 +25,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingTop: 0,
     paddingBottom: 0,
     margin: "0px 10px",
-    color: "#221C17",
+    color: "#18181B",
     fontWeight: "500 !important",
     height: "20px",
     display: "flex", // Flex display to center text
@@ -33,17 +33,17 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     justifyContent: "center", // Horizontal centering
     textAlign: "center",
     mx: "auto",
-    border: "1px solid #E6DDCF",
+    border: "1px solid #E4E4E7",
     borderRadius: "32px",
     "& .MuiTab-wrapper": {
       height: "20px",
-      border: "1px solid #E6DDCF",
+      border: "1px solid #E4E4E7",
       borderRadius: "32px",
     },
     "&:hover": {
       color: "#CF4A2C",
       opacity: 1,
-      border: "1px solid #E6DDCF",
+      border: "1px solid #E4E4E7",
       borderRadius: "32px",
     },
     "&.Mui-selected": {
@@ -60,7 +60,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     },
     "&.Mui-focusVisible": {
       backgroundColor: "#d1eaff",
-      border: "1px solid #E6DDCF",
+      border: "1px solid #E4E4E7",
       borderRadius: "32px",
     },
   })
@@ -260,12 +260,12 @@ export default function UpcomingTab({ searchQuery = "" }) {
         sx={{
           mt: { xs: -3, sm: 0 },
           width: "199px",
-          border: "1.5px solid #E9622F",
+          border: "1.5px solid #CF4A2C",
           background: "transparent",
-          color: "#E9622F",
+          color: "#CF4A2C",
           "&:hover": {
             border: "1.5px solid #fff",
-            background: "#3C3228",
+            background: "#27272A",
           },
         }}
       >

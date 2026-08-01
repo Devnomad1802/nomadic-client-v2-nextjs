@@ -58,16 +58,16 @@ const ForgetPassword = () => {
           align="center"
           variant="h3"
           mt={6}
-          sx={{ color: "#5A5247" }}
+          sx={{ color: "#3F3F46" }}
         >
           Forget your password?
         </Typography>
-        <Typography mt={2} sx={{ color: "#5A5247" }}>
+        <Typography mt={2} sx={{ color: "#3F3F46" }}>
           Reset your password with a device you`ve recently used to access
           Nomadic Townies to avoid a temporary security restriction.
         </Typography>
         <Box sx={{ maxWidth: "350px", mx: "auto", mt: 3 }}>
-          <Typography mt={2} sx={{ color: "#5A5247", textAlign: "left" }}>
+          <Typography mt={2} sx={{ color: "#3F3F46", textAlign: "left" }}>
             Email
           </Typography>
           <TextField
@@ -92,12 +92,12 @@ const ForgetPassword = () => {
             maxWidth: "350px",
             px: 2,
             width: "100%",
-            background: "#3C3228",
+            background: "#27272A",
             color: "#fff",
-            border: "1.5px solid #3C3228",
+            border: "1.5px solid #27272A",
 
             "&:hover": {
-              background: "#FBF6EE",
+              background: "#FAFAFA",
               color: "#CF4A2C",
               //   height: "45px",
               border: "1.5px solid #CF4A2C",

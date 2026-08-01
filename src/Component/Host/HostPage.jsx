@@ -74,7 +74,7 @@ const starStr = (n) => {
 
 // Decimal-accurate star row: each star fills 0–100% by the fractional rating,
 // so 4.4 → four full + one 40%-filled star. Synchronised with the numeric value.
-const StarRow = ({ value = 0, size = 16, dim = "#E0D8CB", gold = "#F5B301" }) => {
+const StarRow = ({ value = 0, size = 16, dim = "#E0D8CB", gold = "#18181B" }) => {
   const v = Math.max(0, Math.min(5, Number(value) || 0));
   return (
     <span style={{ display: "inline-flex", gap: 2, lineHeight: 1 }} aria-label={`${v.toFixed(1)} out of 5`}>
@@ -97,13 +97,13 @@ const tripImg = (t) =>
 const IcCheck = ({ s = 19, w = 3, c = "currentColor" }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
 );
-const IcPin = ({ c = "#F0B49C" }) => (
+const IcPin = ({ c = "#D4D4D8" }) => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
 );
-const IcCal = ({ c = "#F0B49C" }) => (
+const IcCal = ({ c = "#D4D4D8" }) => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5" /><path d="M3 9.5h18M8 2.5v4M16 2.5v4" /></svg>
 );
-const IcTrophy = ({ c = "#F0B49C", s = 15 }) => (
+const IcTrophy = ({ c = "#D4D4D8", s = 15 }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9V2h12v7a6 6 0 0 1-12 0Z" /><path d="M6 5H3v2a3 3 0 0 0 3 3M18 5h3v2a3 3 0 0 1-3 3M9 18h6M10 22h4M12 15v3" /></svg>
 );
 const IcGlobe = () => (
@@ -138,9 +138,9 @@ const BADGE_PATHS = {
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
 };
 const BADGE_TONES = {
-  green: { bg: "#E0EFE4", color: "#2E7D4F" },
-  terracotta: { bg: "#F6E4DC", color: "#CF4A2C" },
-  gold: { bg: "#FBEFD6", color: "#C8941E" },
+  green: { bg: "#E0EFE4", color: "#15803D" },
+  terracotta: { bg: "#F4F4F5", color: "#CF4A2C" },
+  gold: { bg: "#FBEFD6", color: "#A66412" },
 };
 const toneForBadge = (icon) =>
   icon === "verified" || icon === "shield" || icon === "leaf"
@@ -550,7 +550,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
             <h2>About {firstName}</h2>
             {host?.hostOverview
               ? <p className="hd-about-p">{host.hostOverview}</p>
-              : <p className="hd-about-p" style={{ color: "#8A8073" }}>This host hasn&apos;t added an overview yet.</p>}
+              : <p className="hd-about-p" style={{ color: "#71717A" }}>This host hasn&apos;t added an overview yet.</p>}
             {host?.tagline && <div className="hd-quote">&ldquo;{host.tagline}&rdquo;</div>}
           </section>
 
@@ -631,7 +631,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
                 ))}
               </div>
             ) : (
-              <p className="hd-about-p" style={{ color: "#8A8073" }}>No active trips right now — check back soon.</p>
+              <p className="hd-about-p" style={{ color: "#71717A" }}>No active trips right now — check back soon.</p>
             )}
           </section>
 
@@ -697,7 +697,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
           {gallery.length > 0 && (
             <section className="hd-card">
               <h2>From {firstName}&apos;s trips</h2>
-              <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#8A8073" }}>Real moments from past experiences.</p>
+              <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#71717A" }}>Real moments from past experiences.</p>
               <div className="hd-gallery">
                 {galleryView.map((src, i) => (
                   <button

@@ -331,8 +331,8 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
                   <polygon points="80,84 88,58 80,58" fill="#E8C4B8" stroke="none" />
                 </g>
                 <text x="80" y="24" textAnchor="middle" fontFamily="Inter,sans-serif" fontSize="11" fontWeight="800" fill="#CF4A2C">N</text>
-                <path d="M28 118 q30 -16 52 -4 q24 13 52 -6" fill="none" stroke="#8A8073" strokeWidth="2.5" strokeDasharray="3,7" strokeLinecap="round" />
-                <circle cx="28" cy="118" r="4" fill="#8A8073" />
+                <path d="M28 118 q30 -16 52 -4 q24 13 52 -6" fill="none" stroke="#71717A" strokeWidth="2.5" strokeDasharray="3,7" strokeLinecap="round" />
+                <circle cx="28" cy="118" r="4" fill="#71717A" />
                 <path d="M132 108 q9 0 9 9 q0 8 -9 16 q-9 -8 -9 -16 q0 -9 9 -9Z" fill="none" stroke="#CF4A2C" strokeWidth="2.6" />
                 <circle cx="132" cy="117" r="3" fill="#CF4A2C" />
               </svg>

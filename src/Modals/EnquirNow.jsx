@@ -79,9 +79,9 @@ export default function EnquirNow({ opene, setOpene }) {
                 <circle cx="225" cy="62" r="14" stroke="#e9c9a5" strokeWidth="1.2" fill="#fff8ed" />
                 <path d="M75 130 Q120 60 175 110 Q210 140 215 165" stroke="url(#enqPathGrad)" strokeWidth="1.6" strokeDasharray="3 4" strokeLinecap="round" fill="none" />
                 <g transform="translate(60,116) rotate(-22)">
-                  <path d="M0 0 L42 8 L0 16 L12 8 Z" fill="#fff" stroke="#1a1208" strokeWidth="1.6" strokeLinejoin="round" />
-                  <path d="M0 0 L12 8 L0 16" stroke="#1a1208" strokeWidth="1.2" fill="none" />
-                  <path d="M12 8 L42 8" stroke="#1a1208" strokeWidth="1" opacity=".35" />
+                  <path d="M0 0 L42 8 L0 16 L12 8 Z" fill="#fff" stroke="#18181B" strokeWidth="1.6" strokeLinejoin="round" />
+                  <path d="M0 0 L12 8 L0 16" stroke="#18181B" strokeWidth="1.2" fill="none" />
+                  <path d="M12 8 L42 8" stroke="#18181B" strokeWidth="1" opacity=".35" />
                 </g>
                 <g stroke="#CF4A2C" strokeWidth="1.4" strokeLinecap="round" opacity=".7">
                   <line x1="42" y1="120" x2="32" y2="118" />
@@ -91,7 +91,7 @@ export default function EnquirNow({ opene, setOpene }) {
                 <g transform="translate(215,165)">
                   <circle r="14" stroke="#CF4A2C" strokeWidth="1" opacity=".25" />
                   <circle r="9" stroke="#CF4A2C" strokeWidth="1" opacity=".4" />
-                  <path d="M0 -10 C5 -10 8 -6 8 -2 C8 4 0 12 0 12 C0 12 -8 4 -8 -2 C-8 -6 -5 -10 0 -10 Z" fill="#CF4A2C" stroke="#1a1208" strokeWidth="1.4" strokeLinejoin="round" />
+                  <path d="M0 -10 C5 -10 8 -6 8 -2 C8 4 0 12 0 12 C0 12 -8 4 -8 -2 C-8 -6 -5 -10 0 -10 Z" fill="#CF4A2C" stroke="#18181B" strokeWidth="1.4" strokeLinejoin="round" />
                   <circle r="2.5" fill="#fff" cy="-3" />
                 </g>
                 <g fill="#CF4A2C" opacity=".5">
@@ -99,7 +99,7 @@ export default function EnquirNow({ opene, setOpene }) {
                   <circle cx="165" cy="22" r="1" />
                   <circle cx="145" cy="50" r="1.4" />
                 </g>
-                <g transform="translate(20,156)" stroke="#1a1208" strokeWidth="1.4" strokeLinejoin="round" fill="#fff">
+                <g transform="translate(20,156)" stroke="#18181B" strokeWidth="1.4" strokeLinejoin="round" fill="#fff">
                   <rect width="32" height="20" rx="1.5" />
                   <path d="M0 0 L16 12 L32 0" fill="none" />
                   <rect x="24" y="3" width="5" height="5" fill="#CF4A2C" stroke="none" />

@@ -41,7 +41,7 @@ const Upcimming = () => {
     >
       <Typography
         sx={{
-          color: "#5A5247",
+          color: "#3F3F46",
           // display: "flex",
           textAlign: { xs: "center", md: "left" },
           fontFamily: "Playfair",
@@ -101,7 +101,7 @@ const Upcimming = () => {
                         my: 3,
                         borderRadius: "16px",
                         textDecoration: "none",
-                        background: "#FBF6EE",
+                        background: "#FAFAFA",
                         // mx: 1,
                       }}
                     >
@@ -168,7 +168,7 @@ const Upcimming = () => {
                           <Box
                             sx={{
                               display: "flex",
-                              border: "1px solid #5A5247",
+                              border: "1px solid #3F3F46",
                               borderRadius: "15px",
                               background: "#5D5F71",
                               gap: "0px 3px",
@@ -178,11 +178,11 @@ const Upcimming = () => {
                             }}
                           >
                             <StarRoundedIcon
-                              style={{ color: "#F0A03C", fontSize: "25px" }}
+                              style={{ color: "#18181B", fontSize: "25px" }}
                             />
                             <Typography
                               sx={{
-                                color: "#F0A03C",
+                                color: "#18181B",
                                 fontSize: "18px",
                                 fontWeight: 500,
                               }}
@@ -204,7 +204,7 @@ const Upcimming = () => {
                       >
                         <Typography
                           sx={{
-                            color: "#221C17",
+                            color: "#18181B",
                             fontWeight: 500,
                             fontSize: { xs: "18px", sm: "20px", lg: "23px" },
                             textAlign: "left",
@@ -223,12 +223,12 @@ const Upcimming = () => {
                           {" "}
                           <FmdGoodOutlinedIcon
                             sx={{
-                              color: "#5A5247",
+                              color: "#3F3F46",
                             }}
                           />
                           <Typography
                             sx={{
-                              color: "#5A5247",
+                              color: "#3F3F46",
                               fontSize: { xs: "14px", sm: "16px" },
                             }}
                           >
@@ -252,11 +252,11 @@ const Upcimming = () => {
                           >
                             {" "}
                             <CalendarMonthRoundedIcon
-                              sx={{ color: "#5A5247" }}
+                              sx={{ color: "#3F3F46" }}
                             />
                             <Typography
                               sx={{
-                                color: "#5A5247",
+                                color: "#3F3F46",
                                 fontSize: { xs: "14px", sm: "16px" },
                               }}
                             >
@@ -266,20 +266,20 @@ const Upcimming = () => {
                           <Box
                             sx={{
                               display: "flex",
-                              border: "1px solid #F1EADD",
+                              border: "1px solid #F4F4F5",
                               borderRadius: "15px",
-                              background: "#FBF6EE",
+                              background: "#FAFAFA",
                               alignItems: "center",
                               px: 0.5,
                               py: 0.2,
                             }}
                           >
                             <AccessTimeRoundedIcon
-                              style={{ color: "#5A5247" }}
+                              style={{ color: "#3F3F46" }}
                             />
                             <Typography
                               sx={{
-                                color: "#5A5247",
+                                color: "#3F3F46",
                                 fontSize: { xs: "14px", sm: "16px" },
                               }}
                             >

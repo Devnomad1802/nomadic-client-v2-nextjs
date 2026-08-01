@@ -88,7 +88,7 @@ const DetailUpcomming = ({ tripDetail }) => {
           display: "flex",
           alignItems: "center",
           gap: 0,
-          borderBottom: "2px solid #F1EADD",
+          borderBottom: "2px solid #F4F4F5",
           background: "#fff",
           position: "sticky",
           top: 0,
@@ -110,10 +110,10 @@ const DetailUpcomming = ({ tripDetail }) => {
               fontSize: { xs: "13px", md: "14px" },
               fontWeight: activeTab === tab ? 700 : 500,
               fontFamily: "Inter",
-              color: activeTab === tab ? "#3C3228" : "#726A5E",
+              color: activeTab === tab ? "#27272A" : "#52525B",
               borderBottom: activeTab === tab ? "3px solid #CF4A2C" : "3px solid transparent",
               transition: "all 0.15s",
-              "&:hover": { color: "#3C3228" },
+              "&:hover": { color: "#27272A" },
               flexShrink: 0,
             }}
           >

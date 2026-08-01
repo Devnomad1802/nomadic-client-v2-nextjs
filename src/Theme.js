@@ -3,7 +3,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 let theme1 = createTheme({
   palette: {
     background: {
-      default: "#221C17",
+      default: "#18181B",
       color: "#fff",
     },
     text: {
@@ -55,7 +55,7 @@ let theme1 = createTheme({
       fontFamily: "Inter, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
-      color: "#D8CFC0",
+      color: "#D4D4D8",
     },
     heading1: {
       fontFamily: "Inter",
@@ -83,18 +83,18 @@ let theme1 = createTheme({
             color: "#CF4A2C",
             height: "45px",
             border: "1.5px solid #CF4A2C",
-            background: "#FBF6EE",
+            background: "#FAFAFA",
             "&:hover": {
-              background: "#3C3228",
+              background: "#27272A",
               color: "#fff",
-              border: "1.5px solid #3C3228",
+              border: "1.5px solid #27272A",
             },
           },
         },
         {
           props: { variant: "borderbtn" },
           style: {
-            border: "2px solid #2CBCA5",
+            border: "2px solid #CF4A2C",
             padding: "8px 35px",
             fontFamily: "Inter, sans-serif",
             fontStyle: "normal",
@@ -104,7 +104,7 @@ let theme1 = createTheme({
             borderRadius: "18px",
             textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             textTransform: "capitalize",
-            color: "#F4F3EF",
+            color: "#18181B",
             "&:hover": {
               background: "transparent",
             },
@@ -113,7 +113,7 @@ let theme1 = createTheme({
         {
           props: { variant: "tablebtn" },
           style: {
-            border: "2px solid #2CBCA5",
+            border: "2px solid #CF4A2C",
             padding: "2px 35px",
             fontFamily: "Inter, sans-serif",
             fontStyle: "normal",
@@ -123,7 +123,7 @@ let theme1 = createTheme({
             borderRadius: "18px",
             textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             textTransform: "capitalize",
-            color: "#F4F3EF",
+            color: "#18181B",
             "&:hover": {
               background: "transparent",
             },
@@ -138,7 +138,7 @@ let theme1 = createTheme({
     MuiPickersCalendarWeek: {
       root: {
         "&:hover": {
-          backgroundColor: "#D8CFC0",
+          backgroundColor: "#D4D4D8",
         },
       },
     },
@@ -159,7 +159,7 @@ theme1.overrides = {
     "@global": {
       body: {
         fontFamily: "Inter, sans-serif",
-        backgroundColor: "#080A0B",
+        backgroundColor: "#18181B",
         color: "#fff",
       },
       ".img-fluid": {

@@ -20,10 +20,10 @@ const T = {
   rust:     '#CF4A2C',
   rustDeep: '#b53c20',
   charcoal: '#2c2a28',
-  ink:      '#1a1208',
+  ink:      '#18181B',
   muted:    '#7a5a48',
   line:     'rgba(0,0,0,.12)',
-  cream:    '#fdf3ee',
+  cream:    '#F4F4F5',
 };
 
 /* ─── travel quotes ─────────────────────────────── */
@@ -108,8 +108,8 @@ const S = {
   },
   h2: { fontSize: 30, fontWeight: 800, color: T.ink, letterSpacing: '-.025em', margin: '0 0 24px', fontFamily: 'Inter, sans-serif' },
   toggle: {
-    display: 'flex', background: '#F1EADD',
-    border: '1px solid #F1EADD',
+    display: 'flex', background: '#F4F4F5',
+    border: '1px solid #F4F4F5',
     borderRadius: 999, padding: 4, marginBottom: 22,
   },
   togBtn: (active) => ({

@@ -66,7 +66,7 @@ const Reviews = () => {
             variant="h4"
             sx={{
               fontWeight: 500,
-              color: "#3C3228",
+              color: "#27272A",
               fontSize: { xs: "28px", sm: "32px", md: "36px" },
               fontFamily:
                 "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -94,7 +94,7 @@ const Reviews = () => {
                 variant="h5"
                 sx={{
                   fontWeight: 600,
-                  color: "#3C3228",
+                  color: "#27272A",
                   fontSize: { xs: "20px", sm: "24px" },
                   fontFamily:
                     "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -106,7 +106,7 @@ const Reviews = () => {
             <Typography
               variant="body1"
               sx={{
-                color: "#726A5E",
+                color: "#52525B",
                 fontSize: { xs: "14px", sm: "16px" },
                 fontFamily:
                   "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -155,7 +155,7 @@ const Reviews = () => {
                       variant="h6"
                       sx={{
                         fontWeight: 500,
-                        color: "#3C3228",
+                        color: "#27272A",
                         fontSize: { xs: "16px", sm: "18px" },
                         textAlign: "left",
                         fontFamily:
@@ -168,7 +168,7 @@ const Reviews = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#726A5E",
+                        color: "#52525B",
                         fontSize: { xs: "13px", sm: "13px" },
                         textAlign: "left",
                         fontFamily:
@@ -184,7 +184,7 @@ const Reviews = () => {
                 <Typography
                   variant="body1"
                   sx={{
-                    color: "#3C3228",
+                    color: "#27272A",
                     lineHeight: 1.7,
                     mb: 3,
                     ml: { xs: 7, sm: 9 },
@@ -211,7 +211,7 @@ const Reviews = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#726A5E",
+                        color: "#52525B",
                         fontSize: { xs: "12px", sm: "14px" },
                         ml: { xs: 7, sm: 9 },
                         fontFamily:
@@ -240,7 +240,7 @@ const Reviews = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#726A5E",
+                        color: "#52525B",
                         fontSize: { xs: "12px", sm: "14px" },
                         fontFamily:
                           "Inter, -apple-system, BlinkMacSystemFont, sans-serif",

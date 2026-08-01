@@ -28,7 +28,7 @@ const January = ({ selectDate, setCardData, cardData }) => {
               }));
             }}
             sx={{
-              border: id === index ? "1px solid red" : "1px solid #F1EADD",
+              border: id === index ? "1px solid red" : "1px solid #F4F4F5",
               px: 2,
               minHeight: "69px",
               borderRadius: { xs: "8px", md: "16px" },
@@ -52,7 +52,7 @@ const January = ({ selectDate, setCardData, cardData }) => {
                   xs: "13px",
                   sm: "16px",
                   md: "19px",
-                  color: "#5A5247",
+                  color: "#3F3F46",
                 },
               }}
             >
@@ -78,7 +78,7 @@ const January = ({ selectDate, setCardData, cardData }) => {
             >
               <Typography
                 sx={{
-                  color: "#F0A03C",
+                  color: "#18181B",
                   fontSize: "12.5px",
                   display: {
                     xs: id === index ? "none" : "block",

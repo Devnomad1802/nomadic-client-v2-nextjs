@@ -106,7 +106,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
         ) : heroImg ? (
           <img className="hero-media" src={heroImg} alt="Nomadic Townies experiences" />
         ) : (
-          <div className="hero-media" style={{ background: "linear-gradient(145deg,#1a1410,#2c2018 40%,#3d2b1a 70%,#1a1208)" }} />
+          <div className="hero-media" style={{ background: "linear-gradient(145deg,#1a1410,#27272A 40%,#3d2b1a 70%,#18181B)" }} />
         )}
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -240,7 +240,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
 
       {/* ── HOST BAND ── */}
       <section className="host-band">
-        <div style={{ position: "absolute", inset: 0, zIndex: 0, background: "linear-gradient(145deg,#1a1208 0%,#2c2018 60%,#1a0e06 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, zIndex: 0, background: "linear-gradient(145deg,#18181B 0%,#27272A 60%,#18181B 100%)" }} />
         <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(90deg,rgba(20,15,8,.96) 42%,rgba(20,15,8,.6) 100%)" }} />
         <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <div className="host-grid">

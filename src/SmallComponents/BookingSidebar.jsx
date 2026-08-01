@@ -86,7 +86,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
       {/* ===== PRICE CARD ===== */}
       <Box sx={{ background: "#fff", borderRadius: "14px", border: "1px solid #efeae5", boxShadow: "0 10px 28px -14px rgba(31,39,51,.2), 0 1px 4px -1px rgba(31,39,51,.04)", overflow: "hidden" }}>
         {/* Notice strip */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, px: 1.8, py: 0.9, background: "#fdf3ee", borderBottom: "1px solid #efeae5" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.8, px: 1.8, py: 0.9, background: "#F4F4F5", borderBottom: "1px solid #efeae5" }}>
           <Box sx={{ width: 22, height: 22, borderRadius: "6px", display: "grid", placeItems: "center", background: "#fff", color: "#CF4A2C", border: "1px solid #fbeae3", flexShrink: 0 }}>
             <AccountBalanceWalletOutlinedIcon sx={{ fontSize: 13 }} />
           </Box>
@@ -137,7 +137,7 @@ const BookingSidebar = ({ item, onBookNow }) => {
 
       {/* ===== CALLBACK FORM ===== */}
       <Box sx={{ background: "#fff", borderRadius: "14px", border: "1px solid #efeae5", boxShadow: "0 10px 28px -14px rgba(31,39,51,.2), 0 1px 4px -1px rgba(31,39,51,.04)", overflow: "hidden" }}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, px: 2.5, py: 2, background: "linear-gradient(180deg, #fbeae3 0%, #fdf3ee 100%)", borderBottom: "1px solid #efeae5" }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, px: 2.5, py: 2, background: "linear-gradient(180deg, #fbeae3 0%, #F4F4F5 100%)", borderBottom: "1px solid #efeae5" }}>
           <Box sx={{ width: 40, height: 40, borderRadius: "11px", display: "grid", placeItems: "center", background: "#CF4A2C", color: "#fff", boxShadow: "0 8px 14px -6px rgba(210,75,42,.6)", flexShrink: 0 }}>
             <PhoneOutlinedIcon sx={{ fontSize: 20 }} />
           </Box>

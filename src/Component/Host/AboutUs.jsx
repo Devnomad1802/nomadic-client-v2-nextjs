@@ -107,7 +107,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#27272A",
                   mb: 3,
                   fontSize: { xs: "24px", sm: "28px", md: "32px" },
                   textAlign: "left",
@@ -120,7 +120,7 @@ const AboutUs = ({ hostData }) => {
               <Typography
                 variant="body1"
                 sx={{
-                  color: "#726A5E",
+                  color: "#52525B",
                   lineHeight: 1.8,
                   mb: 3,
                   fontSize: { xs: "14px", sm: "16px" },
@@ -138,7 +138,7 @@ const AboutUs = ({ hostData }) => {
                   variant="h6"
                   sx={{
                     fontWeight: 500,
-                    color: "#3C3228",
+                    color: "#27272A",
                     mb: 2,
                     fontSize: { xs: "18px", sm: "20px" },
                     textAlign: "left",
@@ -191,7 +191,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 400,
-                  color: "#3C3228",
+                  color: "#27272A",
                   mb: 3,
                   fontSize: { xs: "24px", sm: "28px", md: "32px" },
                   textAlign: "left",
@@ -220,7 +220,7 @@ const AboutUs = ({ hostData }) => {
                       textTransform: "none",
                       fontWeight: 600,
                       fontSize: { xs: "14px", sm: "16px" },
-                      color: "#726A5E",
+                      color: "#52525B",
                       "&.Mui-selected": {
                         color: "#CF4A2C",
                       },
@@ -232,7 +232,7 @@ const AboutUs = ({ hostData }) => {
                       textTransform: "none",
                       fontWeight: 600,
                       fontSize: { xs: "14px", sm: "16px" },
-                      color: "#726A5E",
+                      color: "#52525B",
                       "&.Mui-selected": {
                         color: "#CF4A2C",
                       },
@@ -331,7 +331,7 @@ const AboutUs = ({ hostData }) => {
                               variant="body2"
                               sx={{
                                 fontWeight: 500,
-                                color: "#3C3228",
+                                color: "#27272A",
                                 fontSize: "14px",
                                 fontFamily:
                                   "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -363,7 +363,7 @@ const AboutUs = ({ hostData }) => {
                 variant="h5"
                 sx={{
                   fontWeight: 400,
-                  color: "#3C3228",
+                  color: "#27272A",
                   mb: 3,
                   fontSize: { xs: "20px", sm: "22px" },
                   textAlign: "left",
@@ -399,7 +399,7 @@ const AboutUs = ({ hostData }) => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#3C3228",
+                        color: "#27272A",
                         fontWeight: 400,
                         fontSize: { xs: "13px", sm: "14px" },
                         flex: 1,

@@ -96,7 +96,7 @@ const ChatNotifier = () => {
             setToasts((list) => list.filter((x) => x.key !== t.key));
             if (t.hostId) navigate(`/hosts/${t.hostId}?chat=1`);
           }}
-          style={{ background: "#221C17", color: "#FFF6EF", borderRadius: 12, padding: "12px 16px", maxWidth: 320, boxShadow: "0 10px 30px -10px rgba(0,0,0,.45)", cursor: "pointer" }}
+          style={{ background: "#18181B", color: "#FFFFFF", borderRadius: 12, padding: "12px 16px", maxWidth: 320, boxShadow: "0 10px 30px -10px rgba(0,0,0,.45)", cursor: "pointer" }}
         >
           <div style={{ fontWeight: 700, fontSize: 13.5 }}>{t.title}</div>
           <div style={{ fontSize: 12.5, opacity: 0.85, marginTop: 3, lineHeight: 1.4 }}>{t.preview}</div>

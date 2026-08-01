@@ -150,12 +150,12 @@ const mapTrip = (raw, allReviews) => {
 };
 
 const TD_CSS = `
-  .td-page { font-family: ${BODY}; background: var(--surface-soft, #FBF6EE); min-height: 100vh; text-align: left; }
+  .td-page { font-family: ${BODY}; background: var(--surface-soft, #FAFAFA); min-height: 100vh; text-align: left; }
   .td-tab { transition: color .15s ease, border-color .15s ease; cursor: pointer; border: none; background: transparent; }
   .td-cta { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
   .td-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(205,72,42,.32); background: #B83F23; }
   .td-ghost { transition: background .16s ease, border-color .16s ease; }
-  .td-ghost:hover { background: #FBF6EE; border-color: ${ACCENT}; }
+  .td-ghost:hover { background: #FAFAFA; border-color: ${ACCENT}; }
   .td-thumb { transition: transform .4s ease; }
   .td-thumb:hover { transform: scale(1.05); }
   details.td-acc > summary { list-style: none; cursor: pointer; }
@@ -191,7 +191,7 @@ const FACT_ICONS = {
   season: ["M8 2v4M16 2v4M3 9h18", "M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"],
 };
 const HERO_GRADS = [
-  "linear-gradient(135deg,#5a4a3a,#33281d)", "linear-gradient(135deg,#6f6a63,#403c38)",
+  "linear-gradient(135deg,#5a4a3a,#33281d)", "linear-gradient(135deg,#52525B,#27272A)",
   "linear-gradient(135deg,#5c3a1a,#a8703a)", "linear-gradient(135deg,#1a3a5c,#3a6ca8)",
   "linear-gradient(135deg,#3a2c1a,#7a5c3a)",
 ];
@@ -256,8 +256,8 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prevOverflow; };
   }, [lbIndex, trip?.images]);
 
-  if (tripsRes && !raw) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Trip not found.</div>;
-  if (!trip) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Loading…</div>;
+  if (tripsRes && !raw) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#52525B" }}>Trip not found.</div>;
+  if (!trip) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#52525B" }}>Loading…</div>;
 
   const goTo = (id, label) => () => {
     setActive(label);
@@ -283,8 +283,8 @@ export default function TripDetail({ initialRaw, initialReviews }) {
   const itinerary = (itineraryOpen ? fullItinerary : fullItinerary.slice(0, 4))
     .map((d, i) => ({ ...d, num: String(i + 1).padStart(2, "0") }));
 
-  const sectionH2 = { margin: "0 0 16px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(22px,2.6vw,27px)", letterSpacing: "-.01em", color: "#221C17" };
-  const card = { background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "16px" };
+  const sectionH2 = { margin: "0 0 16px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(22px,2.6vw,27px)", letterSpacing: "-.01em", color: "#18181B" };
+  const card = { background: "#FFFFFF", border: "1px solid #E4E4E7", borderRadius: "16px" };
 
   return (
     <div className="td-page" ref={rootRef}>
@@ -303,7 +303,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
           top: 0,
           zIndex: 30,
           background: "#FFFFFF",
-          borderBottom: "1px solid #E6DDCF",
+          borderBottom: "1px solid #E4E4E7",
           width: "100%",
         }}
       >
@@ -329,12 +329,12 @@ export default function TripDetail({ initialRaw, initialReviews }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              border: "1px solid #E6DDCF",
+              border: "1px solid #E4E4E7",
               background: "#fff",
               borderRadius: "10px",
               cursor: "pointer",
               fontSize: "16px",
-              color: "#221C17",
+              color: "#18181B",
             }}
           >
             ←
@@ -345,7 +345,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
               alignItems: "center",
               gap: "7px",
               font: `500 13px/1 ${BODY}`,
-              color: "#9A9080",
+              color: "#71717A",
               minWidth: 0,
               overflow: "hidden",
             }}
@@ -360,7 +360,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             <span>›</span>
             <span
               style={{
-                color: "#221C17",
+                color: "#18181B",
                 fontWeight: 600,
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -382,7 +382,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             </div>
           ))}
           {trip.photoCount > 0 && (
-            <button type="button" onClick={() => setLbIndex(0)} className="td-ghost" style={{ position: "absolute", right: 18, bottom: 18, display: "inline-flex", alignItems: "center", gap: "7px", padding: "9px 15px", background: "#FFFDF9", color: "#221C17", border: "1px solid #E6DDCF", borderRadius: "10px", font: `600 13px/1 ${BODY}`, cursor: "pointer" }}>All {trip.photoCount} photos</button>
+            <button type="button" onClick={() => setLbIndex(0)} className="td-ghost" style={{ position: "absolute", right: 18, bottom: 18, display: "inline-flex", alignItems: "center", gap: "7px", padding: "9px 15px", background: "#FFFFFF", color: "#18181B", border: "1px solid #E4E4E7", borderRadius: "10px", font: `600 13px/1 ${BODY}`, cursor: "pointer" }}>All {trip.photoCount} photos</button>
           )}
         </div>
 
@@ -390,20 +390,20 @@ export default function TripDetail({ initialRaw, initialReviews }) {
         <div className="td-grid">
           {/* ===== MAIN ===== */}
           <div style={{ minWidth: 0 }}>
-            <h1 style={{ margin: 0, fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(28px,3.8vw,42px)", lineHeight: 1.06, letterSpacing: "-.02em", color: "#221C17", textWrap: "balance" }}>{trip.title}</h1>
+            <h1 style={{ margin: 0, fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(28px,3.8vw,42px)", lineHeight: 1.06, letterSpacing: "-.02em", color: "#18181B", textWrap: "balance" }}>{trip.title}</h1>
             <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap", marginTop: "14px" }}>
-              {trip.location && <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `500 14.5px/1 ${BODY}`, color: "#726A5E" }}><span style={{ color: ACCENT, display: "flex" }}><Ic w={15} paths={["M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z", "M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"]} /></span>{trip.location}</span>}
-              {trip.duration && <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `500 14.5px/1 ${BODY}`, color: "#726A5E" }}><span style={{ color: ACCENT, display: "flex" }}><Ic w={15} paths={["M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z", "M12 7v5l3 2"]} /></span>{trip.duration}</span>}
+              {trip.location && <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `500 14.5px/1 ${BODY}`, color: "#52525B" }}><span style={{ color: ACCENT, display: "flex" }}><Ic w={15} paths={["M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z", "M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"]} /></span>{trip.location}</span>}
+              {trip.duration && <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `500 14.5px/1 ${BODY}`, color: "#52525B" }}><span style={{ color: ACCENT, display: "flex" }}><Ic w={15} paths={["M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z", "M12 7v5l3 2"]} /></span>{trip.duration}</span>}
               {trip.hasReviews ? (
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `600 14.5px/1 ${BODY}`, color: "#221C17" }}><span style={{ color: "#E0922F", display: "flex" }}><Ic w={15} fill="#E0922F" paths={["m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6L12 2Z"]} /></span>{trip.rating} <span style={{ color: "#9A9080", fontWeight: 500 }}>({trip.reviewCount} reviews)</span></span>
+                <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `600 14.5px/1 ${BODY}`, color: "#18181B" }}><span style={{ color: "#18181B", display: "flex" }}><Ic w={15} fill="#18181B" paths={["m12 2 3 6.5 7 .6-5.3 4.6 1.6 6.8L12 17l-6.2 3.5 1.6-6.8L2 9.1l7-.6L12 2Z"]} /></span>{trip.rating} <span style={{ color: "#71717A", fontWeight: 500 }}>({trip.reviewCount} reviews)</span></span>
               ) : (
-                <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `600 13.5px/1 ${BODY}`, color: "#9A9080" }}>New experience</span>
+                <span style={{ display: "flex", alignItems: "center", gap: "6px", font: `600 13.5px/1 ${BODY}`, color: "#71717A" }}>New experience</span>
               )}
             </div>
 
             {trip.categories.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "18px" }}>
-                {trip.categories.map((c, i) => <span key={i} style={{ padding: "7px 14px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", color: ACCENT, font: `600 13px/1 ${BODY}` }}>{c.label}</span>)}
+                {trip.categories.map((c, i) => <span key={i} style={{ padding: "7px 14px", borderRadius: "99px", background: "var(--brand-100, #F4F4F5)", border: "1px solid #E4E4E7", color: ACCENT, font: `600 13px/1 ${BODY}` }}>{c.label}</span>)}
               </div>
             )}
 
@@ -413,18 +413,18 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 {trip.facts.map((f) => (
                   <div key={f.key} style={{ ...card, padding: "16px 18px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px", color: ACCENT, marginBottom: "9px" }}><Ic paths={FACT_ICONS[f.key]} /></div>
-                    <div style={{ font: `400 12px/1 ${BODY}`, color: "#9A9080" }}>{f.label}</div>
-                    <div style={{ marginTop: "4px", font: `700 15px/1.25 ${BODY}`, color: "#221C17" }}>{f.value}</div>
+                    <div style={{ font: `400 12px/1 ${BODY}`, color: "#71717A" }}>{f.label}</div>
+                    <div style={{ marginTop: "4px", font: `700 15px/1.25 ${BODY}`, color: "#18181B" }}>{f.value}</div>
                   </div>
                 ))}
               </div>
             )}
 
             {/* STICKY TABS */}
-            <div style={{ position: "sticky", top: 64, zIndex: 20, background: "var(--surface-soft, #FBF6EE)", paddingTop: "16px", marginTop: "30px" }}>
-              <div style={{ display: "flex", gap: "28px", borderBottom: "1px solid #E6DDCF", overflowX: "auto" }}>
+            <div style={{ position: "sticky", top: 64, zIndex: 20, background: "var(--surface-soft, #FAFAFA)", paddingTop: "16px", marginTop: "30px" }}>
+              <div style={{ display: "flex", gap: "28px", borderBottom: "1px solid #E4E4E7", overflowX: "auto" }}>
                 {TABS.map(([id, label]) => (
-                  <button key={id} type="button" className="td-tab" onClick={goTo(id, label)} style={{ padding: "14px 2px", font: `600 14px/1 ${BODY}`, color: active === label ? ACCENT : "#8A8073", borderBottom: `2px solid ${active === label ? ACCENT : "transparent"}`, whiteSpace: "nowrap" }}>{label}</button>
+                  <button key={id} type="button" className="td-tab" onClick={goTo(id, label)} style={{ padding: "14px 2px", font: `600 14px/1 ${BODY}`, color: active === label ? ACCENT : "#71717A", borderBottom: `2px solid ${active === label ? ACCENT : "transparent"}`, whiteSpace: "nowrap" }}>{label}</button>
                 ))}
               </div>
             </div>
@@ -433,13 +433,13 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             <section id="td-overview" className="td-sec" style={{ marginTop: "34px" }}>
               <h2 style={{ ...sectionH2, marginBottom: "18px" }}>About this experience</h2>
               <div style={{ ...card, padding: "clamp(20px,2.4vw,28px)" }}>
-                <p style={{ margin: 0, font: `400 16px/1.75 ${BODY}`, color: "#3C3228", whiteSpace: "pre-line" }}>{trip.overview || "Details coming soon."}</p>
+                <p style={{ margin: 0, font: `400 16px/1.75 ${BODY}`, color: "#27272A", whiteSpace: "pre-line" }}>{trip.overview || "Details coming soon."}</p>
                 {trip.highlights.length > 0 && (
                   <>
-                    <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#A89C8A", margin: "24px 0 14px", paddingTop: "20px", borderTop: "1px solid #E6DDCF" }}>Highlights</div>
+                    <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#A1A1AA", margin: "24px 0 14px", paddingTop: "20px", borderTop: "1px solid #E4E4E7" }}>Highlights</div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "12px" }}>
                       {trip.highlights.map((h, i) => (
-                        <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "11px", font: `400 15px/1.55 ${BODY}`, color: "#3C3228" }}>
+                        <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "11px", font: `400 15px/1.55 ${BODY}`, color: "#27272A" }}>
                           <span style={{ flex: "none", width: 22, height: 22, marginTop: 1, borderRadius: "7px", background: "#FCE8E1", color: ACCENT, display: "flex", alignItems: "center", justifyContent: "center" }}><Ic w={13} paths={["M20 6 9 17l-5-5"]} /></span>
                           <span>{h.label}</span>
                         </div>
@@ -452,44 +452,44 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
             {/* HOST */}
             {trip.host && (
-              <section id="td-host" className="td-sec" style={{ marginTop: "40px", background: "#221C17", borderRadius: "22px", padding: "clamp(24px,3vw,34px)", color: "#F4EEE4", position: "relative", overflow: "hidden" }}>
+              <section id="td-host" className="td-sec" style={{ marginTop: "40px", background: "#18181B", borderRadius: "22px", padding: "clamp(24px,3vw,34px)", color: "#FAFAFA", position: "relative", overflow: "hidden" }}>
                 <div style={{ position: "absolute", right: -50, top: -50, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle,rgba(233,98,47,.26),transparent 66%)" }} />
                 <div style={{ position: "relative" }}>
-                  <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".12em", textTransform: "uppercase", color: "#F0B49C", marginBottom: "18px" }}>Meet your host</div>
+                  <div style={{ font: `700 12px/1 ${BODY}`, letterSpacing: ".12em", textTransform: "uppercase", color: "#D4D4D8", marginBottom: "18px" }}>Meet your host</div>
                   <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "flex-start" }}>
                     <div style={{ position: "relative", flex: "none" }}>
-                      <div style={{ width: 80, height: 80, borderRadius: "18px", background: `linear-gradient(150deg,#E9622F,${ACCENT})`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: "33px", color: "#FFF6EF" }}>{trip.host.initial}</div>
-                      {trip.host.verified && <span style={{ position: "absolute", right: -8, bottom: -8, width: 30, height: 30, borderRadius: "50%", background: "#2E7D4F", border: "3px solid #221C17", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>}
+                      <div style={{ width: 80, height: 80, borderRadius: "18px", background: `linear-gradient(150deg,#CF4A2C,${ACCENT})`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: "33px", color: "#FFFFFF" }}>{trip.host.initial}</div>
+                      {trip.host.verified && <span style={{ position: "absolute", right: -8, bottom: -8, width: 30, height: 30, borderRadius: "50%", background: "#15803D", border: "3px solid #18181B", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>}
                     </div>
                     <div style={{ flex: 1, minWidth: 240 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                        <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "24px", letterSpacing: "-.01em", color: "#F8F4ED" }}>{trip.host.name}</span>
+                        <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "24px", letterSpacing: "-.01em", color: "#FAFAFA" }}>{trip.host.name}</span>
                         {trip.host.verified && <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "5px 10px", borderRadius: "99px", background: "rgba(91,191,122,.18)", border: "1px solid rgba(91,191,122,.4)", color: "#A8E6BC", font: `700 10px/1 ${BODY}`, letterSpacing: ".04em", textTransform: "uppercase" }}>Verified host</span>}
                       </div>
                       <div style={{ display: "flex", gap: "18px", flexWrap: "wrap", marginTop: "10px" }}>
-                        <span style={{ font: `600 13px/1 ${BODY}`, color: "#E6DDCF" }}>{trip.host.tripsHosted} <span style={{ color: "#9C9388", fontWeight: 400 }}>trips hosted</span></span>
-                        {trip.host.years && <span style={{ font: `600 13px/1 ${BODY}`, color: "#E6DDCF" }}>{trip.host.years} <span style={{ color: "#9C9388", fontWeight: 400 }}>hosting</span></span>}
+                        <span style={{ font: `600 13px/1 ${BODY}`, color: "#E4E4E7" }}>{trip.host.tripsHosted} <span style={{ color: "#71717A", fontWeight: 400 }}>trips hosted</span></span>
+                        {trip.host.years && <span style={{ font: `600 13px/1 ${BODY}`, color: "#E4E4E7" }}>{trip.host.years} <span style={{ color: "#71717A", fontWeight: 400 }}>hosting</span></span>}
                       </div>
                     </div>
                   </div>
-                  {trip.host.bio && <p style={{ margin: "18px 0 0", font: `400 15px/1.7 ${BODY}`, color: "#C9BFAE", maxWidth: "68ch" }}>{trip.host.bio}</p>}
+                  {trip.host.bio && <p style={{ margin: "18px 0 0", font: `400 15px/1.7 ${BODY}`, color: "#A1A1AA", maxWidth: "68ch" }}>{trip.host.bio}</p>}
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "24px", marginTop: "20px" }}>
                     {trip.host.languages.length > 0 && (
                       <div>
-                        <div style={{ font: `700 11px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#8A8073", marginBottom: "8px" }}>Speaks</div>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>{trip.host.languages.map((l, i) => <span key={i} style={{ padding: "5px 11px", borderRadius: "99px", border: "1px solid rgba(244,238,228,.22)", font: `600 12px/1 ${BODY}`, color: "#E6DDCF" }}>{l.label}</span>)}</div>
+                        <div style={{ font: `700 11px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#71717A", marginBottom: "8px" }}>Speaks</div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>{trip.host.languages.map((l, i) => <span key={i} style={{ padding: "5px 11px", borderRadius: "99px", border: "1px solid rgba(244,238,228,.22)", font: `600 12px/1 ${BODY}`, color: "#E4E4E7" }}>{l.label}</span>)}</div>
                       </div>
                     )}
                     {trip.host.regions.length > 0 && (
                       <div>
-                        <div style={{ font: `700 11px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#8A8073", marginBottom: "8px" }}>Regions</div>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>{trip.host.regions.map((r, i) => <span key={i} style={{ padding: "5px 11px", borderRadius: "99px", border: "1px solid rgba(244,238,228,.22)", font: `600 12px/1 ${BODY}`, color: "#E6DDCF" }}>{r.label}</span>)}</div>
+                        <div style={{ font: `700 11px/1 ${BODY}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#71717A", marginBottom: "8px" }}>Regions</div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>{trip.host.regions.map((r, i) => <span key={i} style={{ padding: "5px 11px", borderRadius: "99px", border: "1px solid rgba(244,238,228,.22)", font: `600 12px/1 ${BODY}`, color: "#E4E4E7" }}>{r.label}</span>)}</div>
                       </div>
                     )}
                   </div>
                   <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "24px" }}>
                     <button type="button" className="td-cta" onClick={goHost} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 22px", font: `700 14px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "11px", cursor: "pointer" }}>View host profile →</button>
-                    <button type="button" onClick={goHost} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 20px", font: `700 14px/1 ${BODY}`, color: "#F4EEE4", background: "transparent", border: "1px solid rgba(244,238,228,.3)", borderRadius: "11px", cursor: "pointer" }}>Message host</button>
+                    <button type="button" onClick={goHost} style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "12px 20px", font: `700 14px/1 ${BODY}`, color: "#FAFAFA", background: "transparent", border: "1px solid rgba(244,238,228,.3)", borderRadius: "11px", cursor: "pointer" }}>Message host</button>
                   </div>
                 </div>
               </section>
@@ -501,19 +501,19 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <h2 style={{ ...sectionH2, marginBottom: "18px" }}>Day-by-day itinerary</h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
                   {itinerary.map((d, i) => (
-                    <div key={i} style={{ display: "flex", gap: "16px", background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "16px", padding: "20px 22px", boxShadow: "0 1px 2px rgba(60,42,28,.04)" }}>
+                    <div key={i} style={{ display: "flex", gap: "16px", background: "#FFFFFF", border: "1px solid #E4E4E7", borderRadius: "16px", padding: "20px 22px", boxShadow: "0 1px 2px rgba(60,42,28,.04)" }}>
                       <span style={{ flex: "none", width: 44, height: 44, borderRadius: "12px", background: "#FCE8E1", color: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: "16px" }}>{d.num}</span>
                       <div style={{ minWidth: 0, flex: 1 }}>
-                        <div style={{ font: `700 10.5px/1 ${BODY}`, letterSpacing: ".1em", textTransform: "uppercase", color: "#A89C8A", marginBottom: "5px" }}>Day {Number(d.num)}</div>
-                        <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "18px", lineHeight: 1.25, color: "#221C17" }}>{d.title}</div>
-                        {d.desc && <p style={{ margin: "8px 0 0", font: `400 14.5px/1.7 ${BODY}`, color: "#5A5247", whiteSpace: "pre-line" }}>{d.desc}</p>}
-                        {d.tags.length > 0 && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "12px" }}>{d.tags.map((t, j) => <span key={j} style={{ padding: "4px 10px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", font: `600 11px/1 ${BODY}`, color: ACCENT }}>{typeof t === "string" ? t : t.label}</span>)}</div>}
+                        <div style={{ font: `700 10.5px/1 ${BODY}`, letterSpacing: ".1em", textTransform: "uppercase", color: "#A1A1AA", marginBottom: "5px" }}>Day {Number(d.num)}</div>
+                        <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "18px", lineHeight: 1.25, color: "#18181B" }}>{d.title}</div>
+                        {d.desc && <p style={{ margin: "8px 0 0", font: `400 14.5px/1.7 ${BODY}`, color: "#3F3F46", whiteSpace: "pre-line" }}>{d.desc}</p>}
+                        {d.tags.length > 0 && <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "12px" }}>{d.tags.map((t, j) => <span key={j} style={{ padding: "4px 10px", borderRadius: "99px", background: "var(--brand-100, #F4F4F5)", border: "1px solid #E4E4E7", font: `600 11px/1 ${BODY}`, color: ACCENT }}>{typeof t === "string" ? t : t.label}</span>)}</div>}
                       </div>
                     </div>
                   ))}
                 </div>
                 {itineraryMore && (
-                  <button type="button" onClick={() => setItineraryOpen((v) => !v)} className="td-ghost" style={{ marginTop: "6px", display: "inline-flex", alignItems: "center", gap: "8px", padding: "11px 20px", border: "1px solid #E6DDCF", background: "#FFFFFF", borderRadius: "11px", font: `600 13.5px/1 ${BODY}`, color: "#5A5247", cursor: "pointer" }}>
+                  <button type="button" onClick={() => setItineraryOpen((v) => !v)} className="td-ghost" style={{ marginTop: "6px", display: "inline-flex", alignItems: "center", gap: "8px", padding: "11px 20px", border: "1px solid #E4E4E7", background: "#FFFFFF", borderRadius: "11px", font: `600 13.5px/1 ${BODY}`, color: "#3F3F46", cursor: "pointer" }}>
                     {itineraryOpen ? "Show less" : `Show full ${fullItinerary.length}-day itinerary`}
                   </button>
                 )}
@@ -527,17 +527,17 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: "16px" }}>
                   {trip.inclusions.length > 0 && (
                     <div style={{ ...card, padding: "22px 24px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "16px" }}><span style={{ color: "#2E7D4F" }}><Ic w={19} paths={["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z", "m8 12 3 3 5-6"]} /></span><span style={{ font: `700 15px/1 ${BODY}`, color: "#221C17" }}>Included</span></div>
+                      <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "16px" }}><span style={{ color: "#15803D" }}><Ic w={19} paths={["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z", "m8 12 3 3 5-6"]} /></span><span style={{ font: `700 15px/1 ${BODY}`, color: "#18181B" }}>Included</span></div>
                       <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
-                        {trip.inclusions.map((it, i) => <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.55 ${BODY}`, color: "#5A5247" }}><span style={{ flex: "none", color: "#2E7D4F", marginTop: 2 }}><Ic w={14} paths={["M20 6 9 17l-5-5"]} /></span><span>{it.label}</span></li>)}
+                        {trip.inclusions.map((it, i) => <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.55 ${BODY}`, color: "#3F3F46" }}><span style={{ flex: "none", color: "#15803D", marginTop: 2 }}><Ic w={14} paths={["M20 6 9 17l-5-5"]} /></span><span>{it.label}</span></li>)}
                       </ul>
                     </div>
                   )}
                   {trip.exclusions.length > 0 && (
                     <div style={{ ...card, padding: "22px 24px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "16px" }}><span style={{ color: "#C0392B" }}><Ic w={19} paths={["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z", "m15 9-6 6M9 9l6 6"]} /></span><span style={{ font: `700 15px/1 ${BODY}`, color: "#221C17" }}>Not included</span></div>
+                      <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "16px" }}><span style={{ color: "#B42318" }}><Ic w={19} paths={["M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z", "m15 9-6 6M9 9l6 6"]} /></span><span style={{ font: `700 15px/1 ${BODY}`, color: "#18181B" }}>Not included</span></div>
                       <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
-                        {trip.exclusions.map((e, i) => <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.55 ${BODY}`, color: "#5A5247" }}><span style={{ flex: "none", color: "#C0392B", marginTop: 2 }}><Ic w={14} paths={["M18 6 6 18M6 6l12 12"]} /></span><span>{e.label}</span></li>)}
+                        {trip.exclusions.map((e, i) => <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.55 ${BODY}`, color: "#3F3F46" }}><span style={{ flex: "none", color: "#B42318", marginTop: 2 }}><Ic w={14} paths={["M18 6 6 18M6 6l12 12"]} /></span><span>{e.label}</span></li>)}
                       </ul>
                     </div>
                   )}
@@ -549,37 +549,37 @@ export default function TripDetail({ initialRaw, initialReviews }) {
             <section id="td-reviews" className="td-sec" style={{ marginTop: "40px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
                 <h2 style={{ ...sectionH2, margin: 0 }}>Trip reviews</h2>
-                <span style={{ padding: "4px 11px", borderRadius: "99px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", color: ACCENT, font: `600 11px/1 ${BODY}` }}>This experience only</span>
+                <span style={{ padding: "4px 11px", borderRadius: "99px", background: "var(--brand-100, #F4F4F5)", border: "1px solid #E4E4E7", color: ACCENT, font: `600 11px/1 ${BODY}` }}>This experience only</span>
               </div>
               {!trip.hasReviews ? (
-                <div style={{ marginTop: "14px", textAlign: "center", padding: "44px 24px", background: "#FFFFFF", border: "1px dashed #E6DDCF", borderRadius: "16px" }}>
-                  <p style={{ margin: "0 0 6px", font: `700 16px/1.4 ${BODY}`, color: "#221C17" }}>No reviews yet</p>
-                  <p style={{ margin: "0 auto", maxWidth: 420, font: `400 14px/1.55 ${BODY}`, color: "#8A8073" }}>This is a new experience. Be one of the first to travel {trip.host ? `with ${trip.host.name}` : "with this host"} and share your story.</p>
+                <div style={{ marginTop: "14px", textAlign: "center", padding: "44px 24px", background: "#FFFFFF", border: "1px dashed #E4E4E7", borderRadius: "16px" }}>
+                  <p style={{ margin: "0 0 6px", font: `700 16px/1.4 ${BODY}`, color: "#18181B" }}>No reviews yet</p>
+                  <p style={{ margin: "0 auto", maxWidth: 420, font: `400 14px/1.55 ${BODY}`, color: "#71717A" }}>This is a new experience. Be one of the first to travel {trip.host ? `with ${trip.host.name}` : "with this host"} and share your story.</p>
                 </div>
               ) : (
                 <>
-                  <p style={{ margin: "0 0 18px", font: `400 13.5px/1.4 ${BODY}`, color: "#9A9080" }}>From travellers who booked this trip — separate from host and brand reviews.</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "26px", alignItems: "center", padding: "22px 26px", background: "var(--brand-100, #F6E4DC)", border: "1px solid #E6DDCF", borderRadius: "16px", marginBottom: "20px" }}>
+                  <p style={{ margin: "0 0 18px", font: `400 13.5px/1.4 ${BODY}`, color: "#71717A" }}>From travellers who booked this trip — separate from host and brand reviews.</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "26px", alignItems: "center", padding: "22px 26px", background: "var(--brand-100, #F4F4F5)", border: "1px solid #E4E4E7", borderRadius: "16px", marginBottom: "20px" }}>
                     <div style={{ textAlign: "center" }}>
-                      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "46px", lineHeight: 1, color: "#221C17" }}>{trip.rating}</div>
-                      <div style={{ marginTop: "5px", color: "#E0922F", fontSize: "14px", letterSpacing: "2px" }}>★★★★★</div>
-                      <div style={{ marginTop: "4px", font: `500 12px/1 ${BODY}`, color: "#8A8073" }}>{trip.reviewCount} reviews</div>
+                      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "46px", lineHeight: 1, color: "#18181B" }}>{trip.rating}</div>
+                      <div style={{ marginTop: "5px", color: "#18181B", fontSize: "14px", letterSpacing: "2px" }}>★★★★★</div>
+                      <div style={{ marginTop: "4px", font: `500 12px/1 ${BODY}`, color: "#71717A" }}>{trip.reviewCount} reviews</div>
                     </div>
                     <div style={{ flex: 1, minWidth: 200, display: "flex", flexDirection: "column", gap: "7px" }}>
                       {trip.ratingBars.map((bar) => (
-                        <div key={bar.stars} style={{ display: "flex", alignItems: "center", gap: "10px" }}><span style={{ font: `600 12px/1 ${BODY}`, color: "#8A8073", width: 28 }}>{bar.stars}★</span><span style={{ flex: 1, height: 7, borderRadius: "99px", background: "#F3E8E2", overflow: "hidden" }}><span style={{ display: "block", height: "100%", width: bar.pct, background: ACCENT }} /></span></div>
+                        <div key={bar.stars} style={{ display: "flex", alignItems: "center", gap: "10px" }}><span style={{ font: `600 12px/1 ${BODY}`, color: "#71717A", width: 28 }}>{bar.stars}★</span><span style={{ flex: 1, height: 7, borderRadius: "99px", background: "#F4F4F5", overflow: "hidden" }}><span style={{ display: "block", height: "100%", width: bar.pct, background: ACCENT }} /></span></div>
                       ))}
                     </div>
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "14px" }}>
                     {trip.reviews.map((rv, i) => (
-                      <div key={i} style={{ padding: "18px 20px", border: "1px solid #E6DDCF", borderRadius: "14px", background: "#FFFFFF" }}>
+                      <div key={i} style={{ padding: "18px 20px", border: "1px solid #E4E4E7", borderRadius: "14px", background: "#FFFFFF" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "11px" }}>
                           <span style={{ width: 38, height: 38, flex: "none", borderRadius: "50%", background: "#FCE8E1", color: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", font: `700 15px/1 ${BODY}` }}>{rv.initial}</span>
-                          <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `600 14px/1.2 ${BODY}`, color: "#221C17" }}>{rv.name}</div>{rv.date && <div style={{ font: `400 11.5px/1 ${BODY}`, color: "#9A9080", marginTop: 2 }}>{rv.date}</div>}</div>
-                          <span style={{ color: "#E0922F", fontSize: "12px" }}>{rv.stars}</span>
+                          <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `600 14px/1.2 ${BODY}`, color: "#18181B" }}>{rv.name}</div>{rv.date && <div style={{ font: `400 11.5px/1 ${BODY}`, color: "#71717A", marginTop: 2 }}>{rv.date}</div>}</div>
+                          <span style={{ color: "#18181B", fontSize: "12px" }}>{rv.stars}</span>
                         </div>
-                        <p style={{ margin: "12px 0 0", font: `400 14px/1.65 ${BODY}`, color: "#5A5247" }}>{rv.text}</p>
+                        <p style={{ margin: "12px 0 0", font: `400 14px/1.65 ${BODY}`, color: "#3F3F46" }}>{rv.text}</p>
                       </div>
                     ))}
                   </div>
@@ -593,18 +593,18 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                 <h2 style={{ ...sectionH2, marginBottom: "18px" }}>Good to know</h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                   {trip.infoGroups.map((g, i) => (
-                    <details key={i} className="td-acc" open={!!g.open} style={{ border: "1px solid #E6DDCF", borderRadius: "14px", background: "#FFFFFF", overflow: "hidden" }}>
-                      <summary style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: "17px 20px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "16px", color: "#221C17" }}>{g.title}<span className="td-acc-ic" style={{ flex: "none", width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "#FCE8E1", color: ACCENT, transition: "transform .2s ease", fontSize: "16px" }}>+</span></summary>
+                    <details key={i} className="td-acc" open={!!g.open} style={{ border: "1px solid #E4E4E7", borderRadius: "14px", background: "#FFFFFF", overflow: "hidden" }}>
+                      <summary style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: "17px 20px", fontFamily: DISPLAY, fontWeight: 700, fontSize: "16px", color: "#18181B" }}>{g.title}<span className="td-acc-ic" style={{ flex: "none", width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "50%", background: "#FCE8E1", color: ACCENT, transition: "transform .2s ease", fontSize: "16px" }}>+</span></summary>
                       <div style={{ padding: "0 20px 18px" }}>
                         {g.kind === "list" && (
                           <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
-                            {g.items.map((it, j) => <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.6 ${BODY}`, color: "#5A5247" }}><span style={{ flex: "none", width: 6, height: 6, marginTop: 8, borderRadius: "50%", background: ACCENT }} /><span>{typeof it === "string" ? it : it.label}</span></li>)}
+                            {g.items.map((it, j) => <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px", font: `400 14.5px/1.6 ${BODY}`, color: "#3F3F46" }}><span style={{ flex: "none", width: 6, height: 6, marginTop: 8, borderRadius: "50%", background: ACCENT }} /><span>{typeof it === "string" ? it : it.label}</span></li>)}
                           </ul>
                         )}
-                        {g.kind === "text" && <p style={{ margin: 0, font: `400 14.5px/1.7 ${BODY}`, color: "#5A5247", whiteSpace: "pre-line", maxWidth: "70ch" }}>{g.text}</p>}
+                        {g.kind === "text" && <p style={{ margin: 0, font: `400 14.5px/1.7 ${BODY}`, color: "#3F3F46", whiteSpace: "pre-line", maxWidth: "70ch" }}>{g.text}</p>}
                         {g.kind === "faq" && (
                           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-                            {g.faqs.map((q, j) => <div key={j}><div style={{ font: `600 14.5px/1.4 ${BODY}`, color: "#221C17" }}>{q.q}</div><p style={{ margin: "5px 0 0", font: `400 14px/1.6 ${BODY}`, color: "#726A5E", maxWidth: "70ch" }}>{q.a}</p></div>)}
+                            {g.faqs.map((q, j) => <div key={j}><div style={{ font: `600 14.5px/1.4 ${BODY}`, color: "#18181B" }}>{q.q}</div><p style={{ margin: "5px 0 0", font: `400 14px/1.6 ${BODY}`, color: "#52525B", maxWidth: "70ch" }}>{q.a}</p></div>)}
                           </div>
                         )}
                       </div>
@@ -617,42 +617,42 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
           {/* ===== BOOKING SIDEBAR ===== */}
           <aside className="td-side" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <div style={{ background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "18px", overflow: "hidden", boxShadow: "0 12px 30px -16px rgba(0,0,0,.15)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "12px 20px", background: "var(--brand-100, #F6E4DC)", borderBottom: "1px solid #E6DDCF" }}>
+            <div style={{ background: "#FFFFFF", border: "1px solid #E4E4E7", borderRadius: "18px", overflow: "hidden", boxShadow: "0 12px 30px -16px rgba(0,0,0,.15)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "12px 20px", background: "var(--brand-100, #F4F4F5)", borderBottom: "1px solid #E4E4E7" }}>
                 <span style={{ font: `500 12px/1.35 ${BODY}`, color: "#7C3A27" }}>Pay a little now, adventure a lot — flexible payments at checkout.</span>
               </div>
               <div style={{ padding: "18px 22px 20px" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "5px" }}>
-                  <span style={{ font: `600 11px/1 ${BODY}`, color: "#9A9080" }}>Starting from</span>
-                  {trip.hasOff && <span style={{ padding: "4px 10px", borderRadius: "99px", background: "#E0EFE4", color: "#2E7D4F", font: `700 10px/1 ${BODY}` }}>✦ {trip.off}% OFF</span>}
+                  <span style={{ font: `600 11px/1 ${BODY}`, color: "#71717A" }}>Starting from</span>
+                  {trip.hasOff && <span style={{ padding: "4px 10px", borderRadius: "99px", background: "#E0EFE4", color: "#15803D", font: `700 10px/1 ${BODY}` }}>✦ {trip.off}% OFF</span>}
                 </div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "9px", flexWrap: "wrap", marginBottom: "16px" }}>
-                  <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "32px", letterSpacing: "-.02em", color: "#221C17" }}>₹ {trip.price}</span>
+                  <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "32px", letterSpacing: "-.02em", color: "#18181B" }}>₹ {trip.price}</span>
                   {trip.hasStrike && <span style={{ font: `600 13px/1 ${BODY}`, color: "#B3ABA3", textDecoration: "line-through" }}>₹ {trip.strikePrice}</span>}
-                  <span style={{ font: `500 12px/1 ${BODY}`, color: "#9A9080" }}>/ person</span>
+                  <span style={{ font: `500 12px/1 ${BODY}`, color: "#71717A" }}>/ person</span>
                 </div>
                 <button type="button" className="td-cta" onClick={handleBookNow} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px", font: `700 15px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "12px", cursor: "pointer", boxShadow: "0 8px 20px rgba(205,72,42,.26)" }}>Book now <span style={{ fontSize: "16px" }}>→</span></button>
                 {trip.partialEnabled && (
-                  <p style={{ margin: "10px 0 0", textAlign: "center", font: `600 11.5px/1.4 ${BODY}`, color: "#2E7D4F" }}>
+                  <p style={{ margin: "10px 0 0", textAlign: "center", font: `600 11.5px/1.4 ${BODY}`, color: "#15803D" }}>
                     Book now for ₹ {inr(trip.firstBookingPrice)} — balance due 15 days before departure
                   </p>
                 )}
-                <p style={{ margin: "10px 0 0", textAlign: "center", font: `400 11.5px/1.4 ${BODY}`, color: "#9A9080" }}>Select a batch date on the next step</p>
+                <p style={{ margin: "10px 0 0", textAlign: "center", font: `400 11.5px/1.4 ${BODY}`, color: "#71717A" }}>Select a batch date on the next step</p>
               </div>
-              <div style={{ padding: "14px 22px", borderTop: "1px solid #E6DDCF", background: "var(--brand-100, #F6E4DC)", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div style={{ padding: "14px 22px", borderTop: "1px solid #E4E4E7", background: "var(--brand-100, #F4F4F5)", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {["Secure payments · verified host", "Hand-picked, community-first trip", "On-platform host support"].map((t, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", font: `400 12.5px/1.3 ${BODY}`, color: "#5A5247" }}><span style={{ color: "#2E7D4F", flex: "none", display: "flex" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>{t}</div>
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", font: `400 12.5px/1.3 ${BODY}`, color: "#3F3F46" }}><span style={{ color: "#15803D", flex: "none", display: "flex" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>{t}</div>
                 ))}
               </div>
             </div>
 
             {trip.host && (
-              <div style={{ background: "#FFFFFF", border: "1px solid #E6DDCF", borderRadius: "18px", padding: "18px 22px" }}>
+              <div style={{ background: "#FFFFFF", border: "1px solid #E4E4E7", borderRadius: "18px", padding: "18px 22px" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "11px" }}>
-                  <span style={{ width: 42, height: 42, flex: "none", borderRadius: "11px", background: `linear-gradient(150deg,#E9622F,${ACCENT})`, color: "#FFF6EF", display: "flex", alignItems: "center", justifyContent: "center", font: `700 16px/1 ${BODY}` }}>{trip.host.initial}</span>
-                  <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `400 11px/1 ${BODY}`, color: "#9A9080" }}>Your host</div><div style={{ marginTop: 3, font: `600 14px/1.2 ${BODY}`, color: "#221C17" }}>{trip.host.name}</div></div>
+                  <span style={{ width: 42, height: 42, flex: "none", borderRadius: "11px", background: `linear-gradient(150deg,#CF4A2C,${ACCENT})`, color: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", font: `700 16px/1 ${BODY}` }}>{trip.host.initial}</span>
+                  <div style={{ flex: 1, minWidth: 0 }}><div style={{ font: `400 11px/1 ${BODY}`, color: "#71717A" }}>Your host</div><div style={{ marginTop: 3, font: `600 14px/1.2 ${BODY}`, color: "#18181B" }}>{trip.host.name}</div></div>
                 </div>
-                <button type="button" className="td-ghost" onClick={goHost} style={{ width: "100%", marginTop: "14px", padding: "12px", font: `700 13px/1 ${BODY}`, color: "#221C17", background: "#fff", border: "1px solid #E6DDCF", borderRadius: "11px", cursor: "pointer" }}>Message on Nomadic Townies</button>
+                <button type="button" className="td-ghost" onClick={goHost} style={{ width: "100%", marginTop: "14px", padding: "12px", font: `700 13px/1 ${BODY}`, color: "#18181B", background: "#fff", border: "1px solid #E4E4E7", borderRadius: "11px", cursor: "pointer" }}>Message on Nomadic Townies</button>
               </div>
             )}
           </aside>
@@ -660,8 +660,8 @@ export default function TripDetail({ initialRaw, initialReviews }) {
       </div>
 
       {/* MOBILE STICKY CTA */}
-      <div className="td-mcta" style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40, display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "#FFFFFF", borderTop: "1px solid #E6DDCF" }}>
-        <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "19px", color: "#221C17" }}>₹ {trip.price}</div><div style={{ font: `400 11px/1 ${BODY}`, color: "#9A9080" }}>per person</div></div>
+      <div className="td-mcta" style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40, display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "#FFFFFF", borderTop: "1px solid #E4E4E7" }}>
+        <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "19px", color: "#18181B" }}>₹ {trip.price}</div><div style={{ font: `400 11px/1 ${BODY}`, color: "#71717A" }}>per person</div></div>
         <button type="button" className="td-cta" onClick={handleBookNow} style={{ flex: "none", padding: "14px 30px", font: `700 15px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "12px", cursor: "pointer" }}>Book now →</button>
       </div>
 

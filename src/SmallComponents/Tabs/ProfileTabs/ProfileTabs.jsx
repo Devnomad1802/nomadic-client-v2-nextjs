@@ -31,7 +31,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     // width: "100%",
     borderRadius: "0px",
     fontWeight: "400",
-    border: "2px solid #F1EADD",
+    border: "2px solid #F4F4F5",
 
     textAlign: "left",
     "& .MuiTab-wrapper": {
@@ -41,15 +41,15 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     // fontFamily: "Inter",
     "&:hover": {
       color: "#fff",
-      background: "#3C3228",
+      background: "#27272A",
     },
     "&.Mui-selected": {
       color: "#fff",
-      background: "#3C3228",
+      background: "#27272A",
       opacity: 1,
     },
     "&.Mui-focusVisible": {
-      background: "#3C3228",
+      background: "#27272A",
     },
   })
 );
@@ -102,7 +102,7 @@ export default function ProfileTabs() {
     <Box
       sx={{
         flexGrow: 1,
-        bgcolor: "#FBF6EE",
+        bgcolor: "#FAFAFA",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         height: "auto",
@@ -114,7 +114,7 @@ export default function ProfileTabs() {
     >
       <Box
         sx={{
-          border: "2px solid #F1EADD",
+          border: "2px solid #F4F4F5",
           py: 2,
           px: { xs: 1.5, md: 0 },
           maxHeight: "500px",
@@ -297,8 +297,8 @@ export default function ProfileTabs() {
         <>
           <Box
             sx={{
-              border: "2px solid #F1EADD",
-              background: "#FBF6EE",
+              border: "2px solid #F4F4F5",
+              background: "#FAFAFA",
               borderRadius: "16px",
               p: { xs: 0, md: 2 },
               ml: { xs: 0, md: 2 },
@@ -332,8 +332,8 @@ export default function ProfileTabs() {
         <>
           <Box
             sx={{
-              border: "2px solid #F1EADD",
-              background: "#FBF6EE",
+              border: "2px solid #F4F4F5",
+              background: "#FAFAFA",
               borderRadius: "16px",
               p: { xs: 0, md: 2 },
               ml: { xs: 0, md: 2 },

@@ -155,9 +155,9 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                             onClick={goSearch}
                             aria-label="search experiences"
                             sx={{
-                              backgroundColor: "#E9622F",
+                              backgroundColor: "#CF4A2C",
                               color: "#fff",
-                              "&:hover": { backgroundColor: "#3C3228" },
+                              "&:hover": { backgroundColor: "#27272A" },
                             }}
                           >
                             <SearchIcon />
@@ -182,13 +182,13 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                       sx={{
                         textTransform: "capitalize",
                         fontSize: "14px",
-                        backgroundColor: "#E9622F",
+                        backgroundColor: "#CF4A2C",
                         color: "#fff",
                         width: { xs: "100%", sm: "220px" },
                         maxWidth: "320px",
                         "&:hover": {
                           border: "1.5px solid #fff",
-                          background: "#3C3228",
+                          background: "#27272A",
                         },
                       }}
                     >
@@ -256,7 +256,7 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
             },
             "& .swiper-pagination-bullet-active": {
               opacity: 1,
-              backgroundColor: "#E9622F",
+              backgroundColor: "#CF4A2C",
             },
           }}
         >
@@ -360,13 +360,13 @@ const FirstSection = ({ homebg, toggle, homeVideo }) => {
                             sx={{
                               textTransform: "capitalize",
                               fontSize: "14px",
-                              backgroundColor: "#E9622F",
+                              backgroundColor: "#CF4A2C",
                               color: "#fff",
                               alignItems: "left",
                               width: "300px",
                               "&:hover": {
                                 border: "1.5px solid #fff",
-                                background: "#3C3228",
+                                background: "#27272A",
                               },
                             }}
                           >

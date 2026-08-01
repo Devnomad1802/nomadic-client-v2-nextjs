@@ -113,7 +113,7 @@ const Paymentsuccess = () => {
         {/* success header */}
         <div className="ps2-hero">
           <div className="ps2-check">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2E7D4F" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#15803D" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
           </div>
           <h1 className="ps2-h1">Payment successful — you&apos;re in!</h1>
           <p className="ps2-sub">
@@ -203,48 +203,48 @@ const Paymentsuccess = () => {
 };
 
 const css = `
-.ps2{background:#F4EEE4;min-height:100vh;font-family:'Hanken Grotesk','Inter',system-ui,sans-serif}
+.ps2{background:#FAFAFA;min-height:100vh;font-family:'Hanken Grotesk','Inter',system-ui,sans-serif}
 .ps2 *{box-sizing:border-box}
 .ps2-main{width:100%;max-width:640px;margin:0 auto;padding:clamp(32px,5vw,52px) clamp(16px,4vw,24px) 56px}
 .ps2-hero{text-align:center;margin-bottom:28px}
 .ps2-check{width:66px;height:66px;margin:0 auto;border-radius:50%;background:#E0EFE4;display:flex;align-items:center;justify-content:center;animation:psPop .6s cubic-bezier(.22,.61,.36,1) both}
-.ps2-h1{margin:16px 0 0;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(26px,4.6vw,30px);letter-spacing:-.02em;color:#221C17}
-.ps2-sub{margin:8px 0 0;font-size:15px;line-height:1.5;color:#726A5E}
+.ps2-h1{margin:16px 0 0;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(26px,4.6vw,30px);letter-spacing:-.02em;color:#18181B}
+.ps2-sub{margin:8px 0 0;font-size:15px;line-height:1.5;color:#52525B}
 .ps2-ticket{filter:drop-shadow(0 20px 40px rgba(60,42,28,.24))}
-.ps2-top{position:relative;background:linear-gradient(150deg,#54514c,#33312e);border-radius:20px 20px 0 0;padding:28px 30px;overflow:hidden}
+.ps2-top{position:relative;background:linear-gradient(150deg,#3F3F46,#27272A);border-radius:20px 20px 0 0;padding:28px 30px;overflow:hidden}
 .ps2-glow{position:absolute;right:-40px;top:-40px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(233,98,47,.32),transparent 66%)}
 .ps2-toprow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ps2-kicker{font-weight:700;font-size:11px;line-height:1;letter-spacing:.2em;text-transform:uppercase;color:#F0B49C}
+.ps2-kicker{font-weight:700;font-size:11px;line-height:1;letter-spacing:.2em;text-transform:uppercase;color:#D4D4D8}
 .ps2-paid{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;background:rgba(91,191,122,.16);border:1px solid rgba(91,191,122,.4);font-weight:700;font-size:10px;line-height:1;letter-spacing:.05em;text-transform:uppercase;color:#A8E6BC}
-.ps2-trip{margin:14px 0 0;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(23px,4vw,27px);line-height:1.06;letter-spacing:-.02em;color:#F8F4ED}
+.ps2-trip{margin:14px 0 0;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(23px,4vw,27px);line-height:1.06;letter-spacing:-.02em;color:#FAFAFA}
 .ps2-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:16px;margin-top:22px}
-.ps2-stat-k{font-weight:600;font-size:10px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#9C9388}
-.ps2-stat-v{margin-top:5px;font-weight:600;font-size:14px;line-height:1.2;color:#F4EEE4}
-.ps2-seam{position:relative;height:28px;background:#33312e}
-.ps2-notch{position:absolute;top:0;width:28px;height:28px;border-radius:50%;background:#F4EEE4}
+.ps2-stat-k{font-weight:600;font-size:10px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#71717A}
+.ps2-stat-v{margin-top:5px;font-weight:600;font-size:14px;line-height:1.2;color:#FAFAFA}
+.ps2-seam{position:relative;height:28px;background:#27272A}
+.ps2-notch{position:absolute;top:0;width:28px;height:28px;border-radius:50%;background:#FAFAFA}
 .ps2-notch--l{left:-14px}.ps2-notch--r{right:-14px}
 .ps2-dash{position:absolute;left:22px;right:22px;top:50%;transform:translateY(-50%);border-top:2px dashed rgba(244,238,228,.3)}
-.ps2-stub{text-align:left;background:#FBF6EE;border:1px solid #EAD9C9;border-top:none;border-radius:0 0 20px 20px;padding:22px 30px}
+.ps2-stub{text-align:left;background:#FAFAFA;border:1px solid #E4E4E7;border-top:none;border-radius:0 0 20px 20px;padding:22px 30px}
 .ps2-hostrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.ps2-host-av{width:54px;height:54px;border-radius:14px;background:linear-gradient(150deg,#E9622F,#CF4A2C);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#FFF6EF}
+.ps2-host-av{width:54px;height:54px;border-radius:14px;background:linear-gradient(150deg,#CF4A2C,#CF4A2C);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#FFFFFF}
 .ps2-host-av--img{object-fit:cover}
-.ps2-tick{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#2E7D4F;border:2px solid #FBF6EE;display:flex;align-items:center;justify-content:center;color:#fff}
-.ps2-hostedby{font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#A89C8A}
-.ps2-hostname{margin-top:4px;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:17px;color:#221C17}
-.ps2-hostline{margin-top:2px;font-size:12px;line-height:1.4;color:#8A8073}
+.ps2-tick{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#15803D;border:2px solid #FAFAFA;display:flex;align-items:center;justify-content:center;color:#fff}
+.ps2-hostedby{font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#A1A1AA}
+.ps2-hostname{margin-top:4px;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:17px;color:#18181B}
+.ps2-hostline{margin-top:2px;font-size:12px;line-height:1.4;color:#71717A}
 .ps2-msg{flex:none;padding:11px 18px;font-weight:700;font-size:13px;line-height:1;color:#fff;background:#CF4A2C;border:none;border-radius:10px;cursor:pointer}
 .ps2-balance{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px dashed #E0CFBE;flex-wrap:wrap}
 .ps2-balance-t{font-weight:500;font-size:13px;line-height:1.4;color:#9A6A2E}
-.ps2-balance-t strong{color:#5A5247}
+.ps2-balance-t strong{color:#3F3F46}
 .ps2-paylink{font-weight:700;font-size:13px;line-height:1;color:#CF4A2C;cursor:pointer;white-space:nowrap}
 .ps2-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:26px}
 .ps2-primary{padding:14px;font-weight:700;font-size:14px;line-height:1;color:#fff;background:#CF4A2C;border:none;border-radius:12px;cursor:pointer}
-.ps2-ghost{padding:14px;font-weight:700;font-size:14px;line-height:1;color:#221C17;background:#FFFDF9;border:1px solid #E6DDCF;border-radius:12px;cursor:pointer}
-.ps2-foot{margin:22px 0 0;text-align:center;font-size:12px;line-height:1.5;color:#9A9080}
+.ps2-ghost{padding:14px;font-weight:700;font-size:14px;line-height:1;color:#18181B;background:#FFFFFF;border:1px solid #E4E4E7;border-radius:12px;cursor:pointer}
+.ps2-foot{margin:22px 0 0;text-align:center;font-size:12px;line-height:1.5;color:#71717A}
 .ps-cta{transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
 .ps-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(207,74,44,.3);background:#C0421F}
 .ps-ghost{transition:background .16s ease,border-color .16s ease}
-.ps-ghost:hover{background:#FBF6EE;border-color:#CF4A2C}
+.ps-ghost:hover{background:#FAFAFA;border-color:#CF4A2C}
 @keyframes psPop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.ps2-check{animation:none}}
 @media(max-width:480px){.ps2-actions{grid-template-columns:1fr}.ps2-top,.ps2-stub{padding-left:20px;padding-right:20px}}

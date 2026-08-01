@@ -7,7 +7,7 @@
 export const CATEGORY_TEMPLATES = {
   india: {
     name: "India",
-    gradient: "linear-gradient(160deg,#FBF6EE,#F6E4DC)",
+    gradient: "linear-gradient(160deg,#FAFAFA,#F4F4F5)",
     desc: "From the Taj to the backwaters — handpicked journeys across the subcontinent.",
     tags: ["Heritage", "Himalayas"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -72,7 +72,7 @@ export const CATEGORY_TEMPLATES = {
         <circle cx="150" cy="134" r="11"></circle>
         <circle cx="186" cy="112" r="3.5" fill="#CF4A2C" stroke="none"></circle>
       </g>
-      <g fill="#E9622F">
+      <g fill="#CF4A2C">
         <path d="M210 84 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3Z"></path>
         <path d="M84 150 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 l6 -2Z"></path>
       </g>
@@ -91,13 +91,13 @@ export const CATEGORY_TEMPLATES = {
       <ellipse cx="108" cy="150" rx="9" ry="7" fill="none" stroke="#C4883A" stroke-width="2.5"></ellipse>
       <circle cx="94" cy="116" r="5" fill="#CF4A2C"></circle>
       <circle cx="116" cy="112" r="5" fill="#2d4b9f"></circle>
-      <circle cx="86" cy="138" r="5" fill="#2E7D4F"></circle>
+      <circle cx="86" cy="138" r="5" fill="#15803D"></circle>
       <g stroke-linecap="round">
-        <line x1="150" y1="170" x2="200" y2="108" stroke="#3C3228" stroke-width="4"></line>
+        <line x1="150" y1="170" x2="200" y2="108" stroke="#27272A" stroke-width="4"></line>
         <path d="M196 104 l12 -10 l6 8 l-10 12Z" fill="#CF4A2C" stroke="#CF4A2C"></path>
         <line x1="150" y1="170" x2="160" y2="160" stroke="#C4883A" stroke-width="6"></line>
       </g>
-      <g fill="#E9622F"><circle cx="214" cy="150" r="3"></circle><circle cx="226" cy="134" r="2.5"></circle><circle cx="206" cy="132" r="2"></circle></g>
+      <g fill="#CF4A2C"><circle cx="214" cy="150" r="3"></circle><circle cx="226" cy="134" r="2.5"></circle><circle cx="206" cy="132" r="2"></circle></g>
     </svg>`,
   },
   retreats: {
@@ -106,7 +106,7 @@ export const CATEGORY_TEMPLATES = {
     desc: "Yoga, wellness and silent escapes. Slow down, breathe, and come back lighter.",
     tags: ["Yoga", "Wellness"],
     scene: `<svg class="scene" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <g fill="none" stroke="#2E7D4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="none" stroke="#15803D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="150" cy="92" r="15"></circle>
         <path d="M150 107 q-22 8 -22 38 q0 14 22 14 q22 0 22 -14 q0 -30 -22 -38Z"></path>
         <path d="M110 158 q40 22 80 0"></path>
@@ -119,8 +119,8 @@ export const CATEGORY_TEMPLATES = {
         <path d="M150 178 q-14 -2 -18 10 q10 6 18 2"></path>
         <path d="M150 178 q14 -2 18 10 q-10 6 -18 2"></path>
       </g>
-      <circle cx="150" cy="120" r="74" fill="none" stroke="#2E7D4F" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
-      <g fill="#2E7D4F" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
+      <circle cx="150" cy="120" r="74" fill="none" stroke="#15803D" stroke-width="1.5" stroke-dasharray="3,7" opacity=".45"></circle>
+      <g fill="#15803D" opacity=".7"><circle cx="96" cy="70" r="2.5"></circle><circle cx="208" cy="80" r="2.5"></circle></g>
     </svg>`,
   },
   trekking: {

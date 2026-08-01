@@ -14,7 +14,7 @@ const Googlebanner = ({ bg }) => {
         container
         // spacing={5}
         sx={{
-          background: bg ? bg : "#F1EADD",
+          background: bg ? bg : "#F4F4F5",
           p: 2,
           borderRadius: { xs: "10px", md: "32px" },
           display: "flex",
@@ -75,7 +75,7 @@ const Googlebanner = ({ bg }) => {
                   </Box>
                   <Typography
                     sx={{
-                      color: "#F0A03C",
+                      color: "#18181B",
                       fontWeight: "700",
                       fontSize: { xs: "14px", sm: "14px", md: "16px" },
                     }}
@@ -86,7 +86,7 @@ const Googlebanner = ({ bg }) => {
                 <Link
                   style={{
                     marginTop: "10px",
-                    color: "#726A5E",
+                    color: "#52525B",
                     fontFamily: "Inter",
                     fontSize: matches ? "16px" : "11px",
                   }}

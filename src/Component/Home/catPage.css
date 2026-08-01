@@ -2,15 +2,15 @@
 .catpg {
   --orange: #CF4A2C;
   --orange-hover: #B53D1F;
-  --orange-tint: #FDF3EE;
+  --orange-tint: #F4F4F5;
   --orange-tint-2: #FBEAE3;
-  --charcoal: #3C3228;
-  --text-dark: #3C3228;
-  --text: #5A5247;
-  --text-light: #726A5E;
-  --text-lighter: #8A8073;
-  --line: #E6DDCF;
-  --line-soft: #F1EADD;
+  --charcoal: #27272A;
+  --text-dark: #27272A;
+  --text: #3F3F46;
+  --text-light: #52525B;
+  --text-lighter: #71717A;
+  --line: #E4E4E7;
+  --line-soft: #F4F4F5;
   --bg: #fff;
   --bg-soft: var(--orange-tint);
   --bg-cream: #FAF7F2;

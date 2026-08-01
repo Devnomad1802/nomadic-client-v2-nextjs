@@ -21,7 +21,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
     paddingTop: "0px",
     paddingBottom: "0px",
     marginLeft: "20px",
-    color: "#221C17",
+    color: "#18181B",
     fontWeight: "bold",
     height: "30px",
 
@@ -173,8 +173,8 @@ export default function BatchListTab({
 
         <Box
           sx={{
-            //   border: "1px solid #F1EADD",
-            //   background: "#FBF6EE",
+            //   border: "1px solid #F4F4F5",
+            //   background: "#FAFAFA",
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
@@ -210,8 +210,8 @@ export default function BatchListTab({
             my: 2,
             py: { xs: 1, md: 1 },
             // px: { xs: 1, md: 2 },
-            border: { xs: "none", sm: "1px solid #F1EADD" },
-            background: "#FBF6EE",
+            border: { xs: "none", sm: "1px solid #F4F4F5" },
+            background: "#FAFAFA",
           }}
         >
           {sortedMonthKeys?.map((monthName, index) => (

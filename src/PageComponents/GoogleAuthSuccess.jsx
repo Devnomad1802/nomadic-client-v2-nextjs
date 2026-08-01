@@ -42,7 +42,7 @@ const GoogleAuthSuccess = () => {
       justifyContent: "center", minHeight: "100vh", gap: 2,
     }}>
       <CircularProgress sx={{ color: "#CF4A2C" }} />
-      <Typography sx={{ color: "#5A5247", fontSize: "18px" }}>
+      <Typography sx={{ color: "#3F3F46", fontSize: "18px" }}>
         Logging you in...
       </Typography>
     </Box>

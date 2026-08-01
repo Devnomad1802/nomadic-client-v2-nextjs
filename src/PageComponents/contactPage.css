@@ -1,10 +1,10 @@
 /* Contact Us page — scoped under .ctpg (from the Contact Us design) */
 .ctpg{
   --orange:#CF4A2C; --orange-hover:#B53D1F;
-  --orange-tint:#FDF3EE; --orange-tint-2:#FBEAE3;
-  --charcoal:#3C3228; --text-dark:#3C3228;
-  --text:#5A5247; --text-light:#726A5E; --text-lighter:#8A8073;
-  --line:#E6DDCF; --line-soft:#F1EADD;
+  --orange-tint:#F4F4F5; --orange-tint-2:#FBEAE3;
+  --charcoal:#27272A; --text-dark:#27272A;
+  --text:#3F3F46; --text-light:#52525B; --text-lighter:#71717A;
+  --line:#E4E4E7; --line-soft:#F4F4F5;
   --bg:#fff; --bg-soft:var(--orange-tint); --bg-cream:#FAF7F2;
   --green:#11875b; --green-tint:#e7f4ee; --whatsapp:#25D366;
   --sh:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04);

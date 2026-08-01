@@ -36,16 +36,16 @@ const TICKET_CSS = `
   .nt-amt { transition: border-color .16s ease, background .16s ease, box-shadow .16s ease; }
   .nt-amt:hover { border-color: ${ACCENT}; }
   .nt-back { transition: background .16s ease; }
-  .nt-back:hover { background: #F1EADD; }
+  .nt-back:hover { background: #F4F4F5; }
 
   .nt-shell { min-height: 100vh; display: flex; flex-direction: column; text-align: left; }
   .nt-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: clamp(20px,3.5vw,48px); }
-  .nt-ticket { width: 100%; max-width: 1060px; display: flex; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 30px 64px -28px rgba(60,42,28,.34); border: 1px solid #F1EADD; }
-  .nt-left { flex: 0 0 42%; position: relative; background: linear-gradient(155deg,#54514c,#33312e); padding: clamp(32px,3.5vw,46px); overflow: hidden; }
+  .nt-ticket { width: 100%; max-width: 1060px; display: flex; border-radius: 26px; overflow: hidden; background: #FFFFFF; box-shadow: 0 30px 64px -28px rgba(60,42,28,.34); border: 1px solid #F4F4F5; }
+  .nt-left { flex: 0 0 42%; position: relative; background: linear-gradient(155deg,#3F3F46,#27272A); padding: clamp(32px,3.5vw,46px); overflow: hidden; }
   .nt-right { flex: 1; padding: clamp(28px,3vw,44px); }
   .nt-seam { position: relative; width: 30px; flex: none; }
-  .nt-seam-notch { position: absolute; left: 50%; transform: translateX(-50%); width: 30px; height: 30px; border-radius: 50%; background: #FFFDF9; }
-  .nt-seam-line { position: absolute; left: 50%; transform: translateX(-50%); top: 22px; bottom: 22px; border-left: 2px dashed #E0D7C8; }
+  .nt-seam-notch { position: absolute; left: 50%; transform: translateX(-50%); width: 30px; height: 30px; border-radius: 50%; background: #FFFFFF; }
+  .nt-seam-line { position: absolute; left: 50%; transform: translateX(-50%); top: 22px; bottom: 22px; border-left: 2px dashed #E4E4E7; }
 
   @media (max-width: 820px) {
     .nt-ticket { flex-direction: column; max-width: 520px; }
@@ -54,7 +54,7 @@ const TICKET_CSS = `
     .nt-seam-notch { left: auto; top: 50%; transform: translateY(-50%); }
     .nt-seam-notch.a { left: -15px; }
     .nt-seam-notch.b { right: -15px; left: auto; }
-    .nt-seam-line { left: 22px; right: 22px; top: 50%; bottom: auto; transform: translateY(-50%); border-left: none; border-top: 2px dashed #E0D7C8; width: auto; }
+    .nt-seam-line { left: 22px; right: 22px; top: 50%; bottom: auto; transform: translateY(-50%); border-left: none; border-top: 2px dashed #E4E4E7; width: auto; }
   }
 
   /* ===== Stickman travel companion ===== */
@@ -231,19 +231,19 @@ const BookingOverview = () => {
     label: item?.Title,
     qty: `₹ ${inr(item?.TitlePrice)} × ${item.quantity}`,
     amount: `₹ ${inr(Number(item?.TitlePrice || 0) * item.quantity)}`,
-    color: "#3C3228",
+    color: "#27272A",
   }));
   lineItems.push({
     label: "Discount",
     qty: "",
     amount: `– ₹ ${inr(discountAmount)}`,
-    color: "#2E7D4F",
+    color: "#15803D",
   });
   lineItems.push({
     label: "GST @ 5%",
     qty: "",
     amount: `₹ ${inr(cardData.gstTax)}`,
-    color: "#3C3228",
+    color: "#27272A",
   });
 
   // ---------------------------------------------------------------------------
@@ -371,8 +371,8 @@ const BookingOverview = () => {
     textAlign: "left",
     cursor: "pointer",
     borderRadius: "14px",
-    background: active ? "#FDF1EC" : "#FFFDF9",
-    border: active ? `1.5px solid ${ACCENT}` : "1px solid #E6DDCF",
+    background: active ? "#FDF1EC" : "#FFFFFF",
+    border: active ? `1.5px solid ${ACCENT}` : "1px solid #E4E4E7",
     boxShadow: active ? "0 6px 16px rgba(205,72,42,.16)" : "none",
     fontFamily: BODY_FONT,
   });
@@ -389,7 +389,7 @@ const BookingOverview = () => {
   });
 
   return (
-    <Box sx={{ background: "#FFFDF9", minHeight: "100vh" }}>
+    <Box sx={{ background: "#FFFFFF", minHeight: "100vh" }}>
       <Loading isLoading={loading} />
       <Toastify setAlertState={setAlertState} alertState={alertState} />
       <LoginModal openL={openL} setOpenL={setOpenL} toggelModelL={toggelModelL} />
@@ -397,7 +397,7 @@ const BookingOverview = () => {
 
       <div className="nt-shell">
         {/* HEADER */}
-        <header style={{ borderBottom: "1px solid #F1EADD", background: "#FFFDF9", width: "100%" }}>
+        <header style={{ borderBottom: "1px solid #F4F4F5", background: "#FFFFFF", width: "100%" }}>
           <div style={{ maxWidth: 1060, margin: "0 auto", padding: "clamp(16px,2.2vw,22px) clamp(18px,4vw,48px)", display: "flex", alignItems: "center", gap: "14px" }}>
             <button
               type="button"
@@ -411,12 +411,12 @@ const BookingOverview = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                border: "1px solid #E6DDCF",
+                border: "1px solid #E4E4E7",
                 background: "#FFFFFF",
                 borderRadius: "12px",
                 cursor: "pointer",
                 fontSize: "19px",
-                color: "#221C17",
+                color: "#18181B",
               }}
             >
               ←
@@ -427,7 +427,7 @@ const BookingOverview = () => {
                 fontWeight: 700,
                 fontSize: "clamp(18px,2vw,22px)",
                 letterSpacing: "-.01em",
-                color: "#221C17",
+                color: "#18181B",
               }}
             >
               Booking Overview
@@ -453,7 +453,7 @@ const BookingOverview = () => {
               />
               <div style={{ position: "relative" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
-                  <span style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".2em", textTransform: "uppercase", color: "#F0B49C" }}>
+                  <span style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".2em", textTransform: "uppercase", color: "#D4D4D8" }}>
                     Your trip
                   </span>
                   <span
@@ -468,10 +468,10 @@ const BookingOverview = () => {
                       font: `600 11px/1 ${BODY_FONT}`,
                       letterSpacing: ".05em",
                       textTransform: "uppercase",
-                      color: "#F4EEE4",
+                      color: "#FAFAFA",
                     }}
                   >
-                    <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#2E7D4F" }} />
+                    <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#15803D" }} />
                     Ready to book
                   </span>
                 </div>
@@ -484,7 +484,7 @@ const BookingOverview = () => {
                     fontSize: "clamp(28px,3.4vw,40px)",
                     lineHeight: 1.05,
                     letterSpacing: "-.02em",
-                    color: "#F8F4ED",
+                    color: "#FAFAFA",
                     textWrap: "balance",
                   }}
                 >
@@ -496,18 +496,18 @@ const BookingOverview = () => {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 18px" }}>
                   {details.map((d, i) => (
                     <div key={i} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                      <span style={{ display: "flex", alignItems: "center", gap: "7px", font: `600 11px/1 ${BODY_FONT}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#9C9388" }}>
+                      <span style={{ display: "flex", alignItems: "center", gap: "7px", font: `600 11px/1 ${BODY_FONT}`, letterSpacing: ".08em", textTransform: "uppercase", color: "#71717A" }}>
                         {d.icon}
                         {d.label}
                       </span>
-                      <span style={{ font: `600 16px/1.2 ${BODY_FONT}`, color: "#F4EEE4" }}>{d.value}</span>
+                      <span style={{ font: `600 16px/1.2 ${BODY_FONT}`, color: "#FAFAFA" }}>{d.value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* stickman travel companion */}
-              <svg className="sm-stage" viewBox="0 0 360 150" preserveAspectRatio="xMidYMax meet" fill="none" stroke="#F8F4ED" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg className="sm-stage" viewBox="0 0 360 150" preserveAspectRatio="xMidYMax meet" fill="none" stroke="#FAFAFA" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="20" y1="121" x2="340" y2="121" stroke="rgba(248,244,237,.18)" strokeWidth="1.5" strokeDasharray="2 7" />
                 <g className="sm-travel">
                   <g className="sm-bob">
@@ -517,7 +517,7 @@ const BookingOverview = () => {
                       <g className="sm-breathe">
                         <path d="M-3,-55 C-16,-52 -16,-33 -4,-30" stroke="#E0712F" vectorEffect="non-scaling-stroke" />
                         <path d="M-13,-44 L-4,-44" stroke="#E0712F" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-                        <circle cx="-9" cy="-44" r="1.4" fill="#F8F4ED" stroke="none" />
+                        <circle cx="-9" cy="-44" r="1.4" fill="#FAFAFA" stroke="none" />
                         <path d="M0,-29 L0,-56" vectorEffect="non-scaling-stroke" />
                         <g className="sm-arm-reach"><path d="M0,-52 L22,-52" vectorEffect="non-scaling-stroke" /><path d="M22,-52 l4,-2.5 M22,-52 l4,2.5" vectorEffect="non-scaling-stroke" /></g>
                         <g className="sm-arm-near"><path d="M0,-52 L13,-45" vectorEffect="non-scaling-stroke" /></g>
@@ -525,13 +525,13 @@ const BookingOverview = () => {
                           <path d="M0,-56 L0,-61" vectorEffect="non-scaling-stroke" />
                           <circle cx="0" cy="-70.5" r="9.5" vectorEffect="non-scaling-stroke" />
                           <g className="sm-face-side">
-                            <circle cx="3.6" cy="-72" r="0.95" fill="#F8F4ED" stroke="none" />
-                            <circle cx="6.8" cy="-72" r="0.95" fill="#F8F4ED" stroke="none" />
+                            <circle cx="3.6" cy="-72" r="0.95" fill="#FAFAFA" stroke="none" />
+                            <circle cx="6.8" cy="-72" r="0.95" fill="#FAFAFA" stroke="none" />
                             <path d="M3,-66.4 Q6,-63.8 9,-66.4" vectorEffect="non-scaling-stroke" />
                           </g>
                           <g className="sm-face-front">
-                            <circle cx="-3.2" cy="-72" r="0.95" fill="#F8F4ED" stroke="none" />
-                            <circle cx="3.2" cy="-72" r="0.95" fill="#F8F4ED" stroke="none" />
+                            <circle cx="-3.2" cy="-72" r="0.95" fill="#FAFAFA" stroke="none" />
+                            <circle cx="3.2" cy="-72" r="0.95" fill="#FAFAFA" stroke="none" />
                             <path d="M-4,-66.4 Q0,-63 4,-66.4" vectorEffect="non-scaling-stroke" />
                           </g>
                         </g>
@@ -551,57 +551,57 @@ const BookingOverview = () => {
 
             {/* RIGHT · payment */}
             <div className="nt-right">
-              <div style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".14em", textTransform: "uppercase", color: "#A89C8A", marginBottom: "6px" }}>
+              <div style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".14em", textTransform: "uppercase", color: "#A1A1AA", marginBottom: "6px" }}>
                 Payment summary
               </div>
 
               {lineItems.map((li, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: "14px 0", borderBottom: "1px solid #EFE7DA" }}>
-                  <span style={{ flex: 1, font: `600 15px/1.3 ${BODY_FONT}`, color: "#3C3228" }}>{li.label}</span>
-                  <span style={{ font: `400 14px/1.3 ${BODY_FONT}`, color: "#A89C8A", whiteSpace: "nowrap" }}>{li.qty}</span>
+                  <span style={{ flex: 1, font: `600 15px/1.3 ${BODY_FONT}`, color: "#27272A" }}>{li.label}</span>
+                  <span style={{ font: `400 14px/1.3 ${BODY_FONT}`, color: "#A1A1AA", whiteSpace: "nowrap" }}>{li.qty}</span>
                   <span style={{ minWidth: 100, font: `600 15px/1.3 ${BODY_FONT}`, color: li.color, textAlign: "right", whiteSpace: "nowrap" }}>{li.amount}</span>
                 </div>
               ))}
 
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", marginTop: "16px", padding: "18px 20px", background: "linear-gradient(135deg,#F3F3F3,#EDEDED)", border: "1px solid #E2E2E2", borderRadius: "14px" }}>
-                <span style={{ fontFamily: DISPLAY_FONT, fontWeight: 700, fontSize: "clamp(17px,2vw,20px)", color: "#3C3228" }}>Total Trip Amount</span>
-                <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "clamp(19px,2.4vw,24px)", color: "#221C17" }}>₹ {inr(Total)}</span>
+                <span style={{ fontFamily: DISPLAY_FONT, fontWeight: 700, fontSize: "clamp(17px,2vw,20px)", color: "#27272A" }}>Total Trip Amount</span>
+                <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "clamp(19px,2.4vw,24px)", color: "#18181B" }}>₹ {inr(Total)}</span>
               </div>
 
               {partialAvailable && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", justifyContent: "space-between", marginTop: "14px", padding: "15px 18px", background: "#FBF6EE", border: "1px dashed #E0CFBE", borderRadius: "14px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", justifyContent: "space-between", marginTop: "14px", padding: "15px 18px", background: "#FAFAFA", border: "1px dashed #E0CFBE", borderRadius: "14px" }}>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ font: `600 15px/1.3 ${BODY_FONT}`, color: "#3C3228" }}>Book now, pay the rest later</div>
-                    <div style={{ marginTop: "5px", font: `400 13px/1.45 ${BODY_FONT}`, color: "#9A9080" }}>
-                      ₹ {inr(balance)} due by <strong style={{ color: "#5A5247" }}>{balanceBy}</strong>
+                    <div style={{ font: `600 15px/1.3 ${BODY_FONT}`, color: "#27272A" }}>Book now, pay the rest later</div>
+                    <div style={{ marginTop: "5px", font: `400 13px/1.45 ${BODY_FONT}`, color: "#71717A" }}>
+                      ₹ {inr(balance)} due by <strong style={{ color: "#3F3F46" }}>{balanceBy}</strong>
                     </div>
                   </div>
-                  <div style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "clamp(18px,2vw,22px)", color: "#2E7D4F", whiteSpace: "nowrap" }}>₹ {inr(firstPay)}</div>
+                  <div style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "clamp(18px,2vw,22px)", color: "#15803D", whiteSpace: "nowrap" }}>₹ {inr(firstPay)}</div>
                 </div>
               )}
 
-              <div style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".14em", textTransform: "uppercase", color: "#A89C8A", margin: "22px 0 12px" }}>
+              <div style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".14em", textTransform: "uppercase", color: "#A1A1AA", margin: "22px 0 12px" }}>
                 Select amount
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: partialAvailable ? "1fr 1fr" : "1fr", gap: "12px" }}>
                 <button type="button" onClick={pickFull} className="nt-amt" style={cardStyle(!partial)}>
                   <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{ font: `600 12px/1 ${BODY_FONT}`, letterSpacing: ".04em", textTransform: "uppercase", color: "#8A8073" }}>Full payment</span>
+                    <span style={{ font: `600 12px/1 ${BODY_FONT}`, letterSpacing: ".04em", textTransform: "uppercase", color: "#71717A" }}>Full payment</span>
                     <span style={dotStyle(!partial)}><span style={{ width: 8, height: 8, borderRadius: "50%", background: !partial ? "#fff" : "transparent" }} /></span>
                   </span>
-                  <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "21px", color: "#221C17" }}>₹ {inr(Total)}</span>
-                  <span style={{ font: `400 12px/1.4 ${BODY_FONT}`, color: "#9A9080" }}>Pay the whole amount today</span>
+                  <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "21px", color: "#18181B" }}>₹ {inr(Total)}</span>
+                  <span style={{ font: `400 12px/1.4 ${BODY_FONT}`, color: "#71717A" }}>Pay the whole amount today</span>
                 </button>
 
                 {partialAvailable && (
                   <button type="button" onClick={pickPartial} className="nt-amt" style={cardStyle(partial)}>
                     <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      <span style={{ font: `600 12px/1 ${BODY_FONT}`, letterSpacing: ".04em", textTransform: "uppercase", color: "#8A8073" }}>Partial</span>
+                      <span style={{ font: `600 12px/1 ${BODY_FONT}`, letterSpacing: ".04em", textTransform: "uppercase", color: "#71717A" }}>Partial</span>
                       <span style={dotStyle(partial)}><span style={{ width: 8, height: 8, borderRadius: "50%", background: partial ? "#fff" : "transparent" }} /></span>
                     </span>
-                    <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "21px", color: "#221C17" }}>₹ {inr(firstPay)}</span>
-                    <span style={{ font: `400 12px/1.4 ${BODY_FONT}`, color: "#9A9080" }}>₹ {inr(balance)} payable later</span>
+                    <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "21px", color: "#18181B" }}>₹ {inr(firstPay)}</span>
+                    <span style={{ font: `400 12px/1.4 ${BODY_FONT}`, color: "#71717A" }}>₹ {inr(balance)} payable later</span>
                   </button>
                 )}
               </div>
@@ -627,10 +627,10 @@ const BookingOverview = () => {
                   Proceed to Pay ₹ {inr(selectedValue)}
                 </button>
               </div>
-              <p style={{ margin: "12px 0 0", textAlign: "center", font: `400 12px/1.4 ${BODY_FONT}`, color: "#9A9080" }}>
+              <p style={{ margin: "12px 0 0", textAlign: "center", font: `400 12px/1.4 ${BODY_FONT}`, color: "#71717A" }}>
                 🔒 You&apos;ll be redirected to the secure payment gateway
               </p>
-              <p style={{ margin: "8px 0 0", textAlign: "center", font: `400 12px/1.5 ${BODY_FONT}`, color: "#9A9080" }}>
+              <p style={{ margin: "8px 0 0", textAlign: "center", font: `400 12px/1.5 ${BODY_FONT}`, color: "#71717A" }}>
                 By proceeding, you agree to our{" "}
                 <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT, fontWeight: 600, textDecoration: "none" }}>
                   Terms &amp; Conditions

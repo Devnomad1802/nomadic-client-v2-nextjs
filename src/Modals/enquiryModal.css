@@ -27,7 +27,7 @@
 .enq-root .l-illus-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 32px}
 .enq-root .l-illus-wrap svg{width:100%;max-width:240px;height:auto}
 .enq-root .l-caption{padding:0 32px 32px;text-align:left}
-.enq-root .l-caption h3{font-family:"Playfair",Georgia,serif;font-size:22px;font-weight:600;color:#1a1208;letter-spacing:-.015em;line-height:1.2;margin:0 0 6px}
+.enq-root .l-caption h3{font-family:"Playfair",Georgia,serif;font-size:22px;font-weight:600;color:#18181B;letter-spacing:-.015em;line-height:1.2;margin:0 0 6px}
 .enq-root .l-caption h3 em{font-style:italic;color:#CF4A2C}
 .enq-root .l-caption p{font-size:13px;color:#7a6a58;line-height:1.55;margin:0}
 
@@ -35,18 +35,18 @@
 .enq-root .r-head{margin-bottom:6px}
 .enq-root .r-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#CF4A2C;margin-bottom:14px}
 .enq-root .r-eyebrow::before{content:'';width:16px;height:1.5px;background:#CF4A2C;display:block}
-.enq-root .r-head h2{font-family:"Playfair",Georgia,serif;font-size:30px;font-weight:600;color:#1a1208;letter-spacing:-.02em;margin:0 0 6px;line-height:1.15}
+.enq-root .r-head h2{font-family:"Playfair",Georgia,serif;font-size:30px;font-weight:600;color:#18181B;letter-spacing:-.02em;margin:0 0 6px;line-height:1.15}
 .enq-root .r-head p{font-size:14px;color:#9a8878;line-height:1.55;margin:0}
 
 .enq-root .field{display:flex;flex-direction:column}
 .enq-root .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .enq-root .field label{font-size:13.5px;font-weight:700;color:#3a2e22;margin-bottom:7px}
-.enq-root .inp{width:100%;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;padding:0 14px;height:50px;background:#fff;font-family:inherit;font-size:15px;color:#1a1208;outline:none;transition:border-color .15s,box-shadow .15s}
+.enq-root .inp{width:100%;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;padding:0 14px;height:50px;background:#fff;font-family:inherit;font-size:15px;color:#18181B;outline:none;transition:border-color .15s,box-shadow .15s}
 .enq-root .inp:focus{border-color:#CF4A2C;box-shadow:0 0 0 4px rgba(205,72,42,.12)}
 .enq-root .inp::placeholder{color:#c0b4a8}
 .enq-root textarea.inp{height:auto;min-height:88px;padding:12px 14px;resize:none;line-height:1.5;font-family:inherit}
 .enq-root .ph-row{display:flex;gap:10px}
-.enq-root .cc{display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;padding:0 14px;height:50px;font-family:inherit;font-size:15px;font-weight:600;color:#1a1208;white-space:nowrap;user-select:none}
+.enq-root .cc{display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:14px;padding:0 14px;height:50px;font-family:inherit;font-size:15px;font-weight:600;color:#18181B;white-space:nowrap;user-select:none}
 .enq-root .ph-row .inp{flex:1}
 
 .enq-root .submit-btn{width:100%;height:52px;border:none;border-radius:999px;background:linear-gradient(135deg,#e05a35,#b53c20);color:#fff;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 12px 26px -10px rgba(210,75,42,.55);transition:opacity .2s,transform .12s;letter-spacing:.01em}
@@ -56,11 +56,11 @@
 .enq-root .submit-btn:hover svg{transform:translateX(3px)}
 .enq-root .err-msg{font-size:12.5px;color:#b91c1c;margin:-6px 0 0}
 .enq-root .fineprint{font-size:11.5px;color:#a89a88;line-height:1.55;text-align:center;margin-top:4px}
-.enq-root .fineprint a{color:#1a1208;font-weight:600;text-decoration:none;border-bottom:1px solid #d4c8b8}
+.enq-root .fineprint a{color:#18181B;font-weight:600;text-decoration:none;border-bottom:1px solid #d4c8b8}
 
 .enq-root .success-panel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 52px;background:#fff}
-.enq-root .success-icon{width:64px;height:64px;border-radius:50%;background:#f0f7f1;border:1px solid #d6ebd9;display:grid;place-items:center;margin-bottom:22px;color:#2E7D4F}
-.enq-root .success-panel h2{font-family:"Playfair",Georgia,serif;font-size:30px;font-weight:600;color:#1a1208;margin:0 0 10px;letter-spacing:-.02em}
+.enq-root .success-icon{width:64px;height:64px;border-radius:50%;background:#f0f7f1;border:1px solid #d6ebd9;display:grid;place-items:center;margin-bottom:22px;color:#15803D}
+.enq-root .success-panel h2{font-family:"Playfair",Georgia,serif;font-size:30px;font-weight:600;color:#18181B;margin:0 0 10px;letter-spacing:-.02em}
 .enq-root .success-panel p{font-size:14.5px;color:#7a6a58;line-height:1.6;max-width:300px;margin:0 0 28px}
 
 @media (max-width:780px){

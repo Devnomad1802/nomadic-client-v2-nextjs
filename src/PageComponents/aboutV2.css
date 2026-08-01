@@ -1,9 +1,9 @@
 .v2-page {
   min-height: 100vh;
   overflow-x: hidden;
-  background: #F4EEE4;
+  background: #FAFAFA;
   font-family: var(--inter);
-  color: #221C17;
+  color: #18181B;
   position: relative;
 }
 

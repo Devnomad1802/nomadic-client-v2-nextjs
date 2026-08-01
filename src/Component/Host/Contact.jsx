@@ -33,22 +33,22 @@ const Contact = ({ hostData }) => {
 
   const socialLinks = [
     {
-      icon: <LanguageIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <LanguageIcon sx={{ color: "#27272A", fontSize: "20px" }} />,
       label: "Website",
       url: hostData?.socialMedia?.website,
     },
     {
-      icon: <FacebookIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <FacebookIcon sx={{ color: "#27272A", fontSize: "20px" }} />,
       label: "Facebook",
       url: hostData?.socialMedia?.facebook,
     },
     {
-      icon: <InstagramIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <InstagramIcon sx={{ color: "#27272A", fontSize: "20px" }} />,
       label: "Instagram",
       url: hostData?.socialMedia?.instagram,
     },
     {
-      icon: <TwitterIcon sx={{ color: "#3C3228", fontSize: "20px" }} />,
+      icon: <TwitterIcon sx={{ color: "#27272A", fontSize: "20px" }} />,
       label: "Twitter",
       url: hostData?.socialMedia?.twitter,
     },
@@ -79,7 +79,7 @@ const Contact = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#27272A",
                   mb: 4,
                   fontSize: { xs: "24px", sm: "28px" },
                   fontFamily:
@@ -119,7 +119,7 @@ const Contact = ({ hostData }) => {
                         variant="body2"
                         sx={{
                           fontWeight: 500,
-                          color: "#3C3228",
+                          color: "#27272A",
                           fontSize: "14px",
                           fontFamily:
                             "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -163,7 +163,7 @@ const Contact = ({ hostData }) => {
                 variant="h4"
                 sx={{
                   fontWeight: 500,
-                  color: "#3C3228",
+                  color: "#27272A",
                   mb: 4,
                   fontSize: { xs: "24px", sm: "28px" },
                   fontFamily:
@@ -184,25 +184,25 @@ const Contact = ({ hostData }) => {
                       sx={{
                         width: "100%",
                         height: "48px",
-                        background: "#F1EADD",
-                        border: "1px solid #D8CFC0",
+                        background: "#F4F4F5",
+                        border: "1px solid #D4D4D8",
                         borderRadius: "12px",
                         textAlign: "left",
                         fontFamily:
                           "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                         fontSize: "14px",
                         fontWeight: 500,
-                        color: "#3C3228",
+                        color: "#27272A",
                         cursor: social.url ? "pointer" : "default",
                         "&:hover": {
-                          background: social.url ? "#CF4A2C" : "#F1EADD",
-                          color: social.url ? "white" : "#3C3228",
+                          background: social.url ? "#CF4A2C" : "#F4F4F5",
+                          color: social.url ? "white" : "#27272A",
                         },
                         "& .MuiChip-icon": {
-                          color: "#3C3228",
+                          color: "#27272A",
                         },
                         "&:hover .MuiChip-icon": {
-                          color: social.url ? "white" : "#3C3228",
+                          color: social.url ? "white" : "#27272A",
                         },
                       }}
                     />

@@ -32,8 +32,8 @@ const HostFilter = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <FilterListIcon sx={{ color: "#726A5E", fontSize: "20px" }} />
-          <Typography variant="body1" sx={{ color: "#726A5E", fontWeight: 500 }}>
+          <FilterListIcon sx={{ color: "#52525B", fontSize: "20px" }} />
+          <Typography variant="body1" sx={{ color: "#52525B", fontWeight: 500 }}>
             Filter Trips:
           </Typography>
         </Box>
@@ -55,13 +55,13 @@ const HostFilter = () => {
                 borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
-                color: "#726A5E",
+                color: "#52525B",
                 fontWeight: 500,
               },
               "& .MuiPaper-root": {
                 borderRadius: "12px",
                 boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                border: "1px solid #D8CFC0",
+                border: "1px solid #D4D4D8",
               },
             }}
             MenuProps={{
@@ -69,17 +69,17 @@ const HostFilter = () => {
                 sx: {
                   borderRadius: "12px",
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                  border: "1px solid #D8CFC0",
+                  border: "1px solid #D4D4D8",
                   "& .MuiMenuItem-root": {
-                    color: "#726A5E",
+                    color: "#52525B",
                     fontWeight: 500,
                     "&:hover": {
-                      backgroundColor: "#F1EADD",
+                      backgroundColor: "#F4F4F5",
                     },
                     "&.Mui-selected": {
-                      backgroundColor: "#F1EADD",
+                      backgroundColor: "#F4F4F5",
                       "&:hover": {
-                        backgroundColor: "#F1EADD",
+                        backgroundColor: "#F4F4F5",
                       },
                     },
                   },
@@ -90,9 +90,9 @@ const HostFilter = () => {
             <MenuItem
               value=""
               sx={{
-                color: "#726A5E",
+                color: "#52525B",
                 fontWeight: 500,
-                backgroundColor: "#F1EADD",
+                backgroundColor: "#F4F4F5",
               }}
             >
               All Months
@@ -119,7 +119,7 @@ const HostFilter = () => {
             displayEmpty
             sx={{
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#D8CFC0",
+                borderColor: "#D4D4D8",
                 borderWidth: "1px",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -129,13 +129,13 @@ const HostFilter = () => {
                 borderColor: "#CF4A2C",
               },
               "& .MuiSelect-select": {
-                color: "#726A5E",
+                color: "#52525B",
                 fontWeight: 500,
               },
               "& .MuiPaper-root": {
                 borderRadius: "12px",
                 boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                border: "1px solid #D8CFC0",
+                border: "1px solid #D4D4D8",
               },
             }}
             MenuProps={{
@@ -143,17 +143,17 @@ const HostFilter = () => {
                 sx: {
                   borderRadius: "12px",
                   boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-                  border: "1px solid #D8CFC0",
+                  border: "1px solid #D4D4D8",
                   "& .MuiMenuItem-root": {
-                    color: "#726A5E",
+                    color: "#52525B",
                     fontWeight: 500,
                     "&:hover": {
-                      backgroundColor: "#F1EADD",
+                      backgroundColor: "#F4F4F5",
                     },
                     "&.Mui-selected": {
-                      backgroundColor: "#F1EADD",
+                      backgroundColor: "#F4F4F5",
                       "&:hover": {
-                        backgroundColor: "#F1EADD",
+                        backgroundColor: "#F4F4F5",
                       },
                     },
                   },
@@ -164,9 +164,9 @@ const HostFilter = () => {
             <MenuItem
               value=""
               sx={{
-                color: "#726A5E",
+                color: "#52525B",
                 fontWeight: 500,
-                backgroundColor: "#F1EADD",
+                backgroundColor: "#F4F4F5",
               }}
             >
               All Locations
