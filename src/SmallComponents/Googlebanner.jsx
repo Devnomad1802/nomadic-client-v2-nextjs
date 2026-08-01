@@ -75,7 +75,7 @@ const Googlebanner = ({ bg }) => {
                   </Box>
                   <Typography
                     sx={{
-                      color: "#FBC800",
+                      color: "#F0A03C",
                       fontWeight: "700",
                       fontSize: { xs: "14px", sm: "14px", md: "16px" },
                     }}

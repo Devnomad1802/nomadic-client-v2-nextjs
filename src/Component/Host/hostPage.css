@@ -2,7 +2,7 @@
    Host Detail Page — Nomadic Townies
    Design source: Host Detail (Bricolage Grotesque + Hanken Grotesk)
    Brand tokens: bg #F4EEE4 · card #FFFDF9 · ink #221C17
-                 accent #CF4A2C · accent2 #E9622F · green #5BBF7A
+                 accent #CF4A2C · accent2 #E9622F · green #2E7D4F
    ============================================================ */
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap");
 
@@ -19,7 +19,7 @@
   --accent: #cf4a2c;
   --accent-2: #e9622f;
   --accent-dark: #c0421f;
-  --green: #5bbf7a;
+  --green: #2E7D4F;
   --gold: #e0922f;
   --head: "Bricolage Grotesque", sans-serif;
   --body: "Hanken Grotesk", sans-serif;

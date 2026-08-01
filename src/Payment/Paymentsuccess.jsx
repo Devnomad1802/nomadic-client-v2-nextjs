@@ -228,7 +228,7 @@ const css = `
 .ps2-hostrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .ps2-host-av{width:54px;height:54px;border-radius:14px;background:linear-gradient(150deg,#E9622F,#CF4A2C);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;color:#FFF6EF}
 .ps2-host-av--img{object-fit:cover}
-.ps2-tick{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#5BBF7A;border:2px solid #FBF6EE;display:flex;align-items:center;justify-content:center;color:#fff}
+.ps2-tick{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#2E7D4F;border:2px solid #FBF6EE;display:flex;align-items:center;justify-content:center;color:#fff}
 .ps2-hostedby{font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#A89C8A}
 .ps2-hostname{margin-top:4px;font-family:'Bricolage Grotesque','Playfair Display',Georgia,serif;font-weight:700;font-size:17px;color:#221C17}
 .ps2-hostline{margin-top:2px;font-size:12px;line-height:1.4;color:#8A8073}

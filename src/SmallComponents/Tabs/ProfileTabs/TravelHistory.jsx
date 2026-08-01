@@ -407,7 +407,7 @@ const TravelHistory = () => {
                         Payment Status
                       </Typography>
                       <Typography
-                        sx={{ color: Number(finalTotal) <= 0 ? "#16A34A" : "#FBC800", mt: 1, textAlign: "left" }}
+                        sx={{ color: Number(finalTotal) <= 0 ? "#2E7D4F" : "#C8941E", mt: 1, textAlign: "left" }}
                       >
                         {paymentStatusLabel}
                       </Typography>

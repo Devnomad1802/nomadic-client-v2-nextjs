@@ -73,7 +73,7 @@ const January = ({ selectDate }) => {
             >
               <Typography
                 sx={{
-                  color: "#FBC800",
+                  color: "#F0A03C",
                   fontSize: "12.5px",
                   display: {
                     xs: id === index ? "none" : "block",

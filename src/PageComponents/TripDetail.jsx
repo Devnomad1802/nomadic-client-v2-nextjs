@@ -459,7 +459,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                   <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", alignItems: "flex-start" }}>
                     <div style={{ position: "relative", flex: "none" }}>
                       <div style={{ width: 80, height: 80, borderRadius: "18px", background: `linear-gradient(150deg,#E9622F,${ACCENT})`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: DISPLAY, fontWeight: 700, fontSize: "33px", color: "#FFF6EF" }}>{trip.host.initial}</div>
-                      {trip.host.verified && <span style={{ position: "absolute", right: -8, bottom: -8, width: 30, height: 30, borderRadius: "50%", background: "#5BBF7A", border: "3px solid #221C17", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>}
+                      {trip.host.verified && <span style={{ position: "absolute", right: -8, bottom: -8, width: 30, height: 30, borderRadius: "50%", background: "#2E7D4F", border: "3px solid #221C17", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}><Ic w={15} paths={["M20 6 9 17l-5-5"]} /></span>}
                     </div>
                     <div style={{ flex: 1, minWidth: 240 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>

@@ -17,7 +17,7 @@ const array = [
     value: "23",
     title: "In Pending",
     info: "hlw",
-    color: "#FBC800",
+    color: "#F0A03C",
     bl: "2px solid #D2D5DA",
   },
   { value: "10", title: "Cancelled", info: "hlw", color: "#CF4A2C" },
