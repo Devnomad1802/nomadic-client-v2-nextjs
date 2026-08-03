@@ -2,191 +2,202 @@
 
 /* eslint-disable react/prop-types */
 /**
- * HostOnboarding — standalone, secure, token-gated host onboarding wizard.
- * NOT part of site navigation. Reached only via the unique link emailed after
- * an application is approved: /host-onboarding/{token}.
+ * HostOnboarding — standalone, token-gated host onboarding page.
+ * Reached only via the secure link emailed after an application is moved to
+ * "Reviewing": /host-onboarding/{token}.
  *
- * Design ported 1:1 from the approved "Host Onboarding Portal" mockup (10-step
- * wizard, clay/cream brand). On submit it creates a DRAFT host on the backend
- * (status:"draft") for admin review — no live profile / dashboard yet (Phase 2).
+ * This is the approved single-page design that MIRRORS the Admin → Add New Host
+ * form 1:1 — same sections, same field ids (which ARE the backend Host keys), so
+ * the multipart submit maps straight through and every value populates the draft
+ * the admin reviews. On submit a DRAFT host is created (status:"draft"); no live
+ * profile, no dashboard (that stays a separate manual admin step).
  *
- * Field ids below match the server controller (controllers/hostOnboarding.js)
- * body keys exactly, so the multipart submit maps straight through.
+ * Comma-separated backend arrays (specialties, languages, achievements,
+ * regionsHosted, ageGroups) render as chip inputs: type + Enter/comma → chip,
+ * chips removable, submitted as arrays exactly as the backend expects.
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 
-// ── Wizard config (mirrors the mockup's SECTIONS) ─────────────────────────
+// ── Section/field config — order + ids match Add New Host exactly ──────────
+// kind: text | area | select | num | toggle | chips (default text)
+// admin: 1 → set by our team (shown read-only, never submitted by the host)
 const SECTIONS = [
-  { title: "Basic Information", vis: "Shown on your public profile",
-    desc: "The essentials travellers and our team use to identify and reach you.",
-    fields: [
-      { id: "hostName", label: "Full name", req: 1, ph: "As on your government ID", span: "auto", validate: "req" },
-      { id: "displayName", label: "Display name", ph: "Friendlier name travellers see", span: "auto", help: "Optional" },
-      { id: "email", label: "Email address", req: 1, ph: "you@email.com", span: "auto", validate: "email", help: "Your host account login" },
-      { id: "phone", label: "Mobile number", req: 1, ph: "+91 98765 43210", span: "auto", validate: "phone", help: "With country code" },
-      { id: "city", label: "City", req: 1, ph: "Where you're based", span: "auto", validate: "req" },
-      { id: "state", label: "State", req: 1, ph: "", span: "auto", validate: "req" },
-      { id: "pincode", label: "Pincode", ph: "e.g. 175131", span: "auto", help: "Optional" },
-      { id: "location", label: "Home base / operating location", req: 1, ph: "e.g. Manali, Himachal Pradesh", span: "1 / -1", validate: "req", help: "Displayed on your profile card" },
-    ],
-    chips: [
-      { id: "country", label: "Country", req: 1, type: "radio", validate: "reqSel", otherMode: "input", otherPh: "Please specify your country", options: ["India", "Nepal", "Bhutan", "Sri Lanka", "Other"] },
-      { id: "languages", label: "Languages you speak", req: 1, type: "checkbox", validate: "reqSel", otherMode: "chip", otherPh: "Enter your language", options: ["Hindi", "English", "Marathi", "Bengali", "Tamil", "Telugu", "Kannada", "Malayalam", "Gujarati", "Punjabi", "Nepali", "Other"] },
+  { id: "basic", title: "Basic Information",
+    desc: "Core identity and location for this host — as it appears in the Add New Host record.",
+    blocks: [{ type: "fields", fields: [
+      { id: "hostName", label: "Host Name", req: 1, ph: "Enter host name" },
+      { id: "location", label: "Location", ph: "Enter location" },
+      { id: "city", label: "City", ph: "Enter city" },
+      { id: "state", label: "State", ph: "Enter state" },
+      { id: "pincode", label: "Pincode", ph: "Enter pincode" },
+      { id: "completeAddress", label: "Complete Address", ph: "Enter complete address", span: "1 / -1" },
+    ] }] },
+
+  { id: "business", title: "Business Information",
+    desc: "Registration identifiers. Kept private and used only for verification.",
+    blocks: [{ type: "fields", fields: [
+      { id: "panNumber", label: "PAN Number", ph: "Enter PAN number", help: "🔒 Private · format ABCDE1234F" },
+      { id: "gstNumber", label: "GST Number", ph: "Enter GST number", help: "🔒 Private · optional" },
+    ] }] },
+
+  { id: "bank", title: "Bank Account Details",
+    desc: "Used only to send payouts. Never shown publicly. All four fields are required by the backend.",
+    blocks: [{ type: "fields", fields: [
+      { id: "bankName", label: "Bank Name", req: 1, ph: "Enter bank name" },
+      { id: "accountHolderName", label: "Account Holder Name", req: 1, ph: "Enter account holder name" },
+      { id: "accountNumber", label: "Account Number", req: 1, ph: "Enter account number" },
+      { id: "ifscCode", label: "IFSC Code", req: 1, ph: "Enter IFSC code", help: "e.g. HDFC0001234" },
+    ] }] },
+
+  { id: "branding", title: "Branding",
+    desc: "How this host appears across Nomadic Townies. Great imagery drives more bookings.",
+    blocks: [
+      { type: "fields", fields: [
+        { id: "hostTitle", label: "Host Title", ph: "Enter host title" },
+        { id: "tagline", label: "Tagline", ph: "Enter short tagline…" },
+      ] },
+      { type: "uploads", uploads: [
+        { id: "logo", title: "Logo", accept: "image/*", help: "Square · min 400×400 · JPG/PNG" },
+        { id: "coverImage", title: "Cover Upload", accept: "image/*", help: "Wide landscape · min 1600×900" },
+      ] },
     ] },
 
-  { title: "About You", vis: "Shown on your public profile",
-    desc: "The heart of your profile — travellers book hosts they connect with. Write naturally; our team helps polish.",
-    fields: [
-      { id: "overview", label: "Tell us your story", req: 1, area: 1, rows: 5, ph: "Who are you? How did you get into hosting travel?", span: "1 / -1", validate: "req", help: "150–300 words works great" },
-      { id: "shortBio", label: "One-line intro for your card", req: 1, ph: '"Trekking the Himalayas with small groups since 2015"', span: "1 / -1", validate: "req", help: "Max ~120 characters" },
-      { id: "whyHost", label: "Why do you host experiences?", req: 1, area: 1, rows: 3, ph: "What drives you?", span: "auto", validate: "req" },
-      { id: "unique", label: "What makes your experiences unique?", req: 1, area: 1, rows: 3, ph: "The thing guests remember", span: "auto", validate: "req" },
-    ],
-    faqs: 1 },
-
-  { title: "Business Information", vis: "Some fields private",
-    desc: "Tells us who we're partnering with. Registration & tax fields stay private; brand name is public.",
-    fields: [
-      { id: "brandName", label: "Business / brand name", req: 1, ph: "e.g. Mountain Collective", span: "1 / -1", validate: "req", help: "The name travellers see" },
-      { id: "foundedYear", label: "Year you started hosting", req: 1, ph: "e.g. 2016", span: "auto", validate: "req" },
-      { id: "bizType", label: "Business type", ph: "Individual / Sole prop / Pvt Ltd / LLP", span: "auto", help: "Optional" },
-      { id: "gstNumber", label: "GST number", ph: "If registered", span: "auto", help: "🔒 Private" },
-      { id: "panNumber", label: "PAN number", req: 1, ph: "ABCDE1234F", span: "auto", validate: "pan", help: "🔒 Private" },
-      { id: "bizAddress", label: "Registered business address", ph: "Address + pincode", span: "1 / -1", help: "🔒 Private" },
+  { id: "about", title: "About",
+    desc: "The story and highlights shown on the public host page.",
+    blocks: [
+      { type: "fields", fields: [
+        { id: "shortBio", label: "Short Bio (card description)", ph: "One-line description shown on the Meet Our Hosts card (optional)", span: "1 / -1" },
+        { id: "hostOverview", label: "Host Overview", kind: "area", rows: 5, ph: "Enter host overview here…", span: "1 / -1" },
+        { id: "foundedYear", label: "Founded Year", kind: "select", ph: "Select year" },
+        { id: "experience", label: "Experience", ph: "Enter experience" },
+        { id: "hqLocation", label: "HQ Location", ph: "Enter HQ location" },
+        { id: "achievements", label: "Achievements", kind: "chips", ph: "e.g. Wilderness First-Aid, UIMLA Mountain Leader", span: "1 / -1", help: "Type & press Enter or comma. Shown as certification badges when no custom badges are set." },
+      ] },
+      { type: "uploads", sub: "Gallery", uploads: [
+        { id: "gallery", title: "Gallery images", accept: "image/*", multiple: 1, help: "Add multiple photos of trips in action" },
+      ] },
     ] },
 
-  { title: "Branding", vis: "Shown on your public profile",
-    desc: "How you'll look across Nomadic Townies. Great imagery drives more bookings.",
-    fields: [
-      { id: "tagline", label: "Tagline", req: 1, ph: '"Small groups. Big mountains."', span: "1 / -1", validate: "req", help: "Short & punchy, ~60 chars" },
-      { id: "socialInstagram", label: "Instagram", ph: "instagram.com/yourhandle", span: "auto", help: "Optional" },
-      { id: "socialFacebook", label: "Facebook", ph: "facebook.com/yourpage", span: "auto", help: "Optional" },
-      { id: "socialWebsite", label: "Website", ph: "https://…", span: "auto", help: "Optional" },
-      { id: "socialTwitter", label: "X / Twitter", ph: "x.com/yourhandle", span: "auto", help: "Optional" },
-    ],
-    uploads: [
-      { id: "logo", title: "Logo / profile photo", req: 1, accept: "image/*", help: "Square, min 400×400 · JPG/PNG · max 10 MB", validate: "reqFile" },
-      { id: "cover", title: "Cover photo", req: 1, accept: "image/*", help: "Wide landscape, min 1600×900", validate: "reqFile" },
-      { id: "gallery", title: "Gallery (up to 10)", req: 1, accept: "image/*", multiple: 1, help: "5–10 photos of trips in action", validate: "reqFile" },
+  { id: "specialties", title: "Specialties & Expertise",
+    desc: "Comma-separated lists that drive where this host appears and show travellers they know their terrain.",
+    blocks: [{ type: "fields", fields: [
+      { id: "specialties", label: "Specialties / Expertise", kind: "chips", ph: "e.g. Trekking & guiding, Homestays, Photography walks", span: "1 / -1", help: "Type & press Enter or comma to add a chip" },
+      { id: "languages", label: "Languages", kind: "chips", ph: "e.g. English, Nepali, Hindi, Tibetan", span: "1 / -1", help: "Type & press Enter or comma to add a chip" },
+    ] }] },
+
+  { id: "faq", title: "Ask the Host (FAQ)",
+    desc: "Common questions travellers ask, with the host's answer. These appear in the “Ask the host” section of the host detail page. Leave empty to show generic defaults.",
+    blocks: [{ type: "faq" }] },
+
+  { id: "badges", title: "Verification Badges",
+    desc: "Trust badges shown in the “Verification & badges” section. Leave empty to auto-generate from Verified status, Achievements and rebook rate.",
+    blocks: [{ type: "badges" }] },
+
+  { id: "trust", title: "Trust & Service Quality",
+    desc: "Performance stats. Verified status and hosted counts are set by our team after review; the response label and regions can be pre-filled.",
+    blocks: [{ type: "fields", fields: [
+      { id: "verified", label: "Verified", kind: "toggle", admin: 1, help: "Set by our team after review" },
+      { id: "tripsHosted", label: "Trips Hosted", kind: "num", admin: 1 },
+      { id: "travellersHosted", label: "Travellers Hosted", kind: "num", admin: 1 },
+      { id: "successRate", label: "Success Rate", kind: "num", admin: 1 },
+      { id: "responseTimeLabel", label: "Response Time Label", ph: "Enter label…" },
+      { id: "responseRate", label: "Response Rate (%)", kind: "num", admin: 1 },
+      { id: "regionsHosted", label: "Regions Hosted", kind: "chips", ph: "e.g. Annapurna, Everest, Mustang", span: "1 / -1", help: "Type & press Enter or comma to add a chip" },
+    ] }] },
+
+  { id: "contact", title: "Contact",
+    desc: "Coordination details. Travellers only ever reach the host through platform chat — direct contacts are never shown.",
+    blocks: [{ type: "fields", fields: [
+      { id: "email", label: "Email", req: 1, ph: "support@example.com", help: "Host account login" },
+      { id: "phone", label: "Phone", ph: "(+91)" },
+      { id: "whatsapp", label: "WhatsApp", ph: "Enter link…" },
+      { id: "supportHours", label: "Support Hours", ph: "Enter hours…" },
+    ] }] },
+
+  { id: "docs", title: "Document Uploads",
+    desc: "Clear photos or PDFs. Encrypted and only seen by our verification team.",
+    blocks: [{ type: "uploads", uploads: [
+      { id: "panCard", title: "PAN Card", accept: "image/*,application/pdf" },
+      { id: "gstCertificate", title: "GST Certificate", accept: "image/*,application/pdf" },
+      { id: "bankPassbook", title: "Bank Passbook", accept: "image/*,application/pdf" },
+      { id: "businessLicense", title: "Business License", accept: "image/*,application/pdf" },
+    ] }] },
+
+  { id: "onboarding", title: "Host Onboarding Details",
+    desc: "Extended profile the admin sees alongside the core record.",
+    blocks: [
+      { type: "fields", fields: [
+        { id: "displayName", label: "Display Name", ph: "Public-facing name" },
+        { id: "country", label: "Country", ph: "Country" },
+        { id: "businessType", label: "Business Type", ph: "Individual / Pvt Ltd / LLP" },
+        { id: "whyHost", label: "Why they host", ph: "Motivation" },
+        { id: "uniqueValue", label: "What makes them unique", ph: "Unique value" },
+        { id: "alternatePhone", label: "Alternate Phone", ph: "Alternate / emergency phone" },
+      ] },
+      { type: "fields", sub: "Emergency Contact", fields: [
+        { id: "emergencyContactName", label: "Contact Name" },
+        { id: "emergencyContactRole", label: "Role" },
+        { id: "emergencyPreparedness", label: "Emergency preparedness / phone" },
+      ] },
+      { type: "fields", sub: "Service Quality", fields: [
+        { id: "maxGroupSize", label: "Max Group Size" },
+        { id: "typicalDuration", label: "Typical Duration" },
+        { id: "difficultyLevels", label: "Difficulty Levels" },
+        { id: "ageGroups", label: "Age Groups", kind: "chips", ph: "e.g. 18–25, 26–40, Families", help: "Type & press Enter or comma to add a chip" },
+        { id: "firstAidOnTrips", label: "First-aid on trips?" },
+      ] },
+      { type: "uploads", sub: "Additional Documents", uploads: [
+        { id: "idProof", title: "ID Proof (Aadhaar / Passport)", accept: "image/*,application/pdf" },
+        { id: "certificationsLicenses", title: "Certifications & Licenses", accept: "image/*,application/pdf", multiple: 1 },
+        { id: "insuranceDocuments", title: "Insurance Documents", accept: "image/*,application/pdf", multiple: 1 },
+      ] },
     ] },
 
-  { title: "Specialties & Expertise", vis: "Shown on your public profile",
-    desc: "Decides where your trips appear and shows travellers you know your terrain.",
-    chips: [
-      { id: "categories", label: "Experience categories", req: 1, type: "checkbox", validate: "reqSel", otherMode: "chip", otherPh: "Enter a category", options: ["Backpacking", "Trekking", "Adventure", "Camping", "Photography", "Wellness", "Spiritual", "Cultural", "Wildlife", "Food", "Road Trips", "Bike Expeditions", "Digital Nomad", "Workshops", "Corporate Retreats", "Other"] },
-    ],
-    fields: [
-      { id: "expertise", label: "Areas of expertise", req: 1, tags: 1, ph: "Type & press Enter, or comma-separate…", span: "1 / -1", validate: "reqTags", help: "e.g. High-altitude treks, Winter expeditions, First-timers" },
-      { id: "regions", label: "Regions / mountains you cover", req: 1, area: 1, rows: 2, ph: "Himachal, Uttarakhand, Ladakh, Spiti", span: "auto", validate: "req" },
-      { id: "countries", label: "Countries you operate in", req: 1, ph: "India, Nepal", span: "auto", validate: "req" },
-      { id: "experience", label: "Years of experience", req: 1, ph: '"8+ years leading Himalayan treks"', span: "auto", validate: "req" },
-      { id: "certifications", label: "Certifications & training", area: 1, rows: 2, ph: "e.g. Basic Mountaineering Course, NIM, 2018", span: "auto", help: "List each with year" },
-      { id: "achievements", label: "Proudest achievements", tags: 1, ph: "Type & press Enter, or comma-separate…", span: "1 / -1", help: "Awards, records, media features, milestone expeditions" },
-    ] },
+  { id: "finance", title: "Finance", admin: 1,
+    desc: "Admin-only. Commission is set by our team.",
+    blocks: [{ type: "fields", fields: [
+      { id: "commissionRate", label: "Commission Rate", kind: "num", suffix: "%", admin: 1 },
+    ] }] },
 
-  { title: "Verification Badges", vis: "Badges shown publicly · documents private",
-    desc: "Verified hosts get a trust badge and rank higher. Tick what you hold; upload proof in the Documents step.",
-    chips: [
-      { id: "badges", label: "Which of these do you have?", req: 1, type: "checkbox", validate: "reqSel", otherMode: "chip", otherPh: "Enter a badge / credential", options: ["Government ID", "Business Registration", "GST Registration", "First Aid Certification", "Trek Leader Certification", "Wilderness Training", "Adventure License", "Local Guide License", "Insurance", "Other"] },
-    ] },
-
-  { title: "Trust & Service Quality", vis: "Shown on your public profile",
-    desc: "Helps us match you with the right travellers and reassures them you run a safe operation.",
-    chips: [
-      { id: "groupSize", label: "Maximum group size", req: 1, type: "radio", validate: "reqSel", otherMode: "input", otherPh: "Enter custom group size", options: ["Up to 10", "11–20", "21–40", "40+", "Other"] },
-      { id: "duration", label: "Typical trip length", req: 1, type: "checkbox", validate: "reqSel", otherMode: "input", otherPh: "Enter custom duration", options: ["Day trips", "Weekend (2–3 days)", "4–7 days", "8+ days", "Other"] },
-      { id: "difficulty", label: "Difficulty levels you run", req: 1, type: "checkbox", validate: "reqSel", otherMode: "input", otherPh: "Enter custom level", options: ["Easy", "Moderate", "Challenging", "Expert", "Other"] },
-      { id: "ageGroups", label: "Age groups you host", req: 1, type: "checkbox", validate: "reqSel", otherMode: "input", otherPh: "Enter custom age group", options: ["Under 18 (guardians)", "18–35", "35–50", "50+", "Families", "Other"] },
-      { id: "medical", label: "First-aid-trained person on trips?", req: 1, type: "radio", validate: "reqSel", otherMode: "input", otherPh: "Please specify", options: ["Always", "Usually", "Planning to add", "Other"] },
-    ],
-    fields: [
-      { id: "emergency", label: "Emergency preparedness", req: 1, area: 1, rows: 3, ph: "First-aid kits, evacuation plans, satellite phones, nearest-hospital protocols…", span: "1 / -1", validate: "req" },
-    ] },
-
-  { title: "Contact Information", vis: "Private — routed through platform",
-    desc: "For our team and payout coordination. Travellers only ever reach you through Nomadic Townies chat — direct contacts are never shown.",
-    note: 'These are for internal coordination only. Your public profile shows a "Message on Nomadic" button, never your phone or email.',
-    fields: [
-      { id: "whatsapp", label: "WhatsApp number", ph: "Only if different from mobile", span: "auto", validate: "phoneOpt" },
-      { id: "altPhone", label: "Alternate / emergency phone", ph: "+91 …", span: "auto", validate: "phoneOpt" },
-      { id: "contactName", label: "Primary contact person", ph: "Who we speak to", span: "auto" },
-      { id: "contactRole", label: "Their role", ph: "e.g. Founder, Operations lead", span: "auto" },
-      { id: "supportHours", label: "Support hours", ph: "e.g. Mon–Sat, 9am–7pm IST", span: "auto", help: "Shown on your public profile" },
-      { id: "completeAddress", label: "Full mailing address", req: 1, area: 1, rows: 2, ph: "Address, city, state, pincode", span: "1 / -1", validate: "req" },
-    ] },
-
-  { title: "Bank Details", vis: "Private — payouts only",
-    desc: "Used only to send your payouts. Never shown publicly. You can add up to two accounts.",
-    note: 'Prefer to share later? Type "Will share later" in the account fields — our team collects these securely on your intro call so you can keep going.',
-    bank: 1 },
-
-  { title: "Document Uploads", vis: "Private — verification only",
-    desc: "Upload clear photos or PDFs. All documents are encrypted and only seen by our verification team.",
-    uploads: [
-      { id: "docPan", title: "PAN card", req: 1, accept: "image/*,application/pdf", help: "1 file · max 10 MB", validate: "reqFile" },
-      { id: "docId", title: "Aadhaar / Passport", req: 1, accept: "image/*,application/pdf", multiple: 1, help: "Up to 2 files", validate: "reqFile" },
-      { id: "docBank", title: "Passbook / cheque", req: 1, accept: "image/*,application/pdf", help: "1 file", validate: "reqFile" },
-      { id: "docGst", title: "GST certificate", accept: "image/*,application/pdf", help: "Optional" },
-      { id: "docBiz", title: "Business registration", accept: "image/*,application/pdf", help: "Optional" },
-      { id: "docCert", title: "Certifications & licenses", accept: "image/*,application/pdf", multiple: 1, help: "Up to 5" },
-      { id: "docIns", title: "Insurance documents", accept: "image/*,application/pdf", multiple: 1, help: "Up to 2" },
-    ],
-    consent: 1 },
+  { id: "seo", title: "SEO", admin: 1,
+    desc: "Admin-only. Search metadata managed by our marketing team.",
+    blocks: [{ type: "fields", fields: [
+      { id: "seoTitle", label: "SEO Title", ph: "Enter SEO title", admin: 1 },
+      { id: "slug", label: "Slug", ph: "Enter slug", admin: 1 },
+      { id: "metaDescription", label: "Meta Description", kind: "area", rows: 3, ph: "Enter meta description", span: "1 / -1", admin: 1 },
+    ] }] },
 ];
 
-const BANK_FIELDS = [
-  { id: "accHolder", label: "Account holder name", req: 1, ph: "", span: "auto", validate: "req" },
-  { id: "bankName", label: "Bank name", req: 1, ph: "", span: "auto", validate: "req" },
-  { id: "branch", label: "Branch name", ph: "", span: "auto" },
-  { id: "accType", label: "Account type", ph: "Savings / Current", span: "auto" },
-  { id: "accNumber", label: "Account number", req: 1, ph: "", span: "auto", validate: "req" },
-  { id: "ifsc", label: "IFSC code", req: 1, ph: "e.g. HDFC0001234", span: "auto", validate: "ifsc" },
-];
+// Backend-required fields (mirror createHost); consent also required.
+const REQUIRED = ["hostName", "email", "bankName", "accountHolderName", "accountNumber", "ifscCode"];
+const CHIP_FIELDS = ["specialties", "languages", "achievements", "regionsHosted", "ageGroups"];
+const UPLOAD_IDS = ["logo", "coverImage", "gallery", "panCard", "gstCertificate", "bankPassbook",
+  "businessLicense", "idProof", "certificationsLicenses", "insuranceDocuments"];
 
-// Brand fonts for this standalone page (not loaded globally elsewhere).
+const KEY = "nt_host_onboarding_v2";
 const FONT_CSS = "@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');";
 const Fonts = () => <style>{FONT_CSS}</style>;
 
-const KEY = "nt_host_onboarding_v1";
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || "");
-const isPhone = (v) => (v || "").replace(/\D/g, "").length >= 8;
-const isPan = (v) => /^[A-Z]{5}[0-9]{4}[A-Z]$/i.test((v || "").trim());
-const isIfsc = (v) => /^[A-Z]{4}0[A-Z0-9]{6}$/i.test((v || "").trim());
-const splitList = (s) => (s || "").split(/[\n,]/).map((x) => x.trim()).filter(Boolean);
-
-// Actionable submit-error messages, keyed by the server's error code.
-const SUBMIT_ERRORS = {
-  email_in_use: "This email is already registered to a host account. Use a different email or contact our team.",
-  pan_in_use: "This PAN is already on file for another host. Please check the number.",
-  duplicate: "Some details are already on file. Check your email and PAN, then try again.",
-  validation: "Some details couldn't be saved. Please review your entries and try again.",
-  network: "Network problem — your answers are safe. Check your connection and submit again.",
-  server_error: "Our server hit a snag. Your answers are saved — please try submitting again.",
-  used: "This onboarding link was already submitted.",
-  expired: "This onboarding link has expired. Contact our team for a new one.",
-};
-const submitErrMsg = (code) => SUBMIT_ERRORS[code] || "Something went wrong submitting. Your answers are saved — please try again.";
+const yearOptions = () => { const y = new Date().getFullYear(); const o = []; for (let i = y; i >= 1990; i--) o.push(String(i)); return o; };
 
 export default function HostOnboarding({ token }) {
   const [phase, setPhase] = useState("loading"); // loading | error | form | success
-  const [errKind, setErrKind] = useState(null); // invalid | expired | used | not_approved | network
+  const [errKind, setErrKind] = useState(null);
 
-  const [data, setData] = useState({});
-  const [sel, setSel] = useState({});
-  const [tags, setTags] = useState({});
-  const [tagBuf, setTagBuf] = useState({});
-  const [otherText, setOtherText] = useState({});
-  const [customOpts, setCustomOpts] = useState({});
-  const [files, setFiles] = useState({}); // id -> File[]
-  const [banks, setBanks] = useState([{}]);
-  const [faqs, setFaqs] = useState([{ question: "", answer: "" }]); // "Ask the host"
+  const [data, setData] = useState({});          // scalar fields
+  const [chips, setChips] = useState({});        // id -> string[]
+  const [chipBuf, setChipBuf] = useState({});    // id -> in-progress text
+  const [files, setFiles] = useState({});        // id -> File[]
+  const [faqs, setFaqs] = useState([]);          // {question,answer}
+  const [badges, setBadges] = useState([]);      // {title,subtitle,icon}
   const [consent, setConsent] = useState(false);
-  const [step, setStep] = useState(0);
-  const [errors, setErrors] = useState({});
-  const [showErr, setShowErr] = useState(false);
+  const [attempted, setAttempted] = useState(false);
+  const [activeSec, setActiveSec] = useState(SECTIONS[0].id);
   const [saveText, setSaveText] = useState("All changes saved");
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitErr, setSubmitErr] = useState(null);
   const saveTimer = useRef(null);
 
   // ── Validate token + prefill from the approved application ──────────────
@@ -197,52 +208,30 @@ export default function HostOnboarding({ token }) {
         const r = await fetch(`/api/host-portal/onboarding/${token}`);
         const j = await r.json().catch(() => ({}));
         if (!alive) return;
-        if (!r.ok || !j.ok) {
-          setErrKind(j.error || "invalid");
-          setPhase("error");
-          return;
-        }
-        // Restore a locally-saved draft (if same token) BEFORE applying prefill.
+        if (!r.ok || !j.ok) { setErrKind(j.error || "invalid"); setPhase("error"); return; }
         let restored = {};
-        try {
-          const raw = localStorage.getItem(KEY);
-          if (raw) { const s = JSON.parse(raw); if (s.token === token) restored = s; }
-        } catch (_e) { /* ignore */ }
+        try { const raw = localStorage.getItem(KEY); if (raw) { const s = JSON.parse(raw); if (s.token === token) restored = s; } } catch (_e) { /* ignore */ }
         const pf = j.prefill || {};
         setData((d) => ({
           hostName: pf.hostName || "", email: pf.email || "", phone: pf.phone || "",
-          city: pf.city || "", overview: pf.overview || "", foundedYear: pf.foundedYear || "",
+          city: pf.city || "", hostOverview: pf.overview || "", foundedYear: pf.foundedYear || "",
           ...(restored.data || {}), ...d,
         }));
-        if (restored.sel) setSel(restored.sel);
-        else if (pf.categories?.length) setSel({ categories: pf.categories });
-        if (restored.tags) setTags(restored.tags);
-        if (restored.otherText) setOtherText(restored.otherText);
-        if (restored.customOpts) setCustomOpts(restored.customOpts);
-        if (restored.banks?.length) setBanks(restored.banks);
-        if (restored.faqs?.length) setFaqs(restored.faqs);
+        if (restored.chips) setChips(restored.chips);
+        else if (pf.categories?.length) setChips({ specialties: pf.categories });
+        if (restored.faqs) setFaqs(restored.faqs);
+        if (restored.badges) setBadges(restored.badges);
         if (restored.consent) setConsent(true);
-        if (typeof restored.step === "number") setStep(restored.step);
         setPhase("form");
-      } catch (_e) {
-        if (!alive) return;
-        setErrKind("network");
-        setPhase("error");
-      }
+      } catch (_e) { if (alive) { setErrKind("network"); setPhase("error"); } }
     })();
     return () => { alive = false; };
   }, [token]);
 
-  // ── Debounced localStorage autosave (files can't be persisted). The write
-  // is pure; the "Saving…/saved" indicator is driven asynchronously via timers
-  // so we never call setState synchronously inside the effect body. ──────────
+  // ── Debounced localStorage autosave (files can't persist) ───────────────
   const writeDraft = useCallback(() => {
-    try {
-      localStorage.setItem(KEY, JSON.stringify({
-        token, data, sel, tags, otherText, customOpts, banks, faqs, consent, step,
-      }));
-    } catch (_e) { /* ignore quota */ }
-  }, [token, data, sel, tags, otherText, customOpts, banks, faqs, consent, step]);
+    try { localStorage.setItem(KEY, JSON.stringify({ token, data, chips, faqs, badges, consent })); } catch (_e) { /* ignore */ }
+  }, [token, data, chips, faqs, badges, consent]);
 
   useEffect(() => {
     if (phase !== "form") return undefined;
@@ -252,188 +241,111 @@ export default function HostOnboarding({ token }) {
     saveTimer.current = setTimeout(() => { setSaving(false); setSaveText("All changes saved"); }, 600);
     return () => clearTimeout(flash);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, sel, tags, otherText, customOpts, banks, faqs, consent, step]);
+  }, [data, chips, faqs, badges, consent]);
 
-  // ── Field setters ───────────────────────────────────────────────────────
-  const setField = (id, v) => { setData((d) => ({ ...d, [id]: v })); setErrors((e) => ({ ...e, [id]: undefined })); };
-  const clearErr = (id) => setErrors((e) => (e[id] ? { ...e, [id]: undefined } : e));
-
-  const toggleSel = (gid, opt, single) => {
-    setSel((s) => {
-      const cur = s[gid] || [];
-      let nv = single ? [opt] : cur.includes(opt) ? cur.filter((x) => x !== opt) : cur.concat(opt);
-      if (!nv.includes("Other")) {
-        setOtherText((o) => { const n = { ...o }; delete n[gid]; return n; });
-        const co = customOpts[gid];
-        if (co) { nv = nv.filter((x) => !co.includes(x)); setCustomOpts((c) => { const n = { ...c }; delete n[gid]; return n; }); }
+  // ── Scroll-spy: highlight the section currently in view ─────────────────
+  useEffect(() => {
+    if (phase !== "form") return undefined;
+    const onScroll = () => {
+      let cur = SECTIONS[0].id;
+      for (const s of SECTIONS) {
+        const el = document.getElementById(`sec-${s.id}`);
+        if (el && el.getBoundingClientRect().top <= 120) cur = s.id;
       }
-      return { ...s, [gid]: nv };
-    });
-    clearErr(gid);
-  };
+      setActiveSec(cur);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [phase]);
 
-  const addOtherInput = (gid) => {
-    const val = (otherText[gid] || "").trim();
-    if (!val) return;
-    // input-mode Other: store the typed value as the selection replacement.
-    setSel((s) => {
-      const cur = (s[gid] || []).filter((x) => x !== "Other" && !(customOpts[gid] || []).includes(x));
-      return { ...s, [gid]: cur.concat(val) };
-    });
-    setCustomOpts((c) => ({ ...c, [gid]: [val] }));
-  };
+  // ── Setters ─────────────────────────────────────────────────────────────
+  const setField = (id, v) => setData((d) => ({ ...d, [id]: v }));
 
-  const addOtherChip = (gid) => {
-    const val = (otherText[gid] || "").trim();
-    if (!val) return;
-    setSel((s) => ({ ...s, [gid]: (s[gid] || []).filter((x) => x !== "Other").concat(val) }));
-    setCustomOpts((c) => ({ ...c, [gid]: (c[gid] || []).concat(val) }));
-    setOtherText((o) => ({ ...o, [gid]: "" }));
-  };
-
-  const addTag = (id, raw) => {
-    const parts = splitList(raw);
+  const addChip = (id, raw) => {
+    const parts = (raw || "").split(/[\n,]/).map((x) => x.trim()).filter(Boolean);
     if (!parts.length) return;
-    setTags((t) => ({ ...t, [id]: Array.from(new Set((t[id] || []).concat(parts))) }));
-    setTagBuf((b) => ({ ...b, [id]: "" }));
-    clearErr(id);
+    setChips((c) => ({ ...c, [id]: Array.from(new Set((c[id] || []).concat(parts))) }));
+    setChipBuf((b) => ({ ...b, [id]: "" }));
   };
-  const removeTag = (id, val) => setTags((t) => ({ ...t, [id]: (t[id] || []).filter((x) => x !== val) }));
-
-  const onFile = (id, fileList, multiple, max) => {
-    const arr = Array.from(fileList || []);
-    setFiles((f) => ({ ...f, [id]: multiple ? (f[id] || []).concat(arr).slice(0, max || 10) : arr.slice(0, 1) }));
-    clearErr(id);
+  const removeChip = (id, val) => setChips((c) => ({ ...c, [id]: (c[id] || []).filter((x) => x !== val) }));
+  const onChipKey = (id, e) => {
+    if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addChip(id, chipBuf[id]); }
+    else if (e.key === "Backspace" && !chipBuf[id]) { const cur = chips[id] || []; if (cur.length) removeChip(id, cur[cur.length - 1]); }
   };
-  const clearFiles = (id) => setFiles((f) => { const n = { ...f }; delete n[id]; return n; });
 
-  const setBank = (i, fid, v) => setBanks((bs) => bs.map((b, idx) => (idx === i ? { ...b, [fid]: v } : b)));
-  const addBank = () => setBanks((bs) => (bs.length < 2 ? bs.concat({}) : bs));
-  const removeBank = (i) => setBanks((bs) => bs.filter((_, idx) => idx !== i));
+  const onFile = (id, list, multiple) => {
+    const arr = Array.from(list || []);
+    setFiles((f) => ({ ...f, [id]: multiple ? (f[id] || []).concat(arr) : arr.slice(0, 1) }));
+  };
+  const clearFile = (id) => setFiles((f) => { const n = { ...f }; delete n[id]; return n; });
 
   const setFaq = (i, k, v) => setFaqs((fs) => fs.map((f, idx) => (idx === i ? { ...f, [k]: v } : f)));
-  const addFaq = () => setFaqs((fs) => (fs.length < 8 ? fs.concat({ question: "", answer: "" }) : fs));
+  const addFaq = () => setFaqs((fs) => fs.concat({ question: "", answer: "" }));
   const removeFaq = (i) => setFaqs((fs) => fs.filter((_, idx) => idx !== i));
 
-  // ── Validation per section ──────────────────────────────────────────────
-  const sec = SECTIONS[step];
+  const setBadge = (i, k, v) => setBadges((bs) => bs.map((b, idx) => (idx === i ? { ...b, [k]: v } : b)));
+  const addBadge = () => setBadges((bs) => bs.concat({ title: "", subtitle: "", icon: "verified" }));
+  const removeBadge = (i) => setBadges((bs) => bs.filter((_, idx) => idx !== i));
 
-  const validateSection = (s) => {
-    const er = {};
-    (s.fields || []).forEach((f) => {
-      const v = f.tags ? (tags[f.id] || []) : data[f.id];
-      switch (f.validate) {
-        case "req": if (!String(v || "").trim()) er[f.id] = 1; break;
-        case "email": if (!isEmail(v)) er[f.id] = 1; break;
-        case "phone": if (!isPhone(v)) er[f.id] = 1; break;
-        case "phoneOpt": if (v && !isPhone(v)) er[f.id] = 1; break;
-        case "pan": if (!isPan(v)) er[f.id] = 1; break;
-        case "reqTags": if (!(tags[f.id] || []).length) er[f.id] = 1; break;
-        default: break;
-      }
-    });
-    (s.chips || []).forEach((g) => { if (g.validate === "reqSel" && !(sel[g.id] || []).length) er[g.id] = 1; });
-    (s.uploads || []).forEach((u) => { if (u.validate === "reqFile" && !(files[u.id] || []).length) er[u.id] = 1; });
-    if (s.bank) {
-      BANK_FIELDS.forEach((f) => {
-        if (!f.req) return;
-        const v = banks[0]?.[f.id];
-        if (!String(v || "").trim()) er[`bank0_${f.id}`] = 1;
-        else if (f.validate === "ifsc" && !isIfsc(v)) er[`bank0_${f.id}`] = 1;
-      });
-    }
-    if (s.consent && !consent) er.consent = 1;
-    return er;
+  // ── Validation ──────────────────────────────────────────────────────────
+  const fieldInvalid = (id) => {
+    if (!attempted) return false;
+    if (id === "email") return !isEmail(data.email);
+    if (REQUIRED.includes(id)) return !String(data[id] || "").trim();
+    return false;
+  };
+  const missing = () => {
+    const out = REQUIRED.filter((id) => (id === "email" ? !isEmail(data.email) : !String(data[id] || "").trim()));
+    if (!consent) out.push("Consent");
+    return out;
   };
 
-  const sectionValid = (i) => Object.keys(validateSection(SECTIONS[i])).length === 0;
-
-  const next = async () => {
-    const er = validateSection(sec);
-    if (Object.keys(er).length) { setErrors(er); setShowErr(true); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
-    setShowErr(false); setErrors({});
-    if (step < SECTIONS.length - 1) { setStep((s) => s + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }
-    else await submit();
-  };
-  const back = () => { setShowErr(false); setStep((s) => Math.max(0, s - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const goStep = (i) => { setShowErr(false); setStep(i); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const scrollTo = (id) => { const el = document.getElementById(`sec-${id}`); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 16, behavior: "smooth" }); };
   const saveLater = () => { writeDraft(); setSaveText("Saved — resume anytime from your link"); };
 
-  // ── Submit → multipart → creates a DRAFT host for admin review ──────────
+  // ── Submit → multipart → DRAFT host ─────────────────────────────────────
   const submit = async () => {
+    setAttempted(true);
+    setSubmitErr(null);
+    if (missing().length) { scrollTo(REQUIRED.find((id) => (id === "email" ? !isEmail(data.email) : !String(data[id] || "").trim())) ? sectionOf(REQUIRED[0]) : "basic"); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
     setSubmitting(true);
     try {
       const fd = new FormData();
-      // plain text fields (ids already match server body keys)
-      const textIds = ["hostName", "displayName", "email", "phone", "city", "state", "pincode", "location",
-        "overview", "shortBio", "whyHost", "unique", "brandName", "foundedYear", "bizType",
-        "gstNumber", "panNumber", "bizAddress", "tagline", "experience", "whatsapp", "altPhone",
-        "contactName", "contactRole", "supportHours", "completeAddress", "emergency", "medical"];
-      textIds.forEach((id) => { if (data[id] != null && data[id] !== "") fd.append(id, data[id]); });
-
-      // selections → server-expected shapes
-      fd.append("country", (sel.country || [])[0] || "");
-      fd.append("languages", JSON.stringify(sel.languages || []));
-      fd.append("categories", JSON.stringify(sel.categories || []));
-      // "Regions / mountains covered" + "Countries you operate in" both feed the
-      // host's regionsHosted list (no separate countries column in the backend).
-      fd.append("regions", JSON.stringify([...splitList(data.regions), ...splitList(data.countries)]));
-      // Social links → single socialMedia object (matches Add New Host).
-      fd.append("socialMedia", JSON.stringify({
-        facebook: data.socialFacebook || "", instagram: data.socialInstagram || "",
-        twitter: data.socialTwitter || "", website: data.socialWebsite || "",
-      }));
-      // "Ask the host" FAQ pairs (drop empty rows).
+      // scalar (host-editable, non-admin) fields — ids ARE backend keys
+      SECTIONS.forEach((s) => (s.blocks || []).forEach((b) => (b.fields || []).forEach((f) => {
+        if (f.admin || f.kind === "chips" || f.kind === "toggle") return;
+        if (data[f.id] != null && data[f.id] !== "") fd.append(f.id, data[f.id]);
+      })));
+      // chip arrays
+      CHIP_FIELDS.forEach((id) => fd.append(id, JSON.stringify(chips[id] || [])));
+      // repeatables
       fd.append("faqs", JSON.stringify(faqs.filter((f) => (f.question || "").trim() || (f.answer || "").trim())));
-      fd.append("expertise", JSON.stringify(tags.expertise || []));
-      fd.append("certifications", JSON.stringify(splitList(data.certifications)));
-      fd.append("achievements", JSON.stringify(tags.achievements || []));
-      fd.append("badges", JSON.stringify((sel.badges || []).map((t) => ({ title: t }))));
-      // service quality
-      fd.append("groupSize", (sel.groupSize || [])[0] || "");
-      fd.append("duration", (sel.duration || []).join(", "));
-      fd.append("difficulty", (sel.difficulty || []).join(", "));
-      fd.append("ageGroups", JSON.stringify(sel.ageGroups || []));
-      // bank: primary + full list
-      const b0 = banks[0] || {};
-      fd.append("accountHolderName", b0.accHolder || "");
-      fd.append("bankName", b0.bankName || "");
-      fd.append("accountNumber", b0.accNumber || "");
-      fd.append("ifscCode", b0.ifsc || "");
-      fd.append("bankAccounts", JSON.stringify(banks.map((b) => ({
-        accountHolderName: b.accHolder || "", bankName: b.bankName || "",
-        accountNumber: b.accNumber || "", ifscCode: b.ifsc || "",
-      }))));
+      fd.append("badges", JSON.stringify(badges.filter((b) => (b.title || "").trim())));
       // files
-      ["logo", "cover", "gallery", "docPan", "docId", "docBank", "docGst", "docBiz", "docCert", "docIns"]
-        .forEach((id) => (files[id] || []).forEach((fl) => fd.append(id, fl)));
+      UPLOAD_IDS.forEach((id) => (files[id] || []).forEach((fl) => fd.append(id, fl)));
 
       const r = await fetch(`/api/host-portal/onboarding/${token}`, { method: "POST", body: fd });
       const j = await r.json().catch(() => ({}));
-      if (!r.ok || !j.ok) {
-        setShowErr(true);
-        setErrors({ _submit: j.error || "submit_failed" });
-        setSubmitting(false);
-        return;
-      }
+      if (!r.ok || !j.ok) { setSubmitErr(j.error || "server_error"); setSubmitting(false); return; }
       try { localStorage.removeItem(KEY); } catch (_e) { /* ignore */ }
       setPhase("success");
-    } catch (_e) {
-      setShowErr(true); setErrors({ _submit: "network" }); setSubmitting(false);
-    }
+    } catch (_e) { setSubmitErr("network"); setSubmitting(false); }
   };
 
-  const doneCount = useMemo(() => SECTIONS.filter((_, i) => sectionValid(i)).length, [data, sel, tags, files, banks, consent]); // eslint-disable-line react-hooks/exhaustive-deps
-  const pctDone = Math.round((doneCount / SECTIONS.length) * 100);
+  const pctDone = useMemo(() => {
+    const need = REQUIRED.length + 1;
+    const have = REQUIRED.filter((id) => (id === "email" ? isEmail(data.email) : String(data[id] || "").trim())).length + (consent ? 1 : 0);
+    return Math.round((have / need) * 100);
+  }, [data, consent]);
 
-  // ── Render states ───────────────────────────────────────────────────────
   if (phase === "loading") return <Centered>Loading your onboarding…</Centered>;
   if (phase === "error") return <ErrorView kind={errKind} />;
-  if (phase === "success") return <SuccessView onReview={() => { setPhase("form"); setStep(0); }} />;
+  if (phase === "success") return <SuccessView onReview={() => { setPhase("form"); window.scrollTo({ top: 0 }); }} />;
 
-  // ── FORM ─────────────────────────────────────────────────────────────────
+  // ── FORM (single page + sticky section rail) ────────────────────────────
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <div style={{ minHeight: "100vh", background: "#EFE7DA" }}>
       <Fonts />
       <style>{FORM_CSS}</style>
       <div className="po-shell" style={{ display: "grid", gridTemplateColumns: "288px 1fr", minHeight: "100vh" }}>
@@ -445,23 +357,19 @@ export default function HostOnboarding({ token }) {
 
           <div style={{ marginTop: 22, padding: "14px 16px", background: "#2E271F", border: "1px solid #3A322A", borderRadius: 14 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-              <span style={{ font: "700 11px/1 'Hanken Grotesk'", color: "#C9BFAE" }}>{pctDone}% complete</span>
-              <span style={{ font: "600 10.5px/1 'Hanken Grotesk'", color: "#8A7E6C" }}>{doneCount}/10 done</span>
+              <span style={{ font: "700 11px/1 'Hanken Grotesk'", color: "#C9BFAE" }}>{pctDone}% ready</span>
+              <span style={{ font: "600 10.5px/1 'Hanken Grotesk'", color: "#8A7E6C" }}>required fields</span>
             </div>
             <div style={{ marginTop: 9, height: 6, borderRadius: 99, background: "#1A1510", overflow: "hidden" }}><div style={{ height: "100%", borderRadius: 99, background: "linear-gradient(90deg,#E9622F,#F0B49C)", width: `${pctDone}%`, transition: "width .4s ease" }} /></div>
           </div>
 
           <nav style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 2 }}>
-            {SECTIONS.map((s, i) => {
-              const done = sectionValid(i);
-              const active = i === step;
-              return (
-                <div key={s.title} className="po-navitem" onClick={() => goStep(i)} style={{ display: "flex", alignItems: "center", gap: 12, padding: "9px 10px", borderRadius: 10, cursor: "pointer", background: active ? "rgba(233,98,47,.14)" : "transparent" }}>
-                  <span style={{ width: 26, height: 26, flex: "none", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", font: "700 11px/1 'Hanken Grotesk'", background: done ? "#2E7D4F" : active ? "#E9622F" : "transparent", color: done || active ? "#fff" : "#8A7E6C", border: `1.5px solid ${done ? "#2E7D4F" : active ? "#E9622F" : "#3A322A"}` }}>{done ? "✓" : i + 1}</span>
-                  <span style={{ flex: 1, minWidth: 0, font: "600 13px/1.25 'Hanken Grotesk'", color: active ? "#F4EEE4" : "#C9BFAE" }}>{s.title}</span>
-                </div>
-              );
-            })}
+            {SECTIONS.map((s) => (
+              <div key={s.id} className="po-navitem" onClick={() => scrollTo(s.id)} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px", borderRadius: 10, cursor: "pointer", background: activeSec === s.id ? "rgba(233,98,47,.14)" : "transparent" }}>
+                <span style={{ flex: 1, minWidth: 0, font: "600 12.5px/1.25 'Hanken Grotesk'", color: activeSec === s.id ? "#F4EEE4" : "#C9BFAE" }}>{s.title}</span>
+                {s.admin ? <span style={{ font: "700 8.5px/1 'Hanken Grotesk'", letterSpacing: ".04em", textTransform: "uppercase", color: "#6B6152" }}>admin</span> : null}
+              </div>
+            ))}
           </nav>
 
           <div style={{ marginTop: "auto", paddingTop: 18 }}>
@@ -473,187 +381,92 @@ export default function HostOnboarding({ token }) {
         </aside>
 
         {/* CONTENT */}
-        <main style={{ padding: "clamp(22px,4vw,54px) clamp(18px,4vw,60px)", maxWidth: 920, width: "100%" }}>
-          <div className="po-step" key={step}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, font: "700 11px/1 'Hanken Grotesk'", letterSpacing: ".09em", textTransform: "uppercase", color: "#CF4A2C" }}>Section {step + 1} of 10 <span style={{ color: "#C9BFAE" }}>·</span> <span style={{ color: "#A89C8A", fontWeight: 600, letterSpacing: 0, textTransform: "none" }}>{sec.vis}</span></div>
-            <h1 style={{ margin: "8px 0 0", fontFamily: "'Bricolage Grotesque',sans-serif", fontWeight: 700, fontSize: "clamp(24px,3.2vw,32px)", letterSpacing: "-.02em", color: "#221C17" }}>{sec.title}</h1>
-            <p style={{ margin: "9px 0 0", maxWidth: 600, font: "400 15px/1.55 'Hanken Grotesk'", color: "#726A5E" }}>{sec.desc}</p>
+        <main style={{ padding: "clamp(22px,4vw,48px) clamp(18px,4vw,56px)", maxWidth: 960, width: "100%" }}>
+          <h1 style={{ margin: 0, fontFamily: "'Bricolage Grotesque',sans-serif", fontWeight: 700, fontSize: "clamp(24px,3vw,32px)", letterSpacing: "-.02em", color: "#221C17" }}>Complete your host profile</h1>
+          <p style={{ margin: "8px 0 0", maxWidth: 620, font: "400 15px/1.55 'Hanken Grotesk'", color: "#726A5E" }}>Everything here maps directly to our Add New Host record. Fill what you can — our team reviews and polishes before you go live.</p>
 
-            {/* text / textarea / tag fields */}
-            {sec.fields?.length ? (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px 20px", marginTop: 28 }}>
-                {sec.fields.map((f) => (
-                  <div key={f.id} style={{ display: "flex", flexDirection: "column", gap: 7, gridColumn: f.span }}>
-                    <label style={LBL}>{f.label} {f.req ? <span style={{ color: "#CF4A2C" }}>*</span> : null}</label>
-                    {f.area ? (
-                      <textarea className={`po-in ${errors[f.id] ? "po-err" : ""}`} placeholder={f.ph} rows={f.rows || 3} value={data[f.id] || ""} onChange={(e) => setField(f.id, e.target.value)} style={{ ...INP, resize: "vertical" }} />
-                    ) : f.tags ? (
-                      <div className={`po-in ${errors[f.id] ? "po-err" : ""}`} style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", minHeight: 46, padding: "8px 10px", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 11 }}>
-                        {(tags[f.id] || []).map((c) => (
-                          <span key={c} className="po-tag">{c} <button type="button" className="po-x" onClick={() => removeTag(f.id, c)}>×</button></span>
-                        ))}
-                        <input value={tagBuf[f.id] || ""} onChange={(e) => setTagBuf((b) => ({ ...b, [f.id]: e.target.value }))} onKeyDown={(e) => { if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addTag(f.id, tagBuf[f.id]); } }} onBlur={() => addTag(f.id, tagBuf[f.id])} placeholder={f.ph} style={{ flex: 1, minWidth: 120, border: "none", outline: "none", background: "transparent", fontSize: 14.5, fontFamily: "'Hanken Grotesk',sans-serif", color: "#221C17" }} />
-                      </div>
-                    ) : (
-                      <input className={`po-in ${errors[f.id] ? "po-err" : ""}`} placeholder={f.ph} value={data[f.id] || ""} onChange={(e) => setField(f.id, e.target.value)} style={INP} />
-                    )}
-                    {f.help ? <span style={{ font: "400 11.5px/1.4 'Hanken Grotesk'", color: "#A89C8A" }}>{f.help}</span> : null}
-                  </div>
-                ))}
+          {SECTIONS.map((s) => (
+            <section id={`sec-${s.id}`} key={s.id} style={{ marginTop: 34, scrollMarginTop: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <h2 style={{ margin: 0, fontFamily: "'Bricolage Grotesque',sans-serif", fontWeight: 700, fontSize: 21, letterSpacing: "-.01em", color: "#221C17" }}>{s.title}</h2>
+                {s.admin ? <span style={{ font: "700 9px/1 'Hanken Grotesk'", letterSpacing: ".06em", textTransform: "uppercase", color: "#A89C8A", background: "#EFE7DA", border: "1px solid #E6DDCF", borderRadius: 99, padding: "4px 9px" }}>Set by our team</span> : null}
               </div>
-            ) : null}
+              <p style={{ margin: "6px 0 0", maxWidth: 640, font: "400 13.5px/1.5 'Hanken Grotesk'", color: "#8A8073" }}>{s.desc}</p>
 
-            {/* chip groups */}
-            {sec.chips?.length ? (
-              <div style={{ display: "flex", flexDirection: "column", gap: 22, marginTop: sec.fields?.length ? 22 : 28 }}>
-                {sec.chips.map((g) => {
-                  const chosen = sel[g.id] || [];
-                  const custom = customOpts[g.id] || [];
-                  return (
-                    <div key={g.id}>
-                      <label style={LBL}>{g.label} {g.req ? <span style={{ color: "#CF4A2C" }}>*</span> : null}</label>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 9, marginTop: 10 }}>
-                        {g.options.map((o) => (
-                          <label key={o} className="po-chip" style={{ position: "relative" }}>
-                            <input type={g.type} name={g.id} checked={chosen.includes(o)} onChange={() => toggleSel(g.id, o, g.type === "radio")} />
-                            <span>{o}</span>
-                          </label>
-                        ))}
-                        {custom.map((c) => (
-                          <label key={c} className="po-chip" style={{ position: "relative" }}>
-                            <input type={g.type} name={g.id} checked readOnly />
-                            <span>{c}</span>
-                          </label>
-                        ))}
-                      </div>
-                      {chosen.includes("Other") ? (
-                        <div className="po-reveal" style={{ display: "flex", gap: 8, marginTop: 10, maxWidth: 420 }}>
-                          <input value={otherText[g.id] || ""} onChange={(e) => setOtherText((o) => ({ ...o, [g.id]: e.target.value }))} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); if (g.otherMode === "chip") addOtherChip(g.id); else addOtherInput(g.id); } }} placeholder={g.otherPh} className="po-in" style={{ flex: 1, padding: "11px 13px", fontSize: 14, fontFamily: "'Hanken Grotesk',sans-serif", color: "#221C17", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 10 }} />
-                          <button type="button" onClick={() => (g.otherMode === "chip" ? addOtherChip(g.id) : addOtherInput(g.id))} className="po-add" style={{ padding: "11px 16px", font: "700 13px/1 'Hanken Grotesk'", color: "#3C3228", background: "#fff", border: "1.5px solid #D8CFC0", borderRadius: 10, cursor: "pointer" }}>Add</button>
-                        </div>
-                      ) : null}
+              {(s.blocks || []).map((b, bi) => (
+                <div key={bi} style={{ marginTop: 18 }}>
+                  {b.sub ? <div style={{ font: "700 11px/1 'Hanken Grotesk'", letterSpacing: ".05em", textTransform: "uppercase", color: "#726A5E", margin: "6px 0 12px" }}>{b.sub}</div> : null}
+
+                  {b.type === "fields" ? (
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 20px" }}>
+                      {b.fields.map((f) => (
+                        <Field key={f.id} f={f} value={data[f.id]} onChange={(v) => setField(f.id, v)}
+                          invalid={fieldInvalid(f.id)}
+                          chips={chips[f.id] || []} chipBuf={chipBuf[f.id] || ""}
+                          onChipBuf={(v) => setChipBuf((x) => ({ ...x, [f.id]: v }))}
+                          onChipKey={(e) => onChipKey(f.id, e)} onChipBlur={() => addChip(f.id, chipBuf[f.id])}
+                          onChipRemove={(v) => removeChip(f.id, v)} />
+                      ))}
                     </div>
-                  );
-                })}
-              </div>
-            ) : null}
+                  ) : null}
 
-            {/* privacy note */}
-            {sec.note ? (
-              <div style={{ marginTop: 24, display: "flex", gap: 12, alignItems: "flex-start", background: "#FBF3E4", border: "1px solid #EBD9B4", borderRadius: 12, padding: "14px 16px" }}>
-                <span style={{ flex: "none", width: 30, height: 30, borderRadius: "50%", background: "#F6E9CE", display: "flex", alignItems: "center", justifyContent: "center", color: "#B07D2A" }}><LockSvg /></span>
-                <span style={{ font: "400 13px/1.6 'Hanken Grotesk'", color: "#8A6A3A" }}>{sec.note}</span>
-              </div>
-            ) : null}
-
-            {/* bank accounts */}
-            {sec.bank ? (
-              <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 26 }}>
-                {banks.map((b, i) => (
-                  <div key={i} className="po-reveal" style={{ border: "1px solid #E6DDCF", borderRadius: 16, padding: "18px 20px", background: "#FFFDF9" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ font: "700 13px/1 'Hanken Grotesk'", letterSpacing: ".03em", color: "#221C17" }}>{i === 0 ? "Primary account" : `Account ${i + 1}`}</span>
-                      {i > 0 ? <button type="button" onClick={() => removeBank(i)} style={{ font: "700 11px/1 'Hanken Grotesk'", color: "#C0392B", background: "none", border: "none", cursor: "pointer" }}>Remove</button> : null}
+                  {b.type === "uploads" ? (
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 14 }}>
+                      {b.uploads.map((u) => (
+                        <Upload key={u.id} u={u} list={files[u.id] || []} onFile={(fl) => onFile(u.id, fl, !!u.multiple)} onClear={() => clearFile(u.id)} />
+                      ))}
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px 18px", marginTop: 16 }}>
-                      {BANK_FIELDS.map((f) => {
-                        const key = `bank${i}_${f.id}`;
-                        return (
-                          <div key={f.id} style={{ display: "flex", flexDirection: "column", gap: 7, gridColumn: f.span }}>
-                            <label style={LBL}>{f.label} {f.req ? <span style={{ color: "#CF4A2C" }}>*</span> : null}</label>
-                            <input className={`po-in ${errors[key] ? "po-err" : ""}`} placeholder={f.ph} value={b[f.id] || ""} onChange={(e) => { setBank(i, f.id, e.target.value); setErrors((er) => ({ ...er, [key]: undefined })); }} style={INP} />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-                {banks.length < 2 ? <button type="button" onClick={addBank} className="po-add" style={{ alignSelf: "flex-start", padding: "12px 20px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px dashed #D8CFC0", borderRadius: 12, cursor: "pointer" }}>+ Add another bank account</button> : null}
-              </div>
-            ) : null}
+                  ) : null}
 
-            {/* "Ask the host" FAQs (optional, public) */}
-            {sec.faqs ? (
-              <div style={{ marginTop: 28 }}>
-                <label style={LBL}>Ask the host — common questions <span style={{ font: "400 11px/1.4 'Hanken Grotesk'", textTransform: "none", letterSpacing: 0, color: "#A89C8A" }}>(optional)</span></label>
-                <p style={{ margin: "4px 0 12px", font: "400 12.5px/1.5 'Hanken Grotesk'", color: "#8A8073" }}>Answer questions travellers often ask — shown on your public profile.</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                  {faqs.map((fq, i) => (
-                    <div key={i} className="po-reveal" style={{ border: "1px solid #E6DDCF", borderRadius: 14, padding: "14px 16px", background: "#FFFDF9" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                        <span style={{ font: "700 12px/1 'Hanken Grotesk'", color: "#221C17" }}>Q{i + 1}</span>
-                        {faqs.length > 1 ? <button type="button" onClick={() => removeFaq(i)} style={{ font: "700 11px/1 'Hanken Grotesk'", color: "#C0392B", background: "none", border: "none", cursor: "pointer" }}>Remove</button> : null}
-                      </div>
-                      <input placeholder="Question — e.g. Do you cater to first-time trekkers?" value={fq.question} onChange={(e) => setFaq(i, "question", e.target.value)} className="po-in" style={{ ...INP, marginBottom: 8 }} />
-                      <textarea placeholder="Your answer" rows={2} value={fq.answer} onChange={(e) => setFaq(i, "answer", e.target.value)} className="po-in" style={{ ...INP, resize: "vertical" }} />
-                    </div>
-                  ))}
-                </div>
-                {faqs.length < 8 ? <button type="button" onClick={addFaq} className="po-add" style={{ marginTop: 12, padding: "10px 18px", font: "700 13px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px dashed #D8CFC0", borderRadius: 12, cursor: "pointer" }}>+ Add a question</button> : null}
-              </div>
-            ) : null}
-
-            {/* uploads */}
-            {sec.uploads?.length ? (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(210px,1fr))", gap: 14, marginTop: sec.fields?.length ? 22 : 28 }}>
-                {sec.uploads.map((u) => {
-                  const list = files[u.id] || [];
-                  const has = list.length > 0;
-                  const max = u.id === "gallery" ? 10 : u.id === "docCert" ? 5 : u.id === "docId" || u.id === "docIns" ? 2 : 1;
-                  return (
-                    <div key={u.id} className="po-drop" style={{ position: "relative", border: `1.5px dashed ${errors[u.id] ? "#C0392B" : has ? "#2E7D4F" : "#D8CFC0"}`, borderRadius: 14, background: has ? "#F3F8F3" : "#FFFDF9", padding: 16, cursor: "pointer", overflow: "hidden" }}>
-                      <input type="file" accept={u.accept} multiple={!!u.multiple} onChange={(e) => onFile(u.id, e.target.files, !!u.multiple, max)} style={{ position: "absolute", inset: 0, opacity: 0, cursor: "pointer" }} />
-                      {has ? (
-                        <div>
-                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                            <span style={{ font: "700 12px/1.3 'Hanken Grotesk'", color: "#221C17" }}>{u.title}</span>
-                            <span style={{ position: "relative", zIndex: 2, font: "700 10.5px/1 'Hanken Grotesk'", color: "#CF4A2C", cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); clearFiles(u.id); }}>Replace</span>
-                          </div>
-                          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 10 }}>
-                            {list.map((fl, k) => (
-                              <div key={k} style={{ display: "flex", alignItems: "center", gap: 7, padding: "5px 9px 5px 5px", background: "#fff", border: "1px solid #E6DDCF", borderRadius: 9 }}>
-                                <span style={{ maxWidth: 96, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", font: "600 10.5px/1.3 'Hanken Grotesk'", color: "#3C3228" }}>{fl.name}</span>
-                                <span style={{ font: "400 9.5px/1.3 'Hanken Grotesk'", color: "#A89C8A" }}>{(fl.size / 1024 / 1024).toFixed(1)}MB</span>
-                              </div>
-                            ))}
-                          </div>
-                          <div style={{ marginTop: 8, font: "600 10.5px/1.3 'Hanken Grotesk'", color: "#2E7D4F" }}>✓ {list.length} uploaded</div>
-                        </div>
-                      ) : (
-                        <div style={{ textAlign: "center", padding: "6px 0" }}>
-                          <div style={{ width: 38, height: 38, margin: "0 auto", borderRadius: 11, background: "#F6E4DC", display: "flex", alignItems: "center", justifyContent: "center", color: "#CF4A2C" }}><UploadSvg /></div>
-                          <div style={{ marginTop: 9, font: "700 12.5px/1.3 'Hanken Grotesk'", color: "#221C17" }}>{u.title} {u.req ? <span style={{ color: "#CF4A2C" }}>*</span> : null}</div>
-                          <div style={{ marginTop: 4, font: "400 10.5px/1.5 'Hanken Grotesk'", color: "#8A8073" }}>{u.help}</div>
+                  {b.type === "faq" ? (
+                    <Repeatable rows={faqs} onAdd={addFaq} addLabel="+ Add a question" empty="No questions yet — add the ones travellers ask most.">
+                      {(fq, i) => (
+                        <div className="po-card">
+                          <div className="po-cardhd"><span>Q{i + 1}</span><button type="button" onClick={() => removeFaq(i)} className="po-rm">Remove</button></div>
+                          <input className="po-in" placeholder="Question" value={fq.question} onChange={(e) => setFaq(i, "question", e.target.value)} style={{ ...INP, marginBottom: 8 }} />
+                          <textarea className="po-in" placeholder="Answer" rows={2} value={fq.answer} onChange={(e) => setFaq(i, "answer", e.target.value)} style={{ ...INP, resize: "vertical" }} />
                         </div>
                       )}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : null}
+                    </Repeatable>
+                  ) : null}
 
-            {/* consent */}
-            {sec.consent ? (
-              <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 24, padding: "16px 18px", border: `1.5px solid ${errors.consent ? "#C0392B" : "#E6DDCF"}`, borderRadius: 12, cursor: "pointer", background: "#FBFAF6" }}>
-                <input type="checkbox" checked={consent} onChange={(e) => { setConsent(e.target.checked); setErrors((er) => ({ ...er, consent: undefined })); }} style={{ marginTop: 2, width: 17, height: 17, accentColor: "#CF4A2C" }} />
-                <span style={{ font: "500 13.5px/1.5 'Hanken Grotesk'", color: "#3C3228" }}>I confirm the information provided is accurate and complete, and I agree to Nomadic Townies&apos; host terms and to be contacted about my application. <span style={{ color: "#CF4A2C" }}>*</span></span>
-              </label>
-            ) : null}
+                  {b.type === "badges" ? (
+                    <Repeatable rows={badges} onAdd={addBadge} addLabel="+ Add a badge" empty="No custom badges — we'll auto-generate from your status & achievements.">
+                      {(bg, i) => (
+                        <div className="po-card">
+                          <div className="po-cardhd"><span>Badge {i + 1}</span><button type="button" onClick={() => removeBadge(i)} className="po-rm">Remove</button></div>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                            <input className="po-in" placeholder="Title — e.g. Verified Guide" value={bg.title} onChange={(e) => setBadge(i, "title", e.target.value)} style={INP} />
+                            <input className="po-in" placeholder="Subtitle (optional)" value={bg.subtitle} onChange={(e) => setBadge(i, "subtitle", e.target.value)} style={INP} />
+                            <select className="po-in" value={bg.icon} onChange={(e) => setBadge(i, "icon", e.target.value)} style={{ ...INP, gridColumn: "1 / -1" }}>
+                              {["verified", "shield", "certificate", "award", "trophy", "star", "firstaid", "mountain", "camera", "leaf", "language", "clock"].map((ic) => <option key={ic} value={ic}>{ic}</option>)}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+                    </Repeatable>
+                  ) : null}
+                </div>
+              ))}
+            </section>
+          ))}
 
-            {/* validation banner */}
-            {showErr ? (
-              <div style={{ marginTop: 20, display: "flex", gap: 10, alignItems: "center", background: "#FCF3F2", border: "1px solid #F0CFC9", borderRadius: 12, padding: "12px 16px", font: "600 13px/1.4 'Hanken Grotesk'", color: "#C0392B" }}>
-                <WarnSvg />{errors._submit ? submitErrMsg(errors._submit) : "Please complete the highlighted fields before continuing."}
-              </div>
-            ) : null}
-          </div>
+          {/* consent + submit */}
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 34, padding: "16px 18px", border: `1.5px solid ${attempted && !consent ? "#C0392B" : "#E6DDCF"}`, borderRadius: 12, cursor: "pointer", background: "#FBFAF6" }}>
+            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} style={{ marginTop: 2, width: 17, height: 17, accentColor: "#CF4A2C" }} />
+            <span style={{ font: "500 13.5px/1.5 'Hanken Grotesk'", color: "#3C3228" }}>I confirm the information provided is accurate and complete, and I agree to Nomadic Townies&apos; host terms and to be contacted about my application. <span style={{ color: "#CF4A2C" }}>*</span></span>
+          </label>
 
-          {/* nav bar */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", marginTop: 36, paddingTop: 22, borderTop: "1px solid #E6DDCF" }}>
-            <button type="button" onClick={back} className="po-ghost" style={{ visibility: step === 0 ? "hidden" : "visible", padding: "13px 22px", font: "700 14px/1 'Hanken Grotesk'", color: "#3C3228", background: "transparent", border: "1.5px solid #D8CFC0", borderRadius: 12, cursor: "pointer" }}>← Back</button>
+          {attempted && (missing().length || submitErr) ? (
+            <div style={{ marginTop: 18, display: "flex", gap: 10, alignItems: "center", background: "#FCF3F2", border: "1px solid #F0CFC9", borderRadius: 12, padding: "12px 16px", font: "600 13px/1.4 'Hanken Grotesk'", color: "#C0392B" }}>
+              <WarnSvg />{submitErr ? submitErrMsg(submitErr) : `Please complete: ${missing().join(", ")}`}
+            </div>
+          ) : null}
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", marginTop: 26, paddingTop: 22, borderTop: "1px solid #E6DDCF" }}>
             <button type="button" onClick={saveLater} className="po-ghost" style={{ padding: "13px 20px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px solid #E6DDCF", borderRadius: 12, cursor: "pointer" }}>Save &amp; finish later</button>
-            <button type="button" onClick={next} disabled={submitting} className="po-cta" style={{ marginLeft: "auto", padding: "13px 30px", font: "700 14px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", border: "none", borderRadius: 12, cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1, boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>
-              {submitting ? "Submitting…" : step === SECTIONS.length - 1 ? "Submit for review" : "Continue →"}
+            <button type="button" onClick={submit} disabled={submitting} className="po-cta" style={{ marginLeft: "auto", padding: "13px 30px", font: "700 14px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", border: "none", borderRadius: 12, cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1, boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>
+              {submitting ? "Submitting…" : "Submit for review"}
             </button>
           </div>
         </main>
@@ -662,26 +475,115 @@ export default function HostOnboarding({ token }) {
   );
 }
 
-// ── Small presentational bits ─────────────────────────────────────────────
-const LBL = { font: "600 12px/1.3 'Hanken Grotesk'", letterSpacing: ".05em", textTransform: "uppercase", color: "#726A5E" };
-const INP = { width: "100%", padding: "12px 14px", fontSize: 14.5, fontFamily: "'Hanken Grotesk',sans-serif", color: "#221C17", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 11 };
+// ── Field renderer ─────────────────────────────────────────────────────────
+function Field({ f, value, onChange, invalid, chips, chipBuf, onChipBuf, onChipKey, onChipBlur, onChipRemove }) {
+  const kind = f.kind || "text";
+  const disabled = !!f.admin;
+  const errCls = invalid ? "po-err" : "";
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 7, gridColumn: f.span || "auto" }}>
+      <label style={LBL}>{f.label} {f.req ? <span style={{ color: "#CF4A2C" }}>*</span> : null}</label>
+      {kind === "chips" ? (
+        <div className={`po-in ${errCls}`} style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center", minHeight: 46, padding: "8px 10px", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 11 }}>
+          {chips.map((c) => <span key={c} className="po-tag">{c} <button type="button" className="po-x" onClick={() => onChipRemove(c)}>×</button></span>)}
+          <input value={chipBuf} onChange={(e) => onChipBuf(e.target.value)} onKeyDown={onChipKey} onBlur={onChipBlur} placeholder={chips.length ? "" : f.ph} style={{ flex: 1, minWidth: 120, border: "none", outline: "none", background: "transparent", fontSize: 14.5, fontFamily: "'Hanken Grotesk',sans-serif", color: "#221C17" }} />
+        </div>
+      ) : kind === "area" ? (
+        <textarea className={`po-in ${errCls}`} placeholder={f.ph} rows={f.rows || 3} value={value || ""} disabled={disabled} onChange={(e) => onChange(e.target.value)} style={{ ...INP, resize: "vertical", ...(disabled ? DIS : {}) }} />
+      ) : kind === "select" ? (
+        <select className={`po-in ${errCls}`} value={value || ""} disabled={disabled} onChange={(e) => onChange(e.target.value)} style={{ ...INP, ...(disabled ? DIS : {}) }}>
+          <option value="">{f.ph || "Select"}</option>
+          {yearOptions().map((y) => <option key={y} value={y}>{y}</option>)}
+        </select>
+      ) : kind === "toggle" ? (
+        <label style={{ display: "inline-flex", alignItems: "center", gap: 8, ...(disabled ? DIS : {}) }}>
+          <input type="checkbox" checked={!!value} disabled={disabled} onChange={(e) => onChange(e.target.checked)} style={{ width: 17, height: 17, accentColor: "#CF4A2C" }} />
+          <span style={{ font: "500 13px/1 'Hanken Grotesk'", color: "#726A5E" }}>{value ? "Yes" : "No"}</span>
+        </label>
+      ) : (
+        <input className={`po-in ${errCls}`} type={kind === "num" ? "number" : "text"} placeholder={f.ph} value={value ?? ""} disabled={disabled} onChange={(e) => onChange(e.target.value)} style={{ ...INP, ...(disabled ? DIS : {}) }} />
+      )}
+      {f.help ? <span style={{ font: "400 11.5px/1.4 'Hanken Grotesk'", color: "#A89C8A" }}>{f.help}</span> : null}
+    </div>
+  );
+}
 
-const LockSvg = () => (<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>);
+// ── Upload tile ──────────────────────────────────────────────────────────
+function Upload({ u, list, onFile, onClear }) {
+  const has = list.length > 0;
+  return (
+    <div className="po-drop" style={{ position: "relative", border: `1.5px dashed ${has ? "#2E7D4F" : "#D8CFC0"}`, borderRadius: 14, background: has ? "#F3F8F3" : "#FFFDF9", padding: 16, cursor: "pointer", overflow: "hidden" }}>
+      <input type="file" accept={u.accept} multiple={!!u.multiple} onChange={(e) => onFile(e.target.files)} style={{ position: "absolute", inset: 0, opacity: 0, cursor: "pointer" }} />
+      {has ? (
+        <div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span style={{ font: "700 12px/1.3 'Hanken Grotesk'", color: "#221C17" }}>{u.title}</span>
+            <span style={{ position: "relative", zIndex: 2, font: "700 10.5px/1 'Hanken Grotesk'", color: "#CF4A2C", cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); onClear(); }}>Replace</span>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 10 }}>
+            {list.map((fl, k) => (
+              <div key={k} style={{ display: "flex", alignItems: "center", gap: 7, padding: "5px 9px", background: "#fff", border: "1px solid #E6DDCF", borderRadius: 9 }}>
+                <span style={{ maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", font: "600 10.5px/1.3 'Hanken Grotesk'", color: "#3C3228" }}>{fl.name}</span>
+                <span style={{ font: "400 9.5px/1.3 'Hanken Grotesk'", color: "#A89C8A" }}>{(fl.size / 1048576).toFixed(1)}MB</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 8, font: "600 10.5px/1.3 'Hanken Grotesk'", color: "#2E7D4F" }}>✓ {list.length} uploaded</div>
+        </div>
+      ) : (
+        <div style={{ textAlign: "center", padding: "6px 0" }}>
+          <div style={{ width: 38, height: 38, margin: "0 auto", borderRadius: 11, background: "#F6E4DC", display: "flex", alignItems: "center", justifyContent: "center", color: "#CF4A2C" }}><UploadSvg /></div>
+          <div style={{ marginTop: 9, font: "700 12.5px/1.3 'Hanken Grotesk'", color: "#221C17" }}>{u.title}</div>
+          {u.help ? <div style={{ marginTop: 4, font: "400 10.5px/1.5 'Hanken Grotesk'", color: "#8A8073" }}>{u.help}</div> : null}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Repeatable (FAQ / badges) ──────────────────────────────────────────────
+function Repeatable({ rows, onAdd, addLabel, empty, children }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+      {rows.length === 0 ? <p style={{ margin: 0, font: "400 12.5px/1.5 'Hanken Grotesk'", color: "#A89C8A" }}>{empty}</p> : null}
+      {rows.map((row, i) => <div key={i} className="po-reveal">{children(row, i)}</div>)}
+      <button type="button" onClick={onAdd} className="po-add" style={{ alignSelf: "flex-start", padding: "10px 18px", font: "700 13px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px dashed #D8CFC0", borderRadius: 12, cursor: "pointer" }}>{addLabel}</button>
+    </div>
+  );
+}
+
+// ── Styles / bits ──────────────────────────────────────────────────────────
+const LBL = { font: "600 12px/1.3 'Hanken Grotesk'", letterSpacing: ".04em", textTransform: "uppercase", color: "#726A5E" };
+const INP = { width: "100%", padding: "12px 14px", fontSize: 14.5, fontFamily: "'Hanken Grotesk',sans-serif", color: "#221C17", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 11 };
+const DIS = { background: "#F1ECE3", color: "#A89C8A", cursor: "not-allowed" };
+
+const SUBMIT_ERRORS = {
+  email_in_use: "This email is already registered to a host account. Use a different email or contact our team.",
+  pan_in_use: "This PAN is already on file for another host. Please check the number.",
+  duplicate: "Some details are already on file. Check your email and PAN, then try again.",
+  validation: "Some details couldn't be saved. Please review your entries and try again.",
+  network: "Network problem — your answers are safe. Check your connection and submit again.",
+  server_error: "Our server hit a snag. Your answers are saved — please try submitting again.",
+  used: "This onboarding link was already submitted.",
+  expired: "This onboarding link has expired. Contact our team for a new one.",
+  not_approved: "This link isn't active yet. Please wait for your approval email.",
+};
+const submitErrMsg = (c) => SUBMIT_ERRORS[c] || "Something went wrong submitting. Your answers are saved — please try again.";
+const sectionOf = () => "basic";
+
 const UploadSvg = () => (<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="M17 8l-5-5-5 5" /><path d="M12 3v12" /></svg>);
 const WarnSvg = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" /></svg>);
 
 function Centered({ children }) {
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EFE7DA", fontFamily: "'Hanken Grotesk',sans-serif", color: "#726A5E", font: "500 15px/1.5 'Hanken Grotesk'" }}><Fonts />{children}</div>
-  );
+  return <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EFE7DA", font: "500 15px/1.5 'Hanken Grotesk'", color: "#726A5E" }}><Fonts />{children}</div>;
 }
 
 function ErrorView({ kind }) {
   const map = {
-    expired: { t: "This link has expired", d: "Your onboarding link is no longer valid. Contact our team and we'll send you a fresh one." },
-    used: { t: "Profile already submitted", d: "This onboarding link has already been used. Our team is reviewing your profile — you'll hear from us soon." },
+    expired: { t: "This link has expired", d: "Your onboarding link is no longer valid. Contact our team for a fresh one." },
+    used: { t: "Profile already submitted", d: "This onboarding link has already been used. Our team is reviewing your profile." },
     not_approved: { t: "Not available yet", d: "This link isn't active. If you've just applied, please wait for your approval email." },
-    invalid: { t: "Invalid link", d: "We couldn't find this onboarding link. Please use the exact link from your approval email." },
+    invalid: { t: "Invalid link", d: "We couldn't find this onboarding link. Please use the exact link from your email." },
     network: { t: "Connection problem", d: "We couldn't reach the server. Check your connection and try again." },
   };
   const m = map[kind] || map.invalid;
@@ -700,9 +602,9 @@ function ErrorView({ kind }) {
 
 function SuccessView({ onReview }) {
   const steps = [
-    { mark: "1", title: "We review your profile", desc: "Our team checks everything personally, usually within 2–3 working days." },
-    { mark: "2", title: "We may reach out", desc: "For a quick intro call or any missing details." },
-    { mark: "3", title: "You go live", desc: "Once approved, your dashboard unlocks and your profile appears on the site." },
+    { mark: "1", title: "We review your proposal", desc: "Our team checks everything personally, usually within 2–3 working days." },
+    { mark: "2", title: "A short intro call", desc: "We may reach out for a quick call or any missing details." },
+    { mark: "3", title: "Approved & live", desc: "Once approved, your profile goes live and your dashboard is activated." },
   ];
   return (
     <div style={{ minHeight: "100vh", background: "#EFE7DA", fontFamily: "'Hanken Grotesk',sans-serif" }}>
@@ -712,7 +614,7 @@ function SuccessView({ onReview }) {
         <div className="po-check" style={{ width: 76, height: 76, margin: "0 auto", borderRadius: "50%", background: "#E0EFE4", display: "flex", alignItems: "center", justifyContent: "center" }}><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2E7D4F" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg></div>
         <div style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 7, padding: "6px 14px", borderRadius: 99, background: "#FBF3E4", border: "1px solid #EBD9B4", font: "700 11px/1 'Hanken Grotesk'", letterSpacing: ".05em", textTransform: "uppercase", color: "#B07D2A" }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: "#E0A93B" }} />Pending review</div>
         <h1 style={{ margin: "18px 0 0", fontFamily: "'Bricolage Grotesque',sans-serif", fontWeight: 700, fontSize: "clamp(26px,3.6vw,34px)", letterSpacing: "-.02em", color: "#221C17" }}>Profile submitted!</h1>
-        <p style={{ margin: "12px 0 0", font: "400 15px/1.65 'Hanken Grotesk'", color: "#726A5E" }}>Thanks for completing your host profile. Our team now reviews every submission personally — you&apos;ll hear from us <strong style={{ color: "#3C3228" }}>within 2–3 working days</strong>. Your dashboard unlocks the moment you&apos;re approved.</p>
+        <p style={{ margin: "12px 0 0", font: "400 15px/1.65 'Hanken Grotesk'", color: "#726A5E" }}>Thanks for completing your host profile. Our team reviews every submission personally — you&apos;ll hear from us <strong style={{ color: "#3C3228" }}>within 2–3 working days</strong>.</p>
         <div style={{ marginTop: 24, textAlign: "left", background: "#FFFDF9", border: "1px solid #E6DDCF", borderRadius: 16, padding: "20px 22px" }}>
           <div style={{ font: "700 10.5px/1 'Hanken Grotesk'", letterSpacing: ".1em", textTransform: "uppercase", color: "#A89C8A" }}>What happens next</div>
           <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 14 }}>
@@ -728,14 +630,12 @@ function SuccessView({ onReview }) {
           <button type="button" onClick={onReview} className="po-ghost" style={{ padding: "12px 22px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#3C3228", background: "transparent", border: "1.5px solid #D8CFC0", borderRadius: 12, cursor: "pointer" }}>Review my answers</button>
           <a href="https://www.nomadictownies.com" className="po-cta" style={{ padding: "12px 24px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", borderRadius: 12, textDecoration: "none", boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>Back to home</a>
         </div>
-        <p style={{ margin: "18px 0 0", font: "400 12.5px/1.5 'Hanken Grotesk'", color: "#9A9080" }}>Follow <strong style={{ color: "#CF4A2C" }}>@nomadictownies</strong> while you wait. See you out there!</p>
       </div>
     </div>
   );
 }
 
 const FORM_CSS = `
-  .po-shell { background:#EFE7DA; }
   .po-in::placeholder { color:#A89C8A; }
   .po-in:focus { border-color:#CF4A2C !important; box-shadow:0 0 0 4px rgba(207,74,44,.12); background:#FFFFFF; outline:none; }
   .po-err { border-color:#C0392B !important; background:#FCF3F2 !important; }
@@ -743,24 +643,21 @@ const FORM_CSS = `
   .po-cta:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(207,74,44,.3); background:#C0421F; }
   .po-ghost { transition:background .16s ease, border-color .16s ease; }
   .po-ghost:hover { background:#FBF6EE; border-color:#CF4A2C; }
-  .po-chip input { position:absolute; opacity:0; pointer-events:none; }
-  .po-chip span { display:inline-flex; align-items:center; padding:9px 16px; border-radius:99px; border:1.5px solid #E6DDCF; background:#FFFDF9; font:600 13px/1 'Hanken Grotesk'; color:#3C3228; cursor:pointer; transition:all .15s ease; }
-  .po-chip span:hover { border-color:#CF4A2C; }
-  .po-chip input:checked + span { background:#CF4A2C; border-color:#CF4A2C; color:#fff; }
   .po-tag { display:inline-flex; align-items:center; gap:6px; padding:6px 8px 6px 12px; border-radius:99px; background:#F6E4DC; border:1.5px solid #EBC9BC; font:600 12.5px/1 'Hanken Grotesk'; color:#A23A26; }
   .po-x { display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:rgba(162,58,38,.16); color:#A23A26; font-size:11px; line-height:1; cursor:pointer; border:none; }
   .po-x:hover { background:#A23A26; color:#fff; }
   .po-drop:hover { border-color:#CF4A2C; background:#FBF6EE; }
   .po-navitem:hover { background:rgba(233,98,47,.08); }
   .po-add:hover { background:#FBF6EE; border-color:#CF4A2C; color:#CF4A2C; }
+  .po-card { border:1px solid #E6DDCF; border-radius:14px; padding:14px 16px; background:#FFFDF9; }
+  .po-cardhd { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font:700 12px/1 'Hanken Grotesk'; color:#221C17; }
+  .po-rm { font:700 11px/1 'Hanken Grotesk'; color:#C0392B; background:none; border:none; cursor:pointer; }
   @keyframes poPop { 0%{transform:scale(.6);opacity:0;} 60%{transform:scale(1.08);} 100%{transform:scale(1);opacity:1;} }
   .po-check { animation:poPop .6s cubic-bezier(.22,.61,.36,1) both; }
-  @keyframes poFade { from{opacity:0;transform:translateY(6px);} to{opacity:1;transform:none;} }
-  .po-step { animation:poFade .32s ease both; }
   @keyframes poExpand { from{opacity:0;transform:translateY(-4px);} to{opacity:1;transform:none;} }
   .po-reveal { animation:poExpand .24s ease both; }
   @keyframes poDot { 0%,100%{opacity:.35;} 50%{opacity:1;} }
   .po-saving { animation:poDot 1s ease-in-out infinite; }
-  @media (prefers-reduced-motion: reduce){ .po-check,.po-step,.po-reveal,.po-saving { animation:none; } }
+  @media (prefers-reduced-motion: reduce){ .po-check,.po-reveal,.po-saving { animation:none; } }
   @media (max-width: 900px){ .po-shell { grid-template-columns:1fr !important; } .po-rail { position:static !important; height:auto !important; } }
 `;
