@@ -26,6 +26,7 @@ const SECTIONS = [
       { id: "phone", label: "Mobile number", req: 1, ph: "+91 98765 43210", span: "auto", validate: "phone", help: "With country code" },
       { id: "city", label: "City", req: 1, ph: "Where you're based", span: "auto", validate: "req" },
       { id: "state", label: "State", req: 1, ph: "", span: "auto", validate: "req" },
+      { id: "pincode", label: "Pincode", ph: "e.g. 175131", span: "auto", help: "Optional" },
       { id: "location", label: "Home base / operating location", req: 1, ph: "e.g. Manali, Himachal Pradesh", span: "1 / -1", validate: "req", help: "Displayed on your profile card" },
     ],
     chips: [
@@ -40,7 +41,8 @@ const SECTIONS = [
       { id: "shortBio", label: "One-line intro for your card", req: 1, ph: '"Trekking the Himalayas with small groups since 2015"', span: "1 / -1", validate: "req", help: "Max ~120 characters" },
       { id: "whyHost", label: "Why do you host experiences?", req: 1, area: 1, rows: 3, ph: "What drives you?", span: "auto", validate: "req" },
       { id: "unique", label: "What makes your experiences unique?", req: 1, area: 1, rows: 3, ph: "The thing guests remember", span: "auto", validate: "req" },
-    ] },
+    ],
+    faqs: 1 },
 
   { title: "Business Information", vis: "Some fields private",
     desc: "Tells us who we're partnering with. Registration & tax fields stay private; brand name is public.",
@@ -57,6 +59,10 @@ const SECTIONS = [
     desc: "How you'll look across Nomadic Townies. Great imagery drives more bookings.",
     fields: [
       { id: "tagline", label: "Tagline", req: 1, ph: '"Small groups. Big mountains."', span: "1 / -1", validate: "req", help: "Short & punchy, ~60 chars" },
+      { id: "socialInstagram", label: "Instagram", ph: "instagram.com/yourhandle", span: "auto", help: "Optional" },
+      { id: "socialFacebook", label: "Facebook", ph: "facebook.com/yourpage", span: "auto", help: "Optional" },
+      { id: "socialWebsite", label: "Website", ph: "https://…", span: "auto", help: "Optional" },
+      { id: "socialTwitter", label: "X / Twitter", ph: "x.com/yourhandle", span: "auto", help: "Optional" },
     ],
     uploads: [
       { id: "logo", title: "Logo / profile photo", req: 1, accept: "image/*", help: "Square, min 400×400 · JPG/PNG · max 10 MB", validate: "reqFile" },
@@ -105,6 +111,7 @@ const SECTIONS = [
       { id: "altPhone", label: "Alternate / emergency phone", ph: "+91 …", span: "auto", validate: "phoneOpt" },
       { id: "contactName", label: "Primary contact person", ph: "Who we speak to", span: "auto" },
       { id: "contactRole", label: "Their role", ph: "e.g. Founder, Operations lead", span: "auto" },
+      { id: "supportHours", label: "Support hours", ph: "e.g. Mon–Sat, 9am–7pm IST", span: "auto", help: "Shown on your public profile" },
       { id: "completeAddress", label: "Full mailing address", req: 1, area: 1, rows: 2, ph: "Address, city, state, pincode", span: "1 / -1", validate: "req" },
     ] },
 
@@ -172,6 +179,7 @@ export default function HostOnboarding({ token }) {
   const [customOpts, setCustomOpts] = useState({});
   const [files, setFiles] = useState({}); // id -> File[]
   const [banks, setBanks] = useState([{}]);
+  const [faqs, setFaqs] = useState([{ question: "", answer: "" }]); // "Ask the host"
   const [consent, setConsent] = useState(false);
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState({});
@@ -212,6 +220,7 @@ export default function HostOnboarding({ token }) {
         if (restored.otherText) setOtherText(restored.otherText);
         if (restored.customOpts) setCustomOpts(restored.customOpts);
         if (restored.banks?.length) setBanks(restored.banks);
+        if (restored.faqs?.length) setFaqs(restored.faqs);
         if (restored.consent) setConsent(true);
         if (typeof restored.step === "number") setStep(restored.step);
         setPhase("form");
@@ -230,10 +239,10 @@ export default function HostOnboarding({ token }) {
   const writeDraft = useCallback(() => {
     try {
       localStorage.setItem(KEY, JSON.stringify({
-        token, data, sel, tags, otherText, customOpts, banks, consent, step,
+        token, data, sel, tags, otherText, customOpts, banks, faqs, consent, step,
       }));
     } catch (_e) { /* ignore quota */ }
-  }, [token, data, sel, tags, otherText, customOpts, banks, consent, step]);
+  }, [token, data, sel, tags, otherText, customOpts, banks, faqs, consent, step]);
 
   useEffect(() => {
     if (phase !== "form") return undefined;
@@ -243,7 +252,7 @@ export default function HostOnboarding({ token }) {
     saveTimer.current = setTimeout(() => { setSaving(false); setSaveText("All changes saved"); }, 600);
     return () => clearTimeout(flash);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, sel, tags, otherText, customOpts, banks, consent, step]);
+  }, [data, sel, tags, otherText, customOpts, banks, faqs, consent, step]);
 
   // ── Field setters ───────────────────────────────────────────────────────
   const setField = (id, v) => { setData((d) => ({ ...d, [id]: v })); setErrors((e) => ({ ...e, [id]: undefined })); };
@@ -302,6 +311,10 @@ export default function HostOnboarding({ token }) {
   const addBank = () => setBanks((bs) => (bs.length < 2 ? bs.concat({}) : bs));
   const removeBank = (i) => setBanks((bs) => bs.filter((_, idx) => idx !== i));
 
+  const setFaq = (i, k, v) => setFaqs((fs) => fs.map((f, idx) => (idx === i ? { ...f, [k]: v } : f)));
+  const addFaq = () => setFaqs((fs) => (fs.length < 8 ? fs.concat({ question: "", answer: "" }) : fs));
+  const removeFaq = (i) => setFaqs((fs) => fs.filter((_, idx) => idx !== i));
+
   // ── Validation per section ──────────────────────────────────────────────
   const sec = SECTIONS[step];
 
@@ -352,17 +365,26 @@ export default function HostOnboarding({ token }) {
     try {
       const fd = new FormData();
       // plain text fields (ids already match server body keys)
-      const textIds = ["hostName", "displayName", "email", "phone", "city", "state", "location",
+      const textIds = ["hostName", "displayName", "email", "phone", "city", "state", "pincode", "location",
         "overview", "shortBio", "whyHost", "unique", "brandName", "foundedYear", "bizType",
         "gstNumber", "panNumber", "bizAddress", "tagline", "experience", "whatsapp", "altPhone",
-        "contactName", "contactRole", "completeAddress", "emergency", "medical"];
+        "contactName", "contactRole", "supportHours", "completeAddress", "emergency", "medical"];
       textIds.forEach((id) => { if (data[id] != null && data[id] !== "") fd.append(id, data[id]); });
 
       // selections → server-expected shapes
       fd.append("country", (sel.country || [])[0] || "");
       fd.append("languages", JSON.stringify(sel.languages || []));
       fd.append("categories", JSON.stringify(sel.categories || []));
-      fd.append("regions", JSON.stringify(splitList(data.regions)));
+      // "Regions / mountains covered" + "Countries you operate in" both feed the
+      // host's regionsHosted list (no separate countries column in the backend).
+      fd.append("regions", JSON.stringify([...splitList(data.regions), ...splitList(data.countries)]));
+      // Social links → single socialMedia object (matches Add New Host).
+      fd.append("socialMedia", JSON.stringify({
+        facebook: data.socialFacebook || "", instagram: data.socialInstagram || "",
+        twitter: data.socialTwitter || "", website: data.socialWebsite || "",
+      }));
+      // "Ask the host" FAQ pairs (drop empty rows).
+      fd.append("faqs", JSON.stringify(faqs.filter((f) => (f.question || "").trim() || (f.answer || "").trim())));
       fd.append("expertise", JSON.stringify(tags.expertise || []));
       fd.append("certifications", JSON.stringify(splitList(data.certifications)));
       fd.append("achievements", JSON.stringify(tags.achievements || []));
@@ -547,6 +569,27 @@ export default function HostOnboarding({ token }) {
                   </div>
                 ))}
                 {banks.length < 2 ? <button type="button" onClick={addBank} className="po-add" style={{ alignSelf: "flex-start", padding: "12px 20px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px dashed #D8CFC0", borderRadius: 12, cursor: "pointer" }}>+ Add another bank account</button> : null}
+              </div>
+            ) : null}
+
+            {/* "Ask the host" FAQs (optional, public) */}
+            {sec.faqs ? (
+              <div style={{ marginTop: 28 }}>
+                <label style={LBL}>Ask the host — common questions <span style={{ font: "400 11px/1.4 'Hanken Grotesk'", textTransform: "none", letterSpacing: 0, color: "#A89C8A" }}>(optional)</span></label>
+                <p style={{ margin: "4px 0 12px", font: "400 12.5px/1.5 'Hanken Grotesk'", color: "#8A8073" }}>Answer questions travellers often ask — shown on your public profile.</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  {faqs.map((fq, i) => (
+                    <div key={i} className="po-reveal" style={{ border: "1px solid #E6DDCF", borderRadius: 14, padding: "14px 16px", background: "#FFFDF9" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                        <span style={{ font: "700 12px/1 'Hanken Grotesk'", color: "#221C17" }}>Q{i + 1}</span>
+                        {faqs.length > 1 ? <button type="button" onClick={() => removeFaq(i)} style={{ font: "700 11px/1 'Hanken Grotesk'", color: "#C0392B", background: "none", border: "none", cursor: "pointer" }}>Remove</button> : null}
+                      </div>
+                      <input placeholder="Question — e.g. Do you cater to first-time trekkers?" value={fq.question} onChange={(e) => setFaq(i, "question", e.target.value)} className="po-in" style={{ ...INP, marginBottom: 8 }} />
+                      <textarea placeholder="Your answer" rows={2} value={fq.answer} onChange={(e) => setFaq(i, "answer", e.target.value)} className="po-in" style={{ ...INP, resize: "vertical" }} />
+                    </div>
+                  ))}
+                </div>
+                {faqs.length < 8 ? <button type="button" onClick={addFaq} className="po-add" style={{ marginTop: 12, padding: "10px 18px", font: "700 13px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px dashed #D8CFC0", borderRadius: 12, cursor: "pointer" }}>+ Add a question</button> : null}
               </div>
             ) : null}
 
