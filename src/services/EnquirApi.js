@@ -11,7 +11,17 @@ const EnquirApi = api.injectEndpoints({
         body: { Name, Phone, Email, Message, userId },
       }),
     }),
+
+    // "Become a Host" application — routes to the Host Applications pipeline
+    // (NOT customer Enquiries). Structured fields preserved for admin review.
+    applyHost: builder.mutation({
+      query: (body) => ({
+        url: "/host-portal/apply",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useEnquirMutation } = EnquirApi;
+export const { useEnquirMutation, useApplyHostMutation } = EnquirApi;

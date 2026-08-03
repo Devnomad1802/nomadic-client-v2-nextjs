@@ -3,13 +3,14 @@
 /* eslint-disable react/prop-types */
 /**
  * BecomeHostModal — full "Become a Host" two-panel design shown as a popup.
- * Opened from "Become a Host" in Meet Our Hosts. Submits via useEnquirMutation.
+ * Opened from "Become a Host" in Meet Our Hosts. Submits a Host Application
+ * (Admin → Host Applications) via useApplyHostMutation — never Enquiries.
  */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./becomeHost.css";
-import { useEnquirMutation } from "../services/EnquirApi";
+import { useApplyHostMutation } from "../services/EnquirApi";
 import { logof } from "../Images";
 
 const ILLUS = "https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=700&q=72";
@@ -36,7 +37,7 @@ const Caret = () => <span className="caret">▾</span>;
 const BecomeHostModal = ({ open, onClose }) => {
   const navigate = useNavigate();
   const { userDbData } = useSelector((s) => s.global);
-  const [enquir, { isLoading }] = useEnquirMutation();
+  const [applyHost, { isLoading }] = useApplyHostMutation();
   const [form, setForm] = useState(empty);
   const [errors, setErrors] = useState({});
   const [done, setDone] = useState(false);
@@ -70,12 +71,22 @@ const BecomeHostModal = ({ open, onClose }) => {
     setErrors(er);
     if (Object.keys(er).length) { document.querySelector(`[name="${Object.keys(er)[0]}"]`)?.focus(); return; }
     const cat = form.category === "Other" ? form.categoryOther : form.category;
-    const Message = [
-      "Become a Host application", `Category: ${cat}`, `City/Country: ${form.city}`,
-      `Experience: ${form.years}`, `Group size: ${form.groupSize}`,
-      form.website ? `Website/Social: ${form.website}` : null, "", `About: ${form.about}`,
-    ].filter(Boolean).join("\n");
-    try { await enquir({ Name: form.fullName, Email: form.email, Phone: form.mobile, Message, userId: userDbData?._id }).unwrap(); } catch { /* follow up regardless */ }
+    // Route to Host Applications (Admin → Host Applications), NOT Enquiries.
+    // Structured fields map 1:1 to the hostApplications schema.
+    try {
+      await applyHost({
+        fullName: form.fullName,
+        email: form.email,
+        mobile: form.mobile,
+        city: form.city,
+        category: cat,
+        about: form.about,
+        years: form.years,
+        groupSize: form.groupSize,
+        website: form.website,
+        userId: userDbData?._id,
+      }).unwrap();
+    } catch { /* follow up regardless */ }
     setDone(true);
     document.querySelector(".bhm-dialog .bhpg")?.scrollTo(0, 0);
   };
