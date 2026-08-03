@@ -147,6 +147,19 @@ const isPan = (v) => /^[A-Z]{5}[0-9]{4}[A-Z]$/i.test((v || "").trim());
 const isIfsc = (v) => /^[A-Z]{4}0[A-Z0-9]{6}$/i.test((v || "").trim());
 const splitList = (s) => (s || "").split(/[\n,]/).map((x) => x.trim()).filter(Boolean);
 
+// Actionable submit-error messages, keyed by the server's error code.
+const SUBMIT_ERRORS = {
+  email_in_use: "This email is already registered to a host account. Use a different email or contact our team.",
+  pan_in_use: "This PAN is already on file for another host. Please check the number.",
+  duplicate: "Some details are already on file. Check your email and PAN, then try again.",
+  validation: "Some details couldn't be saved. Please review your entries and try again.",
+  network: "Network problem — your answers are safe. Check your connection and submit again.",
+  server_error: "Our server hit a snag. Your answers are saved — please try submitting again.",
+  used: "This onboarding link was already submitted.",
+  expired: "This onboarding link has expired. Contact our team for a new one.",
+};
+const submitErrMsg = (code) => SUBMIT_ERRORS[code] || "Something went wrong submitting. Your answers are saved — please try again.";
+
 export default function HostOnboarding({ token }) {
   const [phase, setPhase] = useState("loading"); // loading | error | form | success
   const [errKind, setErrKind] = useState(null); // invalid | expired | used | not_approved | network
@@ -587,7 +600,7 @@ export default function HostOnboarding({ token }) {
             {/* validation banner */}
             {showErr ? (
               <div style={{ marginTop: 20, display: "flex", gap: 10, alignItems: "center", background: "#FCF3F2", border: "1px solid #F0CFC9", borderRadius: 12, padding: "12px 16px", font: "600 13px/1.4 'Hanken Grotesk'", color: "#C0392B" }}>
-                <WarnSvg />{errors._submit ? "Something went wrong submitting. Please try again." : "Please complete the highlighted fields before continuing."}
+                <WarnSvg />{errors._submit ? submitErrMsg(errors._submit) : "Please complete the highlighted fields before continuing."}
               </div>
             ) : null}
           </div>
