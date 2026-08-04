@@ -1324,60 +1324,49 @@
     align-items: center
   }
 }
-/* ── Choose Your Adventure — single-row infinite marquee ──
-   Native horizontal scroll (free drag/swipe/touch) + rAF auto-drift in JS.
-   Equal card sizes, hidden scrollbar, GPU-friendly, no wrap, no CLS. */
+/* ── Choose Your Adventure — full-bleed infinite marquee (homepage) ──
+   The wrapper breaks out of the section .wrap to span the full viewport width,
+   so cards run edge-to-edge with no blank gutters. Inside, ONE track holds two
+   identical copies of the card list and is translated 0 → -50% by a single CSS
+   keyframe: because each card carries its gap as margin-right, -50% lands exactly
+   on the seam → a seamless loop with no JS, no re-renders, GPU-composited.
+   The vertical padding/negative-margin keeps the card hover shadow from clipping. */
+.ntv3 .cats-marquee-wrap {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);   /* full-bleed: escape the centered .wrap */
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;                 /* clip the off-screen half; no page scroll */
+  padding: 6px 0;                   /* room for card hover shadow (vertical) */
+}
 .ntv3 .cats-marquee {
   display: flex;
-  gap: 22px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: auto;
-  touch-action: pan-x;
-  will-change: scroll-position;
-  cursor: grab;
-  user-select: none;
-  padding: 6px 2px;
-  margin: -6px -2px;
+  width: max-content;
   align-items: stretch;
+  animation: cats-scroll 200s linear infinite; /* slow, calm, premium */
+  will-change: transform;
 }
-.ntv3 .cats-marquee::-webkit-scrollbar { display: none; }
-.ntv3 .cats-marquee:active { cursor: grabbing; }
+.ntv3 .cats-marquee-wrap:hover .cats-marquee { animation-play-state: paused; }
 .ntv3 .cats-marquee .cat-card {
   flex: 0 0 340px;
   width: 340px;
-  scroll-snap-align: start;
+  margin-right: 22px; /* gap as margin so the -50% seam is exact */
 }
 .ntv3 .cats-marquee .cat-card img,
 .ntv3 .cats-marquee .cat-card a { -webkit-user-drag: none; user-drag: none; }
+@keyframes cats-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
 @media (max-width: 900px) {
   .ntv3 .cats-marquee .cat-card { flex-basis: 300px; width: 300px; }
+  .ntv3 .cats-marquee { animation-duration: 160s; }
 }
 @media (max-width: 580px) {
-  .ntv3 .cats-marquee { gap: 14px; }
-  .ntv3 .cats-marquee .cat-card { flex-basis: 80vw; width: 80vw; max-width: 320px; }
+  .ntv3 .cats-marquee { animation-duration: 120s; }
+  .ntv3 .cats-marquee .cat-card { flex-basis: 78vw; width: 78vw; max-width: 320px; margin-right: 14px; }
 }
-/* honour reduced-motion: no auto-drift (JS already skips it), still swipeable */
+/* honour reduced-motion: hold the track still (still readable, no auto-drift) */
 @media (prefers-reduced-motion: reduce) {
-  .ntv3 .cats-marquee { scroll-snap-type: x mandatory; }
+  .ntv3 .cats-marquee { animation: none; }
 }
-
-/* Homepage carousel — no edge fade/blur. The row is cleanly contained inside
-   the section .wrap: the first card sits flush to the content edge (fully
-   visible), and scroll-padding keeps snapped/entering cards aligned rather than
-   clipped mid-card. Vertical padding preserves the card hover shadow. */
-.ntv3 .cats-marquee-wrap {
-  position: relative;
-}
-.ntv3 .cats-marquee-wrap .cats-marquee {
-  /* keep the first card flush-left with the section content; the small vertical
-     inset (from .cats-marquee margin:-6px) already protects the hover shadow */
-  padding-left: 0;
-  padding-right: 0;
-  scroll-padding-left: 0;
-  scroll-snap-type: x proximity;
-}
-.ntv3 .cats-marquee-wrap .cats-marquee .cat-card { scroll-snap-align: start; }
