@@ -17,6 +17,8 @@
  * arrays (csv → JSON).
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import HostListingCard, { toCard } from "../Component/Host/HostListingCard";
+import HostPage from "../Component/Host/HostPage";
 
 // kind: text | area | select | num | toggle   ·   csv:1 → comma list → array
 // admin:1 → managed by our team (read-only, never submitted by the host)
@@ -196,6 +198,43 @@ export default function HostOnboarding({ token }) {
   const [submitting, setSubmitting] = useState(false);
   const [submitErr, setSubmitErr] = useState(null);
   const saveTimer = useRef(null);
+
+  // ── Live preview (renders the real Host Card + Host Detail from form state,
+  // no DB write; object-URLs for images are revoked on close) ──────────────
+  const [preview, setPreview] = useState(false);
+  const [previewTab, setPreviewTab] = useState("detail");
+  const [previewHost, setPreviewHost] = useState(null);
+  const previewUrls = useRef([]);
+
+  const buildPreviewHost = () => {
+    const objUrl = (f) => { const u = URL.createObjectURL(f); previewUrls.current.push(u); return u; };
+    const logo = files.logo?.[0] ? objUrl(files.logo[0]) : "";
+    const cover = files.coverImage?.[0] ? objUrl(files.coverImage[0]) : "";
+    const gallery = (files.gallery || []).map((f) => objUrl(f));
+    return {
+      // synthetic id so HostPage treats initialHost as resolved (no fetch); the
+      // preview is never persisted, so this id is display-only.
+      _id: "preview",
+      hostName: data.hostName, hostTitle: data.hostTitle, displayName: data.displayName,
+      tagline: data.tagline, shortBio: data.shortBio, hostOverview: data.hostOverview,
+      city: data.city, state: data.state, location: data.location, hqLocation: data.hqLocation,
+      country: data.country, foundedYear: data.foundedYear, experience: data.experience,
+      completeAddress: data.completeAddress,
+      specialties: splitCsv(data.specialties), languages: splitCsv(data.languages),
+      regionsHosted: splitCsv(data.regionsHosted), achievements: splitCsv(data.achievements),
+      verificationBadges: badges.filter((b) => (b.title || "").trim()).map((b) => ({ title: b.title, subtitle: b.note || "", icon: "verified" })),
+      faqs: faqs.filter((f) => (f.question || "").trim() || (f.answer || "").trim()),
+      brandingLogo: logo, coverImage: cover || logo, gallery,
+      whatsapp: data.whatsapp, supportHours: data.supportHours,
+      emailAddress: data.email, phoneNumber: data.phone,
+      responseTimeLabel: data.responseTimeLabel,
+      // preview-only display defaults (never saved): unverified, no reviews/trips
+      isVerified: false, status: "draft", rating: null, reviewCount: 0, tripsHosted: 0, travellersHosted: 0,
+    };
+  };
+  const openPreview = () => { previewUrls.current = []; setPreviewHost(buildPreviewHost()); setPreviewTab("detail"); setPreview(true); };
+  const closePreview = () => { setPreview(false); previewUrls.current.forEach((u) => URL.revokeObjectURL(u)); previewUrls.current = []; };
+  useEffect(() => () => previewUrls.current.forEach((u) => URL.revokeObjectURL(u)), []);
 
   // ── Token validate + prefill ────────────────────────────────────────────
   useEffect(() => {
@@ -440,10 +479,48 @@ export default function HostOnboarding({ token }) {
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", marginTop: 24, paddingTop: 22, borderTop: "1px solid #E6DDCF" }}>
             <button type="button" onClick={saveLater} className="po-ghost" style={{ padding: "13px 20px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#726A5E", background: "transparent", border: "1.5px solid #E6DDCF", borderRadius: 12, cursor: "pointer" }}>Save &amp; finish later</button>
-            <button type="button" onClick={submit} disabled={submitting} className="po-cta" style={{ marginLeft: "auto", padding: "14px 32px", font: "700 14.5px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", border: "none", borderRadius: 12, cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1, boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>{submitting ? "Submitting…" : "Submit host proposal"}</button>
+            <button type="button" onClick={openPreview} className="po-ghost" style={{ marginLeft: "auto", padding: "14px 24px", font: "700 14px/1 'Hanken Grotesk'", color: "#CF4A2C", background: "transparent", border: "1.5px solid #CF4A2C", borderRadius: 12, cursor: "pointer" }}>Preview My Profile</button>
+            <button type="button" onClick={submit} disabled={submitting} className="po-cta" style={{ padding: "14px 32px", font: "700 14.5px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", border: "none", borderRadius: 12, cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1, boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>{submitting ? "Submitting…" : "Submit host proposal"}</button>
           </div>
         </main>
       </div>
+
+      {/* LIVE PREVIEW — reuses the real Host Card + Host Detail components, fed
+          from in-memory form state. No DB write; no publish action. */}
+      {preview && previewHost ? (
+        <div style={{ position: "fixed", inset: 0, zIndex: 9000, background: "#EFE7DA", display: "flex", flexDirection: "column" }}>
+          {/* preview-mode banner */}
+          <div style={{ flex: "none", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", padding: "12px clamp(14px,4vw,28px)", background: "#221C17", color: "#F4EEE4" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 7, font: "700 11px/1 'Hanken Grotesk'", letterSpacing: ".06em", textTransform: "uppercase", color: "#E9622F" }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: "#E9622F" }} />Preview Mode</span>
+            <span style={{ font: "500 13px/1.4 'Hanken Grotesk'", color: "#C9BFAE" }}>This is how your profile will appear after approval. Nothing is saved yet.</span>
+            <div style={{ marginLeft: "auto", display: "inline-flex", gap: 4, background: "#2E271F", borderRadius: 10, padding: 3 }}>
+              {[["detail", "Detail page"], ["card", "Listing card"]].map(([k, lbl]) => (
+                <button key={k} type="button" onClick={() => setPreviewTab(k)} style={{ padding: "7px 14px", borderRadius: 8, border: "none", cursor: "pointer", font: "700 12.5px/1 'Hanken Grotesk'", background: previewTab === k ? "#E9622F" : "transparent", color: previewTab === k ? "#fff" : "#C9BFAE" }}>{lbl}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* preview canvas (scrolls) */}
+          <div style={{ flex: 1, overflow: "auto", background: previewTab === "card" ? "#FBEEE8" : "#fff" }}>
+            {previewTab === "card" ? (
+              <div className="mhpg" style={{ maxWidth: 420, margin: "clamp(24px,6vw,64px) auto", padding: "0 16px" }}>
+                <div className="host-grid" style={{ display: "block" }}>
+                  <HostListingCard c={toCard(previewHost)} preview />
+                </div>
+                <p style={{ marginTop: 16, textAlign: "center", font: "400 12.5px/1.6 'Hanken Grotesk'", color: "#8A8073" }}>Your card as it appears in the Meet Our Hosts listing.</p>
+              </div>
+            ) : (
+              <HostPage initialHost={previewHost} initialTrips={[]} initialReviews={[]} initialAllHosts={[]} />
+            )}
+          </div>
+
+          {/* footer actions — Back to Editing + Submit only (no publish) */}
+          <div style={{ flex: "none", display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", padding: "14px clamp(14px,4vw,28px)", borderTop: "1px solid #E6DDCF", background: "#FFFDF9" }}>
+            <button type="button" onClick={closePreview} className="po-ghost" style={{ padding: "13px 22px", font: "700 13.5px/1 'Hanken Grotesk'", color: "#3C3228", background: "transparent", border: "1.5px solid #D8CFC0", borderRadius: 12, cursor: "pointer" }}>← Back to Editing</button>
+            <button type="button" onClick={() => { closePreview(); submit(); }} disabled={submitting} className="po-cta" style={{ marginLeft: "auto", padding: "14px 32px", font: "700 14.5px/1 'Hanken Grotesk'", color: "#fff", background: "#CF4A2C", border: "none", borderRadius: 12, cursor: submitting ? "wait" : "pointer", opacity: submitting ? 0.7 : 1, boxShadow: "0 6px 16px rgba(207,74,44,.26)" }}>{submitting ? "Submitting…" : "Submit host proposal"}</button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

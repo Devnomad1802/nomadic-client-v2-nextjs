@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import "./meetHosts.css";
 import Footer from "../Component/Footer";
 import BecomeHostModal from "./BecomeHostModal";
+import HostListingCard from "../Component/Host/HostListingCard";
 import { useGetAllHostsQuery } from "../services";
 import { useGetTripsQuery } from "../services/TripApis";
 
@@ -50,11 +51,6 @@ const isTripForHost = (trip, host) => {
 };
 
 // Neutral default avatar icon (used instead of raw initials when no logo)
-const AvatarFallback = () => (
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
-);
-
-const StarSvg = () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.8 6.6 20l1-6.1L3.2 9.5l6.1-.9L12 3Z" /></svg>);
 const PinSvg = () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>);
 const TickSvg = () => (<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>);
 
@@ -205,48 +201,12 @@ const MeetHosts = ({ initialHosts }) => {
         ) : filtered.length > 0 ? (
           <div className="host-grid">
             {filtered.map((c) => (
-              <div key={c.id} className="host-card" role="link" tabIndex={0}
-                onClick={() => { navigate(`/hosts/${c.seoSlug || c.id}`); window.scrollTo(0, 0); }}
-                onKeyDown={(e) => { if (e.key === "Enter") { navigate(`/hosts/${c.seoSlug || c.id}`); window.scrollTo(0, 0); } }}>
-                <div className="host-cover">
-                  {c.image ? <img src={c.image} alt={`${c.name} — verified host`} loading="lazy" /> : null}
-                  <div className="host-badges">
-                    {c.verified && <span className="badge badge-verified"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2Z" /></svg>Verified Host</span>}
-                  </div>
-                  <div className="host-avatar">{c.logo ? <img src={c.logo} alt={c.name} /> : <AvatarFallback />}</div>
-                  <span className="host-rating-pill">{c.rating != null ? <><StarSvg />{c.rating.toFixed(1)}{c.reviews > 0 && <em>({c.reviews})</em>}</> : "New"}</span>
-                </div>
-                <div className="host-body">
-                  <div className="host-name-row">
-                    <span className="host-name">{c.name}</span>
-                    {c.verified && <span className="vrf" title="Verified Host"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2Z" /></svg></span>}
-                  </div>
-                  {c.location && <div className="host-loc"><PinSvg />{c.location}</div>}
-                  {c.specialties.length > 0 && (
-                    <div className="host-cats">
-                      {c.specialties.slice(0, 3).map((s) => <span key={s} className="host-cat">{s}</span>)}
-                    </div>
-                  )}
-                  {c.bio && <p className="host-bio">{c.bio}</p>}
-                  {c.regions.length > 0 && (
-                    <div className="host-regions"><PinSvg /> Hosts in {c.regions.slice(0, 3).join(", ")}{c.regions.length > 3 ? ` +${c.regions.length - 3}` : ""}</div>
-                  )}
-                  <div className="host-foot">
-                    <span className="host-exp"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</span>
-                    {c.reviews > 0 && <span className="host-reviews">{c.reviews} review{c.reviews === 1 ? "" : "s"}</span>}
-                  </div>
-                  <div className="host-cta">
-                    <button type="button" className="host-cta-primary"
-                      onClick={(e) => { e.stopPropagation(); navigate(`/hosts/${c.seoSlug || c.id}`); window.scrollTo(0, 0); }}>
-                      View Profile
-                    </button>
-                    <button type="button" className="host-cta-secondary"
-                      onClick={(e) => handleViewExperiences(e, c)}>
-                      View Experiences
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <HostListingCard
+                key={c.id}
+                c={c}
+                onOpen={(cc) => { navigate(`/hosts/${cc.seoSlug || cc.id}`); window.scrollTo(0, 0); }}
+                onExperiences={handleViewExperiences}
+              />
             ))}
           </div>
         ) : (
