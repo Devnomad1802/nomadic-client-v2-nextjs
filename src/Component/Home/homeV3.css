@@ -1365,20 +1365,19 @@
   .ntv3 .cats-marquee { scroll-snap-type: x mandatory; }
 }
 
-/* Homepage carousel edge fade — soften both sides so cards aren't harshly
-   cropped. Horizontal-only gradient mask keeps the card hover shadow intact. */
+/* Homepage carousel — no edge fade/blur. The row is cleanly contained inside
+   the section .wrap: the first card sits flush to the content edge (fully
+   visible), and scroll-padding keeps snapped/entering cards aligned rather than
+   clipped mid-card. Vertical padding preserves the card hover shadow. */
 .ntv3 .cats-marquee-wrap {
   position: relative;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
 .ntv3 .cats-marquee-wrap .cats-marquee {
-  padding-left: 4px;
-  padding-right: 4px;
+  /* keep the first card flush-left with the section content; the small vertical
+     inset (from .cats-marquee margin:-6px) already protects the hover shadow */
+  padding-left: 0;
+  padding-right: 0;
+  scroll-padding-left: 0;
+  scroll-snap-type: x proximity;
 }
-@media (max-width: 580px) {
-  .ntv3 .cats-marquee-wrap {
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
-  }
-}
+.ntv3 .cats-marquee-wrap .cats-marquee .cat-card { scroll-snap-align: start; }
