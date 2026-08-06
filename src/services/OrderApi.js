@@ -14,10 +14,11 @@ const OrderApi = api.injectEndpoints({
 
     // ── Secure flow (C1/C2): server decides price + verifies payment ──
     createSecureOrder: builder.mutation({
-      query: ({ tripId, quantities, couponCode, batchIndex, paymentType }) => ({
+      query: ({ tripId, quantities, couponCode, batchIndex, paymentType, addons }) => ({
         url: "/createSecureOrder",
         method: "POST",
-        body: { tripId, quantities, couponCode, batchIndex, paymentType },
+        // `addons`: [{ addonId, planId }] — server re-prices them from the DB.
+        body: { tripId, quantities, couponCode, batchIndex, paymentType, addons },
       }),
     }),
     confirmBooking: builder.mutation({

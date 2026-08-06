@@ -1,6 +1,7 @@
 export * from "./authApis";
 export * from "./TripApis";
 export * from "./OrderApi";
+export * from "./AddonsApi";
 export * from "./aboutApi";
 export * from "./BannerApis";
 export * from "./ReviewsApis";

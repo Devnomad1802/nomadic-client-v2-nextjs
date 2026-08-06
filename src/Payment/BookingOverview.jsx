@@ -8,7 +8,8 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCreateSecureOrderMutation, useConfirmBookingMutation } from "../services";
+import { useCreateSecureOrderMutation, useConfirmBookingMutation, useGetAddonsQuery } from "../services";
+import AddonCard from "../Component/Addons/AddonCard";
 import Loading from "../SmallComponents/Loading";
 import Toastify from "../SmallComponents/Tostify";
 import { useSelector } from "react-redux";
@@ -271,6 +272,21 @@ const BookingOverview = () => {
   const [createSecureOrder] = useCreateSecureOrderMutation();
   const [confirmBooking] = useConfirmBookingMutation();
 
+  // ── Booking Add-ons — catalogue scoped to this trip. Selection is display
+  // only; the server re-prices the chosen add-ons when the order is created. ──
+  const { data: addonsRes } = useGetAddonsQuery(paymentDetail?._id, { skip: !paymentDetail?._id });
+  const addonsCatalog = addonsRes?.data || [];
+  const [addonSel, setAddonSel] = useState({}); // { [addonId]: planId }
+  const chosenAddons = Object.entries(addonSel)
+    .filter(([, planId]) => planId)
+    .map(([addonId, planId]) => ({ addonId, planId }));
+  const addonsTotal = chosenAddons.reduce((sum, { addonId, planId }) => {
+    const a = addonsCatalog.find((x) => `${x._id}` === `${addonId}`);
+    const p = a?.plans?.find((pp) => pp.planId === planId);
+    return sum + (Number(p?.price) || 0);
+  }, 0);
+  const payNow = (Number(selectedValue) || 0) + addonsTotal;
+
   // Secure flow (C1/C2): the SERVER decides the amount and verifies the payment.
   // The browser only sends WHAT was chosen (trip + selections + coupon + batch),
   // never the price, and only the Razorpay receipt codes to confirm.
@@ -288,6 +304,7 @@ const BookingOverview = () => {
         couponCode: couponCode || "",
         batchIndex,
         paymentType: paymentStatus === "firstPayment" ? "firstPayment" : "full",
+        addons: chosenAddons,
       }).unwrap();
 
       if (!so?.orderId || !so?.key) {
@@ -568,6 +585,32 @@ const BookingOverview = () => {
                 <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "clamp(19px,2.4vw,24px)", color: "#221C17" }}>₹ {inr(Total)}</span>
               </div>
 
+              {/* ── Booking Add-ons (optional) ── */}
+              {addonsCatalog.length > 0 && (
+                <div style={{ marginTop: "22px" }}>
+                  <div style={{ font: `700 12px/1 ${BODY_FONT}`, letterSpacing: ".14em", textTransform: "uppercase", color: "#A89C8A", marginBottom: "12px" }}>
+                    Add to your trip <span style={{ textTransform: "none", letterSpacing: 0, fontWeight: 500, color: "#B9B0A2" }}>· optional</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                    {addonsCatalog.map((addon) => (
+                      <AddonCard
+                        key={addon._id}
+                        addon={addon}
+                        inr={inr}
+                        selectedPlanId={addonSel[addon._id] || ""}
+                        onSelect={(planId) => setAddonSel((s) => ({ ...s, [addon._id]: planId }))}
+                      />
+                    ))}
+                  </div>
+                  {addonsTotal > 0 && (
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", marginTop: "12px", padding: "12px 16px", background: "#F7E7E0", border: "1px solid #EBC9BC", borderRadius: "12px" }}>
+                      <span style={{ font: `700 13px/1.3 ${BODY_FONT}`, color: "#A23A26" }}>Add-ons</span>
+                      <span style={{ fontFamily: BODY_FONT, fontWeight: 800, fontSize: "16px", color: "#A23A26" }}>+ ₹ {inr(addonsTotal)}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {partialAvailable && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", alignItems: "center", justifyContent: "space-between", marginTop: "14px", padding: "15px 18px", background: "#FBF6EE", border: "1px dashed #E0CFBE", borderRadius: "14px" }}>
                   <div style={{ minWidth: 0 }}>
@@ -624,9 +667,14 @@ const BookingOverview = () => {
                     boxShadow: "0 8px 20px rgba(205,72,42,.28)",
                   }}
                 >
-                  Proceed to Pay ₹ {inr(selectedValue)}
+                  Proceed to Pay ₹ {inr(payNow)}
                 </button>
               </div>
+              {addonsTotal > 0 && (
+                <p style={{ margin: "10px 0 0", textAlign: "center", font: `500 12px/1.4 ${BODY_FONT}`, color: "#A23A26" }}>
+                  Includes ₹ {inr(addonsTotal)} in add-ons · verified by the server before payment
+                </p>
+              )}
               <p style={{ margin: "12px 0 0", textAlign: "center", font: `400 12px/1.4 ${BODY_FONT}`, color: "#9A9080" }}>
                 🔒 You&apos;ll be redirected to the secure payment gateway
               </p>
