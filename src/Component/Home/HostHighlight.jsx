@@ -2,11 +2,11 @@
 
 /* eslint-disable react/prop-types */
 /**
- * HostHighlight — homepage "featured hosts" section. Uses a COMPACT host card
- * (this section only) so it reads as a premium featured strip, not a big
- * promotional block. The full Meet-Our-Hosts card (HostListingCard) is left
- * untouched. Data comes from the same live hosts query; `toCard` maps the shape.
- * Degrades to nothing when no hosts are available (no fabricated content).
+ * HostHighlight — homepage "featured hosts" section. Compact host card ported
+ * from the approved design: horizontal layout on desktop/tablet (Structure 1A),
+ * vertical on mobile (Structure 1B). Uses the live hosts query + `toCard`
+ * mapping (data/backend unchanged); the shared Meet-Our-Hosts card is untouched.
+ * Renders nothing when no hosts are available (no fabricated content).
  */
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,49 +14,50 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useGetAllHostsQuery } from "../../services";
 import { toCard } from "../Host/HostListingCard";
 
-const Shield = ({ s = 11 }) => (
+const Shield = ({ s = 10 }) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6L12 2Z" /></svg>
 );
 const Star = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.8 6.6 20l1-6.1L3.2 9.5l6.1-.9L12 3Z" /></svg>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.8 6.6 20l1-6.1L3.2 9.5l6.1-.9L12 3Z" /></svg>
 );
 const Pin = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#8A8073" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" /><circle cx="12" cy="10" r="2.6" /></svg>
 );
 const initial = (n) => (n ? n.trim()[0]?.toUpperCase() : "N");
 
-const HostMiniCard = ({ c, onOpen, onExperiences }) => {
-  const tagline = c.raw?.tagline || c.raw?.hostTitle || "";
-  return (
-    <article className="hh-card">
-      <div className="hh-cover">
-        {c.image ? <img src={c.image} alt={`${c.name} — host`} loading="lazy" /> : <div className="hh-cover-ph" />}
-        {c.verified && <span className="hh-vbadge"><Shield />Verified</span>}
-        <span className="hh-rating">{c.rating != null ? <><Star />{c.rating.toFixed(1)}{c.reviews > 0 && <em>({c.reviews})</em>}</> : "New"}</span>
-        <span className="hh-avatar">{c.logo ? <img src={c.logo} alt={c.name} /> : initial(c.name)}</span>
+const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
+  <article className="hh2-card">
+    <div className="hh2-media">
+      {c.image ? <img src={c.image} alt={`${c.name} — host`} loading="lazy" /> : <span className="hh2-ph" aria-hidden="true" />}
+      {c.verified && <span className="hh2-verified"><Shield />Verified Host</span>}
+      <span className="hh2-rating">
+        {c.rating != null ? <><Star />{c.rating.toFixed(1)}{c.reviews > 0 && <em>({c.reviews})</em>}</> : "New"}
+      </span>
+      <span className="hh2-avatar">{c.logo ? <img src={c.logo} alt="" /> : initial(c.name)}</span>
+    </div>
+    <div className="hh2-body">
+      <div className="hh2-name">
+        {c.name}
+        {c.verified && <span className="hh2-tick" title="Verified host"><Shield s={15} /></span>}
       </div>
-      <div className="hh-body">
-        <div className="hh-name">{c.name}{c.verified && <span className="hh-tick" title="Verified host"><Shield s={13} /></span>}</div>
-        {c.location && <div className="hh-loc"><Pin />{c.location}</div>}
-        {tagline && <div className="hh-tag">{tagline}</div>}
-        {c.specialties.length > 0 && (
-          <div className="hh-chips">
-            {c.specialties.slice(0, 3).map((s) => <span key={s} className="hh-chip">{s}</span>)}
-            {c.specialties.length > 3 && <span className="hh-chip hh-more">+{c.specialties.length - 3}</span>}
-          </div>
-        )}
-        {c.bio && <p className="hh-bio">{c.bio}</p>}
-        <div className="hh-foot">
-          <span className="hh-exp"><b>{c.experiences}</b> experience{c.experiences === 1 ? "" : "s"}</span>
-          <div className="hh-cta">
-            <button type="button" className="hh-btn ghost" onClick={(e) => { e.stopPropagation(); onExperiences?.(e, c); }}>Experiences</button>
-            <button type="button" className="hh-btn primary" onClick={(e) => { e.stopPropagation(); onOpen?.(c); }}>View profile</button>
-          </div>
+      {c.location && <div className="hh2-loc"><Pin />{c.location}</div>}
+      {c.specialties.length > 0 && (
+        <div className="hh2-chips">
+          {c.specialties.slice(0, 4).map((s) => <span key={s} className="hh2-chip">{s}</span>)}
+          {c.specialties.length > 4 && <span className="hh2-chip hh2-more">+{c.specialties.length - 4}</span>}
+        </div>
+      )}
+      {c.bio && <p className="hh2-desc clamp2">{c.bio}</p>}
+      <div className="hh2-foot">
+        <span className="hh2-count"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</span>
+        <div className="hh2-cta">
+          <button type="button" className="hh2-btn primary" onClick={() => onOpen?.(c)}>View Profile</button>
+          <button type="button" className="hh2-btn secondary" onClick={(e) => onExperiences?.(e, c)}>View Experiences</button>
         </div>
       </div>
-    </article>
-  );
-};
+    </div>
+  </article>
+);
 
 const HostHighlight = ({ hosts }) => {
   const navigate = useNavigate();
@@ -90,13 +91,13 @@ const HostHighlight = ({ hosts }) => {
             Meet all our hosts <ArrowForwardIcon sx={{ fontSize: 15 }} />
           </button>
         </div>
-        <div className="hh-grid">
+        <div className="hh2-grid">
           {list.map((c) => (
-            <HostMiniCard
+            <HostFeatureCard
               key={c.id}
               c={c}
               onOpen={(cc) => { navigate(`/hosts/${cc.seoSlug || cc.id}`); window.scrollTo(0, 0); }}
-              onExperiences={(e, cc) => { navigate(`/hosts/${cc.seoSlug || cc.id}?tab=experiences`); window.scrollTo(0, 0); }}
+              onExperiences={(e, cc) => { e.stopPropagation(); navigate(`/hosts/${cc.seoSlug || cc.id}?tab=experiences`); window.scrollTo(0, 0); }}
             />
           ))}
         </div>
@@ -106,41 +107,56 @@ const HostHighlight = ({ hosts }) => {
 };
 
 const CSS = `
-  .hh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  @media(max-width:1024px){.hh-grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:760px){.hh-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
-  @media(max-width:480px){.hh-grid{grid-template-columns:1fr}}
-  .hh-card{display:flex;flex-direction:column;background:#fff;border:1px solid #ECE6DD;border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(28,26,23,.04);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-  .hh-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(28,26,23,.28);border-color:#E0D7C9}
-  .hh-cover{position:relative;aspect-ratio:16/10;background:#EFE7DA;overflow:hidden}
-  .hh-cover img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
-  .hh-card:hover .hh-cover img{transform:scale(1.04)}
-  .hh-cover-ph{position:absolute;inset:0;background:linear-gradient(135deg,#F3E3DA,#E8D2C4)}
-  .hh-vbadge{position:absolute;top:9px;left:9px;display:inline-flex;align-items:center;gap:4px;font:700 9.5px/1 'Hanken Grotesk',sans-serif;color:#fff;background:rgba(46,125,79,.92);padding:4px 8px;border-radius:99px;backdrop-filter:blur(2px)}
-  .hh-rating{position:absolute;top:9px;right:9px;display:inline-flex;align-items:center;gap:4px;font:700 11px/1 'Hanken Grotesk',sans-serif;color:#221C17;background:rgba(255,255,255,.94);padding:4px 8px;border-radius:99px;box-shadow:0 1px 3px rgba(0,0,0,.14)}
-  .hh-rating svg{color:#E9A21B}
-  .hh-rating em{font-style:normal;color:#8A8073;font-weight:600;font-size:10px}
-  .hh-avatar{position:absolute;left:12px;bottom:-16px;width:40px;height:40px;border-radius:12px;border:2.5px solid #fff;background:#F6E4DC;color:#CF4A2C;display:grid;place-items:center;overflow:hidden;font:800 15px/1 'Hanken Grotesk',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.14)}
-  .hh-avatar img{width:100%;height:100%;object-fit:cover}
-  .hh-body{padding:22px 14px 14px;display:flex;flex-direction:column;gap:6px}
-  .hh-name{display:flex;align-items:center;gap:6px;font:750 15px/1.2 'Hanken Grotesk',sans-serif;color:#1C1A17;letter-spacing:-.01em}
-  .hh-tick{color:#CF4A2C;display:inline-flex}
-  .hh-loc{display:flex;align-items:center;gap:5px;font:500 12px/1.2 'Hanken Grotesk',sans-serif;color:#8A8073}
-  .hh-tag{font:500 12.5px/1.4 'Hanken Grotesk',sans-serif;color:#5A544B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .hh-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
-  .hh-chip{font:600 10.5px/1 'Hanken Grotesk',sans-serif;color:#A23A26;background:#F7EBE5;border-radius:99px;padding:5px 8px}
-  .hh-chip.hh-more{color:#8A8073;background:#F1ECE3}
-  .hh-bio{margin:2px 0 0;font:400 12.5px/1.5 'Hanken Grotesk',sans-serif;color:#6E6A63;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .hh-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding-top:12px;border-top:1px solid #F1ECE3}
-  .hh-exp{font:500 11.5px/1.2 'Hanken Grotesk',sans-serif;color:#8A8073;white-space:nowrap}
-  .hh-exp b{color:#1C1A17;font-weight:800}
-  .hh-cta{display:flex;gap:6px}
-  .hh-btn{font:700 11.5px/1 'Hanken Grotesk',sans-serif;border-radius:9px;padding:8px 11px;cursor:pointer;border:1px solid transparent;white-space:nowrap;transition:background .15s,border-color .15s}
-  .hh-btn.ghost{background:transparent;border-color:#E0D7C9;color:#5A544B}
-  .hh-btn.ghost:hover{border-color:#CF4A2C;color:#CF4A2C}
-  .hh-btn.primary{background:#CF4A2C;color:#fff}
-  .hh-btn.primary:hover{background:#C0421F}
-  @media(max-width:760px){.hh-cta .ghost{display:none}}
+  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:22px}
+  @media(max-width:1120px){.hh2-grid{grid-template-columns:1fr}}
+  .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* ── 1A · Desktop / tablet — horizontal ── */
+  .hh2-card{display:flex;background:#fff;border:1px solid #E6DDCF;border-radius:20px;overflow:hidden;
+    box-shadow:0 10px 28px -14px rgba(31,39,51,.2),0 1px 4px -1px rgba(31,39,51,.04);transition:box-shadow .25s ease,transform .25s ease}
+  .hh2-card:hover{box-shadow:0 20px 48px rgba(80,50,30,.16),0 4px 12px rgba(80,50,30,.06);transform:translateY(-2px)}
+
+  .hh2-media{position:relative;width:300px;flex-shrink:0;min-height:296px;background:repeating-linear-gradient(135deg,#E7DDCD,#E7DDCD 11px,#DED2BF 11px,#DED2BF 22px)}
+  .hh2-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hh2-verified{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--inter,'Inter',sans-serif);padding:5px 10px;border-radius:999px;background:rgba(46,125,79,.94);color:#fff;backdrop-filter:blur(8px)}
+  .hh2-rating{position:absolute;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);font:700 12.5px/1 var(--inter,'Inter',sans-serif);color:#3C3228;padding:5px 11px;border-radius:999px}
+  .hh2-rating em{font-style:normal;font-weight:600;color:#726A5E;margin-left:2px;font-size:11px}
+  .hh2-avatar{position:absolute;bottom:-22px;left:20px;width:56px;height:56px;border-radius:50%;border:4px solid #fff;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.14);
+    display:grid;place-items:center;background:#F6E4DC;color:#CF4A2C;font:800 20px/1 var(--playfair,serif)}
+  .hh2-avatar img{width:100%;height:100%;object-fit:cover}
+
+  .hh2-body{flex:1;padding:22px 24px 20px;display:flex;flex-direction:column;min-width:0}
+  .hh2-name{display:flex;align-items:center;gap:7px;font:700 22px/1.15 var(--playfair,serif);color:#3C3228;letter-spacing:-.01em}
+  .hh2-tick{color:#2E7D4F;display:inline-flex;flex-shrink:0}
+  .hh2-loc{display:flex;align-items:center;gap:5px;font:400 13px/1.2 var(--inter,sans-serif);color:#726A5E;margin-top:3px}
+  .hh2-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .hh2-chip{font:700 11.5px/1 var(--inter,sans-serif);color:#CF4A2C;background:#FDF3EE;padding:4px 10px;border-radius:999px}
+  .hh2-chip.hh2-more{color:#8A8073;background:#F1EADD}
+  .hh2-desc{font-family:var(--playfair,serif);font-style:italic;font-size:14.5px;color:#5A5247;line-height:1.55;margin:12px 0 0}
+  .hh2-foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .hh2-count{font:400 13px/1.3 var(--inter,sans-serif);color:#726A5E}
+  .hh2-count b{color:#3C3228;font-weight:700}
+  .hh2-cta{display:flex;gap:10px}
+  .hh2-btn{height:40px;padding:0 18px;border-radius:10px;font:700 13.5px/1 var(--inter,sans-serif);cursor:pointer;border:1.5px solid transparent;white-space:nowrap;transition:background .16s ease,transform .16s ease}
+  .hh2-btn.primary{background:#CF4A2C;color:#fff}
+  .hh2-btn.primary:hover{background:#B83F23;transform:translateY(-1px)}
+  .hh2-btn.secondary{background:#fff;color:#CF4A2C;border-color:#CF4A2C}
+  .hh2-btn.secondary:hover{background:#FDF3EE}
+
+  /* ── 1B · Mobile — vertical ── */
+  @media(max-width:560px){
+    .hh2-card{flex-direction:column;border-radius:18px}
+    .hh2-media{width:100%;min-height:0;aspect-ratio:16/10}
+    .hh2-verified{top:10px;left:10px;font-size:10.5px;padding:4px 9px}
+    .hh2-rating{bottom:10px;right:10px;font-size:12px;padding:4px 10px}
+    .hh2-avatar{width:50px;height:50px;bottom:-20px;left:16px;font-size:18px}
+    .hh2-body{padding:26px 18px 18px}
+    .hh2-name{font-size:19px}
+    .hh2-loc{font-size:12.5px}
+    .hh2-foot{flex-direction:column;align-items:stretch;gap:12px}
+    .hh2-cta{gap:8px}
+    .hh2-btn{flex:1}
+  }
 `;
 
 export default HostHighlight;
