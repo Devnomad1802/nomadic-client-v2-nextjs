@@ -47,7 +47,6 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
           {c.specialties.length > 3 && <span className="hh2-chip hh2-more">+{c.specialties.length - 3}</span>}
         </div>
       )}
-      {c.bio && <p className="hh2-desc clamp2">{c.bio}</p>}
       <div className="hh2-count"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</div>
       <div className="hh2-cta">
         <button type="button" className="hh2-btn primary" onClick={() => onOpen?.(c)}>View Profile</button>
@@ -134,7 +133,6 @@ const CSS = `
   .hh2-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
   .hh2-chip{font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:4px 9px;border-radius:999px}
   .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
-  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:13.5px;color:var(--text);line-height:1.5;margin:10px 0 0}
   .hh2-count{font:400 12px/1.3 var(--inter);color:var(--text-light);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft)}
   .hh2-count b{color:var(--text-dark);font-weight:700}
   .hh2-cta{display:flex;gap:8px;margin-top:auto;padding-top:14px}
