@@ -33,6 +33,11 @@ const inCategory = (t, cat) =>
 
 const initial = (name) => (name ? name.trim()[0]?.toUpperCase() : "N");
 
+// Positioning: we never compete on discounts. Hide the "% OFF" badge + struck
+// original price on trip cards (display-only, reversible — flip to re-enable).
+// Pricing data/fields are left completely untouched.
+const SHOW_DISCOUNT = false;
+
 const TripsV3 = ({ initialTrips = [], initialCategories = [] }) => {
   const navigate = useNavigate();
   const { isSaved, toggle } = useBookmark();
@@ -119,11 +124,17 @@ const TripsV3 = ({ initialTrips = [], initialCategories = [] }) => {
                     <button className={`tc-fav${isSaved(trip._id) ? " on" : ""}`} aria-label={isSaved(trip._id) ? "Remove from saved" : "Save"} aria-pressed={isSaved(trip._id)} onClick={(e) => toggle(trip._id, e)}>
                       <FavoriteIcon sx={{ fontSize: 14 }} />
                     </button>
-                    {trip.tripOff ? <span className="tc-off">{trip.tripOff}% OFF</span> : null}
+                    {/* Discount treatment hidden — we don't compete on discounts.
+                        Display-only + reversible (SHOW_DISCOUNT); pricing data untouched. */}
+                    {SHOW_DISCOUNT && trip.tripOff ? <span className="tc-off">{trip.tripOff}% OFF</span> : null}
                   </div>
                   <div className="tc-body">
                     <div className="tc-host">
-                      <div className="tc-avatar">{initial(trip?.host?.hostName)}</div>
+                      <div className="tc-avatar">
+                        {trip?.host?.brandingLogo
+                          ? <img src={trip.host.brandingLogo} alt={trip?.host?.hostName || "Host"} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }} loading="lazy" />
+                          : initial(trip?.host?.hostName)}
+                      </div>
                       <span>Hosted by <b style={{ color: "var(--text-dark)" }}>{trip?.host?.hostName || "Nomadic Townies"}</b></span>
                       {verified && <span className="tc-verified"><VerifiedIcon sx={{ fontSize: 13 }} />Verified</span>}
                     </div>
@@ -136,7 +147,7 @@ const TripsV3 = ({ initialTrips = [], initialCategories = [] }) => {
                     <div className="tc-foot">
                       <div className="tc-price">
                         <b>₹{Number(trip.price || 0).toLocaleString("en-IN")}</b>
-                        {trip.strikePrice ? <s>₹{Number(trip.strikePrice).toLocaleString("en-IN")}</s> : null}
+                        {SHOW_DISCOUNT && trip.strikePrice ? <s>₹{Number(trip.strikePrice).toLocaleString("en-IN")}</s> : null}
                         <em>/ person</em>
                       </div>
                       <span className="btn btn-outline btn-sm" onClick={(e) => { e.preventDefault(); navigate(`/trips/${trip.seoSlug || trip._id}`); }}>View</span>
