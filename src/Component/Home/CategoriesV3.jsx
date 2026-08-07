@@ -53,7 +53,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carou
 
   // Headline kept exactly as before; DB-overridable via props (managed in admin later).
   const title = sectionTitle || "Choose Your Adventure";
-  const subtitle = sectionSubtitle || "From serene mountain treks to adrenaline-pumping expeditions — find your perfect experience.";
+  const subtitle = sectionSubtitle || "From high-altitude treks to slow cultural immersions — find the experience, and the host, that fits you.";
 
   // count of trips + min price per category (used for the chip / "From ₹" / coming-soon).
   const stats = useMemo(() => {
@@ -96,10 +96,13 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carou
       >
         <div className="cat-illus" style={{ background: tpl.gradient }}>
           <span className={`cat-count${empty ? " cat-count--soon" : ""}`}>
-            {empty ? "Coming soon" : (
+            {empty ? "Coming soon" : count === 1 ? (
+              // A lone trip signals a thin marketplace — show "New" instead of "1 trip".
+              <><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>New</>
+            ) : (
               <>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                {count} trip{count === 1 ? "" : "s"}
+                {count} trips
               </>
             )}
           </span>
