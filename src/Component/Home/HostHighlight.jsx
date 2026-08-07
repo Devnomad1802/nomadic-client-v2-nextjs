@@ -43,8 +43,8 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
       {c.location && <div className="hh2-loc"><Pin />{c.location}</div>}
       {c.specialties.length > 0 && (
         <div className="hh2-chips">
-          {c.specialties.slice(0, 4).map((s) => <span key={s} className="hh2-chip">{s}</span>)}
-          {c.specialties.length > 4 && <span className="hh2-chip hh2-more">+{c.specialties.length - 4}</span>}
+          {c.specialties.slice(0, 3).map((s) => <span key={s} className="hh2-chip">{s}</span>)}
+          {c.specialties.length > 3 && <span className="hh2-chip hh2-more">+{c.specialties.length - 3}</span>}
         </div>
       )}
       {c.bio && <p className="hh2-desc clamp2">{c.bio}</p>}
@@ -109,36 +109,36 @@ const HostHighlight = ({ hosts }) => {
    .why-card sibling. margin-top:auto on the CTA row pins buttons to a common
    baseline → uniform card heights across the row. */
 const CSS = `
-  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-  @media(max-width:680px){.hh2-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+  @media(max-width:600px){.hh2-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
   .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-  /* ── vertical stacked host card — matches .why-card system ── */
+  /* ── vertical stacked host card — compact, homepage design-system tokens ── */
   .hh2-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden;
     box-shadow:var(--sh);transition:box-shadow .2s ease,transform .18s ease}
   .hh2-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
 
-  .hh2-media{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(135deg,var(--ink-200),var(--ink-200) 11px,var(--ink-300) 11px,var(--ink-300) 22px)}
+  .hh2-media{position:relative;aspect-ratio:16/9;background:repeating-linear-gradient(135deg,var(--ink-200),var(--ink-200) 11px,var(--ink-300) 11px,var(--ink-300) 22px)}
   .hh2-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hh2-verified{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--inter);padding:5px 10px;border-radius:999px;background:var(--success);color:#fff}
-  .hh2-rating{position:absolute;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);font:700 12.5px/1 var(--inter);color:var(--text-dark);padding:5px 11px;border-radius:999px}
-  .hh2-rating em{font-style:normal;font-weight:600;color:var(--text-light);margin-left:2px;font-size:11px}
-  .hh2-avatar{position:absolute;bottom:-22px;left:20px;width:56px;height:56px;border-radius:50%;border:4px solid #fff;overflow:hidden;box-shadow:var(--sh-md);
-    display:grid;place-items:center;background:var(--brand-100);color:var(--orange);font:800 20px/1 var(--playfair)}
+  .hh2-verified{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:4px;font:700 10px/1 var(--inter);padding:4px 8px;border-radius:999px;background:var(--success);color:#fff}
+  .hh2-rating{position:absolute;bottom:10px;right:10px;display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);font:700 11.5px/1 var(--inter);color:var(--text-dark);padding:4px 9px;border-radius:999px}
+  .hh2-rating em{font-style:normal;font-weight:600;color:var(--text-light);margin-left:2px;font-size:10px}
+  .hh2-avatar{position:absolute;bottom:-16px;left:14px;width:44px;height:44px;border-radius:50%;border:3px solid #fff;overflow:hidden;box-shadow:var(--sh-md);
+    display:grid;place-items:center;background:var(--brand-100);color:var(--orange);font:800 16px/1 var(--playfair)}
   .hh2-avatar img{width:100%;height:100%;object-fit:cover}
 
-  .hh2-body{padding:30px 24px 22px;display:flex;flex-direction:column;flex:1}
-  .hh2-name{display:flex;align-items:center;gap:7px;font:700 21px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
+  .hh2-body{padding:22px 16px 14px;display:flex;flex-direction:column;flex:1}
+  .hh2-name{display:flex;align-items:center;gap:6px;font:700 18px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
   .hh2-tick{color:var(--success);display:inline-flex;flex-shrink:0}
-  .hh2-loc{display:flex;align-items:center;gap:5px;font:400 13px/1.2 var(--inter);color:var(--text-light);margin-top:4px}
-  .hh2-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-  .hh2-chip{font:700 11.5px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:5px 10px;border-radius:999px}
+  .hh2-loc{display:flex;align-items:center;gap:4px;font:400 12.5px/1.2 var(--inter);color:var(--text-light);margin-top:3px}
+  .hh2-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .hh2-chip{font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:4px 9px;border-radius:999px}
   .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
-  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:14.5px;color:var(--text);line-height:1.55;margin:12px 0 0}
-  .hh2-count{font:400 13px/1.3 var(--inter);color:var(--text-light);margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft)}
+  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:13.5px;color:var(--text);line-height:1.5;margin:10px 0 0}
+  .hh2-count{font:400 12px/1.3 var(--inter);color:var(--text-light);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft)}
   .hh2-count b{color:var(--text-dark);font-weight:700}
-  .hh2-cta{display:flex;gap:10px;margin-top:auto;padding-top:16px}
-  .hh2-btn{flex:1;height:44px;border-radius:999px;font:700 13.5px/1 var(--inter);cursor:pointer;border:1.5px solid transparent;transition:background .16s ease,transform .16s ease;white-space:nowrap}
+  .hh2-cta{display:flex;gap:8px;margin-top:auto;padding-top:14px}
+  .hh2-btn{flex:1;height:38px;border-radius:999px;font:700 12.5px/1 var(--inter);cursor:pointer;border:1.5px solid transparent;transition:background .16s ease,transform .16s ease;white-space:nowrap}
   .hh2-btn.primary{background:var(--orange);color:#fff}
   .hh2-btn.primary:hover{background:var(--orange-hover);transform:translateY(-1px)}
   .hh2-btn.secondary{background:#fff;color:var(--orange);border-color:var(--orange)}
