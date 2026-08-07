@@ -53,7 +53,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carou
 
   // Headline kept exactly as before; DB-overridable via props (managed in admin later).
   const title = sectionTitle || "Choose Your Adventure";
-  const subtitle = sectionSubtitle || "From high-altitude treks to slow cultural immersions — find the experience, and the host, that fits you.";
+  const subtitle = sectionSubtitle || "From high-altitude treks to slow cultural immersions, find the experience, and the host, that fits you.";
 
   // count of trips + min price per category (used for the chip / "From ₹" / coming-soon).
   const stats = useMemo(() => {

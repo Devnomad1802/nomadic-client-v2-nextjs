@@ -81,7 +81,7 @@ const HostHighlight = ({ hosts }) => {
             <div className="section-label"><span className="section-label-bar" />The people behind it</div>
             <h2 className="section-h">The people worth travelling with.</h2>
             <p className="section-sub" style={{ marginTop: 8, maxWidth: 620 }}>
-              A great host changes everything — the trail nobody photographs, the family who&apos;ll
+              A great host changes everything. The trail nobody photographs, the family who&apos;ll
               cook for you, the moment the light hits the valley. Meet a few of ours.
             </p>
           </div>
@@ -104,41 +104,45 @@ const HostHighlight = ({ hosts }) => {
   );
 };
 
+/* Card styled to the homepage design system: shared tokens (--r-lg, --sh,
+   --line-soft, --orange, --success, ink/text scale) so it reads as a native
+   .why-card sibling. margin-top:auto on the CTA row pins buttons to a common
+   baseline → uniform card heights across the row. */
 const CSS = `
-  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;justify-content:center}
+  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
   @media(max-width:680px){.hh2-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
   .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
-  /* ── Structure 2a — vertical stacked card ── */
-  .hh2-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E6DDCF;border-radius:20px;overflow:hidden;
-    box-shadow:0 10px 28px -14px rgba(31,39,51,.2),0 1px 4px -1px rgba(31,39,51,.04);transition:box-shadow .25s ease,transform .25s ease}
-  .hh2-card:hover{box-shadow:0 20px 48px rgba(80,50,30,.16),0 4px 12px rgba(80,50,30,.06);transform:translateY(-2px)}
+  /* ── vertical stacked host card — matches .why-card system ── */
+  .hh2-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden;
+    box-shadow:var(--sh);transition:box-shadow .2s ease,transform .18s ease}
+  .hh2-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
 
-  .hh2-media{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#E7DDCD,#E7DDCD 11px,#DED2BF 11px,#DED2BF 22px)}
+  .hh2-media{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(135deg,var(--ink-200),var(--ink-200) 11px,var(--ink-300) 11px,var(--ink-300) 22px)}
   .hh2-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hh2-verified{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--inter,'Inter',sans-serif);padding:5px 10px;border-radius:999px;background:rgba(46,125,79,.94);color:#fff;backdrop-filter:blur(8px)}
-  .hh2-rating{position:absolute;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);font:700 12.5px/1 var(--inter,'Inter',sans-serif);color:#3C3228;padding:5px 11px;border-radius:999px}
-  .hh2-rating em{font-style:normal;font-weight:600;color:#726A5E;margin-left:2px;font-size:11px}
-  .hh2-avatar{position:absolute;bottom:-22px;left:20px;width:56px;height:56px;border-radius:50%;border:4px solid #fff;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.14);
-    display:grid;place-items:center;background:#F6E4DC;color:#CF4A2C;font:800 20px/1 var(--playfair,serif)}
+  .hh2-verified{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:4px;font:700 11px/1 var(--inter);padding:5px 10px;border-radius:999px;background:var(--success);color:#fff}
+  .hh2-rating{position:absolute;bottom:12px;right:12px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);font:700 12.5px/1 var(--inter);color:var(--text-dark);padding:5px 11px;border-radius:999px}
+  .hh2-rating em{font-style:normal;font-weight:600;color:var(--text-light);margin-left:2px;font-size:11px}
+  .hh2-avatar{position:absolute;bottom:-22px;left:20px;width:56px;height:56px;border-radius:50%;border:4px solid #fff;overflow:hidden;box-shadow:var(--sh-md);
+    display:grid;place-items:center;background:var(--brand-100);color:var(--orange);font:800 20px/1 var(--playfair)}
   .hh2-avatar img{width:100%;height:100%;object-fit:cover}
 
-  .hh2-body{padding:28px 22px 20px;display:flex;flex-direction:column}
-  .hh2-name{display:flex;align-items:center;gap:7px;font:700 22px/1.15 var(--playfair,serif);color:#3C3228;letter-spacing:-.01em}
-  .hh2-tick{color:#2E7D4F;display:inline-flex;flex-shrink:0}
-  .hh2-loc{display:flex;align-items:center;gap:5px;font:400 13px/1.2 var(--inter,sans-serif);color:#726A5E;margin-top:3px}
+  .hh2-body{padding:30px 24px 22px;display:flex;flex-direction:column;flex:1}
+  .hh2-name{display:flex;align-items:center;gap:7px;font:700 21px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
+  .hh2-tick{color:var(--success);display:inline-flex;flex-shrink:0}
+  .hh2-loc{display:flex;align-items:center;gap:5px;font:400 13px/1.2 var(--inter);color:var(--text-light);margin-top:4px}
   .hh2-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-  .hh2-chip{font:700 11.5px/1 var(--inter,sans-serif);color:#CF4A2C;background:#FDF3EE;padding:4px 10px;border-radius:999px}
-  .hh2-chip.hh2-more{color:#8A8073;background:#F1EADD}
-  .hh2-desc{font-family:var(--playfair,serif);font-style:italic;font-size:14.5px;color:#5A5247;line-height:1.55;margin:12px 0 0}
-  .hh2-count{font:400 13px/1.3 var(--inter,sans-serif);color:#726A5E;margin-top:14px;padding-top:14px;border-top:1px solid #F1EADD}
-  .hh2-count b{color:#3C3228;font-weight:700}
-  .hh2-cta{display:flex;gap:10px;margin-top:14px}
-  .hh2-btn{flex:1;height:42px;border-radius:10px;font:700 13.5px/1 var(--inter,sans-serif);cursor:pointer;border:1.5px solid transparent;transition:background .16s ease,transform .16s ease}
-  .hh2-btn.primary{background:#CF4A2C;color:#fff}
-  .hh2-btn.primary:hover{background:#B83F23;transform:translateY(-1px)}
-  .hh2-btn.secondary{background:#fff;color:#CF4A2C;border-color:#CF4A2C}
-  .hh2-btn.secondary:hover{background:#FDF3EE}
+  .hh2-chip{font:700 11.5px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:5px 10px;border-radius:999px}
+  .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
+  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:14.5px;color:var(--text);line-height:1.55;margin:12px 0 0}
+  .hh2-count{font:400 13px/1.3 var(--inter);color:var(--text-light);margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft)}
+  .hh2-count b{color:var(--text-dark);font-weight:700}
+  .hh2-cta{display:flex;gap:10px;margin-top:auto;padding-top:16px}
+  .hh2-btn{flex:1;height:44px;border-radius:999px;font:700 13.5px/1 var(--inter);cursor:pointer;border:1.5px solid transparent;transition:background .16s ease,transform .16s ease;white-space:nowrap}
+  .hh2-btn.primary{background:var(--orange);color:#fff}
+  .hh2-btn.primary:hover{background:var(--orange-hover);transform:translateY(-1px)}
+  .hh2-btn.secondary{background:#fff;color:var(--orange);border-color:var(--orange)}
+  .hh2-btn.secondary:hover{background:var(--orange-tint)}
 `;
 
 export default HostHighlight;

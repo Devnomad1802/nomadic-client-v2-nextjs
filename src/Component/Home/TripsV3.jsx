@@ -84,7 +84,7 @@ const TripsV3 = ({ initialTrips = [], initialCategories = [] }) => {
           <div>
             <div className="section-label"><span className="section-label-bar" />Hand-picked &amp; host-verified</div>
             <h2 className="section-h">Upcoming Trips</h2>
-            <p className="section-sub" style={{ marginTop: 8 }}>Curated experiences leaving in the next few weeks — browse, filter and book your spot.</p>
+            <p className="section-sub" style={{ marginTop: 8 }}>Curated experiences leaving in the next few weeks. Browse, filter and book your spot.</p>
           </div>
           <Link to="/experiences" className="btn btn-outline btn-md" style={{ textDecoration: "none" }}>
             View All Experiences <ArrowForwardIcon sx={{ fontSize: 16 }} />
@@ -109,7 +109,7 @@ const TripsV3 = ({ initialTrips = [], initialCategories = [] }) => {
         {isLoading ? (
           <TripCardSkeleton count={4} />
         ) : trips.length === 0 ? (
-          <p className="section-sub">No upcoming trips in this category right now — check back soon.</p>
+          <p className="section-sub">No upcoming trips in this category right now. Check back soon.</p>
         ) : (
           <div className="trips-grid">
             {trips.map((trip) => {

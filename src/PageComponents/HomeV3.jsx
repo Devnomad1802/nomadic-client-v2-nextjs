@@ -37,17 +37,17 @@ const marqueeTags = [
 ];
 
 const trustBadges = [
-  { icon: <VerifiedUserOutlinedIcon />, title: "Every host personally verified", sub: "We meet and vet each host." },
-  { icon: <GroupsOutlinedIcon />, title: "Curated, never collected", sub: "Only what we'd join ourselves." },
-  { icon: <EventAvailableOutlinedIcon />, title: "Secure payments, always", sub: "Protected end to end." },
-  { icon: <SupportAgentOutlinedIcon />, title: "Real humans, start to finish", sub: "On call before, during, after." },
+  { icon: <VerifiedUserOutlinedIcon />, title: "Verified", sub: "Local Hosts" },
+  { icon: <GroupsOutlinedIcon />, title: "Handpicked", sub: "Experiences" },
+  { icon: <EventAvailableOutlinedIcon />, title: "Secure", sub: "Payments" },
+  { icon: <SupportAgentOutlinedIcon />, title: "24/7", sub: "Traveller Support" },
 ];
 
 const heroTrust = [
-  { num: "Every host personally verified", label: "We meet and vet each host." },
-  { num: "Curated, never collected", label: "Only what we'd join ourselves." },
-  { num: "Secure payments, always", label: "Protected end to end." },
-  { num: "Real humans, start to finish", label: "On call before, during, after." },
+  { num: "Verified", label: "Hosts" },
+  { num: "Curated", label: "Experiences" },
+  { num: "Secure", label: "Payments" },
+  { num: "Trusted", label: "Community" },
 ];
 
 const whyCards = [
@@ -114,21 +114,21 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
           <div className="wrap">
             <h1 className="hero-h1">The best journeys aren&apos;t places.<br />They&apos;re <em>people</em>.</h1>
             <p className="hero-sub">
-              Nomadic Townies is a curated marketplace for host-led experiences — where you don&apos;t
-              book a trip, you find someone worth travelling with.<br /><br />
+              Nomadic Townies is a curated marketplace for host-led experiences. You don&apos;t
+              just book a trip. You find someone worth travelling with.<br /><br />
               Real hosts. Small communities. The kind of journey that changes how you see a place,
               and yourself.
             </p>
             <div className="hero-ctas">
-              <button className="btn btn-orange btn-xl" onClick={() => navigate("/hosts")}>
-                Meet the hosts <ArrowForwardIcon sx={{ fontSize: 18 }} />
+              <button className="btn btn-orange btn-xl" onClick={() => navigate("/experiences")}>
+                Explore Experiences <ArrowForwardIcon sx={{ fontSize: 18 }} />
               </button>
               <button
                 className="btn btn-lg"
                 style={{ background: "rgba(255,255,255,.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,.3)", backdropFilter: "blur(6px)" }}
-                onClick={() => navigate("/experiences")}
+                onClick={() => navigate("/hosts")}
               >
-                Explore experiences
+                Meet Our Hosts
               </button>
             </div>
             <div className="hero-trust">
@@ -222,7 +222,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
                 meaningful, mindful, and accessible for everyone.
               </p>
               <p style={{ fontSize: 16, color: "var(--text)", lineHeight: 1.7, marginBottom: 28 }}>
-                We&apos;re a curated marketplace for transformative travel experiences — community
+                We&apos;re a curated marketplace for transformative travel experiences. Community
                 trips, backpacking adventures, wellness retreats, workshops and cultural immersions
                 where passionate independent hosts bring their best experiences to people ready to
                 be changed by travel.
