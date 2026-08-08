@@ -37,17 +37,17 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
     </div>
     <div className="hh2-body">
       <div className="hh2-name">
-        {c.name}
+        <span className="hh2-name-t">{c.name}</span>
         {c.verified && <span className="hh2-tick" title="Verified host"><Shield s={15} /></span>}
       </div>
-      {c.location && <div className="hh2-loc"><Pin />{c.location}</div>}
-      {c.specialties.length > 0 && (
-        <div className="hh2-chips">
-          {c.specialties.slice(0, 3).map((s) => <span key={s} className="hh2-chip">{s}</span>)}
-          {c.specialties.length > 3 && <span className="hh2-chip hh2-more">+{c.specialties.length - 3}</span>}
-        </div>
-      )}
-      {c.bio && <p className="hh2-desc clamp2">{c.bio}</p>}
+      {/* location + primary category on one fixed-height row (consistent across
+          cards); location truncates so the chip position never drifts. */}
+      <div className="hh2-meta">
+        <span className="hh2-loc">{c.location ? <><Pin />{c.location}</> : null}</span>
+        {c.specialties[0] && <span className="hh2-chip">{c.specialties[0]}</span>}
+        {c.specialties.length > 1 && <span className="hh2-chip hh2-more">+{c.specialties.length - 1}</span>}
+      </div>
+      <p className="hh2-desc clamp2">{c.bio || ""}</p>
       <div className="hh2-count"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</div>
       <div className="hh2-cta">
         <button type="button" className="hh2-btn primary" onClick={() => onOpen?.(c)}>View Profile</button>
@@ -128,13 +128,18 @@ const CSS = `
   .hh2-avatar img{width:100%;height:100%;object-fit:cover}
 
   .hh2-body{padding:22px 16px 14px;display:flex;flex-direction:column;flex:1}
-  .hh2-name{display:flex;align-items:center;gap:6px;font:700 18px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
+  .hh2-name{display:flex;align-items:center;gap:6px;min-width:0;font:700 18px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
+  .hh2-name-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hh2-tick{color:var(--success);display:inline-flex;flex-shrink:0}
-  .hh2-loc{display:flex;align-items:center;gap:4px;font:400 12.5px/1.2 var(--inter);color:var(--text-light);margin-top:3px}
-  .hh2-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-  .hh2-chip{font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:4px 9px;border-radius:999px}
+  /* location + primary chip on one fixed-height line; location shrinks/ellipsis
+     so the chip sits at the same x/y on every card */
+  .hh2-meta{display:flex;align-items:center;gap:8px;margin-top:6px;min-height:24px}
+  .hh2-loc{flex:1;min-width:0;display:inline-flex;align-items:center;gap:4px;font:400 12.5px/1.2 var(--inter);color:var(--text-light);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .hh2-loc svg{flex-shrink:0}
+  .hh2-chip{flex-shrink:0;font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:5px 9px;border-radius:999px;white-space:nowrap}
   .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
-  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:13.5px;color:var(--text);line-height:1.5;margin:10px 0 0}
+  /* reserve exactly two lines so short + long bios keep the same rhythm */
+  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:13.5px;color:var(--text);line-height:1.5;margin:12px 0 0;min-height:calc(2 * 1.5 * 13.5px)}
   .hh2-count{font:400 12px/1.3 var(--inter);color:var(--text-light);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft)}
   .hh2-count b{color:var(--text-dark);font-weight:700}
   .hh2-cta{display:flex;gap:8px;margin-top:auto;padding-top:14px}
