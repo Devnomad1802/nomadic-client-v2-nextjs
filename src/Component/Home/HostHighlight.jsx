@@ -40,12 +40,13 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
         <span className="hh2-name-t">{c.name}</span>
         {c.verified && <span className="hh2-tick" title="Verified host"><Shield s={15} /></span>}
       </div>
-      {/* location + primary category on one fixed-height row (consistent across
-          cards); location truncates so the chip position never drifts. */}
-      <div className="hh2-meta">
-        <span className="hh2-loc">{c.location ? <><Pin />{c.location}</> : null}</span>
-        {c.specialties[0] && <span className="hh2-chip">{c.specialties[0]}</span>}
-        {c.specialties.length > 1 && <span className="hh2-chip hh2-more">+{c.specialties.length - 1}</span>}
+      {/* location on its own line (truncates when long) */}
+      <div className="hh2-loc">{c.location ? <><Pin />{c.location}</> : " "}</div>
+      {/* category chips directly below, single non-wrapping row of fixed height;
+          extra categories collapse to +N rather than starting a second row */}
+      <div className="hh2-chips">
+        {c.specialties.slice(0, 3).map((s) => <span key={s} className="hh2-chip">{s}</span>)}
+        {c.specialties.length > 3 && <span className="hh2-chip hh2-more">+{c.specialties.length - 3}</span>}
       </div>
       <p className="hh2-desc clamp2">{c.bio || ""}</p>
       <div className="hh2-count"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</div>
@@ -131,11 +132,12 @@ const CSS = `
   .hh2-name{display:flex;align-items:center;gap:6px;min-width:0;font:700 18px/1.15 var(--playfair);color:var(--text-dark);letter-spacing:-.01em}
   .hh2-name-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hh2-tick{color:var(--success);display:inline-flex;flex-shrink:0}
-  /* location + primary chip on one fixed-height line; location shrinks/ellipsis
-     so the chip sits at the same x/y on every card */
-  .hh2-meta{display:flex;align-items:center;gap:8px;margin-top:6px;min-height:24px}
-  .hh2-loc{flex:1;min-width:0;display:inline-flex;align-items:center;gap:4px;font:400 12.5px/1.2 var(--inter);color:var(--text-light);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  /* location on its own line (truncates when long) */
+  .hh2-loc{display:flex;align-items:center;gap:4px;min-width:0;font:400 12.5px/1.2 var(--inter);color:var(--text-light);margin-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
   .hh2-loc svg{flex-shrink:0}
+  /* chips directly below on ONE line — fixed height, no wrap; extras hide (+N)
+     and anything past the width is clipped, never wrapped, never overflowing */
+  .hh2-chips{display:flex;align-items:center;flex-wrap:nowrap;gap:6px;margin-top:8px;height:26px;overflow:hidden}
   .hh2-chip{flex-shrink:0;font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:5px 9px;border-radius:999px;white-space:nowrap}
   .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
   /* reserve exactly two lines so short + long bios keep the same rhythm */
