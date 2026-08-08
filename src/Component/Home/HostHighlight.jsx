@@ -47,6 +47,7 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
           {c.specialties.length > 3 && <span className="hh2-chip hh2-more">+{c.specialties.length - 3}</span>}
         </div>
       )}
+      {c.bio && <p className="hh2-desc clamp2">{c.bio}</p>}
       <div className="hh2-count"><b>{c.experiences}</b> hosted experience{c.experiences === 1 ? "" : "s"}</div>
       <div className="hh2-cta">
         <button type="button" className="hh2-btn primary" onClick={() => onOpen?.(c)}>View Profile</button>
@@ -108,8 +109,8 @@ const HostHighlight = ({ hosts }) => {
    .why-card sibling. margin-top:auto on the CTA row pins buttons to a common
    baseline → uniform card heights across the row. */
 const CSS = `
-  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
-  @media(max-width:600px){.hh2-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+  .hh2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+  @media(max-width:720px){.hh2-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
   .clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
   /* ── vertical stacked host card — compact, homepage design-system tokens ── */
@@ -133,6 +134,7 @@ const CSS = `
   .hh2-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
   .hh2-chip{font:700 11px/1 var(--inter);color:var(--orange);background:var(--orange-tint);padding:4px 9px;border-radius:999px}
   .hh2-chip.hh2-more{color:var(--text-lighter);background:var(--line-soft)}
+  .hh2-desc{font-family:var(--playfair);font-style:italic;font-size:13.5px;color:var(--text);line-height:1.5;margin:10px 0 0}
   .hh2-count{font:400 12px/1.3 var(--inter);color:var(--text-light);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft)}
   .hh2-count b{color:var(--text-dark);font-weight:700}
   .hh2-cta{display:flex;gap:8px;margin-top:auto;padding-top:14px}
