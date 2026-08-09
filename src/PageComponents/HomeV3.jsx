@@ -21,6 +21,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import TripsV3 from "../Component/Home/TripsV3";
 import CategoriesV3 from "../Component/Home/CategoriesV3";
+import HostHighlight from "../Component/Home/HostHighlight";
 import ReviewsV3 from "../Component/Home/ReviewsV3";
 import BlogV3 from "../Component/Home/BlogV3";
 import Footer from "../Component/Footer";
@@ -50,9 +51,9 @@ const heroTrust = [
 ];
 
 const whyCards = [
-  { icon: <LayersOutlinedIcon />, title: "Curated, not collected", text: "Every experience is reviewed and approved by our team. We vet hosts, check quality, and only list what we'd join ourselves." },
-  { icon: <GroupsOutlinedIcon />, title: "Community-first, always", text: "These aren't tours with strangers. They're experiences designed around connection — with your host, fellow travellers, and the place itself." },
-  { icon: <BoltOutlinedIcon />, title: "Transformative, not transactional", text: "We don't sell packages. We surface moments. The kind that change how you see the world — and yourself. Founded in 2020." },
+  { icon: <LayersOutlinedIcon />, title: "Curated, not collected", text: "We don't list everything. We list what we'd join ourselves. Every host is vetted, every experience reviewed, and only the ones that pass become part of Nomadic Townies. Fewer options, chosen with care." },
+  { icon: <GroupsOutlinedIcon />, title: "Led by people, not itineraries", text: "Behind every experience is a real host with a face, a name, and a reason they do this. You're not travelling with a company. You're travelling with a person — and often, a community you'll stay in touch with long after you're home." },
+  { icon: <BoltOutlinedIcon />, title: "Transformative, not transactional", text: "We don't sell places. We create the moments that quietly rearrange you — a conversation by a fire, a summit you didn't think you'd reach, a table full of people who were strangers this morning. You leave with more than photos." },
 ];
 
 const hostPerks = [
@@ -111,12 +112,12 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
         <div className="hero-overlay" />
         <div className="hero-content">
           <div className="wrap">
-            <h1 className="hero-h1">The way to <em>experience</em><br />the world.</h1>
+            <h1 className="hero-h1">The best journeys aren&apos;t places.<br />They&apos;re <em>people</em>.</h1>
             <p className="hero-sub">
-              Discover experiences that matter.<br /><br />
-              Explore community trips, backpacking adventures, wellness retreats, workshops, and
-              cultural immersions hosted by trusted local hosts and passionate communities around the world.<br /><br />
-              A curated marketplace for transformative travel experiences.
+              Nomadic Townies is a curated marketplace for host-led experiences. You don&apos;t
+              just book a trip. You find someone worth travelling with.<br /><br />
+              Real hosts. Small communities. The kind of journey that changes how you see a place,
+              and yourself.
             </p>
             <div className="hero-ctas">
               <button className="btn btn-orange btn-xl" onClick={() => navigate("/experiences")}>
@@ -174,6 +175,9 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
         </div>
       </div>
 
+      {/* ── HOST HIGHLIGHT — hosts are the product; surface them above trips ── */}
+      <HostHighlight />
+
       {/* ── UPCOMING TRIPS — initialTrips from server ensures Google can index trip titles ── */}
       <TripsV3 initialTrips={initialTrips} initialCategories={initialCategories} />
 
@@ -187,8 +191,8 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
             <div className="section-label" style={{ justifyContent: "center" }}>
               <span className="section-label-bar" />Why Nomadic Townies<span className="section-label-bar" />
             </div>
-            <h2 className="section-h">Not just another travel site.</h2>
-            <p className="section-sub">Most platforms sell you a package. We help you find an experience. Real hosts. Real communities. Real transformation.</p>
+            <h2 className="section-h">Not another travel site. A new way to travel.</h2>
+            <p className="section-sub">Most platforms hand you a package and a stranger with a clipboard. We do the opposite. We find the people worth travelling with — hosts who know a place because they live it — and build every experience around connection, not logistics.</p>
           </div>
           <div className="why-grid">
             {whyCards.map((c, i) => (
@@ -213,12 +217,12 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
                 <em style={{ fontFamily: "var(--playfair)", fontStyle: "italic", color: "var(--orange)" }}>Welcome to Nomadic Townies!</em>
               </h2>
               <p style={{ fontSize: 16, color: "var(--text)", lineHeight: 1.7, marginBottom: 16 }}>
-                Ever wondered how it all began? Let's rewind to 2020. Amid dreams and wanderlust, a
+                Ever wondered how it all began? Let&apos;s rewind to 2020. Amid dreams and wanderlust, a
                 group of passionate friends came together with one mission: to make travel more
                 meaningful, mindful, and accessible for everyone.
               </p>
               <p style={{ fontSize: 16, color: "var(--text)", lineHeight: 1.7, marginBottom: 28 }}>
-                We're a curated marketplace for transformative travel experiences — community
+                We&apos;re a curated marketplace for transformative travel experiences. Community
                 trips, backpacking adventures, wellness retreats, workshops and cultural immersions
                 where passionate independent hosts bring their best experiences to people ready to
                 be changed by travel.
@@ -284,14 +288,14 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
             Join our growing community of travellers
           </span>
           <h2 style={{ fontFamily: "var(--playfair)", color: "#fff", fontSize: "clamp(28px,4vw,54px)", fontWeight: 700, lineHeight: 1.08, letterSpacing: "-.02em", marginBottom: 16 }}>
-            Your next experience is waiting.
+            Somewhere, a host is waiting to show you their world.
           </h2>
           <p style={{ fontSize: 17, color: "rgba(255,255,255,.82)", lineHeight: 1.6, maxWidth: 500, margin: "0 auto 36px" }}>
-            Stop scrolling for travel inspiration. Start finding experiences designed to actually change you.
+            Not a package. Not a tour. A person who&apos;ll turn a place into a story you keep. Come find them.
           </p>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="btn btn-lg" style={{ background: "#fff", color: "var(--orange)", fontWeight: 700, boxShadow: "0 6px 20px rgba(0,0,0,.2)" }} onClick={() => navigate("/experiences")}>Explore All Experiences</button>
-            <button className="btn btn-lg" style={{ background: "rgba(255,255,255,.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,.3)" }} onClick={() => setOpene(true)}>Enquire Now</button>
+            <button className="btn btn-lg" style={{ background: "#fff", color: "var(--orange)", fontWeight: 700, boxShadow: "0 6px 20px rgba(0,0,0,.2)" }} onClick={() => navigate("/hosts")}>Meet the hosts</button>
+            <button className="btn btn-lg" style={{ background: "rgba(255,255,255,.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,.3)" }} onClick={() => navigate("/experiences")}>Explore experiences</button>
           </div>
         </div>
       </section>
