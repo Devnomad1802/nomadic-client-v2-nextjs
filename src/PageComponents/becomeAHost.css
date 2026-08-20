@@ -1,0 +1,48 @@
+/* Become a Host — public "How it works" page. Scoped under .bah; reuses the
+   site's tokens (--orange, --playfair, --inter, --text*, radius/shadows). */
+.bah{background:#fff}
+
+/* hero */
+.bah-hero{position:relative;min-height:min(88vh,720px);display:flex;align-items:flex-end;background:#1A140F;overflow:hidden}
+.bah-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bah-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,11,.5) 0%,rgba(20,16,11,.15) 42%,rgba(20,16,11,.9) 100%)}
+.bah-hero-inner{position:relative;z-index:2;width:100%;padding-top:clamp(40px,10vh,80px);padding-bottom:clamp(48px,8vh,90px)}
+.bah-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:99px;border:1px solid rgba(240,180,156,.4);background:rgba(233,98,47,.16);font:700 11px/1 var(--inter);letter-spacing:.1em;text-transform:uppercase;color:#F0B49C}
+.bah-dot{width:6px;height:6px;border-radius:50%;background:var(--orange,#E9622F)}
+.bah-hero-h1{margin:20px 0 0;max-width:16ch;font-family:var(--playfair);font-weight:700;font-size:clamp(38px,6.5vw,74px);line-height:1.02;letter-spacing:-.02em;color:#F8F4ED;text-wrap:balance}
+.bah-hero-sub{margin:20px 0 0;max-width:52ch;font:400 clamp(15px,1.6vw,19px)/1.6 var(--inter);color:#DCD2C4}
+.bah-hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.bah-hero-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.3);backdrop-filter:blur(6px)}
+
+/* steps */
+.bah-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1080px;margin:0 auto}
+.bah-step{display:flex;gap:16px;background:#fff;border:1px solid var(--line-soft,#EBE5DC);border-radius:var(--r-lg,18px);padding:24px 22px;box-shadow:var(--sh,0 1px 2px rgba(28,26,23,.05))}
+.bah-step-n{flex:none;width:44px;height:44px;border-radius:12px;background:var(--orange-tint,#FBF3EE);color:var(--orange,#CF4A2C);display:grid;place-items:center;font:800 16px/1 var(--playfair)}
+.bah-step-title{margin:2px 0 0;font:700 17px/1.25 var(--playfair);color:var(--text-dark,#221C17);letter-spacing:-.01em}
+.bah-step-text{margin:7px 0 0;font:400 14px/1.55 var(--inter);color:var(--text-light,#6E6A63)}
+.bah-step-note{display:inline-block;margin-top:10px;font:700 11px/1 var(--inter);letter-spacing:.04em;text-transform:uppercase;color:var(--orange,#CF4A2C);background:var(--orange-tint,#FBF3EE);padding:5px 10px;border-radius:99px}
+
+/* values */
+.bah-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.bah-value{background:#fff;border:1px solid var(--line-soft,#EBE5DC);border-radius:var(--r-lg,18px);padding:22px;box-shadow:var(--sh,0 1px 2px rgba(28,26,23,.05));transition:transform .18s ease,box-shadow .2s ease}
+.bah-value:hover{transform:translateY(-3px);box-shadow:var(--sh-md,0 12px 30px -16px rgba(28,26,23,.25))}
+.bah-value-title{margin:0;font:700 16px/1.2 var(--playfair);color:var(--text-dark,#221C17)}
+.bah-value-text{margin:6px 0 0;font:400 13.5px/1.55 var(--inter);color:var(--text-light,#6E6A63)}
+
+/* faq */
+.bah-faqs{display:flex;flex-direction:column;gap:12px}
+.bah-faq{background:#fff;border:1px solid var(--line-soft,#E6DDCF);border-radius:14px;overflow:hidden}
+.bah-faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;cursor:pointer;background:none;border:none;text-align:left;font:600 15.5px/1.4 var(--inter);color:var(--text-dark,#221C17)}
+.bah-faq-ic{flex:none;width:26px;height:26px;border-radius:50%;background:var(--orange-tint,#F3EDE3);color:var(--orange,#CF4A2C);display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .25s ease}
+.bah-faq.open .bah-faq-ic{transform:rotate(45deg)}
+.bah-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.bah-faq.open .bah-faq-a{max-height:320px}
+.bah-faq-a p{margin:0;padding:0 22px 20px;font:400 14.5px/1.65 var(--inter);color:var(--text,#5A5247)}
+
+.bah-cta{text-align:center}
+
+@media(max-width:600px){
+  .bah-steps{grid-template-columns:1fr}
+  .bah-step-n{width:38px;height:38px}
+}
+@media (prefers-reduced-motion:reduce){.bah-value,.bah-faq-ic,.bah-faq-a{transition:none}}
