@@ -214,7 +214,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
   const specialties = Array.isArray(host?.specialties) ? host.specialties.filter(Boolean) : [];
   const languages = Array.isArray(host?.languages) ? host.languages.filter(Boolean) : [];
   const gallery = Array.isArray(host?.gallery) ? host.gallery.filter(Boolean) : [];
-  const reels = Array.isArray(host?.reels) ? host.reels.filter(Boolean) : [];
+  const reels = Array.isArray(host?.reels) ? host.reels.filter((r) => r && r.videoUrl) : [];
 
   // Ask the host: prefer admin-managed FAQs, fall back to generic defaults
   const faqs = useMemo(() => {
