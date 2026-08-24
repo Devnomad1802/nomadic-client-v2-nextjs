@@ -6,6 +6,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import "./hostPage.css";
 import Footer from "../Footer";
+import InstagramReels from "./InstagramReels";
 import { useSelector } from "react-redux";
 import { setActiveChatConvo } from "../../utils/chatUiState";
 import {
@@ -215,6 +216,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
   const specialties = Array.isArray(host?.specialties) ? host.specialties.filter(Boolean) : [];
   const languages = Array.isArray(host?.languages) ? host.languages.filter(Boolean) : [];
   const gallery = Array.isArray(host?.gallery) ? host.gallery.filter(Boolean) : [];
+  const reels = Array.isArray(host?.reels) ? host.reels.filter(Boolean) : [];
 
   // Ask the host: prefer admin-managed FAQs, fall back to generic defaults
   const faqs = useMemo(() => {
@@ -694,26 +696,36 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
           </section>
 
           {/* gallery */}
-          {gallery.length > 0 && (
+          {(gallery.length > 0 || reels.length > 0) && (
             <section className="hd-card">
               <h2>From {firstName}&apos;s trips</h2>
               <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#8A8073" }}>Real moments from past experiences.</p>
-              <div className="hd-gallery">
-                {galleryView.map((src, i) => (
-                  <button
-                    type="button"
-                    key={i}
-                    className={`hd-gal ${GAL_LAYOUT[i] || ""}`}
-                    onClick={() => setLightbox(i)}
-                    aria-label={`View image ${i + 1} of ${gallery.length}`}
-                  >
-                    <img src={src} alt={`${firstName} trip ${i + 1}`} loading="lazy" />
-                    {i === galleryView.length - 1 && gallery.length > galleryView.length && (
-                      <span className="hd-gal-more">+{gallery.length - galleryView.length}</span>
-                    )}
-                  </button>
-                ))}
-              </div>
+              {gallery.length > 0 && (
+                <div className="hd-gallery">
+                  {galleryView.map((src, i) => (
+                    <button
+                      type="button"
+                      key={i}
+                      className={`hd-gal ${GAL_LAYOUT[i] || ""}`}
+                      onClick={() => setLightbox(i)}
+                      aria-label={`View image ${i + 1} of ${gallery.length}`}
+                    >
+                      <img src={src} alt={`${firstName} trip ${i + 1}`} loading="lazy" />
+                      {i === galleryView.length - 1 && gallery.length > galleryView.length && (
+                        <span className="hd-gal-more">+{gallery.length - galleryView.length}</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {reels.length > 0 && (
+                <>
+                  {gallery.length > 0 && (
+                    <h3 className="hd-reels-h">Reels</h3>
+                  )}
+                  <InstagramReels reels={reels} />
+                </>
+              )}
             </section>
           )}
 
