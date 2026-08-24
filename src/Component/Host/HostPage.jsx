@@ -6,6 +6,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import "./hostPage.css";
 import Footer from "../Footer";
+import HostGallery from "./HostGallery";
 import { useSelector } from "react-redux";
 import { setActiveChatConvo } from "../../utils/chatUiState";
 import {
@@ -161,8 +162,6 @@ const FAQS = [
   { q: "How do I book or enquire?", a: "Use Send message to chat with the host right here on Nomadic Townies. They'll help you pick the right trip and dates." },
 ];
 
-const GAL_LAYOUT = ["tall", "", "", "wide", "", ""];
-
 const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }) => {
   const params = useParams();
   const slugOrId = params.slug || params.id;
@@ -215,6 +214,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
   const specialties = Array.isArray(host?.specialties) ? host.specialties.filter(Boolean) : [];
   const languages = Array.isArray(host?.languages) ? host.languages.filter(Boolean) : [];
   const gallery = Array.isArray(host?.gallery) ? host.gallery.filter(Boolean) : [];
+  const reels = Array.isArray(host?.reels) ? host.reels.filter((r) => r && r.videoUrl) : [];
 
   // Ask the host: prefer admin-managed FAQs, fall back to generic defaults
   const faqs = useMemo(() => {
@@ -428,23 +428,14 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
     }
   };
 
-  /* ---- gallery lightbox ---- */
-  const [lightbox, setLightbox] = useState(null); // index or null
-  const galleryView = gallery.slice(0, 6);
-  const showPrev = () => setLightbox((i) => (i === null ? i : (i - 1 + gallery.length) % gallery.length));
-  const showNext = () => setLightbox((i) => (i === null ? i : (i + 1) % gallery.length));
-
+  /* ---- chat esc-to-close (gallery owns its own lightbox) ---- */
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "Escape") { setChatOpen(false); setLightbox(null); }
-      if (lightbox !== null) {
-        if (e.key === "ArrowLeft") setLightbox((i) => (i - 1 + gallery.length) % gallery.length);
-        if (e.key === "ArrowRight") setLightbox((i) => (i + 1) % gallery.length);
-      }
+      if (e.key === "Escape") setChatOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox, gallery.length]);
+  }, []);
 
   const seoTitle = `${name} | Travel Host | Nomadic Townies`;
   const seoDesc = host?.tagline
@@ -693,29 +684,8 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
             </div>
           </section>
 
-          {/* gallery */}
-          {gallery.length > 0 && (
-            <section className="hd-card">
-              <h2>From {firstName}&apos;s trips</h2>
-              <p className="hd-about-p" style={{ margin: "4px 0 0", fontSize: 14, color: "#8A8073" }}>Real moments from past experiences.</p>
-              <div className="hd-gallery">
-                {galleryView.map((src, i) => (
-                  <button
-                    type="button"
-                    key={i}
-                    className={`hd-gal ${GAL_LAYOUT[i] || ""}`}
-                    onClick={() => setLightbox(i)}
-                    aria-label={`View image ${i + 1} of ${gallery.length}`}
-                  >
-                    <img src={src} alt={`${firstName} trip ${i + 1}`} loading="lazy" />
-                    {i === galleryView.length - 1 && gallery.length > galleryView.length && (
-                      <span className="hd-gal-more">+{gallery.length - galleryView.length}</span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </section>
-          )}
+          {/* gallery — Design 1B (reels rail + photo grid) */}
+          <HostGallery photos={gallery} reels={reels} firstName={firstName} />
 
           {/* faq */}
           <section className="hd-card">
@@ -852,23 +822,6 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
           </button>
         </div>
       </div>
-
-      {/* ---------- gallery lightbox ---------- */}
-      {lightbox !== null && gallery[lightbox] && (
-        <div className="hd-lb" role="dialog" aria-label="Image viewer" onClick={() => setLightbox(null)}>
-          <button type="button" className="hd-lb-x" onClick={() => setLightbox(null)} aria-label="Close">✕</button>
-          {gallery.length > 1 && (
-            <button type="button" className="hd-lb-nav prev" onClick={(e) => { e.stopPropagation(); showPrev(); }} aria-label="Previous">‹</button>
-          )}
-          <figure className="hd-lb-fig" onClick={(e) => e.stopPropagation()}>
-            <img src={gallery[lightbox]} alt={`${firstName} trip ${lightbox + 1}`} />
-            <figcaption>{lightbox + 1} / {gallery.length}</figcaption>
-          </figure>
-          {gallery.length > 1 && (
-            <button type="button" className="hd-lb-nav next" onClick={(e) => { e.stopPropagation(); showNext(); }} aria-label="Next">›</button>
-          )}
-        </div>
-      )}
 
       {/* ---------- mobile sticky cta ---------- */}
       <div className="hd-mobile-cta">
