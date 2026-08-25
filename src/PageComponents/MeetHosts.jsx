@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import "./meetHosts.css";
 import Footer from "../Component/Footer";
 import BecomeHostModal from "./BecomeHostModal";
-import HostListingCard from "../Component/Host/HostListingCard";
+import HostFeatureCard, { HOST_CARD_CSS, countHostTrips } from "../Component/Host/HostFeatureCard";
 import { useGetAllHostsQuery } from "../services";
 import { useGetTripsQuery } from "../services/TripApis";
 
@@ -63,10 +63,12 @@ const MeetHosts = ({ initialHosts }) => {
     return Array.isArray(tripsRes?.data) ? tripsRes.data : Array.isArray(tripsRes) ? tripsRes : [];
   }, [tripsRes]);
 
+  // Eligibility mirrors the backend's public rule: showOnWebsite !== false.
+  // (Previously filtered on isActive, which hid valid public hosts like a newly
+  // added one whose isActive flag is false but showOnWebsite is true.)
   const hosts = useMemo(() => {
-    if (initialHosts) return initialHosts.filter((h) => h?.isActive !== false);
-    const list = Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : [];
-    return list.filter((h) => h?.isActive !== false);
+    const list = initialHosts || (Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []);
+    return (Array.isArray(list) ? list : []).filter((h) => h?.showOnWebsite !== false);
   }, [data, initialHosts]);
 
   const isLoading = initialHosts ? false : queryLoading;
@@ -105,7 +107,7 @@ const MeetHosts = ({ initialHosts }) => {
     // Review-derived rating from the server (null = no ratings yet). Never faked.
     rating: h?.rating != null ? Number(h.rating) : null,
     reviews: Number(h?.reviewCount ?? h?.reviewsCount ?? h?.totalReviews) || 0,
-    experiences: h?.tripsHosted ?? 0,
+    experiences: countHostTrips(h, allTrips),
     verified: h?.isVerified || h?.status === "approved",
     specialties: Array.isArray(h?.specialties) ? h.specialties : [],
     regions: Array.isArray(h?.regionsHosted) ? h.regionsHosted.filter(Boolean) : [],
@@ -133,6 +135,7 @@ const MeetHosts = ({ initialHosts }) => {
 
   return (
     <div className="mhpg">
+      <style>{HOST_CARD_CSS}</style>
       <Helmet>
         <title>Meet Our Hosts | Verified Experience Hosts | Nomadic Townies</title>
         <meta name="description" content="Browse verified local hosts, community hosts and experience hosts on Nomadic Townies — a curated marketplace of host-led experiences. Every trip is hosted by a real, verified person or community." />
@@ -199,9 +202,9 @@ const MeetHosts = ({ initialHosts }) => {
         {isLoading ? (
           <div className="cat-loading">Loading hosts…</div>
         ) : filtered.length > 0 ? (
-          <div className="host-grid">
+          <div className="hh2-grid">
             {filtered.map((c) => (
-              <HostListingCard
+              <HostFeatureCard
                 key={c.id}
                 c={c}
                 onOpen={(cc) => { navigate(`/hosts/${cc.seoSlug || cc.id}`); window.scrollTo(0, 0); }}
