@@ -194,6 +194,9 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
   }, [allHostsRes, initialAllHosts, host?._id]);
 
   const isLoading = (initialHost && initialTrips && initialReviews && initialAllHosts) ? false : queryLoading;
+  // Not-found guard value (used at the render return, after all hooks run, so
+  // we never conditionally skip a hook).
+  const hostMissing = !host || !host._id;
 
   /* ---- derived host fields ---- */
   const name = host?.hostTitle || host?.hostName || "Travel Host";
@@ -447,6 +450,28 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
   }
 
   const activeSlug = host?.seoSlug || host?._id || slugOrId;
+
+  // Loading / Not-Found states — never render the empty host scaffold as a
+  // blank page (all hooks above have already run, so this early return is safe).
+  if (hostMissing) {
+    return (
+      <div className="hd-page">
+        <div className="hd-state" role="status">
+          {isLoading ? (
+            <p className="hd-state-msg">Loading host…</p>
+          ) : (
+            <>
+              <h1 className="hd-state-title">Host not found</h1>
+              <p className="hd-state-msg">
+                This host may have been removed or the link is incorrect.
+              </p>
+              <a href="/hosts" className="hd-ghost hd-state-cta">Browse all hosts</a>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="hd-page">
