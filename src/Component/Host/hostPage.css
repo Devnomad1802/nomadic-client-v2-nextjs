@@ -137,7 +137,12 @@
   padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 48px);
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  /* Center the avatar against the identity column instead of bottom-aligning
+     them. The identity block's height varies with dynamic content (optional
+     tagline, 1–2 line names, wrapping meta); bottom-alignment made the name's
+     vertical position shift per host. Centering keeps the title stable for any
+     host, name length, or content set. */
+  align-items: center;
   gap: 28px;
 }
 .hd-avatar {
@@ -174,14 +179,17 @@
   justify-content: center;
   color: #fff;
 }
-.hd-identity { flex: 1; min-width: 240px; }
+.hd-identity { flex: 1 1 260px; min-width: 0; }
 .hd-namerow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .hd-name {
   font-family: var(--head);
   font-weight: 700;
   font-size: clamp(26px, 3.6vw, 40px);
   letter-spacing: -0.02em;
+  line-height: 1.12;
   color: #f8f4ed;
+  /* Never overflow the hero on a long / unbroken name */
+  overflow-wrap: anywhere;
 }
 .hd-verified-pill {
   display: inline-flex;
