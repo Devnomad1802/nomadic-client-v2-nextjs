@@ -39,6 +39,25 @@ const parseCats = (v: any) => {
 
 const normSlug = (s: any) => String(s || "").replace(/^\/?hosts?\//i, "").replace(/^\//, "").toLowerCase().trim();
 
+// Resolve a trip by seoSlug (then _id). When two trips share a slug — e.g. a
+// stray Customized duplicate alongside the real Batch trip — prefer the
+// bookable one (has batch dates / enableBooking / type "Batch") so the
+// batch-less copy can never shadow it and hide the Select Batch Date options.
+const pickTripBySlug = (list: any[], slug: string) => {
+  const matches = (Array.isArray(list) ? list : []).filter((t: any) => t?.seoSlug === slug);
+  if (matches.length > 1) {
+    const score = (t: any) => {
+      let s = 0;
+      try { if (JSON.parse(t?.selectDate || "[]").length > 0) s += 2; } catch { /* noop */ }
+      if ((t?.tripType || t?.type) === "Batch") s += 1;
+      if (t?.enableBooking) s += 1;
+      return s;
+    };
+    return [...matches].sort((a, b) => score(b) - score(a))[0];
+  }
+  return matches[0] || list.find((t: any) => t?._id === slug);
+};
+
 const isTripForHost = (trip: any, param: string) => {
   if (!trip || !param) return false;
   const pSlug = slugify(param);
@@ -88,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const singleParam = decodeURIComponent(slugArray[0]);
     const tripsRes = await getTrips();
     const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
-    const isSingleTrip = list.find((t: any) => t.seoSlug === singleParam || t._id === singleParam);
+    const isSingleTrip = pickTripBySlug(list, singleParam);
 
     if (isSingleTrip) {
       const activeSlug = isSingleTrip.seoSlug || isSingleTrip._id;
@@ -158,7 +177,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const decodedSlug = decodeURIComponent(targetSlug);
   const tripsRes = await getTrips();
   const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
-  const trip = list.find((t: any) => t.seoSlug === decodedSlug) || list.find((t: any) => t._id === decodedSlug);
+  const trip = pickTripBySlug(list, decodedSlug);
 
   if (!trip) {
     return {
@@ -212,7 +231,7 @@ export default async function Page({ params }: Props) {
     ]);
 
     const allTrips = Array.isArray(allTripsRes?.data) ? allTripsRes.data : [];
-    const isSingleTrip = allTrips.find((t: any) => t.seoSlug === singleParam || t._id === singleParam);
+    const isSingleTrip = pickTripBySlug(allTrips, singleParam);
 
     // If single trip slug (e.g. /trips/explore-bhutan-magic-7-day-tour), redirect to /trips/bhutan/explore-bhutan-magic-7-day-tour
     if (isSingleTrip) {
@@ -253,7 +272,7 @@ export default async function Page({ params }: Props) {
   ]);
 
   const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
-  const rawTrip = list.find((t: any) => t.seoSlug === decodedSlug) || list.find((t: any) => t._id === decodedSlug);
+  const rawTrip = pickTripBySlug(list, decodedSlug);
 
   if (!rawTrip) {
     redirect("/experiences");
