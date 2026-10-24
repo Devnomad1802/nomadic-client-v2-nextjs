@@ -147,7 +147,14 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
   const isLoading = initialTrips ? false : mutationLoading;
 
   const cats = initialCategories || (Array.isArray(catRes?.data) ? catRes.data : []);
-  const catDoc = useMemo(() => cats.find((c) => norm(c?.Category) === norm(categoryParam)), [cats, categoryParam]);
+  // Match the category by exact name OR slugified name — the URL param is a
+  // slug (spaces / "&" collapsed to "-"), so an exact norm() compare missed
+  // every multi-word category (e.g. "Bussiness & Learning"), leaving catDoc
+  // undefined and the page banner (Page_Banner_Image) unresolved.
+  const catDoc = useMemo(
+    () => cats.find((c) => norm(c?.Category) === norm(categoryParam) || slugify(c?.Category) === slugify(categoryParam)),
+    [cats, categoryParam]
+  );
   const tpl = matchTemplate(catDoc?.Category || categoryParam);
   const displayName = tpl.name || catDoc?.Category || categoryParam;
   const heroImg = catDoc?.Page_Banner_Image || catDoc?.Banner_Image || "";
