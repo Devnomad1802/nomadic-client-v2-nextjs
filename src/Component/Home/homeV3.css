@@ -13,10 +13,11 @@
   --bg-soft: var(--orange-tint);
   --green: #2E7D4F;
   --pad: clamp(16px, 4vw, 60px);
-  --r-lg: 20px;
-  --sh: 0 1px 3px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
-  --sh-md: 0 4px 20px rgba(0, 0, 0, .1), 0 1px 4px rgba(0, 0, 0, .06);
-  --sh-lg: 0 20px 48px rgba(0, 0, 0, .14), 0 4px 12px rgba(0, 0, 0, .06);
+  /* Consume the shared card tokens (globals.css) — same values, one source. */
+  --r-lg: var(--card-radius);
+  --sh: var(--card-shadow-rest);
+  --sh-md: var(--card-shadow-md);
+  --sh-lg: var(--card-shadow-hover);
   font-family: var(--inter);
   color: var(--text);
   text-align: left;

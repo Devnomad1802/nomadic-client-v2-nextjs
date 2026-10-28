@@ -15,7 +15,7 @@
   --bg-soft: var(--orange-tint);
   --bg-cream: #FAF7F2;
   --amber: #f59e0b;
-  --sh-md: 0 10px 28px -14px rgba(31, 39, 51, .2), 0 1px 4px -1px rgba(31, 39, 51, .04);
+  --sh-md: var(--card-shadow-soft); /* shared card token (globals.css) */
   font-family: var(--inter);
   color: var(--text);
   background: var(--bg);
