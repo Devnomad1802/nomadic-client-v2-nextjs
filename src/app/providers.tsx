@@ -6,6 +6,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { store } from "@/utils";
+import { MotionConfig } from "framer-motion";
 import theme from "@/Theme";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -32,6 +33,9 @@ export default function ClientProviders({
   }, []);
 
   const shell = (
+    // reducedMotion="user" → every framer-motion animation honours the OS
+    // "reduce motion" setting app-wide (pairs with the CSS guard in globals.css).
+    <MotionConfig reducedMotion="user">
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {bare ? (
@@ -51,6 +55,7 @@ export default function ClientProviders({
         </Box>
       )}
     </ThemeProvider>
+    </MotionConfig>
   );
 
   if (!mounted) {
