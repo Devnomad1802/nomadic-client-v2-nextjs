@@ -62,13 +62,13 @@ const Footer = () => {
                 to={item.link}
                 onClick={() => window.scrollTo(0, 0)}
                 style={{
-                  color: "#8A8073",
+                  color: "#A89C8A",
                   textDecoration: "none",
                   fontSize: "13px",
                   fontFamily: "Inter",
                 }}
                 onMouseEnter={(e) => (e.target.style.color = "#fff")}
-                onMouseLeave={(e) => (e.target.style.color = "#8A8073")}
+                onMouseLeave={(e) => (e.target.style.color = "#A89C8A")}
               >
                 {item.name}
               </Link>
@@ -82,7 +82,7 @@ const Footer = () => {
           <Box>
             <Typography
               sx={{
-                color: "#726A5E",
+                color: "#A89C8A",
                 fontSize: "13px",
                 fontFamily: "Inter",
               }}
@@ -161,7 +161,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              sx={{ color: "#8A8073", "&:hover": { color: "#E1306C" } }}
+              sx={{ color: "#A89C8A", "&:hover": { color: "#E1306C" } }}
               size="small"
             >
               <InstagramIcon fontSize="small" />
@@ -172,7 +172,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              sx={{ color: "#8A8073", "&:hover": { color: "#1877F2" } }}
+              sx={{ color: "#A89C8A", "&:hover": { color: "#1877F2" } }}
               size="small"
             >
               <FacebookRoundedIcon fontSize="small" />
@@ -182,7 +182,7 @@ const Footer = () => {
           {/* Copyright */}
           <Typography
             sx={{
-              color: "#5A5247",
+              color: "#A89C8A",
               fontSize: "12px",
               fontFamily: "Inter",
             }}

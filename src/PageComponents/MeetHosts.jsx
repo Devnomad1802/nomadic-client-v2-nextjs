@@ -177,13 +177,13 @@ const MeetHosts = ({ initialHosts }) => {
         <div className="filters">
           <span className={`filter-sel${loc !== "All" ? " active" : ""}`}>
             <PinSvg />
-            <select value={loc} onChange={(e) => setLoc(e.target.value)}>
+            <select aria-label="Filter hosts by location" value={loc} onChange={(e) => setLoc(e.target.value)}>
               {locations.map((l) => <option key={l} value={l}>{l === "All" ? "Location" : l}</option>)}
             </select>
           </span>
           <span className={`filter-sel${spec !== "All" ? " active" : ""}`}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 0 0-16 0" /></svg>
-            <select value={spec} onChange={(e) => setSpec(e.target.value)}>
+            <select aria-label="Filter hosts by specialty" value={spec} onChange={(e) => setSpec(e.target.value)}>
               {specialties.map((s) => <option key={s} value={s}>{s === "All" ? "Category" : s}</option>)}
             </select>
           </span>
