@@ -97,6 +97,22 @@
   border-color: var(--charcoal)
 }
 
+/* UX-001: secondary CTA placed OVER a photo. Dark glass fill (>=.6 black)
+   guarantees white text >=4.5:1 on any image; keeps the frosted ghost look. */
+.ntv3 .btn-glass {
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, .55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px)
+}
+
+.ntv3 .btn-glass:hover {
+  background: rgba(0, 0, 0, .72);
+  border-color: #fff;
+  transform: translateY(-1px)
+}
+
 .ntv3 .btn-md {
   font-size: 15px;
   padding: 12px 24px;
@@ -146,7 +162,11 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to right, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .45) 55%, rgba(0, 0, 0, .1) 100%)
+  /* UX-001: horizontal reading scrim (desktop) + vertical floor so text/CTAs
+     keep >=4.5:1 contrast regardless of the underlying hero photo. */
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, .82) 0%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .25) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .35) 100%)
 }
 
 .ntv3 .hero-content {
@@ -1079,6 +1099,12 @@
 
   .ntv3 .hero-trust-div {
     display: none
+  }
+
+  /* UX-001: on narrow screens the horizontal scrim leaves text over the
+     bright side of the photo — switch to a uniform vertical floor. */
+  .ntv3 .hero-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .68) 55%, rgba(0, 0, 0, .8) 100%)
   }
 }
 
