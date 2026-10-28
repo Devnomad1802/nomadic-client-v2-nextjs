@@ -104,7 +104,21 @@ const AllPackagesV3 = ({ allpkgbg }) => {
   const trending = useMemo(() => (Array.isArray(trendRes?.data) ? trendRes.data : []).slice(0, 10), [trendRes]);
   const reviews = useMemo(() => (Array.isArray(revRes?.data) ? revRes.data : []).slice(0, 9), [revRes]);
 
-  const quick = ["All","Trekking","Wellness","International","Festivals","Backpacking"];
+  // Faceted live counts: trips matching the current month + search (but NOT the
+  // active category), so each category chip shows how many it would yield.
+  const catCounts = useMemo(() => {
+    let base = upcoming;
+    if (month !== "All") base = base.filter((t)=>tripMonths(t).includes(month));
+    const q = search.trim().toLowerCase();
+    if (q) base = base.filter((t)=>[t.title,t.location,...parseCats(t.categories)].filter(Boolean).some((s)=>`${s}`.toLowerCase().includes(q)));
+    const m = { All: base.length };
+    catNames.forEach((c)=>{
+      m[c] = base.filter((t)=>parseCats(t.categories).some((x)=>x.trim().toLowerCase()===c.trim().toLowerCase())).length;
+    });
+    return m;
+  }, [upcoming, month, search, catNames]);
+
+  const clearFilters = () => { setCat("All"); setMonth("All"); setSearch(""); setDraft(""); };
   const runSearch = () => setSearch(draft);
 
   return (
@@ -137,17 +151,6 @@ const AllPackagesV3 = ({ allpkgbg }) => {
             />
             <button onClick={runSearch}><SearchIcon sx={{ fontSize: 16 }} /> Search</button>
           </div>
-          <div className="ap-quick">
-            {quick.map((q) => (
-              <div
-                key={q}
-                className={`ap-chip${(q === "All" ? !search : search.toLowerCase() === q.toLowerCase()) ? " on" : ""}`}
-                onClick={() => { const v = q === "All" ? "" : q; setSearch(v); setDraft(v); }}
-              >
-                {q}
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -171,11 +174,34 @@ const AllPackagesV3 = ({ allpkgbg }) => {
       {/* sticky filter bar */}
       <div className="ap-filter">
         <div className="wrap">
-          {/* Row 1: Category Chips */}
+          {/* Row 1: single canonical category taxonomy (DB-driven) with live
+              faceted counts. Empty categories are de-emphasised and sorted last
+              so they don't lead to dead ends. */}
           <div className="chips-row" style={{ marginBottom: 12 }}>
-            {["All", ...catNames].map((c) => (
-              <button key={c} className={`chip${cat === c ? " on" : ""}`} onClick={() => setCat(c)}>{c}</button>
-            ))}
+            {["All", ...catNames]
+              .slice()
+              .sort((a, b) => {
+                if (a === "All") return -1;
+                if (b === "All") return 1;
+                const ea = (catCounts[a] || 0) === 0;
+                const eb = (catCounts[b] || 0) === 0;
+                return ea === eb ? 0 : ea ? 1 : -1; // empties last, otherwise stable
+              })
+              .map((c) => {
+                const n = c === "All" ? (catCounts.All || 0) : (catCounts[c] || 0);
+                const isEmpty = c !== "All" && n === 0;
+                return (
+                  <button
+                    key={c}
+                    className={`chip${cat === c ? " on" : ""}`}
+                    onClick={() => setCat(c)}
+                    style={isEmpty ? { opacity: 0.45 } : undefined}
+                  >
+                    {c}
+                    <span style={{ marginLeft: 6, opacity: 0.6, fontVariantNumeric: "tabular-nums" }}>{n}</span>
+                  </button>
+                );
+              })}
           </div>
 
           {/* Row 2: Left: Showing trips & Sort dropdown | Right: Month chips */}
@@ -215,7 +241,12 @@ const AllPackagesV3 = ({ allpkgbg }) => {
           ) : trips.length === 0 ? (
             <div className="ap-empty">
               <p style={{ fontSize: 18, fontWeight: 600, color: "var(--text-dark)" }}>No trips match your filters.</p>
-              <p style={{ marginTop: 6 }}>Try clearing the search or picking a different category/month.</p>
+              <p style={{ marginTop: 6 }}>Try a different category or month — or clear your filters to see everything.</p>
+              {(cat !== "All" || month !== "All" || search) && (
+                <button className="btn btn-orange btn-sm" style={{ marginTop: 16 }} onClick={clearFilters}>
+                  Clear all filters
+                </button>
+              )}
             </div>
           ) : (
             <div className="trips-grid">
