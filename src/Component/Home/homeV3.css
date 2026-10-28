@@ -75,7 +75,9 @@
 }
 
 .ntv3 .btn-orange {
-  background: var(--orange-light);
+  /* was --orange-light (#E9622F): white text on it = 3.35:1 (fails AA).
+     --orange (brand-600) with white = the site-standard primary CTA. */
+  background: var(--orange);
   color: #fff;
   box-shadow: 0 4px 14px rgba(205, 72, 42, .35)
 }

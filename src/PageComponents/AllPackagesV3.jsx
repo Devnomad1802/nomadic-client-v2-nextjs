@@ -208,7 +208,7 @@ const AllPackagesV3 = ({ allpkgbg }) => {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px 24px", flexWrap: "wrap" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <span className="ap-result">Showing {trips.length} {trips.length === 1 ? "trip" : "trips"}</span>
-              <select className="ap-sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+              <select aria-label="Sort experiences" className="ap-sort" value={sort} onChange={(e) => setSort(e.target.value)}>
                 <option value="upcoming">Upcoming first</option>
                 <option value="price-asc">Price: Low to High</option>
                 <option value="price-desc">Price: High to Low</option>

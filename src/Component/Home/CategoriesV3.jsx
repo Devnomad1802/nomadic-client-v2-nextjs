@@ -162,7 +162,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carou
         ) : carousel ? (
           // Homepage only: full-bleed CSS-transform infinite track (see CSS).
           <div className="cats-marquee-wrap">
-            <div className="cats-marquee" role="list" aria-label="Browse experiences by category">
+            <div className="cats-marquee" role="group" aria-label="Browse experiences by category">
               {/* two identical copies → seamless -50% loop; the 2nd is aria-hidden */}
               {cats.map((item, i) => renderCard(item, i, 0))}
               {cats.map((item, i) => renderCard(item, i, 1))}

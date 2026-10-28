@@ -399,7 +399,7 @@ const Navbar = () => {
 
             {mounted && userDbData ? (
               <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <IconButton onClick={() => navigate("/profile")} sx={{ p: 0.5 }}>
+                <IconButton aria-label="Your profile" onClick={() => navigate("/profile")} sx={{ p: 0.5 }}>
                   <AccountCircleIcon />
                 </IconButton>
                 <Typography sx={{ color: TEXT, fontSize: "12px" }}>
@@ -428,6 +428,7 @@ const Navbar = () => {
             )}
 
             <IconButton
+              aria-label="Open menu"
               sx={{ display: { xs: "inline-flex", lg: "none" }, color: TEXT }}
               onClick={() => setMobileOpen(true)}
             >
@@ -441,7 +442,7 @@ const Navbar = () => {
         <Box sx={{ width: 280, p: 2 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
             <img width="130px" src={logo} alt="Nomadic Townies" />
-            <IconButton onClick={() => setMobileOpen(false)}>
+            <IconButton aria-label="Close menu" onClick={() => setMobileOpen(false)}>
               <CloseIcon />
             </IconButton>
           </Box>
