@@ -540,8 +540,17 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
               <div className="hd-hs-label">Trips hosted</div>
             </div>
             <div className="hd-hs">
-              <div className="hd-hs-num gap">{successRate}%</div>
-              <div className="hd-hs-label">Rebook rate</div>
+              {successRate > 0 ? (
+                <>
+                  <div className="hd-hs-num gap">{successRate}%</div>
+                  <div className="hd-hs-label">Rebook rate</div>
+                </>
+              ) : (
+                <>
+                  <div className="hd-hs-num gap">{years}</div>
+                  <div className="hd-hs-label">Experience</div>
+                </>
+              )}
             </div>
           </div>
         </div>
