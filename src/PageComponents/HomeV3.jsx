@@ -114,10 +114,9 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
           <div className="wrap">
             <h1 className="hero-h1">The best journeys aren&apos;t places.<br />They&apos;re <em>people</em>.</h1>
             <p className="hero-sub">
-              Nomadic Townies is a curated marketplace for host-led experiences. You don&apos;t
-              just book a trip. You find someone worth travelling with.<br /><br />
-              Real hosts. Small communities. The kind of journey that changes how you see a place,
-              and yourself.
+              A curated marketplace for host-led experiences — where you don&apos;t just book a
+              trip, you find someone worth travelling with. Real hosts, small communities, and
+              journeys that change how you see a place.
             </p>
             <div className="hero-ctas">
               <button className="btn btn-orange btn-xl" onClick={() => navigate("/experiences")}>

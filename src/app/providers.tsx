@@ -12,6 +12,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Navbar from "@/Component/Navbar/Navbar";
 import ChatNotifier from "@/SmallComponents/ChatNotifier";
+import ConsentBanner from "@/Component/ConsentBanner";
 import Loading from "@/SmallComponents/Loading";
 
 const persistor = persistStore(store);
@@ -46,6 +47,7 @@ export default function ClientProviders({
             </Box>
           </Box>
           <ChatNotifier />
+          <ConsentBanner />
         </Box>
       )}
     </ThemeProvider>
