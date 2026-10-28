@@ -124,8 +124,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
                 Explore Experiences <ArrowForwardIcon sx={{ fontSize: 18 }} />
               </button>
               <button
-                className="btn btn-lg"
-                style={{ background: "rgba(255,255,255,.12)", color: "#fff", border: "1.5px solid rgba(255,255,255,.3)", backdropFilter: "blur(6px)" }}
+                className="btn btn-lg btn-glass"
                 onClick={() => navigate("/hosts")}
               >
                 Meet Our Hosts
@@ -263,7 +262,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <button className="btn btn-orange btn-lg" onClick={() => navigate("/experiences")}>Explore Trips</button>
-                <button className="btn btn-lg" style={{ background: "rgba(255,255,255,.1)", color: "rgba(255,255,255,.9)", border: "1.5px solid rgba(255,255,255,.22)" }} onClick={() => navigate("/hosts")}>Meet Our Hosts</button>
+                <button className="btn btn-lg btn-glass" onClick={() => navigate("/hosts")}>Meet Our Hosts</button>
               </div>
             </div>
             <div className="host-perks">
