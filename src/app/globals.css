@@ -150,3 +150,23 @@ img {
   border: 1px solid black;
   text-transform: uppercase;
 }
+
+/* Global reduced-motion guard (Phase 5, WCAG 2.3.3).
+   Single source so every CSS animation/transition/auto-scroll across the app
+   honours the OS "reduce motion" setting — not just the few components that
+   had their own @media block. Near-instant (0.01ms) rather than 0 so JS that
+   waits on transitionend/animationend still fires. framer-motion is handled
+   separately via <MotionConfig reducedMotion="user"> at the provider root. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
