@@ -9,6 +9,15 @@ import { useGetTripsQuery } from "../../services/TripApis";
 import { CategoryCardSkeleton } from "../../SmallComponents/Skeletons";
 import { matchTemplate, DEFAULT_CATEGORIES } from "./categoryCards";
 
+// Canonical category slug (lowercase hyphen) so links go straight to
+// /trips/<slug> instead of the raw, space-encoded display name.
+const slugify = (str) =>
+  String(str || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
 // A trip's categories can be nested/double-encoded, e.g. ['["INDIA"]'].
 // Flatten recursively and strip stray brackets/quotes to plain names.
 const parseCats = (s) => {
@@ -73,7 +82,7 @@ const CategoriesV3 = ({ sectionTitle, sectionSubtitle, showViewAll = true, carou
     return m;
   }, [cats, trips]);
 
-  const go = (item) => navigate(`/category/${item?.Category}`, { state: { item } });
+  const go = (item) => navigate(`/trips/${slugify(item?.Category)}`, { state: { item } });
 
   // ── Infinite marquee (homepage): a full-bleed track rendered TWICE and driven
   // by a single CSS transform keyframe (translateX 0 → -50%). Because both copies

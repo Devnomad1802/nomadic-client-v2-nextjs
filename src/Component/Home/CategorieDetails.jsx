@@ -198,7 +198,7 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDesc} />
-        <link rel="canonical" href={`https://www.nomadictownies.com/category/${slug}`} />
+        <link rel="canonical" href={`https://www.nomadictownies.com/trips/${slugify(categoryParam)}`} />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDesc} />
         {heroImg && <meta property="og:image" content={heroImg} />}
@@ -367,7 +367,7 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
                 <div className="suggest-label">Meanwhile, explore these</div>
                 <div className="suggest-row">
                   {suggested.map((s) => (
-                    <a key={s.raw} className="suggest-chip" onClick={() => navigate(`/category/${s.raw}`)} style={{ cursor: "pointer" }}>
+                    <a key={s.raw} className="suggest-chip" onClick={() => navigate(`/trips/${slugify(s.raw)}`)} style={{ cursor: "pointer" }}>
                       {s.name} <span className="c">{s.n}</span>
                     </a>
                   ))}

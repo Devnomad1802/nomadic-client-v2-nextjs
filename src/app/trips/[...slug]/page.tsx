@@ -125,10 +125,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Category / Location metadata
     const catRes = await getCategories();
     const cats = Array.isArray(catRes?.data) ? catRes.data : [];
-    const catDoc = cats.find((c: any) => norm(c?.Category) === norm(singleParam));
+    const catDoc = cats.find(
+      (c: any) => norm(c?.Category) === norm(singleParam) || slugify(c?.Category) === slugify(singleParam)
+    );
     const tpl = matchTemplate(catDoc?.Category || singleParam) as any;
     const displayName = tpl.name || catDoc?.Category || singleParam.charAt(0).toUpperCase() + singleParam.slice(1);
-    const pageUrl = `https://www.nomadictownies.com/trips/${slugArray[0]}`;
+    const pageUrl = `https://www.nomadictownies.com/trips/${slugify(singleParam)}`;
     const description = `Explore the best curated ${displayName} travel experiences, community trips, and retreats with Nomadic Townies.`;
 
     return {
@@ -219,6 +221,10 @@ export default async function Page({ params }: Props) {
       const destSlug = slugify(isSingleTrip.location || isSingleTrip.destination || "trip");
       redirect(`/trips/${destSlug}/${isSingleTrip.seoSlug || isSingleTrip._id}`);
     }
+
+    // Canonical category/location URLs (lowercase-hyphen slug) are enforced by
+    // middleware with a true 301 before this renders (see src/middleware.ts),
+    // so `singleParam` is already the clean slug here.
 
     // Filter trips for the location / category (e.g. /trips/bhutan, /trips/andaman)
     const categoryTrips = allTrips.filter((t: any) => isTripInCategory(t, singleParam));
