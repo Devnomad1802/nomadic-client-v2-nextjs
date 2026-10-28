@@ -23,6 +23,14 @@ import { useGetAllCategoriesQuery } from "../../services/categoriesApis";
 import { CategoryCardSkeleton } from "../../SmallComponents/Skeletons";
 import "./CategoriesStyle.css";
 
+// Canonical category slug so links point straight to /trips/<slug>.
+const slugify = (str) =>
+  String(str || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
 const Categories = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetAllCategoriesQuery();
@@ -148,7 +156,7 @@ const Categories = () => {
                   onClick={() =>
                     CategoriesDetail(
                       item,
-                      `/category/${item?.Category}`
+                      `/trips/${slugify(item?.Category)}`
                     )
                   }
                   sx={{
