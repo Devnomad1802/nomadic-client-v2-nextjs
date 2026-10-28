@@ -114,7 +114,11 @@ const MeetHosts = ({ initialHosts }) => {
     raw: h,
   });
 
-  const cards = useMemo(() => hosts.map(card), [hosts]);
+  // `card()` derives `experiences` from allTrips (countHostTrips), so the memo
+  // must recompute when trips finish loading — otherwise every host is frozen
+  // at the 0 computed before the trips query resolved.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const cards = useMemo(() => hosts.map(card), [hosts, allTrips]);
 
   const locations = useMemo(() => ["All", ...Array.from(new Set(cards.map((c) => c.location).filter(Boolean)))], [cards]);
   const specialties = useMemo(() => ["All", ...Array.from(new Set(cards.flatMap((c) => c.specialties).filter(Boolean)))], [cards]);
