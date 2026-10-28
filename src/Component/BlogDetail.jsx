@@ -44,8 +44,8 @@ import RelatedBlogs from "./Blog/RelatedBlogs";
 import Footer from "./Footer";
 
 // ─── Brand tokens ─────────────────────────────────────────────
-const ORANGE = "#CF4A2C";
-const ORANGE_HOVER = "#B53D1F";
+const ORANGE = "#CF4A2C";       // --brand-600
+const ORANGE_HOVER = "#B83F23"; // --brand-700 (was #B53D1F) — canonical site-wide hover
 const ORANGE_TINT = "#FDF3EE";
 const ORANGE_TINT2 = "#FBEAE3";
 const TEXT_DARK = "#3C3228";

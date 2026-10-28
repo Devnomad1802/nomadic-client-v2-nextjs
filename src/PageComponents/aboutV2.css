@@ -26,7 +26,8 @@
 .v2-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 34px rgba(207, 74, 44, .36) !important;
-  background: #C0421F !important;
+  /* canonical brand hover (was #C0421F) — matches --brand-700 used site-wide */
+  background: var(--brand-700) !important;
 }
 
 .v2-ghost {

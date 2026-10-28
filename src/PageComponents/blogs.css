@@ -1,11 +1,13 @@
 /* Blog index — scoped under .blogpg (Nomadic Townies editorial journal) */
 .blogpg{
-  --orange:#CF4A2C; --orange-hover:#B53D1F;
-  --orange-tint:#FDF3EE; --orange-tint-2:#FBEAE3;
+  /* brand + shadow point at the global single-source tokens (globals.css);
+     hover was a bespoke #B53D1F, now the canonical --brand-700 like everywhere else */
+  --orange:var(--brand-600); --orange-hover:var(--brand-700);
+  --orange-tint:var(--brand-50); --orange-tint-2:#FBEAE3;
   --text-dark:#3C3228; --text:#5A5247; --text-light:#726A5E; --text-lighter:#8A8073;
   --line:#E6DDCF; --line-soft:#F1EADD;
   --bg-soft:var(--orange-tint); --bg-cream:#FAF7F2;
-  --sh-md:0 10px 28px -14px rgba(31,39,51,.2),0 1px 4px -1px rgba(31,39,51,.04);
+  --sh-md:var(--card-shadow-soft);
   font-family:var(--inter);color:var(--text);background:#fff;text-align:left;line-height:1.5;
 }
 .blogpg *,.blogpg *::before,.blogpg *::after{box-sizing:border-box}
