@@ -7,9 +7,11 @@ import {
   useGetPartialTripMutation,
   useCreateBalanceOrderMutation,
   useConfirmBalancePaymentMutation,
+  useGetPaymentStatusQuery,
 } from "../../services";
 import { fmtDueDate } from "../../utils/balanceDue";
 import { downloadInvoice } from "../../utils/invoiceDownload";
+import PaymentMaintenanceNotice from "../../Payment/PaymentMaintenanceNotice";
 
 const PER_PAGE = 3;
 
@@ -36,6 +38,8 @@ const MyTripsPanel = () => {
   const [getPartialTrip] = useGetPartialTripMutation();
   const [createBalanceOrder] = useCreateBalanceOrderMutation();
   const [confirmBalancePayment] = useConfirmBalancePaymentMutation();
+  const { data: payStatus } = useGetPaymentStatusQuery();
+  const paymentsBlocked = payStatus?.maintenance === true;
 
   const [state, setState] = useState({ loading: true, error: false, list: [] });
   const [open, setOpen] = useState(null);
@@ -90,6 +94,7 @@ const MyTripsPanel = () => {
   );
 
   const payBalance = async (b) => {
+    if (paymentsBlocked) return; // button is replaced by the enquiry notice
     try {
       const so = await createBalanceOrder({ bookingId: b._id }).unwrap();
       if (!so?.orderId || !so?.key) return alert("Payments are temporarily unavailable. Please try again later.");
@@ -173,10 +178,22 @@ const MyTripsPanel = () => {
                 </div>
 
                 {b.remaining > 0 && (
+                  paymentsBlocked ? (
+                    <div className="nt-balance" style={{ display: "block" }}>
+                      <span style={{ display: "block", marginBottom: 10 }}>
+                        Balance of <strong>₹ {inr(b.remaining)}</strong>{b.payByDate ? <> is due by <strong>{b.payByDate}</strong></> : " is due before departure"}.
+                      </span>
+                      <PaymentMaintenanceNotice
+                        status={payStatus}
+                        context={{ tripName: b?.title || b?.tripName || "your trip" }}
+                      />
+                    </div>
+                  ) : (
                   <div className="nt-balance">
                     <span>Balance of <strong>₹ {inr(b.remaining)}</strong>{b.payByDate ? <> is due by <strong>{b.payByDate}</strong></> : " is due before departure"}.</span>
                     <button className="nt-cta nt-cta-sm" onClick={() => payBalance(b)}>Proceed to pay ₹ {inr(b.remaining)}</button>
                   </div>
+                  )
                 )}
 
                 <div style={{ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap" }}>

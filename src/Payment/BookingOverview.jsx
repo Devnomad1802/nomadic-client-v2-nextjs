@@ -8,7 +8,8 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCreateSecureOrderMutation, useConfirmBookingMutation } from "../services";
+import { useCreateSecureOrderMutation, useConfirmBookingMutation, useGetPaymentStatusQuery } from "../services";
+import PaymentMaintenanceNotice from "./PaymentMaintenanceNotice";
 import Loading from "../SmallComponents/Loading";
 import Toastify from "../SmallComponents/Tostify";
 import { useSelector } from "react-redux";
@@ -271,6 +272,11 @@ const BookingOverview = () => {
   const [createSecureOrder] = useCreateSecureOrderMutation();
   const [confirmBooking] = useConfirmBookingMutation();
 
+  // Payment availability: when maintenance is ON we replace the pay CTA with a
+  // WhatsApp enquiry notice. The server gate is the real boundary; this is UX.
+  const { data: payStatus } = useGetPaymentStatusQuery();
+  const paymentsBlocked = payStatus?.maintenance === true;
+
   // Secure flow (C1/C2): the SERVER decides the amount and verifies the payment.
   // The browser only sends WHAT was chosen (trip + selections + coupon + batch),
   // never the price, and only the Razorpay receipt codes to confirm.
@@ -328,9 +334,28 @@ const BookingOverview = () => {
       rzp1.open();
     } catch (error) {
       console.error("createSecureOrder failed:", error);
+      // Payment maintenance (server gate) → keep the user here with the enquiry
+      // notice instead of sending them to a failure page.
+      if (error?.status === 503 || error?.data?.error?.type === "PAYMENTS_UNAVAILABLE") {
+        showToast("Online payments are temporarily unavailable. Please enquire on WhatsApp.", "info");
+        return;
+      }
       showToast("Could not start payment. Please try again.", "error");
       navigate("/paymentfail");
     }
+  };
+
+  // Non-identifying context for the WhatsApp/enquiry deep link.
+  const enquiryContext = {
+    tripName: paymentDetail?.title || "a trip",
+    tripUrl:
+      paymentDetail?.seoSlug && typeof window !== "undefined"
+        ? `${window.location.origin}/trips/${paymentDetail.seoSlug}`
+        : "",
+    batchDates: [cardData?.cardDate?.batchDate, cardData?.cardDate?.endSelectDate]
+      .filter(Boolean)
+      .join(" – "),
+    guests: cardData?.numberOfTravelers || undefined,
   };
 
   // ----------------------- Check User Login -------------------------------
@@ -606,6 +631,12 @@ const BookingOverview = () => {
                 )}
               </div>
 
+              {paymentsBlocked ? (
+                <div style={{ marginTop: "20px" }}>
+                  <PaymentMaintenanceNotice status={payStatus} context={enquiryContext} />
+                </div>
+              ) : (
+                <>
               <div className="nt-cta-glow" style={{ marginTop: "20px" }}>
                 <button
                   type="button"
@@ -630,6 +661,8 @@ const BookingOverview = () => {
               <p style={{ margin: "12px 0 0", textAlign: "center", font: `400 12px/1.4 ${BODY_FONT}`, color: "#9A9080" }}>
                 🔒 You&apos;ll be redirected to the secure payment gateway
               </p>
+                </>
+              )}
               <p style={{ margin: "8px 0 0", textAlign: "center", font: `400 12px/1.5 ${BODY_FONT}`, color: "#9A9080" }}>
                 By proceeding, you agree to our{" "}
                 <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT, fontWeight: 600, textDecoration: "none" }}>
