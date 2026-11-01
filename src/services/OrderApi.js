@@ -12,6 +12,11 @@ const OrderApi = api.injectEndpoints({
       }),
     }),
 
+    // Public payment availability — drives the maintenance notice vs the pay CTA.
+    getPaymentStatus: builder.query({
+      query: () => ({ url: "/payment-status", method: "GET" }),
+    }),
+
     // ── Secure flow (C1/C2): server decides price + verifies payment ──
     createSecureOrder: builder.mutation({
       query: ({ tripId, quantities, couponCode, batchIndex, paymentType }) => ({
@@ -88,6 +93,7 @@ export const {
   useValidateMutation,
   useNewBookingMutation,
   useGetPartialTripMutation,
+  useGetPaymentStatusQuery,
   useCreateSecureOrderMutation,
   useConfirmBookingMutation,
   useCreateBalanceOrderMutation,

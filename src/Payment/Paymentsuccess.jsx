@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useCreateBalanceOrderMutation, useConfirmBalancePaymentMutation } from "../services";
+import { useCreateBalanceOrderMutation, useConfirmBalancePaymentMutation, useGetPaymentStatusQuery } from "../services";
+import PaymentMaintenanceNotice from "./PaymentMaintenanceNotice";
 import { useGetTripsQuery } from "../services/TripApis";
 import { fmtDueDate } from "../utils/balanceDue";
 import { downloadInvoice } from "../utils/invoiceDownload";
@@ -25,6 +26,8 @@ const Paymentsuccess = () => {
   const [paying, setPaying] = useState(false);
   const [createBalanceOrder] = useCreateBalanceOrderMutation();
   const [confirmBalancePayment] = useConfirmBalancePaymentMutation();
+  const { data: payStatus } = useGetPaymentStatusQuery();
+  const paymentsBlocked = payStatus?.maintenance === true;
   const { data: tripsRes } = useGetTripsQuery();
 
   // Direct URL / refresh: no booking payload → home (booking lives in My Trips).
@@ -79,6 +82,7 @@ const Paymentsuccess = () => {
   // Pay the remaining balance right here (same secure flow as My Trips).
   const payBalance = async () => {
     if (paying || !data._id) return;
+    if (paymentsBlocked) return; // notice shown in place of the balance link
     setPaying(true);
     try {
       const so = await createBalanceOrder({ bookingId: data._id }).unwrap();
@@ -174,6 +178,17 @@ const Paymentsuccess = () => {
               </div>
             )}
             {remaining > 0 && (
+              paymentsBlocked ? (
+                <div style={{ marginTop: 14 }}>
+                  <PaymentMaintenanceNotice
+                    status={payStatus}
+                    context={{
+                      tripName: tripTitle,
+                      tripUrl: pd?.seoSlug && typeof window !== "undefined" ? `${window.location.origin}/trips/${pd.seoSlug}` : "",
+                    }}
+                  />
+                </div>
+              ) : (
               <div className="ps2-balance">
                 <span className="ps2-balance-t">
                   Balance ₹ {inr(remaining)}{balanceBy ? <> due by <strong>{balanceBy}</strong></> : " due before departure"}
@@ -182,6 +197,7 @@ const Paymentsuccess = () => {
                   {paying ? "Opening…" : "Pay balance →"}
                 </span>
               </div>
+              )
             )}
           </div>
         </div>
