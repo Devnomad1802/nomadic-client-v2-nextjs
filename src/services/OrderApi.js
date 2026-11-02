@@ -21,6 +21,13 @@ const OrderApi = api.injectEndpoints({
     getPaymentCapability: builder.query({
       query: () => ({ url: "/payment-capability", method: "GET" }),
     }),
+    // Reconcile a payment against Razorpay's authoritative state (owner-only).
+    // Returns { state: PAYMENT_CONFIRMED | PAYMENT_FAILED | PAYMENT_PENDING |
+    // STATUS_UNKNOWN, ... }. Used by the status-check screen after a dropped
+    // confirm callback — never asks the user to pay again on uncertainty.
+    getReconcile: builder.query({
+      query: (orderId) => ({ url: `/payment/reconcile/${orderId}`, method: "GET" }),
+    }),
 
     // ── Secure flow (C1/C2): server decides price + verifies payment ──
     createSecureOrder: builder.mutation({
@@ -100,6 +107,7 @@ export const {
   useGetPartialTripMutation,
   useGetPaymentStatusQuery,
   useGetPaymentCapabilityQuery,
+  useLazyGetReconcileQuery,
   useCreateSecureOrderMutation,
   useConfirmBookingMutation,
   useCreateBalanceOrderMutation,

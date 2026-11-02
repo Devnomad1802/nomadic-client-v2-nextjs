@@ -325,8 +325,12 @@ const BookingOverview = () => {
             navigate("/paymentsuccess", { state: { data } });
           } catch (err) {
             console.error("confirmBooking failed:", err);
-            showToast("Payment received but confirmation failed. Please contact support.", "error");
-            navigate("/paymentfail");
+            // The charge may well have succeeded — do NOT declare failure or send
+            // the user to the fail page. Hand off to the status-check screen,
+            // which reconciles against Razorpay's authoritative state.
+            navigate("/payment-status-check", {
+              state: { orderId: so.orderId, bookingRef: so.orderId, tripName: paymentDetail?.title },
+            });
           }
         },
       };
