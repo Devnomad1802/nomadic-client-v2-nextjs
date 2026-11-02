@@ -8,7 +8,7 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import SwapHorizOutlinedIcon from "@mui/icons-material/SwapHorizOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useCreateSecureOrderMutation, useConfirmBookingMutation, useGetPaymentStatusQuery } from "../services";
+import { useCreateSecureOrderMutation, useConfirmBookingMutation, useGetPaymentStatusQuery, useGetPaymentCapabilityQuery } from "../services";
 import PaymentMaintenanceNotice from "./PaymentMaintenanceNotice";
 import Loading from "../SmallComponents/Loading";
 import Toastify from "../SmallComponents/Tostify";
@@ -273,9 +273,14 @@ const BookingOverview = () => {
   const [confirmBooking] = useConfirmBookingMutation();
 
   // Payment availability: when maintenance is ON we replace the pay CTA with a
-  // WhatsApp enquiry notice. The server gate is the real boundary; this is UX.
+  // WhatsApp enquiry notice — UNLESS this signed-in user is allowed (the
+  // authorized test account), in which case they keep the real pay button.
+  // The server gate is the real boundary; this is UX.
   const { data: payStatus } = useGetPaymentStatusQuery();
-  const paymentsBlocked = payStatus?.maintenance === true;
+  const { data: capability } = useGetPaymentCapabilityQuery(undefined, { skip: !userDbData });
+  const canPay = capability?.allowed === true;
+  const testMode = capability?.mode === "test";
+  const paymentsBlocked = payStatus?.maintenance === true && !canPay;
 
   // Secure flow (C1/C2): the SERVER decides the amount and verifies the payment.
   // The browser only sends WHAT was chosen (trip + selections + coupon + batch),
@@ -637,6 +642,15 @@ const BookingOverview = () => {
                 </div>
               ) : (
                 <>
+              {testMode && (
+                <div style={{
+                  marginTop: "20px", marginBottom: "-6px", padding: "8px 12px",
+                  borderRadius: 10, background: "#FEF3C7", border: "1px solid #FCD34D",
+                  color: "#92400E", font: `700 12.5px/1.4 ${BODY_FONT}`, textAlign: "center",
+                }}>
+                  TEST MODE — no real payment will be taken
+                </div>
+              )}
               <div className="nt-cta-glow" style={{ marginTop: "20px" }}>
                 <button
                   type="button"

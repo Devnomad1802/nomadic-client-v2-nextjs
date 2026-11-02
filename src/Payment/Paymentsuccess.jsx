@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useCreateBalanceOrderMutation, useConfirmBalancePaymentMutation, useGetPaymentStatusQuery } from "../services";
+import { useCreateBalanceOrderMutation, useConfirmBalancePaymentMutation, useGetPaymentStatusQuery, useGetPaymentCapabilityQuery } from "../services";
 import PaymentMaintenanceNotice from "./PaymentMaintenanceNotice";
 import { useGetTripsQuery } from "../services/TripApis";
 import { fmtDueDate } from "../utils/balanceDue";
@@ -27,7 +27,8 @@ const Paymentsuccess = () => {
   const [createBalanceOrder] = useCreateBalanceOrderMutation();
   const [confirmBalancePayment] = useConfirmBalancePaymentMutation();
   const { data: payStatus } = useGetPaymentStatusQuery();
-  const paymentsBlocked = payStatus?.maintenance === true;
+  const { data: capability } = useGetPaymentCapabilityQuery(undefined, { skip: !userDbData });
+  const paymentsBlocked = payStatus?.maintenance === true && capability?.allowed !== true;
   const { data: tripsRes } = useGetTripsQuery();
 
   // Direct URL / refresh: no booking payload → home (booking lives in My Trips).

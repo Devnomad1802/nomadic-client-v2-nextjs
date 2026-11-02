@@ -16,6 +16,11 @@ const OrderApi = api.injectEndpoints({
     getPaymentStatus: builder.query({
       query: () => ({ url: "/payment-status", method: "GET" }),
     }),
+    // Authenticated per-user capability — lets the authorized test account still
+    // see the real pay button during maintenance. { allowed, mode, reason }.
+    getPaymentCapability: builder.query({
+      query: () => ({ url: "/payment-capability", method: "GET" }),
+    }),
 
     // ── Secure flow (C1/C2): server decides price + verifies payment ──
     createSecureOrder: builder.mutation({
@@ -94,6 +99,7 @@ export const {
   useNewBookingMutation,
   useGetPartialTripMutation,
   useGetPaymentStatusQuery,
+  useGetPaymentCapabilityQuery,
   useCreateSecureOrderMutation,
   useConfirmBookingMutation,
   useCreateBalanceOrderMutation,

@@ -8,6 +8,7 @@ import {
   useCreateBalanceOrderMutation,
   useConfirmBalancePaymentMutation,
   useGetPaymentStatusQuery,
+  useGetPaymentCapabilityQuery,
 } from "../../services";
 import { fmtDueDate } from "../../utils/balanceDue";
 import { downloadInvoice } from "../../utils/invoiceDownload";
@@ -39,7 +40,8 @@ const MyTripsPanel = () => {
   const [createBalanceOrder] = useCreateBalanceOrderMutation();
   const [confirmBalancePayment] = useConfirmBalancePaymentMutation();
   const { data: payStatus } = useGetPaymentStatusQuery();
-  const paymentsBlocked = payStatus?.maintenance === true;
+  const { data: capability } = useGetPaymentCapabilityQuery(undefined, { skip: !userDbData });
+  const paymentsBlocked = payStatus?.maintenance === true && capability?.allowed !== true;
 
   const [state, setState] = useState({ loading: true, error: false, list: [] });
   const [open, setOpen] = useState(null);
