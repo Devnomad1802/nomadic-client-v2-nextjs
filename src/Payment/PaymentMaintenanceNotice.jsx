@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import BookingEnquiryForm from "./BookingEnquiryForm";
 
 /**
  * PaymentMaintenanceNotice — shown in place of the "Proceed to Payment" action
@@ -30,6 +31,13 @@ const buildWhatsappHref = (whatsapp, context) => {
 };
 
 const PaymentMaintenanceNotice = ({ status, context, fallbackEmail = "hello@nomadictownies.com" }) => {
+  const [showForm, setShowForm] = useState(false);
+  const enquiryContext = {
+    tripId: context?.tripId,
+    tripName: context?.tripName,
+    batchInfo: context?.batchDates || context?.batchInfo,
+    guests: context?.guests,
+  };
   const heading = status?.heading || "Online payments are temporarily unavailable";
   const body =
     status?.body ||
@@ -66,35 +74,53 @@ const PaymentMaintenanceNotice = ({ status, context, fallbackEmail = "hello@noma
         {body}
       </p>
 
-      {waHref ? (
-        <a
-          href={waHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "var(--brand-600, #CF4A2C)", color: "#fff",
-            fontWeight: 700, fontSize: 15, textDecoration: "none",
-            padding: "13px 22px", borderRadius: 999, minHeight: 44, boxSizing: "border-box",
-          }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.33 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2c5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.1c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.15.82.84-3.07-.2-.32a8.2 8.2 0 1 1 7.06 3.9z" />
-          </svg>
-          {ctaLabel}
-        </a>
+      {showForm ? (
+        <BookingEnquiryForm context={enquiryContext} onCancel={() => setShowForm(false)} />
       ) : (
-        <a
-          href={mailHref}
-          style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "var(--brand-600, #CF4A2C)", color: "#fff",
-            fontWeight: 700, fontSize: 15, textDecoration: "none",
-            padding: "13px 22px", borderRadius: 999, minHeight: 44, boxSizing: "border-box",
-          }}
-        >
-          Contact us to enquire
-        </a>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+          {/* Primary: in-site enquiry that persists server-side */}
+          <button
+            type="button"
+            onClick={() => setShowForm(true)}
+            style={{
+              background: "var(--brand-600, #CF4A2C)", color: "#fff", border: "none",
+              fontWeight: 700, fontSize: 15, padding: "13px 22px", borderRadius: 999,
+              minHeight: 44, boxSizing: "border-box", cursor: "pointer",
+            }}
+          >
+            Send booking enquiry
+          </button>
+
+          {/* Secondary: WhatsApp (independent path), or email fallback */}
+          {waHref ? (
+            <a
+              href={waHref} target="_blank" rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                border: "1.5px solid var(--brand-600, #CF4A2C)", color: "var(--brand-600, #CF4A2C)",
+                fontWeight: 700, fontSize: 15, textDecoration: "none",
+                padding: "12px 20px", borderRadius: 999, minHeight: 44, boxSizing: "border-box",
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.33 4.95L2 22l5.3-1.38a9.9 9.9 0 0 0 4.74 1.2c5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.1c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.15.82.84-3.07-.2-.32a8.2 8.2 0 1 1 7.06 3.9z" />
+              </svg>
+              {ctaLabel}
+            </a>
+          ) : (
+            <a
+              href={mailHref}
+              style={{
+                border: "1.5px solid var(--brand-600, #CF4A2C)", color: "var(--brand-600, #CF4A2C)",
+                fontWeight: 700, fontSize: 15, textDecoration: "none",
+                padding: "12px 20px", borderRadius: 999, minHeight: 44, boxSizing: "border-box",
+                display: "inline-flex", alignItems: "center",
+              }}
+            >
+              Email us
+            </a>
+          )}
+        </div>
       )}
 
       <div style={{ fontSize: 12.5, color: "var(--ink-500, #8A8073)", marginTop: 12 }}>

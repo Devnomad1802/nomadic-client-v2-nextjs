@@ -356,6 +356,7 @@ const BookingOverview = () => {
 
   // Non-identifying context for the WhatsApp/enquiry deep link.
   const enquiryContext = {
+    tripId: paymentDetail?._id,
     tripName: paymentDetail?.title || "a trip",
     tripUrl:
       paymentDetail?.seoSlug && typeof window !== "undefined"
