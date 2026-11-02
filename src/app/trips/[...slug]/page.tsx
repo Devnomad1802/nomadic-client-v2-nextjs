@@ -1,7 +1,7 @@
 import React from "react";
 import TripDetail from "@/PageComponents/TripDetail";
 import CategorieDetails from "@/Component/Home/CategorieDetails";
-import { getTrips, getReviews, getCategories } from "@/utils/serverFetch";
+import { getTrips, getReviews, getCategories, getTripReviews } from "@/utils/serverFetch";
 import { matchTemplate } from "@/Component/Home/categoryCards";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
@@ -253,10 +253,7 @@ export default async function Page({ params }: Props) {
   const targetSlug = slugArray[slugArray.length - 1];
   const decodedSlug = decodeURIComponent(targetSlug);
 
-  const [tripsRes, reviewsRes] = await Promise.all([
-    getTrips(),
-    getReviews(),
-  ]);
+  const tripsRes = await getTrips();
 
   const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
   const rawTrip = list.find((t: any) => t.seoSlug === decodedSlug) || list.find((t: any) => t._id === decodedSlug);
@@ -265,6 +262,9 @@ export default async function Page({ params }: Props) {
     redirect("/experiences");
   }
 
-  const reviews = reviewsRes?.data || [];
+  // Strict isolation: reviews for THIS trip only (by stable _id), never the
+  // global marketing review list.
+  const reviewsRes = await getTripReviews(rawTrip._id);
+  const reviews = Array.isArray(reviewsRes?.data) ? reviewsRes.data : [];
   return <TripDetail initialRaw={rawTrip} initialReviews={reviews} />;
 }

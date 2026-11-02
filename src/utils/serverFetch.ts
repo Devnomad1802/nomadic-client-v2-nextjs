@@ -61,6 +61,12 @@ export async function getReviews() {
   return fetchServer("/getAllReviews", {}, 1800); // Cache reviews for 30 minutes
 }
 
+// Reviews for ONE trip only (strict tripId isolation, server-filtered).
+export async function getTripReviews(tripId: string) {
+  if (!tripId) return null;
+  return fetchServer(`/getUserReviewsByHostId/${tripId}`, {}, 180);
+}
+
 export async function getHosts() {
   return fetchServer("/host", {}, 600); // Cache hosts for 10 minutes
 }
