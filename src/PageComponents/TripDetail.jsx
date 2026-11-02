@@ -13,7 +13,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { useGetTripsQuery } from "../services/TripApis";
-import { useGetAllReviewsQuery } from "../services";
+import { useGetUserReviewsByTripIdQuery } from "../services";
 import LoginModal from "../Modals/LoginModal";
 import Footer from "../Component/Footer";
 
@@ -56,17 +56,23 @@ const mapTrip = (raw, allReviews) => {
   if (!raw) return null;
   const host = raw.host && typeof raw.host === "object" ? raw.host : null;
 
-  // Reviews (reuses the existing global reviews API; trip-specific once a
-  // per-trip source exists). Empty -> "No reviews yet" state.
-  const reviews = (Array.isArray(allReviews) ? allReviews : []).slice(0, 6).map((r) => ({
-    initial: (r?.Name || "T").trim().charAt(0).toUpperCase(),
-    name: r?.Name || "Traveller",
-    date: r?.Job || "",
-    stars: STAR_STR(avg(r?.rating) || 5),
-    text: r?.Review || "",
+  // Trip-ONLY reviews (UserReviews filtered by this trip's _id server-side).
+  // Empty -> honest "No reviews yet" state; never substitute unrelated reviews.
+  const all = Array.isArray(allReviews) ? allReviews : [];
+  const reviews = all.slice(0, 6).map((r) => ({
+    initial: (r?.name || "T").trim().charAt(0).toUpperCase(),
+    name: r?.name || "Traveller",
+    date: r?.date
+      ? new Date(r.date).toLocaleDateString("en-IN", { month: "short", year: "numeric" })
+      : (r?.location || ""),
+    stars: STAR_STR(Number(r?.rating) || 5),
+    text: r?.review || "",
   })).filter((r) => r.text);
-  const reviewCount = (Array.isArray(raw?.reviews) ? raw.reviews.length : 0) || reviews.length;
-  const ratingNum = Number((avg(raw?.ratings) || (reviews.length ? 5 : 0)).toFixed(1));
+  // Count + average reflect EXACTLY this trip's eligible reviews.
+  const reviewCount = all.length;
+  const ratingNum = all.length
+    ? Number((all.reduce((s, r) => s + (Number(r?.rating) || 0), 0) / all.length).toFixed(1))
+    : 0;
 
   const ratingBars = [5, 4, 3, 2, 1].map((s) => {
     const c = reviews.filter((rv) => rv.stars.startsWith("★★★★★".slice(0, s)) && rv.stars.charAt(s) !== "★").length;
@@ -206,7 +212,6 @@ export default function TripDetail({ initialRaw, initialReviews }) {
   const navigate = useNavigate();
   const { userDbData } = useSelector((s) => s.global);
   const { data: tripsRes } = useGetTripsQuery(undefined, { skip: !!initialRaw });
-  const { data: revRes } = useGetAllReviewsQuery(undefined, { skip: !!initialReviews });
   const [active, setActive] = useState("Overview");
   const [itineraryOpen, setItineraryOpen] = useState(false);
   const [openL, setOpenL] = useState(false);
@@ -218,6 +223,12 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
     return list.find((t) => t.seoSlug === slug) || list.find((t) => t._id === slug);
   }, [tripsRes, slug, initialRaw]);
+
+  // Reviews for THIS trip only, by stable _id (never the global review list).
+  const tripId = initialRaw?._id || raw?._id;
+  const { data: revRes } = useGetUserReviewsByTripIdQuery(tripId, {
+    skip: !tripId || !!initialReviews,
+  });
 
   const trip = useMemo(() => {
     const reviews = initialReviews || revRes?.data;

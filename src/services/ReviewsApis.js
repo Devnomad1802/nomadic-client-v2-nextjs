@@ -10,10 +10,17 @@ const ReviewsApis = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    // Reviews for ONE trip only — strict tripId isolation (server-filtered).
+    getUserReviewsByTripId: builder.query({
+      query: (tripId) => ({
+        url: `/getUserReviewsByHostId/${tripId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllReviewsQuery } = ReviewsApis;
+export const { useGetAllReviewsQuery, useGetUserReviewsByTripIdQuery } = ReviewsApis;
 
 // ── Post-trip review system (JWT; token auto-attached by baseQuery) ──
 const TripReviewApis = api.injectEndpoints({
