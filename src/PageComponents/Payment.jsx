@@ -330,7 +330,19 @@ const Payment = () => {
                 {filteredBatches.map((b) => {
                   const sel = selectedBatch === b.id;
                   const soldOut = b.soldOut;
-                  const urgent = b.urgency === "Few Seats Left" || b.urgency === "Sold Out";
+                  // Reveal a seat COUNT only when genuinely low (real scarcity);
+                  // otherwise a neutral "Available" — never broadcast "8/8" / an
+                  // empty batch, and never fabricate scarcity.
+                  const low = b.urgency === "Few Seats Left"; // remaining <= 2
+                  const filling = b.urgency === "Filling Fast";
+                  const seatText = soldOut
+                    ? "Sold Out"
+                    : low
+                      ? `Only ${b.seatsLeft} left`
+                      : filling
+                        ? "Filling fast"
+                        : "Available";
+                  const seatColor = soldOut || low ? "#C0392B" : filling ? "#B8702A" : "#2E7D4F";
                   return (
                     <button
                       key={b.id}
@@ -345,14 +357,9 @@ const Payment = () => {
                       </span>
                       <span style={{ flex: 1, font: `600 16px/1.25 ${BODY_FONT}`, color: "#221C17" }}>
                         {formatBatchRange(b.startDate, b.endDate)}
-                        {b.urgency && (
-                          <span style={{ display: "inline-block", marginLeft: 8, font: `700 11px/1 ${BODY_FONT}`, color: urgent ? "#C0392B" : "#B8702A", background: urgent ? "#FCECEA" : "#FBF0E3", padding: "3px 7px", borderRadius: 6, verticalAlign: "middle" }}>
-                            {b.urgency}
-                          </span>
-                        )}
                       </span>
-                      <span style={{ font: `700 13px/1 ${BODY_FONT}`, color: urgent ? "#C0392B" : ACCENT, whiteSpace: "nowrap" }}>
-                        {b.seatsLeft}/{b.totalSeats} seats available
+                      <span style={{ font: `700 13px/1 ${BODY_FONT}`, color: seatColor, whiteSpace: "nowrap" }}>
+                        {seatText}
                       </span>
                     </button>
                   );
