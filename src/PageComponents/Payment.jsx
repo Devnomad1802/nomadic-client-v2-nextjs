@@ -60,6 +60,11 @@ const Payment = () => {
   const endSelectDate = JSON.parse(paymentDetail?.endSelectDate || "[]");
   const numberOfDays = JSON.parse(paymentDetail?.numberOfDays || "[]");
   const numberOfSeats = JSON.parse(paymentDetail?.numberOfSeats || "[]");
+  // Server-derived per-batch availability (capacity/occupied/remaining/label).
+  // numberOfSeats[].batchSeats is the fixed CAPACITY; remaining comes from here.
+  const batchAvailability = Array.isArray(paymentDetail?.batchAvailability)
+    ? paymentDetail.batchAvailability
+    : [];
   const discount = JSON.parse(paymentDetail?.discount || "[]");
   const AddSection = useMemo(
     () => JSON.parse(paymentDetail?.addsection || "[]"),
@@ -86,13 +91,20 @@ const Payment = () => {
       if (Number.isNaN(startDate.getTime()) || startDate < today) return;
 
       const monthName = startDate.toLocaleDateString("en-US", { month: "short" });
+      // Capacity is the configured batch size; remaining = capacity - occupied
+      // (server). Fallback: no availability info → treat batchSeats as capacity.
+      const avail = batchAvailability[index];
+      const capacity = avail?.capacity ?? Number(numberOfSeats[index]?.batchSeats) ?? 0;
+      const remaining = avail?.remaining ?? capacity;
       batches.push({
         id: index,
         startDate,
         endDate,
         month: monthName,
-        seatsLeft: numberOfSeats[index]?.batchSeats || 0,
-        totalSeats: numberOfSeats[index]?.batchSeats || 0,
+        seatsLeft: remaining,
+        totalSeats: capacity,
+        soldOut: avail?.soldOut || (capacity > 0 && remaining <= 0),
+        urgency: avail?.label || null,
         days: numberOfDays[index]?.selectDays || 0,
       });
     });
@@ -317,23 +329,30 @@ const Payment = () => {
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {filteredBatches.map((b) => {
                   const sel = selectedBatch === b.id;
-                  const lowSeats = b.seatsLeft <= 3;
+                  const soldOut = b.soldOut;
+                  const urgent = b.urgency === "Few Seats Left" || b.urgency === "Sold Out";
                   return (
                     <button
                       key={b.id}
                       type="button"
                       className="bs-row"
-                      onClick={() => setSelectedBatch(b.id)}
-                      style={{ display: "flex", alignItems: "center", gap: "14px", width: "100%", textAlign: "left", padding: "15px 18px", border: sel ? `1.5px solid ${ACCENT}` : "1px solid #E6DDCF", borderRadius: "14px", background: sel ? "#FDF1EC" : "#FFFFFF", cursor: "pointer" }}
+                      disabled={soldOut}
+                      onClick={() => !soldOut && setSelectedBatch(b.id)}
+                      style={{ display: "flex", alignItems: "center", gap: "14px", width: "100%", textAlign: "left", padding: "15px 18px", border: sel ? `1.5px solid ${ACCENT}` : "1px solid #E6DDCF", borderRadius: "14px", background: soldOut ? "#F6F2EC" : sel ? "#FDF1EC" : "#FFFFFF", cursor: soldOut ? "not-allowed" : "pointer", opacity: soldOut ? 0.6 : 1 }}
                     >
                       <span style={{ width: 21, height: 21, flex: "none", borderRadius: "50%", border: sel ? `6px solid ${ACCENT}` : "2px solid #CDC4B5", display: "flex", alignItems: "center", justifyContent: "center" }}>
                         <span style={{ width: 9, height: 9, borderRadius: "50%", background: sel ? "#ffffff" : "transparent" }} />
                       </span>
                       <span style={{ flex: 1, font: `600 16px/1.25 ${BODY_FONT}`, color: "#221C17" }}>
                         {formatBatchRange(b.startDate, b.endDate)}
+                        {b.urgency && (
+                          <span style={{ display: "inline-block", marginLeft: 8, font: `700 11px/1 ${BODY_FONT}`, color: urgent ? "#C0392B" : "#B8702A", background: urgent ? "#FCECEA" : "#FBF0E3", padding: "3px 7px", borderRadius: 6, verticalAlign: "middle" }}>
+                            {b.urgency}
+                          </span>
+                        )}
                       </span>
-                      <span style={{ font: `700 13px/1 ${BODY_FONT}`, color: lowSeats ? "#C0392B" : ACCENT, whiteSpace: "nowrap" }}>
-                        {b.seatsLeft} Seats Left / {b.totalSeats}
+                      <span style={{ font: `700 13px/1 ${BODY_FONT}`, color: urgent ? "#C0392B" : ACCENT, whiteSpace: "nowrap" }}>
+                        {b.seatsLeft}/{b.totalSeats} seats available
                       </span>
                     </button>
                   );
