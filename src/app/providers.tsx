@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import Navbar from "@/Component/Navbar/Navbar";
 import ChatNotifier from "@/SmallComponents/ChatNotifier";
 import ConsentBanner from "@/Component/ConsentBanner";
+import ProfileGate from "@/Component/ProfileGate";
 import Loading from "@/SmallComponents/Loading";
 
 const persistor = persistStore(store);
@@ -52,6 +53,7 @@ export default function ClientProviders({
           </Box>
           <ChatNotifier />
           <ConsentBanner />
+          <ProfileGate />
         </Box>
       )}
     </ThemeProvider>

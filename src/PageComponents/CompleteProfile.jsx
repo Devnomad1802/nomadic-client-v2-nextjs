@@ -107,13 +107,28 @@ const CompleteProfile = () => {
               {needsPhone ? (
                 <Box>
                   <style>{`
-                    .nt-phone-input { display:flex; gap:8px; }
+                    .nt-phone-input { display:flex; gap:8px; align-items:stretch; }
+                    /* Country selector looks like a clickable dropdown: bordered
+                       box with flag + a visible chevron. */
+                    .nt-phone-input .PhoneInputCountry {
+                      position:relative; display:flex; align-items:center; gap:7px;
+                      height:40px; padding:0 10px; border:1px solid #D8CFC0;
+                      border-radius:8px; background:#fff; cursor:pointer;
+                    }
+                    .nt-phone-input .PhoneInputCountry:hover { border-color:#CF4A2C; }
+                    .nt-phone-input .PhoneInputCountryIcon { width:26px; height:18px; box-shadow:0 0 0 1px rgba(0,0,0,.08); }
+                    /* native select overlays the box so the whole thing is clickable */
+                    .nt-phone-input .PhoneInputCountrySelect { position:absolute; inset:0; opacity:0; cursor:pointer; }
+                    .nt-phone-input .PhoneInputCountrySelectArrow {
+                      display:inline-block; width:7px; height:7px; margin-left:2px;
+                      border-style:solid; border-color:#8A8073; border-width:0 2px 2px 0;
+                      transform:rotate(45deg); opacity:1;
+                    }
                     .nt-phone-input .PhoneInputInput {
                       flex:1; height:40px; border:1px solid #D8CFC0; border-radius:8px;
                       padding:0 12px; font-size:15px; color:#221C17; outline:none; background:#fff;
                     }
                     .nt-phone-input .PhoneInputInput:focus { border-color:#CF4A2C; box-shadow:0 0 0 3px rgba(207,74,44,.12); }
-                    .nt-phone-input .PhoneInputCountrySelect { color:#221C17; }
                   `}</style>
                   <Typography sx={{ color: "#3C3228", fontWeight: 600, fontSize: "14px", textAlign: "left", mb: 1 }}>
                     Phone Number <span style={{ color: "#EF4444" }}>*</span>
@@ -126,6 +141,9 @@ const CompleteProfile = () => {
                     onChange={setPhone}
                     className="nt-phone-input"
                   />
+                  <Typography sx={{ color: "#8A8073", fontSize: "12px", textAlign: "left", mt: 0.5 }}>
+                    Tap the flag ▾ to change country. We check the number is valid for the selected country.
+                  </Typography>
                 </Box>
               ) : (
                 <Box>
