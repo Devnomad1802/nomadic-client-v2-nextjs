@@ -1342,3 +1342,20 @@
 .hd-state-title { font-family: var(--head); font-weight: 700; font-size: 26px; color: var(--ink); margin: 0 0 8px; }
 .hd-state-msg { font: 400 15px/1.6 var(--body); color: var(--sub); margin: 0; }
 .hd-state-cta { display: inline-flex; margin-top: 18px; }
+
+/* ── Rich message formatting + long-form composer (chat) ── */
+.hd-msg-bubble .rm-root{display:flex;flex-direction:column;gap:2px}
+.hd-msg-bubble .rm-p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.45}
+.hd-msg-bubble .rm-ul{margin:4px 0;padding-left:20px;list-style:disc}
+.hd-msg-bubble .rm-ul li{margin:1px 0;overflow-wrap:anywhere}
+.hd-msg-bubble .rm-sp{height:8px}
+.hd-msg-bubble strong{font-weight:700}
+.hd-msg-bubble em{font-style:italic}
+.hd-msg-deleted{font-style:italic;opacity:.7}
+.hd-composer-input{
+  flex:1;min-height:44px;max-height:180px;padding:11px 14px;border:1px solid #E6DDCF;
+  border-radius:11px;font-size:14px;font-family:inherit;line-height:1.45;color:var(--ink,#221C17);
+  background:#FFFDF9;outline:none;resize:none;overflow-y:auto;field-sizing:content;
+}
+.hd-composer-input:focus{border-color:#CF4A2C}
+.hd-char-count{padding:2px 16px 0;font-size:11px;text-align:right}

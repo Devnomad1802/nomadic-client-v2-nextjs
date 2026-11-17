@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 import "./hostPage.css";
 import Footer from "../Footer";
 import HostGallery from "./HostGallery";
+import RichMessage from "./RichMessage";
 import { useSelector } from "react-redux";
 import { setActiveChatConvo } from "../../utils/chatUiState";
 import {
@@ -411,9 +412,11 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
     return () => clearInterval(iv);
   }, [chatOpen, userDbData?._id, host?._id, getMyHostChats, markHostChatRead]);
 
+  const MAX_MSG = 5000;
   const sendChat = async () => {
     const text = chatText.trim();
     if (!text || chatSending) return;
+    if (text.length > MAX_MSG) { setChatWarn(`Message is too long (max ${MAX_MSG} characters).`); return; }
     if (!userDbData?._id) { setChatWarn("Please log in to message this host."); return; }
     setChatSending(true);
     setChatWarn("");
@@ -830,8 +833,10 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
               <div key={i}>
                 {showSep && m.timeStamp && <div className="hd-daysep"><span>{dayLabel(m.timeStamp)}</span></div>}
                 <div className={`hd-msg ${m.MessageBy === "user" ? "me" : "them"}`}>
-                  <div className="hd-msg-bubble">{m.Message}</div>
-                  <div className="hd-msg-time">{msgTime(m.timeStamp)}</div>
+                  <div className={`hd-msg-bubble${m.deleted ? " hd-msg-deleted" : ""}`}>
+                    {m.deleted ? "This message was deleted" : <RichMessage text={m.Message} />}
+                  </div>
+                  <div className="hd-msg-time">{msgTime(m.timeStamp)}{m.edited && !m.deleted ? " · Edited" : ""}</div>
                 </div>
               </div>
             );
@@ -842,19 +847,25 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
         {chatWarn && <div className="hd-chat-warn">{chatWarn}</div>}
 
         <div className="hd-composer">
-          <input
+          <textarea
             ref={chatInputRef}
-            type="text"
+            rows={1}
             value={chatText}
             onChange={(e) => setChatText(e.target.value)}
-            onKeyDown={(e) => { if (e.key === "Enter") sendChat(); }}
-            placeholder={userDbData ? `Message ${firstName}…` : "Log in to send a message"}
+            onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat(); } }}
+            placeholder={userDbData ? `Message ${firstName}…  (Shift+Enter for a new line)` : "Log in to send a message"}
             disabled={chatSending}
+            className="hd-composer-input"
           />
-          <button type="button" className="hd-cta hd-send" onClick={sendChat} disabled={chatSending || !chatText.trim()}>
+          <button type="button" className="hd-cta hd-send" onClick={sendChat} disabled={chatSending || !chatText.trim() || chatText.trim().length > MAX_MSG}>
             {chatSending ? "…" : "Send"}
           </button>
         </div>
+        {chatText.trim().length > MAX_MSG * 0.8 && (
+          <div className="hd-char-count" style={{ color: chatText.trim().length > MAX_MSG ? "#c0392b" : "#9b9b9b" }}>
+            {chatText.trim().length}/{MAX_MSG}
+          </div>
+        )}
       </div>
 
       {/* ---------- mobile sticky cta ---------- */}
