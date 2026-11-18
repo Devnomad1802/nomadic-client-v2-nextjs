@@ -115,13 +115,37 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
   // overflows horizontally. Convert them back to normal spaces before rendering.
   const clean = (html) => (html || "").replace(/ |&nbsp;/g, " ");
 
-  const blocks = useMemo(() => {
+  // Build the TOC and inject heading IDs into the HTML string itself, so React
+  // owns them: they survive re-renders and are present in SSR markup (crawlable
+  // anchors). Previously IDs were set imperatively after mount and were wiped on
+  // the next re-render, breaking scrollspy + click-to-scroll.
+  const { blocks, headings } = useMemo(() => {
+    const seen = new Set();
+    const toc = [];
+    const addIds = (html) =>
+      (html || "").replace(/<(h2|h3)\b([^>]*)>([\s\S]*?)<\/\1>/gi, (m, tag, attrs, inner) => {
+        const label = inner
+          .replace(/<[^>]+>/g, "")
+          .replace(/&amp;/g, "&").replace(/&nbsp;/g, " ")
+          .replace(/\s+/g, " ").trim();
+        if (!label) return m;
+        const level = tag.toLowerCase() === "h2" ? 2 : 3;
+        const existing = attrs.match(/\bid\s*=\s*["']([^"']+)["']/);
+        if (existing) { toc.push({ id: existing[1], label, level }); return m; }
+        let slug = label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `section-${toc.length}`;
+        while (seen.has(slug)) slug += "-x";
+        seen.add(slug);
+        toc.push({ id: slug, label, level });
+        return `<${tag}${attrs} id="${slug}">${inner}</${tag}>`;
+      });
+
+    let out;
     // 1. NEW: structured items[]
     if (Array.isArray(item.items) && item.items.length) {
-      return [...item.items]
+      out = [...item.items]
         .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
         .map((it, idx) => {
-          if (it.type === "content") return { kind: "content", html: clean(it.content), key: `c${idx}` };
+          if (it.type === "content") return { kind: "content", html: addIds(clean(it.content)), key: `c${idx}` };
           if (it.type === "image") {
             const url = it.imageUrl || (item.images && item.images[it.imageIndex]) || null;
             return { kind: "image", url, caption: it.caption || "", key: `i${idx}` };
@@ -129,43 +153,22 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
           return null;
         })
         .filter(Boolean);
+    } else {
+      // 2. LEGACY: content1 / Add_Image / content2
+      out = [];
+      if (item.content1) out.push({ kind: "content", html: addIds(clean(item.content1)), key: "lc1" });
+      if (Array.isArray(item.Add_Image) && item.Add_Image.length) {
+        out.push({ kind: "swiper", urls: item.Add_Image, key: "lsw" });
+      }
+      if (item.content2) out.push({ kind: "content", html: addIds(clean(item.content2)), key: "lc2" });
     }
-    // 2. LEGACY: content1 / Add_Image / content2
-    const legacy = [];
-    if (item.content1) legacy.push({ kind: "content", html: clean(item.content1), key: "lc1" });
-    if (Array.isArray(item.Add_Image) && item.Add_Image.length) {
-      legacy.push({ kind: "swiper", urls: item.Add_Image, key: "lsw" });
-    }
-    if (item.content2) legacy.push({ kind: "content", html: clean(item.content2), key: "lc2" });
-    return legacy;
+    return { blocks: out, headings: toc };
   }, [item]);
 
-  // Build the "In this story" TOC dynamically from the blog's own headings.
-  // Works for every blog (not hardcoded): prefer h2 sections; if a post only
-  // uses h3 subheadings, fall back to those so the sidebar still appears.
+  // Publish the extracted headings to the sidebar TOC.
   useEffect(() => {
-    if (!containerRef.current) return;
-    const seen = new Set();
-    const collect = (sel, level) =>
-      [...containerRef.current.querySelectorAll(sel)].map((h, i) => {
-        const text = (h.textContent || "").trim();
-        if (!text) return null;
-        let slug = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `section-${level}-${i}`;
-        while (seen.has(slug)) slug += "-x";
-        seen.add(slug);
-        if (!h.id) h.id = slug;
-        return { id: h.id, label: text, level };
-      }).filter(Boolean);
-
-    const h2 = collect("h2", 2);
-    // include h3 too — as sub-items under h2, or as the only items if no h2
-    const h3 = collect("h3", 3);
-    const headings = h2.length ? [...h2, ...h3].sort((a, b) => {
-      const ax = document.getElementById(a.id), bx = document.getElementById(b.id);
-      return (ax?.compareDocumentPosition(bx) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
-    }) : h3;
     onHeadingsExtracted?.(headings);
-  }, [blocks, onHeadingsExtracted]);
+  }, [headings, onHeadingsExtracted]);
 
   return (
     <Box ref={containerRef} className="nt-article-body" sx={{
@@ -187,6 +190,7 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
       "& h3": {
         fontFamily: PLAYFAIR, fontSize: 22, fontWeight: 700, color: TEXT_DARK,
         letterSpacing: "-.01em", lineHeight: 1.28, margin: "40px 0 14px", textAlign: "left",
+        scrollMarginTop: 80,
       },
       "& a": { color: ORANGE, fontWeight: 600, borderBottom: "1px solid rgba(205,72,42,.3)" },
       "& a:hover": { borderBottomColor: ORANGE },
@@ -328,7 +332,7 @@ const TableOfContents = ({ headings }) => {
 
   if (!headings.length) return null;
   return (
-    <Box sx={{ position: "sticky", top: 84, display: { xs: "none", lg: "block" }, fontFamily: INTER }}>
+    <Box component="nav" aria-label="In this story" sx={{ position: "sticky", top: 84, display: { xs: "none", lg: "block" }, fontFamily: INTER }}>
       <Box sx={{
         fontSize: 10.5, fontWeight: 800, letterSpacing: ".16em", textTransform: "uppercase",
         color: TEXT_LIGHTER, mb: 1.8,
@@ -336,7 +340,7 @@ const TableOfContents = ({ headings }) => {
       <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0, borderLeft: `1.5px solid ${LINE}` }}>
         {headings.map(h => (
           <Box component="li" key={h.id}>
-            <Box component="a" href={`#${h.id}`} sx={{
+            <Box component="a" href={`#${h.id}`} aria-current={activeId === h.id ? "location" : undefined} sx={{
               display: "block", py: 1, pl: h.level === 3 ? 3.5 : 2, fontSize: h.level === 3 ? 12.5 : 13,
               color: activeId === h.id ? ORANGE : TEXT_LIGHT,
               fontWeight: activeId === h.id ? 600 : 400,
