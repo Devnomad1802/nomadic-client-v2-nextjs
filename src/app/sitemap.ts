@@ -8,6 +8,12 @@ import type { MetadataRoute } from "next";
 // failure degrades gracefully to the static set so the build never breaks.
 // ─────────────────────────────────────────────────────────────
 
+// Regenerate the whole sitemap hourly (ISR). Without a route-level revalidate
+// the sitemap is built once at deploy and goes stale, so newly-published blogs
+// and trips never appear until the next deploy — which is why the Banaras blog
+// was missing. 3600s = matches the per-fetch revalidate below.
+export const revalidate = 3600;
+
 const SITE = "https://www.nomadictownies.com";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "https://api.nomadictownies.com/api";
 
