@@ -1,4 +1,5 @@
 import React from "react";
+import { notFound } from "next/navigation";
 import BlogDetail from "@/Component/BlogDetail";
 import { getBlogs } from "@/utils/serverFetch";
 import { Metadata } from "next";
@@ -64,6 +65,9 @@ export default async function Page({ params }: Props) {
   const blogsRes = await getBlogs();
   const blogs = blogsRes?.data || [];
   const item = blogs.find((b: any) => b.seoSlug === slug || b._id === slug);
+
+  // Return a real 404 (not a soft-404 at HTTP 200) for unknown slugs.
+  if (!item) notFound();
 
   return <BlogDetail initialBlog={item} initialAllBlogs={blogs} />;
 }
