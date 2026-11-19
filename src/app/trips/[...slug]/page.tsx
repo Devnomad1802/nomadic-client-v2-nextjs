@@ -4,7 +4,7 @@ import CategorieDetails from "@/Component/Home/CategorieDetails";
 import { getTrips, getReviews, getCategories, getTripReviews } from "@/utils/serverFetch";
 import { matchTemplate } from "@/Component/Home/categoryCards";
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 
 const FALLBACK_IMAGE =
   "https://nomadic-townies-assets.sgp1.cdn.digitaloceanspaces.com/about-images/aboutbg1.jpg";
@@ -258,8 +258,10 @@ export default async function Page({ params }: Props) {
   const list = Array.isArray(tripsRes?.data) ? tripsRes.data : [];
   const rawTrip = list.find((t: any) => t.seoSlug === decodedSlug) || list.find((t: any) => t._id === decodedSlug);
 
+  // Genuinely missing trip → real 404 (not a redirect to the listing, which
+  // Google treats as a soft-404 and which hides the broken link).
   if (!rawTrip) {
-    redirect("/experiences");
+    notFound();
   }
 
   // Strict isolation: reviews for THIS trip only (by stable _id), never the

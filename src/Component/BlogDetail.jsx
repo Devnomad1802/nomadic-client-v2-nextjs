@@ -139,13 +139,22 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
         return `<${tag}${attrs} id="${slug}">${inner}</${tag}>`;
       });
 
+    // Give body images a non-empty alt (accessibility + image SEO) when the
+    // author left it off. Falls back to the article title; descriptive
+    // per-image alts can still be authored in the CMS.
+    const altFallback = (item.title || "Nomadic Townies travel story").replace(/"/g, "&quot;");
+    const addAlts = (html) =>
+      (html || "").replace(/<img\b([^>]*?)>/gi, (m, attrs) =>
+        /\balt\s*=/i.test(attrs) ? m : `<img${attrs} alt="${altFallback}">`
+      );
+
     let out;
     // 1. NEW: structured items[]
     if (Array.isArray(item.items) && item.items.length) {
       out = [...item.items]
         .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
         .map((it, idx) => {
-          if (it.type === "content") return { kind: "content", html: addIds(clean(it.content)), key: `c${idx}` };
+          if (it.type === "content") return { kind: "content", html: addIds(addAlts(clean(it.content))), key: `c${idx}` };
           if (it.type === "image") {
             const url = it.imageUrl || (item.images && item.images[it.imageIndex]) || null;
             return { kind: "image", url, caption: it.caption || "", key: `i${idx}` };
@@ -156,11 +165,11 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
     } else {
       // 2. LEGACY: content1 / Add_Image / content2
       out = [];
-      if (item.content1) out.push({ kind: "content", html: addIds(clean(item.content1)), key: "lc1" });
+      if (item.content1) out.push({ kind: "content", html: addIds(addAlts(clean(item.content1))), key: "lc1" });
       if (Array.isArray(item.Add_Image) && item.Add_Image.length) {
         out.push({ kind: "swiper", urls: item.Add_Image, key: "lsw" });
       }
-      if (item.content2) out.push({ kind: "content", html: addIds(clean(item.content2)), key: "lc2" });
+      if (item.content2) out.push({ kind: "content", html: addIds(addAlts(clean(item.content2))), key: "lc2" });
     }
     return { blocks: out, headings: toc };
   }, [item]);
@@ -470,7 +479,7 @@ const NewsletterInline = () => {
 };
 
 // ─── Main ────────────────────────────────────────────────────
-const BlogDetail = ({ initialBlog, initialAllBlogs }) => {
+const BlogDetail = ({ initialBlog, initialAllBlogs, linkedTrip = null, linkedTripUrl = null }) => {
   let slugOrId;
   try {
     const params = useParams();
@@ -549,13 +558,8 @@ const BlogDetail = ({ initialBlog, initialAllBlogs }) => {
           <meta property="twitter:title" content={`${title} | Nomadic Townies`} />
           <meta property="twitter:description" content={safeMeta} />
           {item.Banner_Image && <meta property="twitter:image" content={item.Banner_Image} />}
-          <script type="application/ld+json">{JSON.stringify({
-            "@context": "https://schema.org", "@type": "BlogPosting",
-            "headline": title, "image": item.Banner_Image ? [item.Banner_Image] : [],
-            "datePublished": item.Date, "author": { "@type": "Person", "name": item.author || "Nomadic Townies" },
-            "publisher": { "@type": "Organization", "name": "Nomadic Townies", "logo": { "@type": "ImageObject", "url": "https://www.nomadictownies.com/nt.png" } },
-            "description": safeMeta,
-          })}</script>
+          {/* BlogPosting + BreadcrumbList JSON-LD now rendered server-side in
+              blog/[slug]/page.tsx so it appears in crawlable HTML. */}
         </Helmet>
       )}
 
@@ -690,6 +694,39 @@ const BlogDetail = ({ initialBlog, initialAllBlogs }) => {
                 })()}
               </Box>
             </Box>
+
+            {linkedTripUrl && (
+              <Box
+                component="a"
+                href={linkedTripUrl}
+                sx={{
+                  display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between",
+                  gap: 2, my: 4, p: { xs: 2.5, md: 3 }, borderRadius: "16px",
+                  border: "1px solid #E7D9C9", background: "linear-gradient(135deg,#FFF7EE,#FDEFE2)",
+                  textDecoration: "none", color: "#2A2016",
+                }}
+              >
+                <Box sx={{ minWidth: 0 }}>
+                  <Box sx={{ fontSize: 13, fontWeight: 700, letterSpacing: ".04em", color: "#B84429", textTransform: "uppercase" }}>
+                    Travel this story
+                  </Box>
+                  <Box sx={{ fontSize: { xs: 18, md: 20 }, fontWeight: 800, mt: 0.5 }}>
+                    {linkedTrip?.title || "Book this experience"}
+                  </Box>
+                  {linkedTrip?.location && (
+                    <Box sx={{ fontSize: 14, color: "#6B5B4B", mt: 0.25 }}>{linkedTrip.location}</Box>
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    flexShrink: 0, px: 3, py: 1.25, borderRadius: "999px", fontWeight: 700, fontSize: 15,
+                    background: "#B84429", color: "#fff", whiteSpace: "nowrap",
+                  }}
+                >
+                  Book this trip →
+                </Box>
+              </Box>
+            )}
 
             <AuthorBio author={item.author} location={item.location} bio={item.authorBio} />
             <NewsletterInline />
