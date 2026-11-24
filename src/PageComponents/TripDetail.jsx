@@ -16,6 +16,7 @@ import { useGetTripsQuery } from "../services/TripApis";
 import { useGetUserReviewsByTripIdQuery } from "../services";
 import LoginModal from "../Modals/LoginModal";
 import Footer from "../Component/Footer";
+import { useApprovalCta, RequestToJoinModal } from "../SmallComponents/ApprovalBooking";
 
 // Brand tokens — consistent with the rest of the site.
 const ACCENT = "#CF4A2C";
@@ -267,6 +268,18 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prevOverflow; };
   }, [lbIndex, trip?.images]);
 
+  // Host-approval CTA (no-op for instant trips). Must run before the early
+  // returns below to keep hook order stable.
+  const cta = useApprovalCta({
+    trip: raw,
+    isLoggedIn: !!userDbData,
+    onBookNow: () => {
+      if (!userDbData) { setOpenL(true); return; }
+      navigate("/payment", { state: { paymentDetail: raw } });
+    },
+    onRequireLogin: () => setOpenL(true),
+  });
+
   if (tripsRes && !raw) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Trip not found.</div>;
   if (!trip) return <div style={{ minHeight: "60vh", display: "grid", placeItems: "center", color: "#726A5E" }}>Loading…</div>;
 
@@ -274,11 +287,6 @@ export default function TripDetail({ initialRaw, initialReviews }) {
     setActive(label);
     const el = rootRef.current?.querySelector(`#${id}`);
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 118, behavior: "smooth" });
-  };
-
-  const handleBookNow = () => {
-    if (!userDbData) { setOpenL(true); return; }
-    navigate("/payment", { state: { paymentDetail: raw } }); // unchanged booking flow
   };
 
   const goHost = () => {
@@ -642,7 +650,8 @@ export default function TripDetail({ initialRaw, initialReviews }) {
                   {trip.hasStrike && <span style={{ font: `600 13px/1 ${BODY}`, color: "#B3ABA3", textDecoration: "line-through" }}>₹ {trip.strikePrice}</span>}
                   <span style={{ font: `500 12px/1 ${BODY}`, color: "#9A9080" }}>/ person</span>
                 </div>
-                <button type="button" className="td-cta" onClick={handleBookNow} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px", font: `700 15px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "12px", cursor: "pointer", boxShadow: "0 8px 20px rgba(205,72,42,.26)" }}>Book now <span style={{ fontSize: "16px" }}>→</span></button>
+                <button type="button" className="td-cta" onClick={cta.onClick} disabled={cta.disabled} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", padding: "15px", font: `700 15px/1 ${BODY}`, color: "#fff", background: cta.disabled ? "#C9BDB0" : ACCENT, border: "none", borderRadius: "12px", cursor: cta.disabled ? "default" : "pointer", boxShadow: cta.disabled ? "none" : "0 8px 20px rgba(205,72,42,.26)" }}>{cta.label} {!cta.disabled && <span style={{ fontSize: "16px" }}>→</span>}</button>
+                {cta.isApproval && <div style={{ marginTop: "8px", font: `500 11px/1.4 ${BODY}`, color: "#9A9080", textAlign: "center" }}>Host-approved trip · no payment to request</div>}
                 {trip.partialEnabled && (
                   <p style={{ margin: "10px 0 0", textAlign: "center", font: `600 11.5px/1.4 ${BODY}`, color: "#2E7D4F" }}>
                     Book now for ₹ {inr(trip.firstBookingPrice)} — balance due 15 days before departure
@@ -673,8 +682,11 @@ export default function TripDetail({ initialRaw, initialReviews }) {
       {/* MOBILE STICKY CTA */}
       <div className="td-mcta" style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40, display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "#FFFFFF", borderTop: "1px solid #E6DDCF" }}>
         <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "19px", color: "#221C17" }}>₹ {trip.price}</div><div style={{ font: `400 11px/1 ${BODY}`, color: "#9A9080" }}>per person</div></div>
-        <button type="button" className="td-cta" onClick={handleBookNow} style={{ flex: "none", padding: "14px 30px", font: `700 15px/1 ${BODY}`, color: "#fff", background: ACCENT, border: "none", borderRadius: "12px", cursor: "pointer" }}>Book now →</button>
+        <button type="button" className="td-cta" onClick={cta.onClick} disabled={cta.disabled} style={{ flex: "none", padding: "14px 30px", font: `700 14px/1 ${BODY}`, color: "#fff", background: cta.disabled ? "#C9BDB0" : ACCENT, border: "none", borderRadius: "12px", cursor: cta.disabled ? "default" : "pointer" }}>{cta.label}{!cta.disabled && " →"}</button>
       </div>
+      {cta.isApproval && (
+        <RequestToJoinModal open={cta.modalOpen} onClose={() => cta.setModalOpen(false)} trip={raw} />
+      )}
 
       {/* GALLERY LIGHTBOX */}
       {lbIndex !== null && trip.images[lbIndex] && (

@@ -42,7 +42,7 @@ const baseQueryWithCdn = async (args, apiArg, extra) => {
 
 export const api = createApi({
   reducerPath: "apis",
-  tagTypes: ["Hosts", "Trips", "Reviews", "Categories", "User", "Users", "Bookings", "Wishlist"],
+  tagTypes: ["Hosts", "Trips", "Reviews", "Categories", "User", "Users", "Bookings", "Wishlist", "joinRequests"],
   baseQuery: baseQueryWithCdn,
   endpoints: () => ({}),
 });

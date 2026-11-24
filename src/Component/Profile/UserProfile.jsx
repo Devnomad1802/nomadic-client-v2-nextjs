@@ -7,12 +7,14 @@ import { Container } from "@mui/material";
 import { setUserDbData, setAuthenticated } from "../../slices";
 import { useEditUserProfileMutation } from "../../services";
 import MyTripsPanel from "./MyTripsPanel";
+import MyApplicationsPanel from "./MyApplicationsPanel";
 import SavedTripsPanel from "./SavedTripsPanel";
 import ReviewsPanel from "./ReviewsPanel";
 
 const TABS = [
   { key: "account", icon: "◍", label: "My Account" },
   { key: "trips", icon: "⛰", label: "My Trips" },
+  { key: "applications", icon: "✦", label: "My Applications" },
   { key: "saved", icon: "♥", label: "Saved Trips" },
   { key: "reviews", icon: "✎", label: "My Reviews" },
   { key: "settings", icon: "⚙", label: "Settings" },
@@ -208,6 +210,14 @@ const UserProfile = () => {
               <h2 className="nt-h2">My Trips</h2>
               <p className="nt-sub">Your bookings and balances. Open a trip to see details and pay any remaining amount.</p>
               <div className="nt-embed"><MyTripsPanel /></div>
+            </>
+          )}
+
+          {tab === "applications" && (
+            <>
+              <h2 className="nt-h2">My Applications</h2>
+              <p className="nt-sub">Your requests to join host-approved trips. No payment is needed to apply.</p>
+              <div className="nt-embed"><MyApplicationsPanel /></div>
             </>
           )}
 
