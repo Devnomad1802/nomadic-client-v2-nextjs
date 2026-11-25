@@ -143,10 +143,13 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* Razorpay Script */}
+        {/* Razorpay Script — loads right after hydration (not on idle) so the
+            checkout constructor is ready well before a user can reach a pay
+            button. `ensureRazorpay()` (src/utils/razorpay.js) still guards every
+            call site for slow networks / blockers. */}
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
 
         {/* Google Tag Manager */}
