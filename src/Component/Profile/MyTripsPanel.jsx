@@ -11,6 +11,7 @@ import {
   useGetPaymentCapabilityQuery,
 } from "../../services";
 import { fmtDueDate } from "../../utils/balanceDue";
+import { ensureRazorpay } from "../../utils/razorpay";
 import { downloadInvoice } from "../../utils/invoiceDownload";
 import PaymentMaintenanceNotice from "../../Payment/PaymentMaintenanceNotice";
 
@@ -100,7 +101,10 @@ const MyTripsPanel = () => {
     try {
       const so = await createBalanceOrder({ bookingId: b._id }).unwrap();
       if (!so?.orderId || !so?.key) return alert("Payments are temporarily unavailable. Please try again later.");
-      const rzp = new window.Razorpay({
+      let Rzp;
+      try { Rzp = await ensureRazorpay(); }
+      catch { return navigate("/paymentfail", { state: { reason: "init" } }); }
+      const rzp = new Rzp({
         key: so.key, amount: so.amount * 100, currency: so.currency || "INR",
         name: "Nomadic Townies", description: "Trip Balance Payment", order_id: so.orderId,
         handler: async (response) => {

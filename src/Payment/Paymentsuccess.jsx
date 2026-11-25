@@ -7,6 +7,7 @@ import { useCreateBalanceOrderMutation, useConfirmBalancePaymentMutation, useGet
 import PaymentMaintenanceNotice from "./PaymentMaintenanceNotice";
 import { useGetTripsQuery } from "../services/TripApis";
 import { fmtDueDate } from "../utils/balanceDue";
+import { ensureRazorpay } from "../utils/razorpay";
 import { downloadInvoice } from "../utils/invoiceDownload";
 import Footer from "../Component/Footer";
 
@@ -88,7 +89,10 @@ const Paymentsuccess = () => {
     try {
       const so = await createBalanceOrder({ bookingId: data._id }).unwrap();
       if (!so?.orderId || !so?.key) throw new Error("no order");
-      const rzp = new window.Razorpay({
+      let Rzp;
+      try { Rzp = await ensureRazorpay(); }
+      catch { navigate("/paymentfail", { state: { reason: "init" } }); return; }
+      const rzp = new Rzp({
         key: so.key, amount: so.amount * 100, currency: so.currency || "INR",
         name: "Nomadic Townies", description: "Trip Balance Payment", order_id: so.orderId,
         handler: async (response) => {

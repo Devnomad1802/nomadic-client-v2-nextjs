@@ -15,6 +15,7 @@ import Toastify from "../SmallComponents/Tostify";
 import { useSelector } from "react-redux";
 import LoginModal from "../Modals/LoginModal";
 import { fmtDueDate } from "../utils/balanceDue";
+import { ensureRazorpay } from "../utils/razorpay";
 import Footer from "../Component/Footer";
 
 // Brand tokens — kept consistent with the rest of the website
@@ -335,10 +336,22 @@ const BookingOverview = () => {
         },
       };
 
-      const rzp1 = new window.Razorpay(options);
+      // Make sure the Razorpay checkout script is actually ready before we
+      // construct it. On a fast/cold load (or with a blocker) window.Razorpay
+      // can still be undefined here — await it instead of throwing.
+      let Rzp;
+      try {
+        Rzp = await ensureRazorpay();
+      } catch (loadErr) {
+        console.error("Razorpay script unavailable:", loadErr?.code || loadErr);
+        navigate("/paymentfail", { state: { reason: "init" } });
+        return;
+      }
+
+      const rzp1 = new Rzp(options);
       rzp1.on("payment.failed", (resp) => {
         console.error("Payment failed:", resp?.error);
-        navigate("/paymentfail");
+        navigate("/paymentfail", { state: { reason: "failed" } });
       });
       rzp1.open();
     } catch (error) {
@@ -350,7 +363,7 @@ const BookingOverview = () => {
         return;
       }
       showToast("Could not start payment. Please try again.", "error");
-      navigate("/paymentfail");
+      navigate("/paymentfail", { state: { reason: "order" } });
     }
   };
 

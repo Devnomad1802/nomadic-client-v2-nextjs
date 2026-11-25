@@ -8,6 +8,7 @@ import { Box, Button, Grid, Typography, Accordion, AccordionSummary, AccordionDe
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ensureRazorpay } from "../../../utils/razorpay";
 import {
   useGetPartialTripMutation,
   useCreateBalanceOrderMutation,
@@ -117,10 +118,13 @@ const TravelHistory = () => {
         },
       };
 
-      const rzp1 = new window.Razorpay(options);
+      let Rzp;
+      try { Rzp = await ensureRazorpay(); }
+      catch { return navigate("/paymentfail", { state: { reason: "init" } }); }
+      const rzp1 = new Rzp(options);
       rzp1.on("payment.failed", (response) => {
         console.error("Payment failed:", response?.error);
-        navigate("/paymentfail");
+        navigate("/paymentfail", { state: { reason: "failed" } });
       });
       rzp1.open();
     } catch (error) {
