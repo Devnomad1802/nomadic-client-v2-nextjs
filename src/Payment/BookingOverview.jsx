@@ -241,11 +241,22 @@ const BookingOverview = () => {
     amount: `– ₹ ${inr(discountAmount)}`,
     color: "#2E7D4F",
   });
+  // Fees & Taxes: a parent group whose amount is the SUM of its children (today
+  // only GST). Presentation-only — the payable Total is unchanged. Extensible:
+  // further approved, disclosed fees become additional `sub` rows in the sum.
   lineItems.push({
-    label: "GST @ 5%",
+    label: "Fees & Taxes",
     qty: "",
     amount: `₹ ${inr(cardData.gstTax)}`,
     color: "#3C3228",
+    parent: true,
+  });
+  lineItems.push({
+    label: "GST 5%",
+    qty: "",
+    amount: `₹ ${inr(cardData.gstTax)}`,
+    color: "#8A8073",
+    sub: true,
   });
 
   // ---------------------------------------------------------------------------
@@ -604,10 +615,10 @@ const BookingOverview = () => {
               </div>
 
               {lineItems.map((li, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: "14px 0", borderBottom: "1px solid #EFE7DA" }}>
-                  <span style={{ flex: 1, font: `600 15px/1.3 ${BODY_FONT}`, color: "#3C3228" }}>{li.label}</span>
+                <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: li.sub ? "6px 0 14px" : li.parent ? "14px 0 2px" : "14px 0", borderBottom: li.parent ? "none" : "1px solid #EFE7DA" }}>
+                  <span style={{ flex: 1, font: li.sub ? `400 13px/1.3 ${BODY_FONT}` : `600 15px/1.3 ${BODY_FONT}`, color: li.sub ? "#8A8073" : "#3C3228", paddingLeft: li.sub ? "14px" : 0 }}>{li.label}</span>
                   <span style={{ font: `400 14px/1.3 ${BODY_FONT}`, color: "#A89C8A", whiteSpace: "nowrap" }}>{li.qty}</span>
-                  <span style={{ minWidth: 100, font: `600 15px/1.3 ${BODY_FONT}`, color: li.color, textAlign: "right", whiteSpace: "nowrap" }}>{li.amount}</span>
+                  <span style={{ minWidth: 100, font: li.sub ? `400 13px/1.3 ${BODY_FONT}` : `600 15px/1.3 ${BODY_FONT}`, color: li.color, textAlign: "right", whiteSpace: "nowrap" }}>{li.amount}</span>
                 </div>
               ))}
 

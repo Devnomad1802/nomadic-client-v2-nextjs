@@ -441,7 +441,14 @@ const Payment = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "13px", paddingBottom: "16px", borderBottom: "1px solid #F1EADD" }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `400 14px/1 ${BODY_FONT}`, color: "#5A5247" }}>Amount</span><span style={{ font: `500 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(totalAmount)}</span></div>
             <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `400 14px/1 ${BODY_FONT}`, color: "#5A5247" }}>Discount</span><span style={{ font: `500 14px/1 ${BODY_FONT}`, color: "#2E7D4F" }}>− ₹ {inr(coupenDiscount)}</span></div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `400 14px/1 ${BODY_FONT}`, color: "#5A5247" }}>GST (5%)</span><span style={{ font: `500 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(gstAmount)}</span></div>
+            {/* Fees & Taxes: a parent group whose amount is the SUM of its children
+                (today only GST). Presentation-only — the payable total is unchanged.
+                Extensible: additional approved, disclosed fees would be added as
+                further child rows and included in the parent sum. */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>Fees & Taxes</span><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(gstAmount)}</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between", paddingLeft: "14px" }}><span style={{ font: `400 13px/1 ${BODY_FONT}`, color: "#8A8073" }}>GST 5%</span><span style={{ font: `400 13px/1 ${BODY_FONT}`, color: "#8A8073" }}>₹ {inr(gstAmount)}</span></div>
+            </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>Amount to Pay</span><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(finalAmount)}</span></div>
           </div>
 
