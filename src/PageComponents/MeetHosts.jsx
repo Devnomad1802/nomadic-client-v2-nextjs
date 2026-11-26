@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./meetHosts.css";
 import Footer from "../Component/Footer";
 import BecomeHostModal from "./BecomeHostModal";
@@ -140,13 +139,7 @@ const MeetHosts = ({ initialHosts }) => {
   return (
     <div className="mhpg">
       <style>{HOST_CARD_CSS}</style>
-      <Helmet>
-        <title>Meet Our Hosts | Verified Experience Hosts | Nomadic Townies</title>
-        <meta name="description" content="Browse verified local hosts, community hosts and experience hosts on Nomadic Townies — a curated marketplace of host-led experiences. Every trip is hosted by a real, verified person or community." />
-        <link rel="canonical" href="https://www.nomadictownies.com/hosts" />
-        <meta property="og:title" content="Meet Our Hosts | Verified Experience Hosts | Nomadic Townies" />
-        <meta property="og:description" content="Discover real, verified hosts — adventure, wellness, backpacking and cultural experience hosts leading host-led experiences." />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       {/* HERO */}
       <section className="hero">

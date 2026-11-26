@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
-import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
 import Footer from "../Component/Footer";
 
@@ -36,41 +35,7 @@ const Careers = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Careers at Nomadic Townies | Join Our Travel Team</title>
-        <meta
-          name="description"
-          content="Love travel? Join the Nomadic Townies team. We're hiring passionate people to help us craft unforgettable adventures across India and beyond. View open roles."
-        />
-        <link rel="canonical" href="https://www.nomadictownies.com/careers" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content="Careers at Nomadic Townies | Join Our Travel Team"
-        />
-        <meta
-          property="og:description"
-          content="Love travel? Join the Nomadic Townies team. We're hiring passionate people to help craft unforgettable adventures across India and beyond."
-        />
-        <meta property="og:url" content="https://www.nomadictownies.com/careers" />
-        <meta
-          property="og:image"
-          content="https://nomadic-townies-assets.sgp1.cdn.digitaloceanspaces.com/about-images/aboutbg1.jpg"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Careers at Nomadic Townies | Join Our Travel Team"
-        />
-        <meta
-          name="twitter:description"
-          content="Love travel? Join the Nomadic Townies team and help craft unforgettable adventures."
-        />
-        <meta
-          name="twitter:image"
-          content="https://nomadic-townies-assets.sgp1.cdn.digitaloceanspaces.com/about-images/aboutbg1.jpg"
-        />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       <Box>
         {/* Hero */}

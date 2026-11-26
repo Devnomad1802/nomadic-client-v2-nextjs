@@ -10,7 +10,6 @@
  */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "../Component/Home/homeV3.css";
 import "./becomeAHost.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -54,13 +53,7 @@ const BecomeAHost = () => {
 
   return (
     <div className="ntv3 bah">
-      <Helmet>
-        <title>Become a Host | How It Works | Nomadic Townies</title>
-        <meta name="description" content="Learn how to become a host on Nomadic Townies. Apply, complete your profile, get approved and start hosting host-led experiences for curious travellers." />
-        <link rel="canonical" href="https://www.nomadictownies.com/become-a-host" />
-        <meta property="og:title" content="Become a Host | Nomadic Townies" />
-        <meta property="og:description" content="Share your expertise and stories. Apply to host curated, host-led experiences on Nomadic Townies." />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       <BecomeHostModal open={openApply} onClose={() => setOpenApply(false)} />
 

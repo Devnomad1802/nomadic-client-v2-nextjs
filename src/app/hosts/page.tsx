@@ -9,7 +9,7 @@ const OG_IMAGE =
 export const metadata: Metadata = {
   title: "Meet Our Hosts | Verified Local Experience Hosts | Nomadic Townies",
   description:
-    "Browse verified local hosts, community hosts and experience hosts on Nomadic Townies — a curated marketplace of host-led experiences. Every trip is hosted by a real, verified person or community.",
+    "Browse verified local hosts and communities on Nomadic Townies. Every trip is led by a real, verified host — adventure, wellness, backpacking and culture.",
   alternates: {
     canonical: "https://www.nomadictownies.com/hosts",
   },

@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./termsAndConditions.css";
 import Footer from "../Component/Footer";
 
@@ -149,11 +148,7 @@ const TermsAndConditions = () => {
 
   return (
     <div className="tc-page">
-      <Helmet>
-        <title>Terms and Conditions | Nomadic Townies</title>
-        <meta name="description" content="Read the terms and conditions for booking travel experiences with Nomadic Townies." />
-        <link rel="canonical" href="https://www.nomadictownies.com/terms-and-conditions" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       {/* header (logo intentionally omitted per brand request) */}
       <header className="tc-header">

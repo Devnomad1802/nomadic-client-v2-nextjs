@@ -2,7 +2,6 @@
 
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import "./contactPage.css";
 import Footer from "../Component/Footer";
 import { useEnquirMutation } from "../services/EnquirApi";
@@ -76,11 +75,7 @@ const ContactUs = ({ contactbg }) => {
 
   return (
     <div className="ctpg">
-      <Helmet>
-        <title>Contact Us | Nomadic Townies</title>
-        <meta name="description" content="Contact Nomadic Townies for custom trip planning, host or experience enquiries, or travel support. Reach us via phone, email or the enquiry form." />
-        <link rel="canonical" href="https://www.nomadictownies.com/contact-us" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       {/* HERO */}
       <section className="hero">
