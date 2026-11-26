@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./hostPage.css";
 import Footer from "../Footer";
 import HostGallery from "./HostGallery";
@@ -443,16 +442,9 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const seoTitle = `${name} | Travel Host | Nomadic Townies`;
-  const seoDesc = host?.tagline
-    ? `${host.tagline} — discover host-led experiences with ${name} on Nomadic Townies.`
-    : `Discover host-led community trips, retreats and cultural immersions with ${name} on Nomadic Townies.`;
-
   if (!id || isLoading) {
     return <div className="hd-page"><div className="hd-loading">Loading host…</div></div>;
   }
-
-  const activeSlug = host?.seoSlug || host?._id || slugOrId;
 
   // Loading / Not-Found states — never render the empty host scaffold as a
   // blank page (all hooks above have already run, so this early return is safe).
@@ -478,15 +470,9 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
 
   return (
     <div className="hd-page">
-      <Helmet>
-        <title>{seoTitle}</title>
-        <meta name="description" content={seoDesc} />
-        <link rel="canonical" href={`https://www.nomadictownies.com/hosts/${activeSlug}`} />
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content={seoTitle} />
-        <meta property="og:description" content={seoDesc} />
-        {host?.coverImage || host?.brandingLogo ? <meta property="og:image" content={host.coverImage || host.brandingLogo} /> : null}
-      </Helmet>
+      {/* Title / description / canonical / OG / JSON-LD are emitted server-side
+          by hosts/[...slug]/page.tsx (generateMetadata + host JSON-LD). A client
+          <Helmet> here previously produced a duplicate, disagreeing <title>. */}
 
       {/* ---------- breadcrumb sub-header ---------- */}
       <header className="hd-topbar">
