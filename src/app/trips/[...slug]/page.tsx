@@ -2,6 +2,7 @@ import React from "react";
 import TripDetail from "@/PageComponents/TripDetail";
 import CategorieDetails from "@/Component/Home/CategorieDetails";
 import { getTrips, getReviews, getCategories, getTripReviews } from "@/utils/serverFetch";
+import { tripTitle, tripDescription, buildTripJsonLd } from "@/utils/tripSeo";
 import { matchTemplate } from "@/Component/Home/categoryCards";
 import { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
@@ -94,28 +95,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       const activeSlug = isSingleTrip.seoSlug || isSingleTrip._id;
       const destSlug = slugify(isSingleTrip.location || isSingleTrip.destination || "trip");
       const pageUrl = `https://www.nomadictownies.com/trips/${destSlug}/${activeSlug}`;
-      const ogImage = isSingleTrip.tripImages?.[0] || isSingleTrip.coverImage || isSingleTrip.Banner_Image || FALLBACK_IMAGE;
-      const description =
-        isSingleTrip.description ||
-        isSingleTrip.shortDescription ||
-        `Join ${isSingleTrip.title || "this unique community trip"} with Nomadic Townies.`;
+      const ogImage = isSingleTrip.bannerImage || isSingleTrip.tripImages?.[0] || isSingleTrip.coverImage || isSingleTrip.Banner_Image || FALLBACK_IMAGE;
+      // Prefer the curated DB SEO fields (seoTitle / metaDescription), then a
+      // clean truncation of the rich-text overview, then a safe fallback.
+      const metaTitle = tripTitle(isSingleTrip);
+      const description = tripDescription(isSingleTrip);
 
       return {
-        title: `${isSingleTrip.title || "Adventure Trip"} | Nomadic Townies`,
+        title: metaTitle,
         description,
         alternates: { canonical: pageUrl },
         openGraph: {
           type: "article",
           url: pageUrl,
           siteName: "Nomadic Townies",
-          title: `${isSingleTrip.title || "Adventure Trip"} | Nomadic Townies`,
+          title: metaTitle,
           description,
           images: [{ url: ogImage, width: 1200, height: 630, alt: isSingleTrip.title || "Nomadic Townies Trip" }],
           locale: "en_IN",
         },
         twitter: {
           card: "summary_large_image",
-          title: `${isSingleTrip.title || "Adventure Trip"} | Nomadic Townies`,
+          title: metaTitle,
           description,
           images: [ogImage],
         },
@@ -173,28 +174,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const activeSlug = trip.seoSlug || trip._id || targetSlug;
   const destSlug = slugify(trip.location || trip.destination || "trip");
   const pageUrl = `https://www.nomadictownies.com/trips/${destSlug}/${activeSlug}`;
-  const ogImage = trip.tripImages?.[0] || trip.coverImage || trip.Banner_Image || FALLBACK_IMAGE;
-  const description =
-    trip.description ||
-    trip.shortDescription ||
-    `Join ${trip.title || "this unique community trip"} with Nomadic Townies.`;
+  const ogImage = trip.bannerImage || trip.tripImages?.[0] || trip.coverImage || trip.Banner_Image || FALLBACK_IMAGE;
+  const metaTitle = tripTitle(trip);
+  const description = tripDescription(trip);
 
   return {
-    title: `${trip.title || "Adventure Trip"} | Nomadic Townies`,
+    title: metaTitle,
     description,
     alternates: { canonical: pageUrl },
     openGraph: {
       type: "article",
       url: pageUrl,
       siteName: "Nomadic Townies",
-      title: `${trip.title || "Adventure Trip"} | Nomadic Townies`,
+      title: metaTitle,
       description,
       images: [{ url: ogImage, width: 1200, height: 630, alt: trip.title || "Nomadic Townies Trip" }],
       locale: "en_IN",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${trip.title || "Adventure Trip"} | Nomadic Townies`,
+      title: metaTitle,
       description,
       images: [ogImage],
     },
@@ -268,5 +267,21 @@ export default async function Page({ params }: Props) {
   // global marketing review list.
   const reviewsRes = await getTripReviews(rawTrip._id);
   const reviews = Array.isArray(reviewsRes?.data) ? reviewsRes.data : [];
-  return <TripDetail initialRaw={rawTrip} initialReviews={reviews} />;
+
+  // Structured data for the trip detail page (TouristTrip + BreadcrumbList),
+  // built from verified fields only. Rendered server-side so it's in the raw
+  // HTML. The single page <title>/description/canonical come from
+  // generateMetadata above — TripDetail no longer emits its own (that caused
+  // duplicate <title> and a conflicting canonical).
+  const jsonLd = buildTripJsonLd(rawTrip, reviews);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <TripDetail initialRaw={rawTrip} initialReviews={reviews} />
+    </>
+  );
 }
