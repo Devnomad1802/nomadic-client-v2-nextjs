@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useMemo, useState, useEffect } from "react";
 import { useNavigate, useParams, useSearchParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./blogs.css";
 import "../Component/Home/homeV3.css";
 import Footer from "../Component/Footer";
@@ -155,20 +154,11 @@ const Blogs = ({ initialBlogs, initialCategory = "" }) => {
     </Link>
   );
 
-  const canonicalUrl = loc !== "all"
-    ? `https://www.nomadictownies.com/blog/category/${slugify(loc)}`
-    : "https://www.nomadictownies.com/blog";
-
   return (
     <div className="blogpg">
-      <Helmet>
-        <title>{displayCatName ? `Category: ${displayCatName} | Nomadic Townies Blog` : "Travel Blogs & Destination Guides | Nomadic Townies"}</title>
-        <meta name="description" content={displayCatName ? `Explore travel stories and guides under ${displayCatName} by Nomadic Townies.` : "Explore travel blogs, destination guides, trip itineraries & travel tips by Nomadic Townies. Get inspired for your next adventure in India & beyond."} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={displayCatName ? `Category: ${displayCatName} | Nomadic Townies Blog` : "Travel Blogs & Destination Guides | Nomadic Townies"} />
-        <meta property="og:description" content="Explore travel blogs, destination guides, trip itineraries &amp; travel tips by Nomadic Townies." />
-        <meta property="og:url" content={canonicalUrl} />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG) come from the route's
+          server metadata in app/blog/page.tsx and app/blog/category/[category]
+          /page.tsx. The duplicate client head block was removed. */}
 
       {/* HERO */}
       <header className="editorial-hero">
