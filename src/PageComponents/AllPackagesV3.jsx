@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "../Component/Home/homeV3.css";
 import "../Component/AllPackegs/apv3.css";
 
@@ -123,14 +122,7 @@ const AllPackagesV3 = ({ allpkgbg }) => {
 
   return (
     <div className="ntv3 apv3">
-      <Helmet>
-        <title>All Travel Experiences | Community Trips &amp; Retreats | Nomadic Townies</title>
-        <meta name="description" content="Browse all Nomadic Townies experiences — community trips, backpacking adventures, wellness retreats, workshops and cultural immersions. Filter by category and month, hosted by passionate communities." />
-        <link rel="canonical" href="https://www.nomadictownies.com/experiences" />
-        <meta property="og:title" content="All Travel Experiences | Nomadic Townies" />
-        <meta property="og:description" content="Curated community trips, backpacking adventures, retreats, workshops and cultural immersions — hosted by passionate communities." />
-        <meta property="og:url" content="https://www.nomadictownies.com/experiences" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       <EnquirNow opene={opene} setOpene={setOpene} toggelModele={toggelModele} />
 

@@ -9,7 +9,7 @@ const OG_IMAGE =
 export const metadata: Metadata = {
   title: "Curated Travel Experiences, Community Trips & Retreats | Nomadic Townies",
   description:
-    "Discover community trips, backpacking adventures, wellness retreats, workshops, and cultural immersions hosted by passionate local communities. Nomadic Townies is India's curated marketplace for transformative host-led travel experiences.",
+    "Discover host-led community trips, backpacking adventures, wellness retreats, workshops and cultural immersions on Nomadic Townies — India's curated travel marketplace.",
   keywords:
     "curated travel experiences, community trips India, backpacking adventures, wellness retreats, cultural immersions, travel workshops, host-led experiences, meaningful travel, Nomadic Townies",
   alternates: {

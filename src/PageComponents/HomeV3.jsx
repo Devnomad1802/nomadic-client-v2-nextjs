@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "../Component/Home/homeV3.css";
 
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
@@ -70,18 +69,7 @@ const HomeV3 = ({ homebg, homeVideo, toggle, categorySectionTitle, categorySecti
 
   return (
     <div className="ntv3">
-      <Helmet>
-        <title>Curated Travel Experiences, Community Trips &amp; Retreats | Nomadic Townies</title>
-        <meta name="description" content="Discover community trips, backpacking adventures, wellness retreats, workshops, and cultural immersions hosted by passionate communities. Nomadic Townies is a curated marketplace for transformative travel experiences." />
-        <link rel="canonical" href="https://www.nomadictownies.com/" />
-        <meta property="og:title" content="Nomadic Townies | Curated Travel Experiences &amp; Community Trips" />
-        <meta property="og:description" content="Explore meaningful travel experiences hosted by passionate communities — from backpacking adventures and retreats to workshops and cultural immersions." />
-        <meta property="og:url" content="https://www.nomadictownies.com/" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nomadic Townies | Curated Travel Experiences" />
-        <meta name="twitter:description" content="Discover host-led community trips, retreats, workshops, and cultural immersions through Nomadic Townies." />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       <EnquirNow opene={opene} setOpene={setOpene} toggelModele={toggelModele} />
 

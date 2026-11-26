@@ -9,7 +9,7 @@ const OG_IMAGE =
 export const metadata: Metadata = {
   title: "About Us — Who We Are & Our Mission | Nomadic Townies",
   description:
-    "Nomadic Townies is a curated marketplace for transformative, host-led travel experiences. We connect passionate communities and local hosts with mindful travellers seeking real, meaningful adventures across India.",
+    "Nomadic Townies is a curated marketplace for transformative, host-led travel experiences connecting passionate local hosts with mindful travellers across India.",
   alternates: {
     canonical: "https://www.nomadictownies.com/about-us",
   },

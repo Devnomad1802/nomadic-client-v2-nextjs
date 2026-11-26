@@ -9,7 +9,7 @@ const OG_IMAGE =
 export const metadata: Metadata = {
   title: "All Travel Experiences & Curated Trips | Nomadic Townies",
   description:
-    "Browse all curated travel experiences on Nomadic Townies — community trips, backpacking adventures, trekking, wellness retreats, cultural immersions and more. Filter by category, destination or price.",
+    "Browse curated travel experiences on Nomadic Townies — community trips, trekking, wellness retreats and cultural immersions. Filter by category or destination.",
   alternates: {
     canonical: "https://www.nomadictownies.com/experiences",
   },

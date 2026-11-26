@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./termsAndConditions.css"; // shared legal-page styles (tc-*)
 import Footer from "../Component/Footer";
 
@@ -140,11 +139,7 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="tc-page">
-      <Helmet>
-        <title>Privacy Policy | Nomadic Townies</title>
-        <meta name="description" content="How Nomadic Townies collects, uses, stores, shares, and protects your personal information." />
-        <link rel="canonical" href="https://www.nomadictownies.com/privacy-policy" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       {/* header (logo intentionally omitted per brand request) */}
       <header className="tc-header">

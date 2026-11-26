@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import "./termsAndConditions.css"; // shared legal-page styles (tc-*)
 import Footer from "../Component/Footer";
 
@@ -140,11 +139,7 @@ const CancellationAndRefund = () => {
 
   return (
     <div className="tc-page">
-      <Helmet>
-        <title>Cancellation &amp; Refund Policy | Nomadic Townies</title>
-        <meta name="description" content="Cancellation and refund rules for bookings made through Nomadic Townies." />
-        <link rel="canonical" href="https://www.nomadictownies.com/cancellation-and-refund" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       {/* header (logo intentionally omitted per brand request) */}
       <header className="tc-header">

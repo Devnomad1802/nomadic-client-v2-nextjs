@@ -3,7 +3,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Footer from "../Component/Footer";
 import BecomeHostModal from "./BecomeHostModal";
 import { useGetAllHostsQuery } from "../services";
@@ -186,14 +185,7 @@ const AboutUs = ({ aboutbg = "" }) => {
 
   return (
     <div className="v2-page">
-      <Helmet>
-        <title>About Us | More Than Travel — Meaningful Experiences | Nomadic Townies</title>
-        <meta name="description" content="Discover Nomadic Townies — a curated marketplace connecting travellers with verified hosts who create community trips, backpacking adventures, wellness retreats, and cultural experiences." />
-        <link rel="canonical" href="https://www.nomadictownies.com/about-us" />
-        <meta property="og:title" content="About Us | Nomadic Townies" />
-        <meta property="og:description" content="A story about meaningful experiences. Discover host-led community trips, backpacking, wellness retreats, and cultural immersions." />
-        <meta property="og:url" content="https://www.nomadictownies.com/about-us" />
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG/Twitter) are emitted server-side by this route's page.tsx metadata. The duplicate react-helmet-async block was removed to avoid a second <title>. */}
 
       <BecomeHostModal openS={openHostModal} setOpens={setOpenHostModal} />
 

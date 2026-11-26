@@ -42,7 +42,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Curated Travel Experiences, Community Trips & Retreats | Nomadic Townies",
   description:
-    "Discover community trips, backpacking adventures, wellness retreats, workshops, and cultural immersions hosted by passionate communities. Nomadic Townies is a curated marketplace for transformative travel experiences.",
+    "Discover host-led community trips, backpacking adventures, wellness retreats, workshops and cultural immersions on Nomadic Townies — a curated travel marketplace.",
   keywords:
     "curated travel experiences, community trips, backpacking adventures, wellness retreats, cultural immersions, travel workshops, host-led experiences, meaningful travel, Nomadic Townies",
   authors: [{ name: "Nomadic Townies" }],
