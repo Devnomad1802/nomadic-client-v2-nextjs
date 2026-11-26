@@ -215,7 +215,7 @@ const MeetHosts = ({ initialHosts }) => {
 
         {/* BECOME A HOST */}
         <section className="become">
-          <img src={BECOME_IMG} alt="" />
+          <img src={BECOME_IMG} alt="Host a trip with Nomadic Townies" />
           <div className="become-inner">
             <div className="become-eyebrow">For hosts &amp; organizers</div>
             <h2>Share what you love. Host with us.</h2>

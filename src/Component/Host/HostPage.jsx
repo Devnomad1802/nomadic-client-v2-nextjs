@@ -673,7 +673,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
               {reviews.length > 0 ? reviews.slice(0, 6).map((rv, i) => (
                 <div className="hd-review" key={rv._id || i}>
                   <div className="hd-review-head">
-                    <span className="hd-review-av">{rv.profileImage ? <img src={rv.profileImage} alt="" /> : initialOf(rv.name || rv.Name)}</span>
+                    <span className="hd-review-av">{rv.profileImage ? <img src={rv.profileImage} alt={rv.name || rv.Name || "Reviewer"} /> : initialOf(rv.name || rv.Name)}</span>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div className="hd-review-name">{rv.name || rv.Name || "Traveller"}</div>
                       <div className="hd-review-date">{fmtDate(rv.date || rv.Date || rv.createdAt)}</div>
@@ -775,7 +775,7 @@ const HostPage = ({ initialHost, initialTrips, initialReviews, initialAllHosts }
               <div className="hd-side-label">Similar hosts</div>
               {similar.map((h) => (
                 <div className="hd-sim" key={h._id} onClick={() => navigate(`/hosts/${h.seoSlug || h._id}`)}>
-                  <span className="hd-sim-av">{h.brandingLogo ? <img src={h.brandingLogo} alt="" /> : initialOf(h.hostName || h.hostTitle)}</span>
+                  <span className="hd-sim-av">{h.brandingLogo ? <img src={h.brandingLogo} alt={h.hostName || h.hostTitle || "Host"} /> : initialOf(h.hostName || h.hostTitle)}</span>
                   <div style={{ minWidth: 0 }}>
                     <div className="hd-sim-n">{h.hostTitle || h.hostName}</div>
                     <div className="hd-sim-s">{[h.city, h.state].filter(Boolean).join(", ") || h.location || ""}</div>

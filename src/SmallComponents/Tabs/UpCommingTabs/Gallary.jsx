@@ -65,7 +65,7 @@ const Gallary = ({ Gallary }) => {
                     >
                       <img
                         src={`${item}`}
-                        alt=""
+                        alt={`Trip gallery photo ${index + 1}`}
                         srcSet=""
                         style={{ width: "100%", borderRadius: "15px" }}
                       />
