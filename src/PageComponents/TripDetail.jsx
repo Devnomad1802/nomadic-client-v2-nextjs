@@ -395,7 +395,7 @@ export default function TripDetail({ initialRaw, initialReviews }) {
         <div className="td-hero" style={{ borderRadius: "22px", overflow: "hidden", marginBottom: "26px", position: "relative" }}>
           {[0, 1, 2, 3, 4].map((i) => (
             <div key={i} onClick={() => trip.images[i] && setLbIndex(i)} className={i === 0 ? "td-hero-a" : "td-hero-hide td-thumb"} style={{ position: "relative", overflow: "hidden", minHeight: i === 0 ? 250 : undefined, background: HERO_GRADS[i], cursor: trip.images[i] ? "pointer" : "default" }}>
-              {trip.images[i] && <img src={trip.images[i]} alt={i === 0 ? trip.title : ""} loading={i === 0 ? "eager" : "lazy"} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
+              {trip.images[i] && <img src={trip.images[i]} alt={i === 0 ? trip.title : `${trip.title} — photo ${i + 1}`} loading={i === 0 ? "eager" : "lazy"} onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
             </div>
           ))}
           {trip.photoCount > 0 && (

@@ -51,7 +51,7 @@ const HostFeatureCard = ({ c, onOpen, onExperiences }) => (
       <span className="hh2-rating">
         {c.rating != null ? <><Star />{c.rating.toFixed(1)}{c.reviews > 0 && <em>({c.reviews})</em>}</> : "New"}
       </span>
-      <span className="hh2-avatar">{c.logo ? <img src={c.logo} alt="" /> : initial(c.name)}</span>
+      <span className="hh2-avatar">{c.logo ? <img src={c.logo} alt={c.name ? `${c.name} logo` : "Host logo"} /> : initial(c.name)}</span>
     </div>
     <div className="hh2-body">
       <div className="hh2-name">

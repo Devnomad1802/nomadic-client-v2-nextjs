@@ -245,7 +245,7 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
                 aspectRatio: "16/10", bgcolor: "#0e1620",
                 boxShadow: "0 6px 24px -14px rgba(0,0,0,.25)",
               }}>
-                <Box component="img" src={b.url} alt={b.caption || ""} loading="lazy" sx={{
+                <Box component="img" src={b.url} alt={b.caption || (item?.title ? `${item.title} — photo` : "Travel story photo")} loading="lazy" sx={{
                   width: "100%", height: "100%", objectFit: "cover", display: "block",
                 }} />
               </Box>
@@ -270,7 +270,7 @@ const ArticleBody = ({ item, onHeadingsExtracted }) => {
                       borderRadius: "18px", overflow: "hidden",
                       aspectRatio: "16/10", bgcolor: "#0e1620",
                     }}>
-                      <img src={src} alt="" loading="lazy"
+                      <img src={src} alt={item?.title ? `${item.title} — photo ${i + 1}` : `Travel story photo ${i + 1}`} loading="lazy"
                         style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     </Box>
                   </SwiperSlide>
