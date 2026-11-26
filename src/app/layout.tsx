@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import Script from "next/script";
 import ClientProviders from "./providers";
+import SeoFooterLinks from "@/Component/SeoFooterLinks";
 import "./globals.css";
 
 const inter = Inter({
@@ -171,6 +172,10 @@ export default function RootLayout({
             {children}
           </ClientProviders>
         </AppRouterCacheProvider>
+        {/* Server-rendered internal-link index (crawlable in raw HTML). The
+            listing grids render client-side, so trips/hosts/blogs otherwise had
+            no server-rendered links anywhere. */}
+        <SeoFooterLinks />
       </body>
     </html>
   );
