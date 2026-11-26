@@ -254,7 +254,7 @@ const BookingOverview = () => {
   lineItems.push({
     label: "GST 5%",
     qty: "",
-    amount: `₹ ${inr(cardData.gstTax)}`,
+    amount: "", // child carries no amount — the parent "Fees & Taxes" shows the figure
     color: "#8A8073",
     sub: true,
   });
@@ -616,7 +616,7 @@ const BookingOverview = () => {
 
               {lineItems.map((li, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "14px", padding: li.sub ? "6px 0 14px" : li.parent ? "14px 0 2px" : "14px 0", borderBottom: li.parent ? "none" : "1px solid #EFE7DA" }}>
-                  <span style={{ flex: 1, font: li.sub ? `400 13px/1.3 ${BODY_FONT}` : `600 15px/1.3 ${BODY_FONT}`, color: li.sub ? "#8A8073" : "#3C3228", paddingLeft: li.sub ? "14px" : 0 }}>{li.label}</span>
+                  <span style={{ flex: 1, font: li.sub ? `400 13px/1.3 ${BODY_FONT}` : `600 15px/1.3 ${BODY_FONT}`, color: li.sub ? "#8A8073" : "#3C3228" }}>{li.label}</span>
                   <span style={{ font: `400 14px/1.3 ${BODY_FONT}`, color: "#A89C8A", whiteSpace: "nowrap" }}>{li.qty}</span>
                   <span style={{ minWidth: 100, font: li.sub ? `400 13px/1.3 ${BODY_FONT}` : `600 15px/1.3 ${BODY_FONT}`, color: li.color, textAlign: "right", whiteSpace: "nowrap" }}>{li.amount}</span>
                 </div>

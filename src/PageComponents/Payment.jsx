@@ -447,7 +447,7 @@ const Payment = () => {
                 further child rows and included in the parent sum. */}
             <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
               <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>Fees & Taxes</span><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(gstAmount)}</span></div>
-              <div style={{ display: "flex", justifyContent: "space-between", paddingLeft: "14px" }}><span style={{ font: `400 13px/1 ${BODY_FONT}`, color: "#8A8073" }}>GST 5%</span><span style={{ font: `400 13px/1 ${BODY_FONT}`, color: "#8A8073" }}>₹ {inr(gstAmount)}</span></div>
+              <span style={{ font: `400 13px/1 ${BODY_FONT}`, color: "#8A8073" }}>GST 5%</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>Amount to Pay</span><span style={{ font: `600 14px/1 ${BODY_FONT}`, color: "#3C3228" }}>₹ {inr(finalAmount)}</span></div>
           </div>
