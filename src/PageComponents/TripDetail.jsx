@@ -10,7 +10,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import { useGetTripsQuery } from "../services/TripApis";
 import { useGetUserReviewsByTripIdQuery } from "../services";
@@ -307,11 +306,10 @@ export default function TripDetail({ initialRaw, initialReviews }) {
 
   return (
     <div className="td-page" ref={rootRef}>
-      <Helmet>
-        <title>{`${trip.title} | Book Now | Nomadic Townies`}</title>
-        <meta name="description" content={trip.overview ? trip.overview.slice(0, 150) : "Book this host-led experience with Nomadic Townies."} />
-        <link rel="canonical" href={`https://www.nomadictownies.com/trips/${trip.slug}`} />
-      </Helmet>
+      {/* Title / description / canonical / structured data are emitted
+          server-side by trips/[...slug]/page.tsx (generateMetadata + JSON-LD).
+          A client <Helmet> here previously produced a duplicate <title> and a
+          conflicting canonical, so it was removed. */}
       <style>{TD_CSS}</style>
       <LoginModal openL={openL} setOpenL={setOpenL} />
 
