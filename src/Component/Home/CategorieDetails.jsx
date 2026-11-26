@@ -4,7 +4,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBookmark } from "../../utils/useBookmark";
-import { Helmet } from "react-helmet-async";
 import "./catPage.css";
 import Footer from "../Footer";
 import { useGetAllCategoriesQuery } from "../../services/categoriesApis";
@@ -190,19 +189,11 @@ const CategorieDetails = ({ initialTrips, initialCategories, initialAllTrips, in
   const reviews = (Array.isArray(revRes?.data) ? revRes.data : []).slice(0, 3);
   const stars = (n) => { const r = Math.max(0, Math.min(5, Math.round(Number(n) || 5))); return "★".repeat(r) + "☆".repeat(5 - r); };
 
-  const seoTitle = `${displayName} Experiences & Community Trips | Nomadic Townies`;
-  const seoDesc = `Discover curated ${displayName} experiences on Nomadic Townies — community trips, retreats, workshops and cultural immersions led by passionate hosts.`;
-
   return (
     <div className="catpg">
-      <Helmet>
-        <title>{seoTitle}</title>
-        <meta name="description" content={seoDesc} />
-        <link rel="canonical" href={`https://www.nomadictownies.com/trips/${slugify(categoryParam)}`} />
-        <meta property="og:title" content={seoTitle} />
-        <meta property="og:description" content={seoDesc} />
-        {heroImg && <meta property="og:image" content={heroImg} />}
-      </Helmet>
+      {/* Head tags (title, description, canonical, OG) come from the
+          trips/[...slug] server metadata (page.tsx). The duplicate client head
+          block was removed. */}
 
       <div className="wrap">
         {/* breadcrumb */}

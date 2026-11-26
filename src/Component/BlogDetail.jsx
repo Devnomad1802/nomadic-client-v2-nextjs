@@ -33,7 +33,6 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkIcon from "@mui/icons-material/Link";
-import { Helmet } from "react-helmet-async";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -533,8 +532,6 @@ const BlogDetail = ({ initialBlog, initialAllBlogs, linkedTrip = null, linkedTri
   }
 
   const readMins = estimateReadMinutes(item);
-  const safeMeta = (item.metaDescription || item.title || "Travel story from Nomadic Townies").substring(0, 155);
-  const title = item.seoTitle || item.title;
   const activeSlug = item.seoSlug || item._id || slugOrId;
   const pageUrl = typeof window !== "undefined" ? window.location.href : `https://www.nomadictownies.com/blog/${activeSlug}`;
 
@@ -544,24 +541,9 @@ const BlogDetail = ({ initialBlog, initialAllBlogs, linkedTrip = null, linkedTri
       // their container (cover=left, newsletter/author cards set their own center).
       textAlign: "left",
       "& .MuiTypography-root": { textAlign: "inherit" } }}>
-      {typeof window !== "undefined" && (
-        <Helmet>
-          <title>{title} | Nomadic Townies</title>
-          <meta name="description" content={safeMeta} />
-          <link rel="canonical" href={pageUrl} />
-          <meta property="og:type" content="article" />
-          <meta property="og:title" content={`${title} | Nomadic Townies`} />
-          <meta property="og:description" content={safeMeta} />
-          <meta property="og:url" content={pageUrl} />
-          {item.Banner_Image && <meta property="og:image" content={item.Banner_Image} />}
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:title" content={`${title} | Nomadic Townies`} />
-          <meta property="twitter:description" content={safeMeta} />
-          {item.Banner_Image && <meta property="twitter:image" content={item.Banner_Image} />}
-          {/* BlogPosting + BreadcrumbList JSON-LD now rendered server-side in
-              blog/[slug]/page.tsx so it appears in crawlable HTML. */}
-        </Helmet>
-      )}
+      {/* Head tags (title, description, canonical, OG/Twitter) and the
+          BlogPosting + BreadcrumbList JSON-LD are emitted server-side by
+          blog/[slug]/page.tsx. The duplicate client Helmet block was removed. */}
 
       <ReadingProgress />
 
