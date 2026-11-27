@@ -157,7 +157,7 @@ const Footer = () => {
           <Box sx={{ display: "flex", gap: 0.5 }}>
             <IconButton
               component="a"
-              href="https://www.instagram.com/nomadictownies/"
+              href="https://www.instagram.com/nomadic.townies/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
