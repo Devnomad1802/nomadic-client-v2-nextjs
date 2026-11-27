@@ -14,6 +14,11 @@ const HostChatApi = api.injectEndpoints({
     getMyHostChats: builder.mutation({
       query: () => ({ url: "/host-chat/mine", method: "GET" }),
     }),
+    // Server-derived total unread for the nav badge. A cacheable query so it can
+    // poll + refetch on focus without a bespoke loop.
+    getUnreadCount: builder.query({
+      query: () => ({ url: "/host-chat/unread-count", method: "GET" }),
+    }),
     sendHostChatMessage: builder.mutation({
       query: ({ id, message }) => ({
         url: `/host-chat/${id}/message`,
@@ -30,6 +35,7 @@ const HostChatApi = api.injectEndpoints({
 export const {
   useStartHostChatMutation,
   useGetMyHostChatsMutation,
+  useGetUnreadCountQuery,
   useSendHostChatMessageMutation,
   useMarkHostChatReadMutation,
 } = HostChatApi;

@@ -13,6 +13,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Navbar from "@/Component/Navbar/Navbar";
 import ChatNotifier from "@/SmallComponents/ChatNotifier";
+import ChatDrawer from "@/Component/Chat/ChatDrawer";
 import ConsentBanner from "@/Component/ConsentBanner";
 import ProfileGate from "@/Component/ProfileGate";
 import Loading from "@/SmallComponents/Loading";
@@ -52,6 +53,7 @@ export default function ClientProviders({
             </Box>
           </Box>
           <ChatNotifier />
+          <ChatDrawer />
           <ConsentBanner />
           <ProfileGate />
         </Box>

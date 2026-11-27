@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useGetMyHostChatsMutation } from "../services";
 import { getActiveChatConvo } from "../utils/chatUiState";
+import { openChat, setUnread } from "../utils/chatDrawerStore";
 
 const POLL_MS = 20000;
 
@@ -38,7 +38,6 @@ const chime = () => {
 // (userUnread grows) shows a bottom-right toast + chime — unless that
 // conversation's drawer is open on screen.
 const ChatNotifier = () => {
-  const navigate = useNavigate();
   const { userDbData } = useSelector((store) => store.global) || {};
   const [getMyHostChats] = useGetMyHostChatsMutation();
   const [toasts, setToasts] = useState([]);
@@ -54,6 +53,8 @@ const ChatNotifier = () => {
         const res = await getMyHostChats().unwrap();
         const rows = res?.data || [];
         if (stop) return;
+        // Feed the nav unread badge (total across threads) on every poll.
+        setUnread(rows.reduce((s, r) => s + (Number(r.userUnread) || 0), 0));
         if (seen.current === null) {
           seen.current = new Map(rows.map((r) => [String(r._id), Number(r.userUnread) || 0]));
           return;
@@ -67,6 +68,7 @@ const ChatNotifier = () => {
             const t = {
               key: `${id}-${Date.now()}`,
               hostId: String(r.hostId || ""),
+              convoId: id,
               title: `${r.host?.name || "Host"} replied`,
               preview: String(lastHostMsg?.Message || "New message").slice(0, 80),
             };
@@ -94,7 +96,7 @@ const ChatNotifier = () => {
           tabIndex={0}
           onClick={() => {
             setToasts((list) => list.filter((x) => x.key !== t.key));
-            if (t.hostId) navigate(`/hosts/${t.hostId}?chat=1`);
+            openChat(t.convoId); // pop the chat open in place, on this thread
           }}
           style={{ background: "#221C17", color: "#FFF6EF", borderRadius: 12, padding: "12px 16px", maxWidth: 320, boxShadow: "0 10px 30px -10px rgba(0,0,0,.45)", cursor: "pointer" }}
         >

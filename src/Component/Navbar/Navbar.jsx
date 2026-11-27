@@ -21,6 +21,8 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
+import MessagesNavButton from "./MessagesNavButton";
+import { openChat } from "../../utils/chatDrawerStore";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useGetTripsByCagtegoryMutation } from "../../services/categoriesApis";
@@ -398,13 +400,16 @@ const Navbar = () => {
             </Button>
 
             {mounted && userDbData ? (
-              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <IconButton aria-label="Your profile" onClick={() => navigate("/profile")} sx={{ p: 0.5 }}>
-                  <AccountCircleIcon />
-                </IconButton>
-                <Typography sx={{ color: TEXT, fontSize: "12px" }}>
-                  {userDbData?.name}
-                </Typography>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <MessagesNavButton />
+                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <IconButton aria-label="Your profile" onClick={() => navigate("/profile")} sx={{ p: 0.5 }}>
+                    <AccountCircleIcon />
+                  </IconButton>
+                  <Typography sx={{ color: TEXT, fontSize: "12px" }}>
+                    {userDbData?.name}
+                  </Typography>
+                </Box>
               </Box>
             ) : (
               <Button
@@ -530,6 +535,16 @@ const Navbar = () => {
                 Meet Our Hosts
               </Typography>
             </ListItemButton>
+            {mounted && userDbData && (
+              <ListItemButton
+                onClick={() => { setMobileOpen(false); openChat(); }}
+                sx={{ py: 1.5 }}
+              >
+                <Typography sx={{ fontSize: "16px", fontFamily: "Inter", color: TEXT }}>
+                  Messages
+                </Typography>
+              </ListItemButton>
+            )}
           </List>
 
           <Box sx={{ mt: 3, display: "flex", flexDirection: "column", gap: 1.5 }}>
