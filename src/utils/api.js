@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { setUserDbData, setAuthenticated } from "../slices/globalSlice";
 export const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api";
 export const baseImage = baseUrl.replace("/api", "");
 
@@ -36,6 +37,23 @@ const rawBaseQuery = fetchBaseQuery({
 
 const baseQueryWithCdn = async (args, apiArg, extra) => {
   const result = await rawBaseQuery(args, apiArg, extra);
+
+  // Session expiry: the server rejected the token we sent (expired or invalid).
+  // Without this, the client keeps a stale "logged in" state (userDbData) while
+  // every authenticated call 401s — so e.g. checkout fails with a generic
+  // "couldn't start the payment" page instead of asking the user to log in.
+  // Clear the dead token + auth state ONCE (only when we actually sent a token),
+  // so components gated on userDbData surface the login modal instead.
+  if (
+    result?.error?.status === 401 &&
+    typeof window !== "undefined" &&
+    localStorage.getItem("token")
+  ) {
+    try { localStorage.removeItem("token"); } catch { /* storage blocked */ }
+    apiArg.dispatch(setUserDbData(null));
+    apiArg.dispatch(setAuthenticated(false));
+  }
+
   if (result?.data) result.data = cdnifyDeep(result.data);
   return result;
 };

@@ -367,6 +367,14 @@ const BookingOverview = () => {
       rzp1.open();
     } catch (error) {
       console.error("createSecureOrder failed:", error);
+      // Session expired: the server rejected our token (401). The global auth
+      // handler has already cleared the stale login, so just prompt a fresh
+      // login and let the user retry — never the generic payment-error page.
+      if (error?.status === 401) {
+        showToast("Your session expired. Please log in again, then retry your booking.", "info");
+        setOpenL(true);
+        return;
+      }
       // Payment maintenance (server gate) → keep the user here with the enquiry
       // notice instead of sending them to a failure page.
       if (error?.status === 503 || error?.data?.error?.type === "PAYMENTS_UNAVAILABLE") {
