@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import MessagesNavButton from "./MessagesNavButton";
+import { openChat } from "../../utils/chatDrawerStore";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useGetTripsByCagtegoryMutation } from "../../services/categoriesApis";
@@ -536,7 +537,7 @@ const Navbar = () => {
             </ListItemButton>
             {mounted && userDbData && (
               <ListItemButton
-                onClick={() => { setMobileOpen(false); navigate("/messages"); window.scrollTo(0, 0); }}
+                onClick={() => { setMobileOpen(false); openChat(); }}
                 sx={{ py: 1.5 }}
               >
                 <Typography sx={{ fontSize: "16px", fontFamily: "Inter", color: TEXT }}>
