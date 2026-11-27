@@ -8,6 +8,7 @@ import {
   Typography,
   TextField,
   IconButton,
+  ButtonBase,
   CircularProgress,
   useMediaQuery,
 } from "@mui/material";
@@ -22,8 +23,9 @@ import {
 } from "../services";
 
 const INK = "#221C17";
-const MUTED = "#726A5E";
-const ORANGE = "#E9622F";
+const MUTED = "#726A5E";        // AA-safe secondary text on white/cream (5.4:1)
+const ORANGE = "#E9622F";       // brand accent — graphical only (unread dot, send bg)
+const ORANGE_TEXT = "#C14A1E";  // AA-safe on white (4.7:1) for text links
 const LINE = "#E6DDCF";
 
 const fmtTime = (d) => {
@@ -127,7 +129,7 @@ const MessagesInbox = () => {
                 {isError && !isLoading && (
                   <Box sx={{ p: 3, textAlign: "center" }}>
                     <Typography sx={{ fontSize: 13, color: MUTED }}>Couldn’t load your messages.</Typography>
-                    <Typography onClick={() => fetchChats()} sx={{ mt: 1, fontSize: 13, color: ORANGE, cursor: "pointer", fontWeight: 600 }}>Retry</Typography>
+                    <ButtonBase onClick={() => fetchChats()} sx={{ mt: 1, fontSize: 13, color: ORANGE_TEXT, fontWeight: 600, borderRadius: 1, px: 1, py: 0.5 }}>Retry</ButtonBase>
                   </Box>
                 )}
                 {!isLoading && !isError && convos.length === 0 && (
@@ -140,28 +142,30 @@ const MessagesInbox = () => {
                   const last = c.chat?.length ? c.chat[c.chat.length - 1] : null;
                   const active = String(c._id) === String(selectedId);
                   return (
-                    <Box
+                    <ButtonBase
                       key={c._id}
                       onClick={() => setPicked(c._id)}
-                      sx={{ px: 2, py: 1.5, display: "flex", gap: 1.25, cursor: "pointer", background: active ? "#F9F6EF" : "transparent", borderBottom: `1px solid #F1EADF`, "&:hover": { background: "#F9F6EF" } }}
+                      aria-label={`Open conversation with ${c.host?.name || "host"}${c.userUnread ? ", unread" : ""}`}
+                      aria-current={active ? "true" : undefined}
+                      sx={{ width: "100%", justifyContent: "flex-start", textAlign: "left", px: 2, py: 1.5, display: "flex", gap: 1.25, background: active ? "#F9F6EF" : "transparent", borderBottom: `1px solid #F1EADF`, "&:hover": { background: "#F9F6EF" } }}
                     >
                       <Box sx={{ width: 40, height: 40, borderRadius: "50%", background: "#E7E0D3", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
                         {c.host?.logo
                           // eslint-disable-next-line @next/next/no-img-element
                           ? <img src={c.host.logo} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                          : <Typography sx={{ fontWeight: 700, color: "#8A7E6C" }}>{(c.host?.name || "H").slice(0, 1)}</Typography>}
+                          : <Typography sx={{ fontWeight: 700, color: "#6E6355" }}>{(c.host?.name || "H").slice(0, 1)}</Typography>}
                       </Box>
                       <Box sx={{ minWidth: 0, flex: 1 }}>
                         <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
                           <Typography noWrap sx={{ fontSize: 14, fontWeight: 600, color: INK }}>{c.host?.name || "Host"}</Typography>
-                          <Typography sx={{ fontSize: 11, color: "#9C9388", flexShrink: 0 }}>{last ? fmtTime(last.timeStamp).split(",")[0] : ""}</Typography>
+                          <Typography sx={{ fontSize: 11, color: MUTED, flexShrink: 0 }}>{last ? fmtTime(last.timeStamp).split(",")[0] : ""}</Typography>
                         </Box>
                         <Typography noWrap sx={{ fontSize: 13, color: c.userUnread ? INK : MUTED, fontWeight: c.userUnread ? 600 : 400 }}>
                           {last?.Message || "No messages yet"}
                         </Typography>
                       </Box>
                       {c.userUnread ? <Box sx={{ alignSelf: "center", width: 9, height: 9, borderRadius: "50%", background: ORANGE, flexShrink: 0 }} /> : null}
-                    </Box>
+                    </ButtonBase>
                   );
                 })}
               </Box>
@@ -179,7 +183,7 @@ const MessagesInbox = () => {
                 <>
                   <Box sx={{ px: 2, py: 1.5, borderBottom: `1px solid ${LINE}`, display: "flex", alignItems: "center", gap: 1 }}>
                     {isMobile && (
-                      <IconButton size="small" aria-label="Back to conversations" onClick={() => setPicked("")}><ArrowBackIosNewIcon sx={{ fontSize: 16 }} /></IconButton>
+                      <IconButton aria-label="Back to conversations" onClick={() => setPicked("")} sx={{ minWidth: 44, minHeight: 44 }}><ArrowBackIosNewIcon sx={{ fontSize: 18 }} /></IconButton>
                     )}
                     <Typography sx={{ fontWeight: 700, fontSize: 15, color: INK }}>{selected.host?.name || "Host"}</Typography>
                   </Box>
@@ -189,10 +193,11 @@ const MessagesInbox = () => {
                       const mine = m.MessageBy === "user";
                       return (
                         <Box key={m._id || i} sx={{ alignSelf: mine ? "flex-end" : "flex-start", maxWidth: "78%" }}>
-                          <Box sx={{ px: 1.5, py: 1, borderRadius: 2, background: mine ? ORANGE : "#F1EADF", color: mine ? "#fff" : INK, fontSize: 14, lineHeight: 1.45, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+                          {/* mine = dark ink bubble (white text, ~13:1); host = cream bubble (ink text). Brand orange fails AA for body text, so it is not used as a text background. */}
+                          <Box sx={{ px: 1.5, py: 1, borderRadius: 2, background: mine ? INK : "#F1EADF", color: mine ? "#fff" : INK, fontSize: 14, lineHeight: 1.45, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
                             {m.Message}
                           </Box>
-                          <Typography sx={{ fontSize: 10.5, color: "#9C9388", mt: 0.25, textAlign: mine ? "right" : "left" }}>{fmtTime(m.timeStamp)}</Typography>
+                          <Typography sx={{ fontSize: 11, color: MUTED, mt: 0.25, textAlign: mine ? "right" : "left" }}>{fmtTime(m.timeStamp)}</Typography>
                         </Box>
                       );
                     })}
@@ -206,17 +211,18 @@ const MessagesInbox = () => {
                         onChange={(e) => setDraft(e.target.value)}
                         onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); onSend(); } }}
                         placeholder="Write a message…"
+                        aria-label="Message"
                         multiline
                         maxRows={4}
                         fullWidth
                         size="small"
                         sx={{ "& .MuiOutlinedInput-root": { borderRadius: 3, background: "#fff", fontSize: 14, color: INK } }}
                       />
-                      <IconButton aria-label="Send message" onClick={onSend} disabled={sending || !draft.trim()} sx={{ background: ORANGE, color: "#fff", "&:hover": { background: "#cf551f" }, "&.Mui-disabled": { background: "#E7E0D3", color: "#fff" } }}>
+                      <IconButton aria-label="Send message" onClick={onSend} disabled={sending || !draft.trim()} sx={{ minWidth: 44, minHeight: 44, background: ORANGE, color: "#fff", "&:hover": { background: "#cf551f" }, "&.Mui-disabled": { background: "#E7E0D3", color: "#fff" } }}>
                         {sending ? <CircularProgress size={18} color="inherit" /> : <SendIcon sx={{ fontSize: 18 }} />}
                       </IconButton>
                     </Box>
-                    <Typography sx={{ fontSize: 10.5, color: "#9C9388", mt: 0.5, px: 0.5 }}>
+                    <Typography sx={{ fontSize: 11, color: MUTED, mt: 0.5, px: 0.5 }}>
                       For your safety, contact details shared in chat are moderated.
                     </Typography>
                   </Box>

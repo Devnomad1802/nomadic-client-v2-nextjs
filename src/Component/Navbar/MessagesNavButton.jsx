@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Badge,
   Box,
+  ButtonBase,
   IconButton,
   Menu,
   Typography,
@@ -18,7 +19,9 @@ import {
   useGetMyHostChatsMutation,
 } from "../../services";
 
-const ORANGE = "#E9622F";
+const ORANGE = "#E9622F";       // brand accent — graphical use only (dots)
+const ORANGE_TEXT = "#C14A1E";  // AA-safe on white (4.7:1) for text links
+const MUTED = "#726A5E";        // AA-safe secondary text (5.4:1)
 
 // A short relative time ("2h", "3d") for the preview rows.
 const ago = (d) => {
@@ -69,7 +72,7 @@ const MessagesNavButton = ({ compact = false }) => {
 
   return (
     <Box>
-      <IconButton aria-label={display ? `Messages, ${display} unread` : "Messages"} onClick={openMenu} sx={{ p: 0.75 }}>
+      <IconButton aria-label={display ? `Messages, ${display} unread` : "Messages"} onClick={openMenu} sx={{ p: 0.75, minWidth: 44, minHeight: 44 }}>
         <Badge
           color="error"
           overlap="circular"
@@ -91,9 +94,9 @@ const MessagesNavButton = ({ compact = false }) => {
       >
         <Box sx={{ px: 2, py: 1.25, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Typography sx={{ fontWeight: 700, fontSize: 14, color: "#221C17" }}>Messages</Typography>
-          <Typography onClick={() => goTo()} sx={{ fontSize: 12, color: ORANGE, cursor: "pointer", fontWeight: 600 }}>
+          <ButtonBase onClick={() => goTo()} sx={{ fontSize: 12, color: ORANGE_TEXT, fontWeight: 600, borderRadius: 1, px: 0.5 }}>
             See all
-          </Typography>
+          </ButtonBase>
         </Box>
         <Divider />
 
@@ -102,34 +105,35 @@ const MessagesNavButton = ({ compact = false }) => {
         )}
         {!isLoading && convos.length === 0 && (
           <Box sx={{ py: 3, px: 2, textAlign: "center" }}>
-            <Typography sx={{ fontSize: 13, color: "#726A5E" }}>No conversations yet.</Typography>
+            <Typography sx={{ fontSize: 13, color: MUTED }}>No conversations yet.</Typography>
           </Box>
         )}
         {!isLoading && convos.slice(0, 6).map((c) => (
-          <Box
+          <ButtonBase
             key={c._id}
             onClick={() => goTo(c._id)}
-            sx={{ px: 2, py: 1.25, display: "flex", gap: 1.25, alignItems: "center", cursor: "pointer", "&:hover": { background: "#F9F6EF" } }}
+            aria-label={`Open conversation with ${c.host?.name || "host"}${c.userUnread ? ", unread" : ""}`}
+            sx={{ width: "100%", justifyContent: "flex-start", textAlign: "left", px: 2, py: 1.25, display: "flex", gap: 1.25, alignItems: "center", "&:hover": { background: "#F9F6EF" } }}
           >
             <Box sx={{ width: 34, height: 34, borderRadius: "50%", background: "#E7E0D3", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
               {c.host?.logo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={c.host.logo} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               ) : (
-                <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#8A7E6C" }}>{(c.host?.name || "H").slice(0, 1)}</Typography>
+                <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#6E6355" }}>{(c.host?.name || "H").slice(0, 1)}</Typography>
               )}
             </Box>
             <Box sx={{ minWidth: 0, flex: 1 }}>
               <Box sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}>
                 <Typography noWrap sx={{ fontSize: 13, fontWeight: 600, color: "#221C17" }}>{c.host?.name || "Host"}</Typography>
-                <Typography sx={{ fontSize: 11, color: "#9C9388", flexShrink: 0 }}>{ago(c.Date)}</Typography>
+                <Typography sx={{ fontSize: 11, color: MUTED, flexShrink: 0 }}>{ago(c.Date)}</Typography>
               </Box>
-              <Typography noWrap sx={{ fontSize: 12, color: c.userUnread ? "#221C17" : "#726A5E", fontWeight: c.userUnread ? 600 : 400 }}>
+              <Typography noWrap sx={{ fontSize: 12, color: c.userUnread ? "#221C17" : MUTED, fontWeight: c.userUnread ? 600 : 400 }}>
                 {lastText(c.chat)}
               </Typography>
             </Box>
             {c.userUnread ? <Box sx={{ width: 8, height: 8, borderRadius: "50%", background: ORANGE, flexShrink: 0 }} /> : null}
-          </Box>
+          </ButtonBase>
         ))}
       </Menu>
     </Box>
