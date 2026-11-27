@@ -29,6 +29,25 @@ type L = { href: string; label: string };
 
 const CAP = 60; // safety cap per section if catalogue grows large
 
+// Module-level so it isn't recreated on every render.
+function Col({ title, links }: { title: string; links: L[] }) {
+  if (!links.length) return null;
+  return (
+    <div className="nt-si-col">
+      <h2 className="nt-si-h">{title}</h2>
+      <ul className="nt-si-list">
+        {links.map((l) => (
+          <li key={l.href + l.label}>
+            <a href={l.href} className="nt-si-link">
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default async function SeoFooterLinks() {
   const [tripsRes, hostsRes, blogsRes, catsRes] = await Promise.all([
     getTrips().catch(() => null),
@@ -86,51 +105,41 @@ export default async function SeoFooterLinks() {
     { href: "/contact-us", label: "Contact" },
   ];
 
-  const Col = ({ title, links }: { title: string; links: L[] }) =>
-    links.length ? (
-      <div style={{ minWidth: 150, flex: "1 1 160px" }}>
-        <h2
-          style={{
-            margin: "0 0 10px",
-            fontSize: 13,
-            fontWeight: 700,
-            letterSpacing: ".04em",
-            textTransform: "uppercase",
-            color: "#C9BEAE",
-          }}
-        >
-          {title}
-        </h2>
-        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {links.map((l) => (
-            <li key={l.href + l.label} style={{ margin: "0 0 6px" }}>
-              <a
-                href={l.href}
-                style={{ fontSize: 13, lineHeight: 1.4, color: "#E9E2D6", textDecoration: "none" }}
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ) : null;
-
   return (
-    <nav
-      aria-label="Site index"
-      style={{ background: "#211B16", borderTop: "1px solid #3A312A", color: "#E9E2D6" }}
-    >
-      <div
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "28px clamp(16px, 4vw, 48px)",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "24px 32px",
-        }}
-      >
+    <nav aria-label="Site index" className="nt-siteindex">
+      {/* Scoped, SSR-safe styles: left-aligned CSS Grid, consistent type scale,
+          visible hover/focus, responsive columns, reduced-motion aware. All links
+          stay in the server-rendered markup (SEO). */}
+      <style>{`
+        .nt-siteindex { background:#211B16; border-top:1px solid #3A312A; color:#E9E2D6; }
+        .nt-siteindex .nt-si-wrap {
+          max-width:1280px; margin:0 auto; padding:44px clamp(16px,4vw,48px);
+          display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+          align-items:start; gap:32px; text-align:left;
+        }
+        .nt-siteindex .nt-si-col { min-width:0; }
+        .nt-siteindex h2.nt-si-h {
+          margin:0 0 14px; font-size:14px; font-weight:600; line-height:1.3;
+          letter-spacing:.05em; text-transform:uppercase; color:#C9BEAE;
+        }
+        .nt-siteindex ul.nt-si-list {
+          list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;
+        }
+        .nt-siteindex a.nt-si-link {
+          display:inline-block; font-size:13.5px; line-height:1.45; color:#D8CFC0;
+          text-decoration:none; transition:color .15s ease; max-width:34ch;
+        }
+        .nt-siteindex a.nt-si-link:hover { color:#fff; }
+        .nt-siteindex a.nt-si-link:focus-visible {
+          outline:2px solid #C9BEAE; outline-offset:3px; border-radius:2px; color:#fff;
+        }
+        @media (prefers-reduced-motion: reduce) { .nt-siteindex a.nt-si-link { transition:none; } }
+        @media (max-width:600px) {
+          .nt-siteindex .nt-si-wrap { grid-template-columns:repeat(2, 1fr); gap:26px 20px; padding:32px 16px; }
+          .nt-siteindex a.nt-si-link { padding:3px 0; } /* larger tap target on touch */
+        }
+      `}</style>
+      <div className="nt-si-wrap">
         <Col title="Explore" links={hubs} />
         {catLinks.length ? <Col title="Destinations & Categories" links={catLinks} /> : null}
         {tripLinks.length ? <Col title="Experiences" links={tripLinks} /> : null}
