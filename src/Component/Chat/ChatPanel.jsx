@@ -20,6 +20,7 @@ import {
   useMarkHostChatReadMutation,
 } from "../../services";
 import { setActiveChatConvo } from "../../utils/chatUiState";
+import { setUnread } from "../../utils/chatDrawerStore";
 
 const INK = "#221C17";
 const MUTED = "#726A5E";
@@ -71,6 +72,11 @@ const ChatPanel = ({ compact = false, initialConvoId = null, onClose }) => {
     setActiveChatConvo(selectedId ? String(selectedId) : null);
     return () => setActiveChatConvo(null);
   }, [selectedId]);
+
+  // Keep the nav badge in sync immediately after read/send (not just the 20s poll).
+  useEffect(() => {
+    setUnread(convos.reduce((s, c) => s + (Number(c.userUnread) || 0), 0));
+  }, [convos]);
 
   // Mark read when a thread is actually opened (RTK triggers only).
   useEffect(() => {

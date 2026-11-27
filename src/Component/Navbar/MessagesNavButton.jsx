@@ -3,25 +3,20 @@
 import { useSelector } from "react-redux";
 import { Badge, Box, IconButton } from "@mui/material";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
-import { useGetUnreadCountQuery } from "../../services";
-import { openChat } from "../../utils/chatDrawerStore";
+import { openChat, useChatDrawer } from "../../utils/chatDrawerStore";
 
-// Messages entry for the top nav: an icon with a server-derived unread badge.
-// One tap opens the chat pop-up in place (no page navigation). Authenticated
-// travellers only; the query is skipped when logged out so nothing fires.
+// Messages entry for the top nav: an icon with an unread badge. One tap opens
+// the chat pop-up in place (no page navigation). The unread total is fed by the
+// global ChatNotifier poll of /host-chat/mine — so the count works on the live
+// API with no extra endpoint. Authenticated travellers only.
 const MessagesNavButton = () => {
   const { userDbData } = useSelector((store) => store.global);
-
-  const { data: unread } = useGetUnreadCountQuery(undefined, {
-    skip: !userDbData,
-    pollingInterval: 30000,
-    refetchOnFocus: true,
-    refetchOnReconnect: true,
-  });
+  const { unread } = useChatDrawer();
 
   if (!userDbData) return null;
 
-  const display = unread?.display && unread.display !== "0" ? unread.display : null;
+  const count = Number(unread) || 0;
+  const display = count > 99 ? "99+" : count > 0 ? String(count) : null;
 
   return (
     <Box>

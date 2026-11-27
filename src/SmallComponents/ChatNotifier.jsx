@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetMyHostChatsMutation } from "../services";
 import { getActiveChatConvo } from "../utils/chatUiState";
-import { openChat } from "../utils/chatDrawerStore";
+import { openChat, setUnread } from "../utils/chatDrawerStore";
 
 const POLL_MS = 20000;
 
@@ -53,6 +53,8 @@ const ChatNotifier = () => {
         const res = await getMyHostChats().unwrap();
         const rows = res?.data || [];
         if (stop) return;
+        // Feed the nav unread badge (total across threads) on every poll.
+        setUnread(rows.reduce((s, r) => s + (Number(r.userUnread) || 0), 0));
         if (seen.current === null) {
           seen.current = new Map(rows.map((r) => [String(r._id), Number(r.userUnread) || 0]));
           return;
